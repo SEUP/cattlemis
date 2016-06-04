@@ -3,7 +3,7 @@
 <head>
     <meta id="token" name="token" content="{{ csrf_token() }}">
 
-    <title>Chaow Porkaew</title>
+    <title>Cattle MIS</title>
 
     <link rel="stylesheet" href="/css/vendor.sass.css">
     <link rel="stylesheet" href="/css/vendor.less.css">
@@ -25,7 +25,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/admin">Chaow Porkaew's Management Information System</a>
+            <a class="navbar-brand" href="/admin">Cattle Management Information System</a>
         </div>
         <!-- /.navbar-header -->
 
@@ -261,28 +261,32 @@
                     <li>
                         <a href="/admin#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
+
                     <li>
-                        <a href="/admin/calendar"><i class="fa fa-calendar fa-fw"></i> Calendar</a>
+                        <a href="/admin/questionair"><i class="fa fa-plus fa-fw"></i> บันทึกข้อมูลเกษตรกรใหม่</a>
+                    </li>
+
+                    <li>
+                        <a href="/admin/questionair-search"><i class="fa fa-search fa-fw"></i> ค้นหาข้อมูลเกษตรกร</a>
+                    </li>
+                    <li>
+                        <a href="/admin/#chart"><i class="fa fa-bar-chart-o fa-fw"></i> แผนภูมิรายงาน<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="flot.html">จำนวนเกษตรกรแยกตามจังหวัด</a>
+                            </li>
+                            <li>
+                                <a href="morris.html">จำนวนเกษตรกรแบ่งตามรายได้</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
                     </li>
                     <li>
                         <a href="/admin/user"><i class="fa fa-user fa-fw"></i> User</a>
                     </li>
 
-                    <li>
-                        <a href="/admin/course"><i class="fa fa-television fa-fw"></i> Course</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="flot.html">Flot Charts</a>
-                            </li>
-                            <li>
-                                <a href="morris.html">Morris.js Charts</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
+
+
                     <li>
                         <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
                     </li>
