@@ -70,7 +70,7 @@
                     </li>
 
                     <li>
-                        <a href="/admin/questionair"><i class="fa fa-plus fa-fw"></i> บันทึกข้อมูลเกษตรกรใหม่</a>
+                        <a href="/admin/questionair/add"><i class="fa fa-plus fa-fw"></i> บันทึกข้อมูลเกษตรกรใหม่</a>
                     </li>
 
                     <li>
