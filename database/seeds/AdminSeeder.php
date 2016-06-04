@@ -14,10 +14,10 @@ class AdminSeeder extends Seeder
         $adminRole = \App\Models\Role::where('key', '=', 'admin')->first();
 
         $admin = new \App\Models\User();
-        $admin->email = "admin@chaow.local";
+        $admin->email = "admin@admin.local";
         $admin->password = \Illuminate\Support\Facades\Hash::make("admin");
-        $admin->firstname = "Chaow";
-        $admin->lastname = "Porkaew";
+        $admin->firstname = "Admin";
+        $admin->lastname = "Cattle MIS";
         $admin->save();
 
         $admin->roles()->save($adminRole);

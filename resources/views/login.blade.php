@@ -50,14 +50,6 @@
                             <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
                             <hr/>
 
-                            <?php
-                            $fb = app(SammyK\LaravelFacebookSdk\LaravelFacebookSdk::class);
-                            $url = $fb->getLoginUrl(['email'], '/login/facebook/callback')
-                            ?>
-                            <a href="{{$url}}" class="btn btn-social btn-lg btn-block btn-facebook">
-                                <span class="fa fa-facebook"></span> Sign-in with Facebook
-                            </a>
-
                         </fieldset>
                     </form>
                 </div>
