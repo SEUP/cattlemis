@@ -20,7 +20,7 @@ class UserResourceController extends Controller
         return new User();
     }
 
-    public function store(Request $request)
+    public function store(Requests\UserCreateRequest $request)
     {
         $user = User::create($request->get('user'));
         $user->save();
@@ -40,7 +40,7 @@ class UserResourceController extends Controller
         return $user;
     }
 
-    public function update(Request $request, $id)
+    public function update(Requests\UserUpdateRequest $request, $id)
     {
         /* @var User $user */
         $user = User::find($id);

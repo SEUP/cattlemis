@@ -17,34 +17,28 @@ elixir(function (mix) {
     elixir.config.css.sass.pluginOptions.precision = 10;
 
     mix
+    //js
         .copy('resources/assets/vendor/jquery/dist/jquery.min.js', 'resources/assets/js/vendor')
         .copy('resources/assets/vendor/datetimepicker/jquery.datetimepicker.min.js', 'resources/assets/js/vendor')
-
         .copy('resources/assets/vendor/fullcalendar/dist/fullcalendar.min.js', 'resources/assets/js/vendor')
-
         .copy('resources/assets/vendor/bootstrap-sass/assets/javascripts/bootstrap.min.js', 'resources/assets/js/vendor')
-
         .copy('resources/assets/vendor/metisMenu/dist/metisMenu.min.js', 'resources/assets/js/vendor')
-
         .copy('resources/assets/vendor/startbootstrap-sb-admin-2-sass/dist/js/sb-admin-2.js', 'resources/assets/js/vendor')
-
         .copy('resources/assets/vendor/moment/moment.js', 'resources/assets/js/vendor')
-
         .copy('resources/assets/vendor/bootstrap-sass/assets/fonts', 'public/fonts')
-
-        .copy('resources/assets/vendor/font-awesome/fonts', 'public/fonts')
-
         .copy('resources/assets/vendor/vue/dist/vue.min.js', 'resources/assets/js/vendor')
-
         .copy('resources/assets/vendor/vue-resource/dist/vue-resource.min.js', 'resources/assets/js/vendor')
         .copy('resources/assets/vendor/vue-strap/dist/vue-strap.min.js', 'resources/assets/js/vendor')
-
         .copy('resources/assets/vendor/highcharts/highcharts.js', 'resources/assets/js/vendor')
+        .copy('resources/assets/vendor/highcharts/modules/drilldown.js', 'resources/assets/js/vendor')
 
+        //font
+        .copy('resources/assets/vendor/font-awesome/fonts', 'public/fonts')
+
+        //css
         .copy('resources/assets/vendor/metisMenu/dist/metisMenu.min.css', 'resources/assets/css/vendor')
         .copy('resources/assets/vendor/fullcalendar/dist/fullcalendar.min.css', 'resources/assets/css/vendor')
         .copy('resources/assets/vendor/fullcalendar/dist/fullcalendar.print.css', 'resources/assets/css/vendor')
-
         .copy('resources/assets/vendor/datetimepicker/jquery.datetimepicker.css', 'resources/assets/css/vendor')
 
 
@@ -72,6 +66,7 @@ elixir(function (mix) {
         'vendor/vue-resource.min.js',
         'vendor/vue-strap.min.js',
         'vendor/highcharts.js',
+        'vendor/drilldown.js',
 
     ], 'public/js/vendor.js')
 });

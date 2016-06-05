@@ -47,6 +47,7 @@ class QuestionairController extends Controller
 
     function doEdit(UserUpdateRequest $request, $id)
     {
+
     }
 
     function doDelete($id)

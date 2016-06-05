@@ -122,6 +122,7 @@
             currentUser: {},
             user_id: {}
         },
+
         methods: {
             loadCurrentUser: function () {
                 return this.$http({url: "/api/current_user", method: "get"}).success(function (r) {
@@ -134,8 +135,7 @@
             }
         },
         ready: function () {
-            this.loadCurrentUser();
-
+            //this.loadCurrentUser();
             this.user_id = $("#user_id").attr('value');
         },
     });
