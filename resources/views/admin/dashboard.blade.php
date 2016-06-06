@@ -98,5 +98,24 @@
         </div>
     </div>
     <div class="row">
+        <tabs :active="0">
+            <tab header="one">
+                ...
+            </tab>
+            <tab header="two">
+                ...
+            </tab>
+            <tab header="three" disabled>
+                ...
+            </tab>
+        </tabs>
     </div>
+@endsection
+
+@section('javascript')
+    <script type="text/javascript">
+        var app = new AdminApp({
+            el: 'body',
+        })
+    </script>
 @endsection

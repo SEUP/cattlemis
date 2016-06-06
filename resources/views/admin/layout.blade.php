@@ -11,8 +11,14 @@
     <link href='/css/vendor.print.style.css' rel='stylesheet' media='print'/>
 
     <meta id="user_id" value="{{Auth::user()->id}}"/>
+
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
 </head>
-<body>
+<body v-cloak>
 
 <div id="wrapper">
 
@@ -120,9 +126,12 @@
         el: "body",
         data: {
             currentUser: {},
-            user_id: {}
+            user_id: {},
         },
-
+        components: {
+            tabs: VueStrap.tabset,
+            tab: VueStrap.tab
+        },
         methods: {
             loadCurrentUser: function () {
                 return this.$http({url: "/api/current_user", method: "get"}).success(function (r) {
@@ -135,8 +144,9 @@
             }
         },
         ready: function () {
-            //this.loadCurrentUser();
+            this.loadCurrentUser();
             this.user_id = $("#user_id").attr('value');
+            this.show = true;
         },
     });
 
