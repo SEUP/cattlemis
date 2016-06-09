@@ -1,7 +1,108 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-
 @import "resources/assets/vendor/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "resources/assets/vendor/bootstrap-social/bootstrap-social.scss";
 @import "resources/assets/vendor/startbootstrap-sb-admin-2-sass/sass/sb-admin-2";
 @import "resources/assets/vendor/font-awesome/scss/font-awesome";
 
+$bgDefault-cattle: #336600;
+$bgHighlight-cattle: #339900;
+$colDefault-cattle: #66ff00;
+$colHighlight-cattle: #ecdbff;
+$dropDown-cattle: false;
+
+.navbar-cattle {
+  background-color: $bgDefault-cattle;
+  border-color: $bgHighlight-cattle;
+  .navbar-brand {
+    color: $colDefault-cattle;
+    &:hover, &:focus {
+      color: $colHighlight-cattle;
+    }
+  }
+  .navbar-text {
+    color: $colDefault-cattle;
+  }
+  .navbar-nav {
+    > li {
+      > a {
+        color: $colDefault-cattle;
+        &:hover, &:focus {
+          color: $colHighlight-cattle;
+        }
+      }
+      @if $dropDown-cattle {
+        > .dropdown-menu {
+          background-color: $bgDefault-cattle;
+          > li {
+            > a {
+              color: $colDefault-cattle;
+              &:hover, &:focus {
+                color: $colHighlight-cattle;
+                background-color: $bgHighlight-cattle;
+              }
+            }
+            > .divider {
+              background-color: $bgHighlight-cattle;
+            }
+          }
+        }
+      }
+    }
+    @if $dropDown-cattle {
+      .open .dropdown-menu > .active {
+        > a, > a:hover, > a:focus {
+          color: $colHighlight-cattle;
+          background-color: $bgHighlight-cattle;
+        }
+      }
+    }
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight-cattle;
+        background-color: $bgHighlight-cattle;
+      }
+    }
+    > .open {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight-cattle;
+        background-color: $bgHighlight-cattle;
+      }
+    }
+  }
+  .navbar-toggle {
+    border-color: $bgHighlight-cattle;
+    &:hover, &:focus {
+      background-color: $bgHighlight-cattle;
+    }
+    .icon-bar {
+      background-color: $colDefault-cattle;
+    }
+  }
+  .navbar-collapse,
+  .navbar-form {
+    border-color: $colDefault-cattle;
+  }
+  .navbar-link {
+    color: $colDefault-cattle;
+    &:hover {
+      color: $colHighlight-cattle;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu {
+    > li > a {
+      color: $colDefault-cattle;
+      &:hover, &:focus {
+        color: $colHighlight-cattle;
+      }
+    }
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight-cattle;
+        background-color: $bgHighlight-cattle;
+      }
+    }
+  }
+}
