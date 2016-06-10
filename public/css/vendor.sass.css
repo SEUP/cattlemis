@@ -8937,6 +8937,18 @@ table.dataTable thead .sorting:after {
     color: #66ff00; }
     .navbar-cattle .navbar-nav > li > a:hover, .navbar-cattle .navbar-nav > li > a:focus {
       color: #ecdbff; }
+  .navbar-cattle .navbar-nav > li > .dropdown-menu {
+    background-color: #336600; }
+    .navbar-cattle .navbar-nav > li > .dropdown-menu > li > a {
+      color: #66ff00; }
+      .navbar-cattle .navbar-nav > li > .dropdown-menu > li > a:hover, .navbar-cattle .navbar-nav > li > .dropdown-menu > li > a:focus {
+        color: #ecdbff;
+        background-color: #339900; }
+    .navbar-cattle .navbar-nav > li > .dropdown-menu > li > .divider {
+      background-color: #339900; }
+  .navbar-cattle .navbar-nav .open .dropdown-menu > .active > a, .navbar-cattle .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-cattle .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ecdbff;
+    background-color: #339900; }
   .navbar-cattle .navbar-nav > .active > a, .navbar-cattle .navbar-nav > .active > a:hover, .navbar-cattle .navbar-nav > .active > a:focus {
     color: #ecdbff;
     background-color: #339900; }
