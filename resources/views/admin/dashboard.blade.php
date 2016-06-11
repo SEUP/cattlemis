@@ -111,11 +111,3 @@
         </tabs>
     </div>
 @endsection
-
-@section('javascript')
-    <script type="text/javascript">
-        var app = new AdminApp({
-            el: 'body',
-        })
-    </script>
-@endsection

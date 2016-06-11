@@ -9,7 +9,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            @include('admin.error')
+            @include('share.error')
         </div>
     </div>
     <div class="row" id="user-profile-app">
@@ -59,9 +59,5 @@
             </div>
         </div>
     </div>
-
-
 @endsection
 
-@section('javascript')
-@endsection

@@ -10,7 +10,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            @include('admin.error')
+            @include('share.error')
         </div>
     </div>
     <div class="row" id="user-management-app">

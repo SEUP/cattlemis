@@ -47,9 +47,12 @@ class UserController extends Controller
         $user->password = Hash::make($userform['password']);
         $user->save();
 
-        foreach ($userform['roles'] as $role) {
-            $roleM = Role::find($role['id']);
-            $user->roles()->save($roleM);
+        if (isset($userform['roles'])) {
+            $roleIds = [];
+            foreach ($userform['roles'] as $role) {
+                $roleIds[] = $role['id'];
+            }
+            $user->roles()->sync($roleIds);
         }
 
         return redirect()->action("\\$this->namespace\\UserController@index");
@@ -57,8 +60,14 @@ class UserController extends Controller
 
     function edit($id)
     {
-        $user = User::find($id);
+        $roles = Role::all();
+        $user = User::with(['roles'])->find($id);
+        /* @var User $user */
+
+        $user->selectedRoles = $user->roles()->lists('role_id')->toArray();
+
         return view('admin.user.edit')
+            ->with('roles', $roles)
             ->with('user', $user);
     }
 
@@ -72,6 +81,16 @@ class UserController extends Controller
         if ($userform['password']) {
             $user->password = Hash::make($userform['password']);
         }
+
+        if (isset($userform['roles'])) {
+            $roleIds = [];
+            foreach ($userform['roles'] as $role) {
+                $roleIds[] = $role['id'];
+            }
+            $user->roles()->sync($roleIds);
+        }
+
+
         $user->save();
 
         return redirect()->action("\\$this->namespace\\UserController@edit", ['id' => $id])->with("SUCCESS_MESSAGE", ["msg" => "User Profile updated."]);

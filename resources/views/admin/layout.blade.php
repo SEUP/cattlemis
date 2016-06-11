@@ -153,8 +153,13 @@
 </script>
 
 
-@yield("javascript")
-
+@section('javascript')
+    <script type="text/javascript">
+        var app = new AdminApp({
+            el: 'body'
+        })
+    </script>
+@show
 
 </body>
 </html>

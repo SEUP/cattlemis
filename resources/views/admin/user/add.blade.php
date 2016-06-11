@@ -9,7 +9,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            @include('admin.error')
+            @include('share.error')
         </div>
     </div>
     <div class="row" id="user-profile-app">
@@ -44,6 +44,7 @@
 
                         <div class="form-group">
                             <label>Roles</label>
+                            <input type="hidden" name="user[roles][][id]" value="0">
                             @foreach($roles as $role)
                                 <div class="checkbox">
                                     <label>
@@ -75,7 +76,4 @@
         </div>
     </div>
 
-@endsection
-
-@section('javascript')
 @endsection
