@@ -130,7 +130,9 @@
         },
         components: {
             tabs: VueStrap.tabset,
-            tab: VueStrap.tab
+            tab: VueStrap.tab,
+            accordion: VueStrap.accordion,
+            panel: VueStrap.panel
         },
         methods: {
             loadCurrentUser: function () {
