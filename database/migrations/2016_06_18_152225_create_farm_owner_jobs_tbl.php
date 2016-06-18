@@ -31,6 +31,6 @@ class CreateFarmOwnerJobsTbl extends Migration
      */
     public function down()
     {
-        Schema::drop('farm_owners_jobs');
+        Schema::dropIfExists('farm_owners_jobs');
     }
 }
