@@ -21,10 +21,10 @@ class CreateChoicesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('choice_farmowner', function (Blueprint $table) {
+        Schema::create('choice_farm_owner', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('choice_id');
-            $table->integer('farmowner_id');
+            $table->integer('farm_owner_id');
             $table->timestamps();
         });
     }
