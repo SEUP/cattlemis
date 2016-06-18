@@ -1,6 +1,6 @@
 import Cache from '../cache'
 import config from '../config'
-import { parseDirective } from 'directive'
+import { parseDirective } from '../parsers/directive'
 
 const regexEscapeRE = /[-.*+?^${}()|[\]\/\\]/g
 let cache, tagRE, htmlRE
@@ -27,7 +27,7 @@ export function compileRegex () {
     'g'
   )
   htmlRE = new RegExp(
-    '^' + unsafeOpen + '.*' + unsafeClose + '$'
+    '^' + unsafeOpen + '((?:.|\\n)+?)' + unsafeClose + '$'
   )
   // reset cache
   cache = new Cache(1000)

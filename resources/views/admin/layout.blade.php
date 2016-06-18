@@ -98,6 +98,10 @@
                     <li>
                         <a href="/admin/user"><i class="fa fa-user fa-fw"></i> จัดการข้อมูลผู้ใช้</a>
                     </li>
+
+                    <li>
+                        <a href="/admin/choice"><i class="fa fa-list fa-fw"></i> จัดการข้อมูลตัวเลือก</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->

@@ -30,3 +30,7 @@ Route::post('profile', "ProfileController@doEdit");
 
 //questionair routes
 Route::get('questionair/add', 'QuestionairController@add');
+
+
+//choice
+Route::get('choice', 'ChoiceController@index');
