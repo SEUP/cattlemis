@@ -36,6 +36,7 @@ class CreateChoicesTable extends Migration
      */
     public function down()
     {
+        Schema::drop('choice_farmowner');
         Schema::drop('choices');
     }
 }
