@@ -125,6 +125,8 @@
 <script type="text/javascript">
 
     Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('content');
+    var select = VueStrap.select;
+    var option = VueStrap.option;
 
     var AdminApp = Vue.extend({
         el: "body",
@@ -136,7 +138,9 @@
             tabs: VueStrap.tabset,
             tab: VueStrap.tab,
             accordion: VueStrap.accordion,
-            panel: VueStrap.panel
+            panel: VueStrap.panel,
+            'my-select': select,
+            'my-option': option,
         },
         methods: {
             loadCurrentUser: function () {

@@ -33,12 +33,21 @@ class FarmOwner extends Model
         'farm_lat',
         'farm_long',
         'age',
-        'avg_cattle_income',
+//        'avg_cattle_income',
     ];
 
-    public function sex()
+    public function getSexAttribute()
     {
-        return $this->belongsToMany(Choice::class, "choice_farm_owner")->where('choice_farm_owner.type', '=', 'sex');
+        return $this->sexes->first();
     }
+
+    public function sexes()
+    {
+        return $this->belongsToMany(Choice::class)->where('type', '=', 'sex');
+
+    }
+
+    protected $appends = ['sex'];
+
 
 }

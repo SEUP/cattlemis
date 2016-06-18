@@ -32,7 +32,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">รหัสประจำตัวประชาชน</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="newFarmer.personal_id"
+                                    <input type="text" class="form-control" v-model="newFarmer.person_id"
                                            placeholder="รหัสประจำตัวประชาชน">
                                 </div>
                             </div>
@@ -173,7 +173,11 @@
                             <div class="form-group">
                                 <label for="เพศ" class="col-sm-2 control-label">เพศ</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="เพศ" placeholder="เพศ">
+                                    <select v-model="newFarmer.sex.id">
+                                        <option value="0">กรุณาเลือก</option>
+                                        <option v-for="sexOp in sexOptions"
+                                                v-bind:value="sexOp.id">@{{ sexOp.choice }}</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -289,15 +293,33 @@
         var app = new AdminApp({
             el: 'body',
             data: {
-                newFarmer: {}
+                newFarmer: {
+                    sex: {
+                        id: 0
+                    }
+                },
+                sexOptions: []
             },
             methods: {
                 save: function () {
                     console.log(this.newFarmer);
+                    this.$http.post('/api/farm-owner', this.newFarmer).then(function (response) {
+                        console.log(r);
+                    })
+                },
+                selectSex: function (sex) {
+                    console.log(sex);
+                    this.newFarmer.sex = sex;
                 }
+
             },
             ready: function () {
-
+                this.$http.get('/api/choice/sex').then(
+                        function (response) {
+                            this.sexOptions = response.data;
+                            console.log(this.sexOptions);
+                        }
+                )
             }
         })
 

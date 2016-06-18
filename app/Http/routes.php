@@ -55,10 +55,10 @@ Route::get('/api/current_user', function () {
 });
 
 
-Route::post('/api/questionair/', function (\App\Http\Requests\Questionair\QuestionairRequest $request) {
-    $questionair = new \App\Models\Questionair();
-    $questionair->fill($request->all());
-    //$questionair->save();
-    return $questionair;
+Route::get('/api/choice/{type}', function ($type) {
+    $choices = \App\Models\Choice::where('type', '=', $type)->get();
+    return $choices;
 });
 
+
+Route::resource('/api/farm-owner', "FarmOwnerController");
