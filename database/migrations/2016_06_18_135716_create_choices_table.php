@@ -16,6 +16,7 @@ class CreateChoicesTable extends Migration
             $table->increments('id');
             $table->string('choice');
             $table->string('type');
+            $table->boolean('has_text');
             $table->integer('parent_id')->nullable();
             $table->timestamps();
         });
@@ -31,3 +32,4 @@ class CreateChoicesTable extends Migration
         Schema::drop('choices');
     }
 }
+
