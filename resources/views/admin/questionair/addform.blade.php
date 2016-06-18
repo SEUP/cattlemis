@@ -3,10 +3,13 @@
 @section('page-wrapper')
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">บันทึกข้อมูลเกษตรกรใหม่</h1>
+            <h1 class="page-header">บันทึกข้อมูลเกษตรกรใหม่
+                <button type="button" class="btn btn-primary" v-on:click="save()">Save</button>
+            </h1>
         </div>
-        <!-- /.col-lg-12 -->
     </div>
+
+
     <div class="row">
         <div class="col-lg-12">
             <accordion :one-at-time="true">
@@ -17,19 +20,19 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">ชื่อ</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="farmOwner[first_name]" class="form-control"/>
+                                    <input type="text" v-model="newFarmer.first_name" class="form-control"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">นามสกุล</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="farmOwner[last_name]" class="form-control"/>
+                                    <input type="text" v-model="newFarmer.last_name" class="form-control"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">รหัสประจำตัวประชาชน</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="farmOwner[personal_id]"
+                                    <input type="text" class="form-control" id="newFarmer.personal_id"
                                            placeholder="รหัสประจำตัวประชาชน">
                                 </div>
                             </div>
@@ -38,10 +41,10 @@
                         <formset>
                             <legend>1.2 ที่อยู่ตามสำเนาทะเบียนบ้าน</legend>
                             <div class="form-group">
-                                <label for="farmOwner[house_no]"
+                                <label for="newFarmer.house_no"
                                        class="col-sm-2 control-label">บ้านเลขที่</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="farmOwner[house_no]"
+                                    <input type="text" class="form-control" id="newFarmer.house_no"
                                            placeholder="บ้านเลขที่">
                                 </div>
                             </div>
@@ -285,8 +288,14 @@
 
         var app = new AdminApp({
             el: 'body',
-            data: {},
-            methods: {},
+            data: {
+                newFarmer: {}
+            },
+            methods: {
+                save: function () {
+                    console.log(this.newFarmer);
+                }
+            },
             ready: function () {
 
             }
