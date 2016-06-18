@@ -20,6 +20,13 @@ class CreateChoicesTable extends Migration
             $table->integer('parent_id')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('choice_farmowner', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('choice_id');
+            $table->integer('farmowner_id');
+            $table->timestamps();
+        });
     }
 
     /**
