@@ -172,7 +172,7 @@
                                 <label for="เพศ" class="col-sm-2 control-label">เพศ</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" v-model="newFarmer.sex">
-                                        <option value="0">กรุณาเลือก</option>
+                                        <option value="">กรุณาเลือก</option>
                                         <option v-for="option in options.sex"
                                                 v-bind:value="option">@{{ option.choice }}</option>
                                     </select>
@@ -187,7 +187,11 @@
                             <div class="form-group">
                                 <label for="สถานภาพ" class="col-sm-2 control-label">สถานภาพ</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="สถานภาพ" placeholder="สถานภาพ">
+                                    <select class="form-control" v-model="newFarmer.personal_status">
+                                        <option value="">กรุณาเลือก</option>
+                                        <option v-for="option in options.personal_status"
+                                                v-bind:value="option">@{{ option.choice }}</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -196,7 +200,7 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <select class="form-control " v-model="newFarmer.family_status">
-                                                <option value="0">กรุณาเลือก</option>
+                                                <option value="">กรุณาเลือก</option>
                                                 <option v-for="option in options.family_status"
                                                         v-bind:value="option">@{{ option.choice }}</option>
                                             </select>
@@ -236,7 +240,7 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <select class="form-control " v-model="newFarmer.social_status">
-                                                <option value="0">กรุณาเลือก</option>
+                                                <option selected value="">กรุณาเลือก</option>
                                                 <option v-for="option in options.social_status"
                                                         v-bind:value="option">@{{ option.choice }}</option>
                                             </select>
@@ -355,6 +359,7 @@
                     this.reInitialOption('sex');
                     this.reInitialOption('education');
                     this.reInitialOption('social_status');
+                    this.reInitialOption('personal_status');
 
 
                 },

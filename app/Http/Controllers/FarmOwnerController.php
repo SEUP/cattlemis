@@ -11,34 +11,33 @@ use App\Http\Requests;
 class FarmOwnerController extends Controller
 {
 
+    private function generateChoice(Request $request, $form, $choices, $field)
+    {
+
+        if ($request->has("$field.id")) {
+            if (isset($form[$field]['pivot'])) {
+                $choices[$form[$field]['id']] = ['remark' => $form[$field]['pivot']['remark']];
+            } else {
+                $choices[] = $form[$field]['id'];
+            }
+        }
+        return $choices;
+    }
+
     private function getChoices(Request $request)
     {
         $form = $request->all();
 
         $choices = [];
 
-        if ($request->has("sex")) {
-            $choices[] = $form['sex']['id'];
+        $fieldArray = [
+            "sex","education","family_status","social_status","personal_status"
+        ];
+
+        foreach ($fieldArray as $field) {
+            $choices = $this->generateChoice($request, $form, $choices, "$field");
         }
 
-        if ($request->has("education")) {
-            $choices[] = $form['education']['id'];
-        }
-
-        if ($request->has("social_status")) {
-            if (isset($form['social_status']['pivot'])) {
-                $choices[$form['social_status']['id']] = ['remark' => $form['social_status']['pivot']['remark']];
-            } else {
-                $choices[] = $form['social_status']['id'];
-            }
-
-        }
-
-        if (isset($form['family_status']['pivot'])) {
-            $choices[$form['family_status']['id']] = ['remark' => $form['family_status']['pivot']['remark']];
-        } else {
-            $choices[] = $form['family_status']['id'];
-        }
         return $choices;
     }
 

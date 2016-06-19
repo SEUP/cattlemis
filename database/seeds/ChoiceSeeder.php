@@ -54,6 +54,11 @@ class ChoiceSeeder extends Seeder
             ["choice" => "100,000 - 150,000 บาท/ปี", "type" => "income_range", "has_text" => false],
             ["choice" => "มากกว่า 150,000 บาท/ปี", "type" => "income_range", "has_text" => false],
 
+
+            ["choice" => "โสด", "type" => "personal_status", "has_text" => false],
+            ["choice" => "สมรส", "type" => "personal_status", "has_text" => false],
+            ["choice" => "หย่า", "type" => "personal_status", "has_text" => false],
+
         ];
 
 

@@ -63,6 +63,13 @@ class FarmOwner extends Model
 
     }
 
+    public function personal_statuses()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('remark')
+            ->where('type', '=', 'personal_status');
+    }
+
     public function choices()
     {
         return $this->belongsToMany(Choice::class)->withPivot('remark');
@@ -70,17 +77,36 @@ class FarmOwner extends Model
 
     protected $hidden = ['sexes', 'family_statuses', 'choices', 'educations'];
 
-    protected $appends = ['sex', 'family_status', 'education', 'social_status'];
+    protected $appends = ['sex', 'family_status', 'education', 'social_status', 'personal_status'];
+
+    public function getPersonalStatusAttribute()
+    {
+        $obj = $this->personal_statuses()->first();
+        if ($obj) {
+            return $obj;
+        } else {
+            return [];
+        }
+    }
 
     public function getEducationAttribute()
     {
-        $value = $this->educations->first();
-        return $value;
+        $obj = $this->educations->first();
+        if ($obj) {
+            return $obj;
+        } else {
+            return [];
+        }
     }
 
     public function getSocialStatusAttribute()
     {
-        return $this->social_statuses()->first();
+        $obj = $this->social_statuses()->first();
+        if ($obj) {
+            return $obj;
+        } else {
+            return [];
+        }
     }
 
     public function getSexAttribute()
@@ -89,9 +115,7 @@ class FarmOwner extends Model
         if ($value) {
             return $value;
         } else {
-            return [
-                'id' => '0'
-            ];
+            return [];
         }
     }
 
@@ -101,9 +125,7 @@ class FarmOwner extends Model
         if ($value) {
             return $value;
         } else {
-            return [
-                'id' => '0'
-            ];
+            return [];
         }
     }
 }
