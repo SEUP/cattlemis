@@ -15,11 +15,30 @@ class FarmOwnerController extends Controller
     {
         $form = $request->all();
 
-        $choices = [
-            $form['sex']['id'],
-            $form['family_status']['id']
-        ];
+        $choices = [];
 
+        if ($request->has("sex")) {
+            $choices[] = $form['sex']['id'];
+        }
+
+        if ($request->has("education")) {
+            $choices[] = $form['education']['id'];
+        }
+
+        if ($request->has("social_status")) {
+            if (isset($form['social_status']['pivot'])) {
+                $choices[$form['social_status']['id']] = ['remark' => $form['social_status']['pivot']['remark']];
+            } else {
+                $choices[] = $form['social_status']['id'];
+            }
+
+        }
+
+        if (isset($form['family_status']['pivot'])) {
+            $choices[$form['family_status']['id']] = ['remark' => $form['family_status']['pivot']['remark']];
+        } else {
+            $choices[] = $form['family_status']['id'];
+        }
         return $choices;
     }
 

@@ -36,6 +36,53 @@ class FarmOwner extends Model
         'avg_cattle_income',
     ];
 
+    public function sexes()
+    {
+        return $this->belongsToMany(Choice::class)->where('type', '=', 'sex');
+
+    }
+
+    public function educations()
+    {
+        return $this->belongsToMany(Choice::class)->where('type', '=', 'education');
+
+    }
+
+    public function family_statuses()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('remark')
+            ->where('type', '=', 'family_status');
+    }
+
+    public function social_statuses()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('remark')
+            ->where('type', '=', 'social_status');
+
+    }
+
+    public function choices()
+    {
+        return $this->belongsToMany(Choice::class)->withPivot('remark');
+    }
+
+    protected $hidden = ['sexes', 'family_statuses', 'choices', 'educations'];
+
+    protected $appends = ['sex', 'family_status', 'education', 'social_status'];
+
+    public function getEducationAttribute()
+    {
+        $value = $this->educations->first();
+        return $value;
+    }
+
+    public function getSocialStatusAttribute()
+    {
+        return $this->social_statuses()->first();
+    }
+
     public function getSexAttribute()
     {
         $value = $this->sexes->first();
@@ -59,26 +106,4 @@ class FarmOwner extends Model
             ];
         }
     }
-
-    public function sexes()
-    {
-        return $this->belongsToMany(Choice::class)->where('type', '=', 'sex');
-
-    }
-
-    public function family_statuses()
-    {
-        return $this->belongsToMany(Choice::class)->where('type', '=', 'family_status');
-    }
-
-    public function choices()
-    {
-        return $this->belongsToMany(Choice::class);
-    }
-
-    protected $hidden = ['sexes', 'family_statuses', 'choices'];
-
-    protected $appends = ['sex', 'family_status'];
-
-
 }

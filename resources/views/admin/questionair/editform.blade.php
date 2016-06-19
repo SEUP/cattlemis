@@ -17,7 +17,7 @@
             <accordion :one-at-time="true">
                 <panel header="ส่วนที่ 1 ข้อมูลพื้นฐานของเกษตรกร">
                     <form class="form-horizontal">
-                        <formset>
+                        <fieldset>
                             <legend>1.1 ข้อมูลทั่วไป</legend>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">ชื่อ</label>
@@ -38,9 +38,9 @@
                                            placeholder="รหัสประจำตัวประชาชน">
                                 </div>
                             </div>
-                        </formset>
+                        </fieldset>
 
-                        <formset>
+                        <fieldset>
                             <legend>1.2 ที่อยู่ตามสำเนาทะเบียนบ้าน</legend>
                             <div class="form-group">
                                 <label for="newFarmer.house_no"
@@ -104,9 +104,9 @@
                                            placeholder="E-mail">
                                 </div>
                             </div>
-                        </formset>
+                        </fieldset>
 
-                        <formset>
+                        <fieldset>
                             <legend>1.3 ที่อยู่ฟาร์ม</legend>
 
                             <div class="form-group">
@@ -147,8 +147,8 @@
                                     <input type="text" class="form-control" id="จังหวัด" placeholder="จังหวัด">
                                 </div>
                             </div>
-                        </formset>
-                        <formset>
+                        </fieldset>
+                        <fieldset>
                             <legend>1.4 ตำแหน่งพิกัด GPS ของฟาร์ม</legend>
                             <div class="form-group">
                                 <label for="พิกัดฟาร์ม (lat)" class="col-sm-2 control-label">พิกัดฟาร์ม (lat)</label>
@@ -164,9 +164,9 @@
                                            placeholder="พิกัดฟาร์ม (lng)">
                                 </div>
                             </div>
-                        </formset>
+                        </fieldset>
 
-                        <formset>
+                        <fieldset>
                             <legend>1.5 สถานะทางครอบครัว</legend>
                             <div class="form-group">
                                 <label for="เพศ" class="col-sm-2 control-label">เพศ</label>
@@ -193,46 +193,64 @@
                             <div class="form-group">
                                 <label for="สถานภาพในครอบครัว" class="col-sm-2 control-label">สถานภาพในครอบครัว</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" v-model="newFarmer.family_status">
-                                        <option value="0">กรุณาเลือก</option>
-                                        <option v-for="option in options.family_status"
-                                                v-bind:value="option">@{{ option.choice }}</option>
-                                    </select>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <select class="form-control " v-model="newFarmer.family_status">
+                                                <option value="0">กรุณาเลือก</option>
+                                                <option v-for="option in options.family_status"
+                                                        v-bind:value="option">@{{ option.choice }}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-6" v-if="newFarmer.family_status.has_text==1">
+                                            <input type="text" v-model="newFarmer.family_status.pivot.remark"
+                                                   class="form-control col-sm-6" placeholder="โปรดระบุ"/>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </div>
-                        </formset>
+                        </fieldset>
 
-                        <formset>
+                        <fieldset>
                             <legend>1.6 การศึกษา</legend>
 
                             <div class="form-group">
                                 <label for="การศึกษา" class="col-sm-2 control-label">การศึกษา</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="การศึกษา" placeholder="การศึกษา">
+
+                                    <select class="form-control " v-model="newFarmer.education">
+                                        <option value="">กรุณาเลือก</option>
+                                        <option v-for="option in options.education"
+                                                v-bind:value="option">@{{ option.choice }}</option>
+                                    </select>
                                 </div>
                             </div>
-                        </formset>
-                        <formset>
+                        </fieldset>
+                        <fieldset>
                             <legend>1.7 สถานภาพทางสังคม</legend>
 
                             <div class="form-group">
                                 <label for="สถานภาพทางสังคม" class="col-sm-2 control-label">สถานภาพทางสังคม</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="สถานภาพทางสังคม"
-                                           placeholder="สถานภาพทางสังคม">
-                                </div>
-                            </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <select class="form-control " v-model="newFarmer.social_status">
+                                                <option value="0">กรุณาเลือก</option>
+                                                <option v-for="option in options.social_status"
+                                                        v-bind:value="option">@{{ option.choice }}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-6" v-if="newFarmer.social_status.has_text==1">
+                                            <input type="text" v-model="newFarmer.social_status.pivot.remark"
+                                                   class="form-control col-sm-6" placeholder="โปรดระบุ"/>
+                                        </div>
+                                    </div>
 
-                            <div class="form-group">
-                                <label for="สถานภาพทางสังคม อื่นๆ" class="col-sm-2 control-label">สถานภาพทางสังคม
-                                    อื่นๆ</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="สถานภาพทางสังคม อื่นๆ"
-                                           placeholder="สถานภาพทางสังคม อื่นๆ">
                                 </div>
                             </div>
-                        </formset>
-                        <formset>
+                        </fieldset>
+                        <fieldset>
                             <legend>1.8 การเลี้ยงโคเนื้อ</legend>
                             <div class="form-group">
                                 <label for="การเลี้ยงโคเนื้อเป็น"
@@ -242,12 +260,12 @@
                                            placeholder="การเลี้ยงโคเนื้อเป็น">
                                 </div>
                             </div>
-                        </formset>
-                        <formset>
+                        </fieldset>
+                        <fieldset>
                             <legend>1.9</legend>
-                        </formset>
+                        </fieldset>
 
-                        <formset>
+                        <fieldset>
                             <legend>1.10 ท่านมีรายได้รวมของครัวเรือนเฉลี่ยเท่าไหร่ (บาท/ปี)</legend>
                             <div class="form-group">
                                 <label for="ท่านมีรายได้รวมของครัวเรือนเฉลี่ยเท่าไหร่ (บาท/ปี)"
@@ -260,9 +278,9 @@
                                 </div>
                             </div>
 
-                        </formset>
+                        </fieldset>
 
-                        <formset>
+                        <fieldset>
                             <legend>1.11 รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)</legend>
                             <div class="form-group">
                                 <label for="รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)" class="col-sm-2 control-label">รายได้เฉลี่ยต่อปีของการขายโคเนื้อ
@@ -272,7 +290,7 @@
                                            placeholder="รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)">
                                 </div>
                             </div>
-                        </formset>
+                        </fieldset>
                     </form>
                 </panel>
                 <panel header="ส่วนที่ 2 ข้อมูลการเลี้ยงและสถานภาพฟาร์ม">ส่วนที่ 2</panel>
@@ -302,6 +320,7 @@
             el: 'body',
             data: {
                 newFarmer: {},
+                checkedNames: [],
                 options: {
                     sex: [],
                     family_status: []
@@ -309,27 +328,35 @@
             },
             methods: {
                 save: function () {
-                    console.log(this.newFarmer);
+//                    console.log(this.newFarmer);
                     this.$http.patch('/api/farm-owner/' + this.newFarmer.id, this.newFarmer).then(function (response) {
                         data = response.data;
-                        console.log(data);
+//                        console.log(data);
                         this.newFarmer = data;
                         this.reSelectedOption();
                     })
                 },
+                reInitialOption: function (opt) {
+                    for (i = 0; i < this.options[opt].length; i++) {
+                        if (this.options[opt][i].id == this.newFarmer[opt].id) {
+
+                            if (this.options[opt][i].has_text == 1 && this.newFarmer[opt].has_text == 1) {
+                                this.options[opt][i].pivot = this.newFarmer[opt].pivot;
+                                this.newFarmer[opt] = this.options[opt][i];
+                            } else {
+                                this.newFarmer[opt] = this.options[opt][i];
+                            }
+                        }
+                    }
+                },
                 reSelectedOption: function () {
 
-                    for (i = 0; i < this.options.family_status.length; i++) {
-                        if (this.options.family_status[i].id == this.newFarmer.family_status.id) {
-                            this.newFarmer.family_status = this.options.family_status[i];
-                        }
-                    }
+                    this.reInitialOption('family_status');
+                    this.reInitialOption('sex');
+                    this.reInitialOption('education');
+                    this.reInitialOption('social_status');
 
-                    for (i = 0; i < this.options.sex.length; i++) {
-                        if (this.options.sex[i].id == this.newFarmer.sex.id) {
-                            this.newFarmer.sex = this.options.sex[i];
-                        }
-                    }
+
                 },
                 initial: function () {
 
@@ -341,11 +368,10 @@
                         dataType: 'json',
                         async: 'false',
                         success: function (response) {
-                            console.log(response);
+//                            console.log(response);
                             self.options = response;
                         }
                     })
-
                 }
             },
             created: function () {
@@ -356,12 +382,10 @@
                 this.$http.get('/api/farm-owner/{{$farmOwner->id}}/edit').then(
                         function (response) {
                             this.newFarmer = response.data;
-                            console.log(this.newFarmer);
+//                            console.log(this.newFarmer);
                             this.reSelectedOption();
                         }
                 )
-
-
             }
         })
 

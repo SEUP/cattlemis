@@ -25,6 +25,7 @@ class CreateChoicesTable extends Migration
             $table->increments('id');
             $table->integer('choice_id');
             $table->integer('farm_owner_id');
+            $table->string('remark');
             $table->timestamps();
         });
     }
