@@ -33,12 +33,31 @@ class FarmOwner extends Model
         'farm_lat',
         'farm_long',
         'age',
-//        'avg_cattle_income',
+        'avg_cattle_income',
     ];
 
     public function getSexAttribute()
     {
-        return $this->sexes->first();
+        $value = $this->sexes->first();
+        if ($value) {
+            return $value;
+        } else {
+            return [
+                'id' => '0'
+            ];
+        }
+    }
+
+    public function getFamilyStatusAttribute()
+    {
+        $value = $this->family_statuses->first();
+        if ($value) {
+            return $value;
+        } else {
+            return [
+                'id' => '0'
+            ];
+        }
     }
 
     public function sexes()
@@ -47,7 +66,19 @@ class FarmOwner extends Model
 
     }
 
-    protected $appends = ['sex'];
+    public function family_statuses()
+    {
+        return $this->belongsToMany(Choice::class)->where('type', '=', 'family_status');
+    }
+
+    public function choices()
+    {
+        return $this->belongsToMany(Choice::class);
+    }
+
+    protected $hidden = ['sexes', 'family_statuses', 'choices'];
+
+    protected $appends = ['sex', 'family_status'];
 
 
 }

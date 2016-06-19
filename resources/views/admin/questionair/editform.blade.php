@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">บันทึกข้อมูลเกษตรกรใหม่
+            <h1 class="page-header">แก้ไขข้อมูลเกษตรกร
             </h1>
         </div>
     </div>
@@ -46,21 +46,16 @@
                                 <label for="newFarmer.house_no"
                                        class="col-sm-2 control-label">บ้านเลขที่</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="newFarmer.house_no"
+                                    <input type="text" class="form-control" v-model="newFarmer.house_no"
                                            placeholder="บ้านเลขที่">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="บ้านเลขที่" class="col-sm-2 control-label">บ้านเลขที่</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="บ้านเลขที่" placeholder="บ้านเลขที่">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="หมู่" class="col-sm-2 control-label">หมู่</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="หมู่" placeholder="หมู่">
+                                    <input type="text" class="form-control" v-model="newFarmer.house_moo"
+                                           placeholder="หมู่">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -84,28 +79,29 @@
                             <div class="form-group">
                                 <label for="รหัสไปรษณีย์" class="col-sm-2 control-label">รหัสไปรษณีย์</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="รหัสไปรษณีย์"
+                                    <input type="text" class="form-control" v-model="newFarmer.house_postcode"
                                            placeholder="รหัสไปรษณีย์">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="โทรศัพท์บ้าน" class="col-sm-2 control-label">โทรศัพท์บ้าน</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="โทรศัพท์บ้าน"
+                                    <input type="text" class="form-control" v-model="newFarmer.house_phone"
                                            placeholder="โทรศัพท์บ้าน">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="โทรศัพท์มือถือ" class="col-sm-2 control-label">โทรศัพท์มือถือ</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="โทรศัพท์มือถือ"
+                                    <input type="text" class="form-control" v-model="newFarmer.mobile_no"
                                            placeholder="โทรศัพท์มือถือ">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="E-mail" class="col-sm-2 control-label">E-mail</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="E-mail" placeholder="E-mail">
+                                    <input type="text" class="form-control" v-model="newFarmer.email"
+                                           placeholder="E-mail">
                                 </div>
                             </div>
                         </formset>
@@ -175,10 +171,10 @@
                             <div class="form-group">
                                 <label for="เพศ" class="col-sm-2 control-label">เพศ</label>
                                 <div class="col-sm-10">
-                                    <select v-model="newFarmer.sex.id">
+                                    <select class="form-control" v-model="newFarmer.sex">
                                         <option value="0">กรุณาเลือก</option>
-                                        <option v-for="sexOp in sexOptions"
-                                                v-bind:value="sexOp.id">@{{ sexOp.choice }}</option>
+                                        <option v-for="option in options.sex"
+                                                v-bind:value="option">@{{ option.choice }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -197,8 +193,11 @@
                             <div class="form-group">
                                 <label for="สถานภาพในครอบครัว" class="col-sm-2 control-label">สถานภาพในครอบครัว</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="สถานภาพในครอบครัว"
-                                           placeholder="สถานภาพในครอบครัว">
+                                    <select class="form-control" v-model="newFarmer.family_status">
+                                        <option value="0">กรุณาเลือก</option>
+                                        <option v-for="option in options.family_status"
+                                                v-bind:value="option">@{{ option.choice }}</option>
+                                    </select>
                                 </div>
                             </div>
                         </formset>
@@ -302,34 +301,67 @@
         var app = new AdminApp({
             el: 'body',
             data: {
-                newFarmer: {
-                    sex: {
-                        id: 0
-                    }
-                },
-                sexOptions: []
+                newFarmer: {},
+                options: {
+                    sex: [],
+                    family_status: []
+                }
             },
             methods: {
                 save: function () {
                     console.log(this.newFarmer);
-                    this.$http.post('/api/farm-owner', this.newFarmer).then(function (response) {
-                        console.log(response.data);
-                        window.location.href = "/admin/questionair/" + response.data.id + '/edit';
+                    this.$http.patch('/api/farm-owner/' + this.newFarmer.id, this.newFarmer).then(function (response) {
+                        data = response.data;
+                        console.log(data);
+                        this.newFarmer = data;
+                        this.reSelectedOption();
                     })
                 },
-                selectSex: function (sex) {
-                    console.log(sex);
-                    this.newFarmer.sex = sex;
-                }
+                reSelectedOption: function () {
 
+                    for (i = 0; i < this.options.family_status.length; i++) {
+                        if (this.options.family_status[i].id == this.newFarmer.family_status.id) {
+                            this.newFarmer.family_status = this.options.family_status[i];
+                        }
+                    }
+
+                    for (i = 0; i < this.options.sex.length; i++) {
+                        if (this.options.sex[i].id == this.newFarmer.sex.id) {
+                            this.newFarmer.sex = this.options.sex[i];
+                        }
+                    }
+                },
+                initial: function () {
+
+                    var self = this;
+
+                    $.ajax({
+                        url: '/api/choice',
+                        type: 'get',
+                        dataType: 'json',
+                        async: 'false',
+                        success: function (response) {
+                            console.log(response);
+                            self.options = response;
+                        }
+                    })
+
+                }
+            },
+            created: function () {
+                this.initial();
             },
             ready: function () {
-                this.$http.get('/api/choice/sex').then(
+
+                this.$http.get('/api/farm-owner/{{$farmOwner->id}}/edit').then(
                         function (response) {
-                            this.sexOptions = response.data;
-                            console.log(this.sexOptions);
+                            this.newFarmer = response.data;
+                            console.log(this.newFarmer);
+                            this.reSelectedOption();
                         }
                 )
+
+
             }
         })
 

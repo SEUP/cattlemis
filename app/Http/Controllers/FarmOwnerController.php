@@ -10,6 +10,19 @@ use App\Http\Requests;
 
 class FarmOwnerController extends Controller
 {
+
+    private function getChoices(Request $request)
+    {
+        $form = $request->all();
+
+        $choices = [
+            $form['sex']['id'],
+            $form['family_status']['id']
+        ];
+
+        return $choices;
+    }
+
     public function index()
     {
         $farmOwners = FarmOwner::with([])->get();
@@ -24,11 +37,10 @@ class FarmOwnerController extends Controller
     {
         $form = $request->all();
 
-
         $farmOwner = new FarmOwner();
         $farmOwner->fill($request->all());
         $farmOwner->save();
-        $farmOwner->sexes()->sync([$form['sex']['id']]);
+        $farmOwner->choices()->sync($this->getChoices($request));
 
         return $farmOwner;
     }
@@ -42,24 +54,28 @@ class FarmOwnerController extends Controller
     public function edit($id)
     {
         /* @var User $user */
-        $user = User::find($id);
-        return $user;
+        $farmOwner = FarmOwner::with([])->find($id);
+
+        return $farmOwner;
     }
 
-    public function update(Requests\UserUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        /* @var User $user */
-        $user = User::find($id);
-        $user->fill($request->get('user'));
-        $user->save();
-        return $user;
+        $form = $request->all();
+        $farmOwner = FarmOwner::find($id);
+        $farmOwner->fill($form);
+        $farmOwner->save();
+
+        $farmOwner->choices()->sync($this->getChoices($request));
+
+        return $farmOwner;
     }
 
     public function destroy($id)
     {
-        /* @var User $user */
-        $user = User::find($id);
-        $user->delete();
+        /* @var FarmOwner $farmOwner */
+        $farmOwner = FarmOwner::find($id);
+        $farmOwner->delete();
         return [true];
     }
 

@@ -80,7 +80,7 @@
                     </li>
 
                     <li>
-                        <a href="/admin/questionair-search"><i class="fa fa-search fa-fw"></i> ค้นหาข้อมูลเกษตรกร</a>
+                        <a href="/admin/questionair/search"><i class="fa fa-search fa-fw"></i> ค้นหาข้อมูลเกษตรกร</a>
                     </li>
                     <li>
                         <a href="/admin/#chart"><i class="fa fa-bar-chart-o fa-fw"></i> แผนภูมิรายงาน<span
@@ -125,8 +125,6 @@
 <script type="text/javascript">
 
     Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('content');
-    var select = VueStrap.select;
-    var option = VueStrap.option;
 
     var AdminApp = Vue.extend({
         el: "body",
@@ -139,12 +137,13 @@
             tab: VueStrap.tab,
             accordion: VueStrap.accordion,
             panel: VueStrap.panel,
-            'my-select': select,
-            'my-option': option,
+            'my-select': VueStrap.select,
+            'my-option': VueStrap.option,
+            affix: VueStrap.affix
         },
         methods: {
             loadCurrentUser: function () {
-                return this.$http({url: "/api/current_user", method: "get"}).success(function (r) {
+                return this.$http({url: "/api/current_user", method: "get"}).then(function (r) {
                     this.currentUser = r;
                     //console.log(this.currentUser);
                 })

@@ -18,8 +18,8 @@ class CreateFarmTbl extends Migration
             $table->string('last_name');
             $table->string('person_id');
 
-            $table->unsignedInteger('house_no')->nullable();
-            $table->unsignedInteger('house_moo')->nullable();
+            $table->string('house_no')->nullable();
+            $table->string('house_moo')->nullable();
             $table->unsignedInteger('house_provice')->nullable();
             $table->unsignedInteger('house_district')->nullable();
             $table->unsignedInteger('house_suburb')->nullable();
