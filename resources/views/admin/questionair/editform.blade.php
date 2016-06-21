@@ -61,19 +61,19 @@
                             <div class="form-group">
                                 <label for="ตำบล" class="col-sm-2 control-label">ตำบล</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="ตำบล" placeholder="ตำบล">
+                                    <input type="text" v-model="newFarmer.house_suburb" class="form-control" id="ตำบล" placeholder="ตำบล">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="อำเภอ" class="col-sm-2 control-label">อำเภอ</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="อำเภอ" placeholder="อำเภอ">
+                                    <input type="text" v-model="newFarmer.house_district" class="form-control" id="อำเภอ" placeholder="อำเภอ">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="จังหวัด" class="col-sm-2 control-label">จังหวัด</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="จังหวัด" placeholder="จังหวัด">
+                                    <input type="text" v-model="newFarmer.house_province" class="form-control" id="จังหวัด" placeholder="จังหวัด">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -113,38 +113,33 @@
                                 <label for="ที่ตั้งฟาร์มเลขที่"
                                        class="col-sm-2 control-label">ที่ตั้งฟาร์มเลขที่</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="ที่ตั้งฟาร์มเลขที่"
+                                    <input type="text" v-model="newFarmer.farm_no" class="form-control" id="ที่ตั้งฟาร์มเลขที่"
                                            placeholder="ที่ตั้งฟาร์มเลขที่">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="หมู่" class="col-sm-2 control-label">หมู่</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="หมู่" placeholder="หมู่">
+                                    <input type="text" v-model="newFarmer.farm_moo" class="form-control" id="หมู่" placeholder="หมู่">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="ตำบล" class="col-sm-2 control-label">ตำบล</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="ตำบล" placeholder="ตำบล">
+                                    <input type="text" v-model="newFarmer.farm_suburb" class="form-control" id="ตำบล" placeholder="ตำบล">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="ตำบล" class="col-sm-2 control-label">ตำบล</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="ตำบล" placeholder="ตำบล">
-                                </div>
-                            </div>
+
                             <div class="form-group">
                                 <label for="อำเภอ" class="col-sm-2 control-label">อำเภอ</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="อำเภอ" placeholder="อำเภอ">
+                                    <input type="text" v-model="newFarmer.farm_district" class="form-control" id="อำเภอ" placeholder="อำเภอ">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="จังหวัด" class="col-sm-2 control-label">จังหวัด</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="จังหวัด" placeholder="จังหวัด">
+                                    <input type="text" v-model="newFarmer.farm_province" class="form-control" id="จังหวัด" placeholder="จังหวัด">
                                 </div>
                             </div>
                         </fieldset>
@@ -153,14 +148,14 @@
                             <div class="form-group">
                                 <label for="พิกัดฟาร์ม (lat)" class="col-sm-2 control-label">พิกัดฟาร์ม (lat)</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="พิกัดฟาร์ม (lat)"
+                                    <input type="text" v-model="newFarmer.farm_lat" class="form-control" id="พิกัดฟาร์ม (lat)"
                                            placeholder="พิกัดฟาร์ม (lat)">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="พิกัดฟาร์ม (lng)" class="col-sm-2 control-label">พิกัดฟาร์ม (lng)</label>
+                                <label for="พิกัดฟาร์ม (lng)"  class="col-sm-2 control-label">พิกัดฟาร์ม (lng)</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="พิกัดฟาร์ม (lng)"
+                                    <input type="text" v-model="newFarmer.farm_long" class="form-control" id="พิกัดฟาร์ม (lng)"
                                            placeholder="พิกัดฟาร์ม (lng)">
                                 </div>
                             </div>
@@ -181,7 +176,7 @@
                             <div class="form-group">
                                 <label for="อายุ" class="col-sm-2 control-label">อายุ</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="อายุ" placeholder="อายุ">
+                                    <input type="text" v-model="newFarmer.age" class="form-control" id="อายุ" placeholder="อายุ">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -296,7 +291,7 @@
                                 <label for="รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)" class="col-sm-2 control-label">รายได้เฉลี่ยต่อปีของการขายโคเนื้อ
                                     (บาท)</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)"
+                                    <input type="text" v-model="newFarmer.avg_cattle_income" class="form-control" id="รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)"
                                            placeholder="รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)">
                                 </div>
                             </div>
