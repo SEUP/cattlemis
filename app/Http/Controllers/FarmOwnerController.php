@@ -30,9 +30,7 @@ class FarmOwnerController extends Controller
 
         $choices = [];
 
-        $fieldArray = [
-            "sex","education","family_status","social_status","personal_status"
-        ];
+        $fieldArray = ['sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range'];
 
         foreach ($fieldArray as $field) {
             $choices = $this->generateChoice($request, $form, $choices, "$field");

@@ -260,8 +260,12 @@
                                 <label for="การเลี้ยงโคเนื้อเป็น"
                                        class="col-sm-2 control-label">การเลี้ยงโคเนื้อเป็น</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="การเลี้ยงโคเนื้อเป็น"
-                                           placeholder="การเลี้ยงโคเนื้อเป็น">
+                                    <select class="form-control " v-model="newFarmer.cattle_job">
+                                        <option value="">กรุณาเลือก</option>
+                                        <option v-for="option in options.cattle_job"
+                                                v-bind:value="option">@{{ option.choice }}</option>
+                                    </select>
+
                                 </div>
                             </div>
                         </fieldset>
@@ -276,9 +280,11 @@
                                        class="col-sm-2 control-label">ท่านมีรายได้รวมของครัวเรือนเฉลี่ยเท่าไหร่
                                     (บาท/ปี)</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control"
-                                           id="ท่านมีรายได้รวมของครัวเรือนเฉลี่ยเท่าไหร่ (บาท/ปี)"
-                                           placeholder="ท่านมีรายได้รวมของครัวเรือนเฉลี่ยเท่าไหร่ (บาท/ปี)">
+                                    <select class="form-control " v-model="newFarmer.income_range">
+                                        <option value="">กรุณาเลือก</option>
+                                        <option v-for="option in options.income_range"
+                                                v-bind:value="option">@{{ option.choice }}</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -355,11 +361,11 @@
                 },
                 reSelectedOption: function () {
 
-                    this.reInitialOption('family_status');
-                    this.reInitialOption('sex');
-                    this.reInitialOption('education');
-                    this.reInitialOption('social_status');
-                    this.reInitialOption('personal_status');
+                    var attributes = ['sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range'];
+
+                    for (var i = 0; i < attributes.length; i++) {
+                        this.reInitialOption(attributes[i]);
+                    }
 
 
                 },

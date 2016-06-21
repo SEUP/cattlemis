@@ -55,6 +55,13 @@ class FarmOwner extends Model
             ->where('type', '=', 'family_status');
     }
 
+    public function cattle_jobs()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('remark')
+            ->where('type', '=', 'cattle_job');
+    }
+
     public function social_statuses()
     {
         return $this->belongsToMany(Choice::class)
@@ -70,18 +77,47 @@ class FarmOwner extends Model
             ->where('type', '=', 'personal_status');
     }
 
+    public function income_ranges()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('remark')
+            ->where('type', '=', 'income_range');
+    }
+
+
+
     public function choices()
     {
         return $this->belongsToMany(Choice::class)->withPivot('remark');
     }
 
-    protected $hidden = ['sexes', 'family_statuses', 'choices', 'educations'];
+    protected $hidden = ['sexes', 'family_statuses', 'choices', 'educations','cattle_jobs','income_ranges'];
 
-    protected $appends = ['sex', 'family_status', 'education', 'social_status', 'personal_status'];
+    protected $appends = ['sex', 'family_status', 'education', 'social_status', 'personal_status','cattle_job','income_range'];
 
     public function getPersonalStatusAttribute()
     {
         $obj = $this->personal_statuses()->first();
+        if ($obj) {
+            return $obj;
+        } else {
+            return [];
+        }
+    }
+
+    public function getIncomeRangeAttribute()
+    {
+        $obj = $this->income_ranges()->first();
+        if ($obj) {
+            return $obj;
+        } else {
+            return [];
+        }
+    }
+
+    public function getCattleJobAttribute()
+    {
+        $obj = $this->cattle_jobs()->first();
         if ($obj) {
             return $obj;
         } else {
