@@ -20,7 +20,7 @@ class CreateFarmTbl extends Migration
 
             $table->string('house_no')->nullable();
             $table->string('house_moo')->nullable();
-            $table->unsignedInteger('house_provice')->nullable();
+            $table->unsignedInteger('house_province')->nullable();
             $table->unsignedInteger('house_district')->nullable();
             $table->unsignedInteger('house_suburb')->nullable();
             $table->string('house_postcode')->nullable();

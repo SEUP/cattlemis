@@ -18,7 +18,7 @@ class FarmOwner extends Model
         'person_id',
         'house_no',
         'house_moo',
-        'house_provice',
+        'house_province',
         'house_district',
         'house_suburb',
         'house_postcode',
@@ -85,15 +85,14 @@ class FarmOwner extends Model
     }
 
 
-
     public function choices()
     {
         return $this->belongsToMany(Choice::class)->withPivot('remark');
     }
 
-    protected $hidden = ['sexes', 'family_statuses', 'choices', 'educations','cattle_jobs','income_ranges'];
+    protected $hidden = ['sexes', 'family_statuses', 'choices', 'educations', 'cattle_jobs', 'income_ranges'];
 
-    protected $appends = ['sex', 'family_status', 'education', 'social_status', 'personal_status','cattle_job','income_range'];
+    protected $appends = ['sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range'];
 
     public function getPersonalStatusAttribute()
     {
