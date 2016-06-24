@@ -27,6 +27,7 @@ class FarmOwner extends Model
         'email',
         'farm_name',
         'farm_no',
+        'farm_moo',
         'farm_province',
         'farm_district',
         'farm_suburb',
