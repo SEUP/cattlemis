@@ -47,6 +47,7 @@ class FarmOwnerController extends Controller
 
     public function create()
     {
+        return new FarmOwner();
     }
 
     public function store(Request $request)

@@ -44,12 +44,8 @@
         var app = new AdminApp({
             el: 'body',
             data: {
-                newFarmer: {
-                    sex: {
-                        id: 0
-                    }
-                },
-                options: []
+                newFarmer: {},
+                options: {}
             },
             methods: {
                 save: function () {
@@ -64,7 +60,16 @@
                     var self = this;
 
                     $.ajax({
-                        url: '/api/choice',
+                        url: '/api/farm-owner/create',
+                        type: 'get',
+                        dataType: 'json',
+                        async: 'false',
+                        success: function (response) {
+                            self.newFarmer = response;
+                        }
+                    })
+                    $.ajax({
+                        url: '/api/create',
                         type: 'get',
                         dataType: 'json',
                         async: 'false',

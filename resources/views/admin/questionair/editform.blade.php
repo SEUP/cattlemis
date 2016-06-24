@@ -37,26 +37,18 @@
     </div>
 @endsection
 
-
 @section('javascript')
     <script type="text/javascript">
-
         var app = new AdminApp({
             el: 'body',
             data: {
                 newFarmer: {},
-                checkedNames: [],
-                options: {
-                    sex: [],
-                    family_status: []
-                }
+                options: {}
             },
             methods: {
                 save: function () {
-//                    console.log(this.newFarmer);
                     this.$http.patch('/api/farm-owner/' + this.newFarmer.id, this.newFarmer).then(function (response) {
                         data = response.data;
-//                        console.log(data);
                         this.newFarmer = data;
                         this.reSelectedOption();
                     })
@@ -81,8 +73,6 @@
                     for (var i = 0; i < attributes.length; i++) {
                         this.reInitialOption(attributes[i]);
                     }
-
-
                 },
                 initial: function () {
 
@@ -112,6 +102,5 @@
                 )
             }
         })
-
     </script>
 @endsection
