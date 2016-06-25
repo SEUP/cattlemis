@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-lg-10">
             <accordion :one-at-time="true">
-                <panel header="ส่วนที่ 1 ข้อมูลพื้นฐานของเกษตรกร">
+                <panel header="ส่วนที่ 1 ข้อมูลพื้นฐานของเกษตรกร" :is-open="true">
                     @include('admin.questionair.part1')
                 </panel>
                 <panel header="ส่วนที่ 2 ข้อมูลการเลี้ยงและสถานภาพฟาร์ม">ส่วนที่ 2</panel>
@@ -66,12 +66,39 @@
                         }
                     }
                 },
+                reInitialMultiOption: function (opt) {
+
+                    var choiceOpt = this.options[opt];
+                    var userOpt = this.newFarmer[opt];
+
+                    for (var i = 0; i < choiceOpt.length; i++) {
+                        console.log("choice", choiceOpt[i].id, choiceOpt[i].choice)
+
+                        for (var j = 0; j < userOpt.length; j++) {
+
+                            console.log("user", userOpt[j])
+                            if (choiceOpt[i].id == userOpt[j].id) {
+                                choiceOpt.splice(i, 1, userOpt[j]);
+                                break;
+                            }
+                        }
+                    }
+                },
                 reSelectedOption: function () {
 
-                    var attributes = ['sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range'];
+                    var attributes = [
+                        'sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range'];
 
                     for (var i = 0; i < attributes.length; i++) {
                         this.reInitialOption(attributes[i]);
+                    }
+
+                    var multipleAttributes = [
+                        'jobtypes',
+                    ]
+
+                    for (var i = 0; i < multipleAttributes.length; i++) {
+                        this.reInitialMultiOption(multipleAttributes[i]);
                     }
                 },
                 initial: function () {

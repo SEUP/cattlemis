@@ -251,7 +251,21 @@
         </div>
     </fieldset>
     <fieldset>
-        <legend>1.9</legend>
+        <legend>1.9 ท่านมีรายได้จากการประกอบอาชีพอะไรบ้าง (เลือกได้มากกว่า 1 ข้อ)</legend>
+
+        <div class="form-group">
+            <div class="col-sm-3">
+                <label>ท่านมีรายได้จากการประกอบอาชีพอะไรบ้าง (เลือกได้มากกว่า 1 ข้อ)</label>
+            </div>
+            <div class="col-sm-9">
+                <label class="checkbox" v-for="option in options.jobtypes">
+                    <input type="checkbox" v-model="newFarmer.jobtypes" v-bind:value="option">
+                    @{{ option.choice }}:
+                    <input v-if="option.has_text" type="text" class="form-control"
+                           v-model="option['pivot']['remark']">
+                </label>
+            </div>
+        </div>
     </fieldset>
 
     <fieldset>

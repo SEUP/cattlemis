@@ -48,7 +48,9 @@
             methods: {
                 deleteFarmOwner: function (id) {
                     if (confirm("คุณต้องการลบข้อมูลเกษตกรรายนี้หรือไม่?")) {
-                        window.location.href = "/admin/questionair/" + id + "/delete";
+                        this.$http.delete('/api/farm-owner/' + id).then(function (response) {
+                            window.location.href = window.location.href;
+                        })
                     }
                 }
             },

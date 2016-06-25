@@ -13,28 +13,14 @@ use Illuminate\Database\Eloquent\Model;
 class FarmOwner extends Model
 {
     protected $fillable = [
-        'first_name',
-        'last_name',
-        'person_id',
-        'house_no',
-        'house_moo',
-        'house_province',
-        'house_district',
-        'house_suburb',
-        'house_postcode',
-        'house_phone',
-        'mobile_no',
-        'email',
-        'farm_name',
-        'farm_no',
-        'farm_moo',
-        'farm_province',
-        'farm_district',
-        'farm_suburb',
-        'farm_lat',
-        'farm_long',
-        'age',
-        'avg_cattle_income',
+        //part 1
+        'first_name', 'last_name', 'person_id', 'house_no', 'house_moo', 'house_province',
+        'house_district', 'house_suburb', 'house_postcode', 'house_phone', 'mobile_no', 'email',
+        'farm_name', 'farm_no', 'farm_moo', 'farm_province', 'farm_district', 'farm_suburb',
+        'farm_lat', 'farm_long', 'age', 'avg_cattle_income',
+
+        //part2
+
     ];
 
     public function sexes()
@@ -54,6 +40,13 @@ class FarmOwner extends Model
         return $this->belongsToMany(Choice::class)
             ->withPivot('remark')
             ->where('type', '=', 'family_status');
+    }
+
+    public function joptypes()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('remark')
+            ->where('type', '=', 'jobtypes');
     }
 
     public function cattle_jobs()
@@ -91,9 +84,14 @@ class FarmOwner extends Model
         return $this->belongsToMany(Choice::class)->withPivot('remark');
     }
 
-    protected $hidden = ['sexes', 'family_statuses', 'choices', 'educations', 'cattle_jobs', 'income_ranges'];
+    protected $hidden = [
+        'sexes', 'family_statuses', 'choices', 'educations', 'cattle_jobs', 'income_ranges'
+    ];
 
-    protected $appends = ['sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range'];
+    protected $appends = [
+        'sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range',
+        'jobtypes'
+    ];
 
     public function getPersonalStatusAttribute()
     {
@@ -163,5 +161,10 @@ class FarmOwner extends Model
         } else {
             return [];
         }
+    }
+
+    public function getJobtypesAttribute()
+    {
+        return $this->joptypes()->get();
     }
 }

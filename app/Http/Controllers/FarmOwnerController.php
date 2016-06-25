@@ -24,16 +24,46 @@ class FarmOwnerController extends Controller
         return $choices;
     }
 
+
+    private function generateManyChocies(Request $request, $form, $choices, $field)
+    {
+
+        if ($request->has("$field")) {
+
+            $fields = $request->get("$field");
+
+            foreach ($fields as $item) {
+
+                if (isset($item['pivot'])) {
+                    $choices[$item['id']] = ['remark' => $item['pivot']['remark']];
+                } else {
+                    $choices[] = $item['id'];
+                }
+            }
+        }
+        return $choices;
+    }
+
     private function getChoices(Request $request)
     {
         $form = $request->all();
 
         $choices = [];
 
-        $fieldArray = ['sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range'];
+        $fieldArray = [
+            'sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range'
+        ];
 
         foreach ($fieldArray as $field) {
             $choices = $this->generateChoice($request, $form, $choices, "$field");
+        }
+
+        $multiFieldArray = [
+            'jobtypes',
+        ];
+
+        foreach ($multiFieldArray as $field) {
+            $choices = $this->generateManyChocies($request, $form, $choices, "$field");
         }
 
         return $choices;
@@ -92,6 +122,9 @@ class FarmOwnerController extends Controller
     {
         /* @var FarmOwner $farmOwner */
         $farmOwner = FarmOwner::find($id);
+
+        $farmOwner->choices()->detach();
+
         $farmOwner->delete();
         return [true];
     }
