@@ -39,6 +39,12 @@ class CreateFarmTbl extends Migration
             $table->unsignedInteger('avg_cattle_income')->nullable();
             $table->timestamps();
         });
+        Schema::create('farm_owners_jobs', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('jobtype');
+            $table->integer('farm_owner_id');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -49,5 +55,6 @@ class CreateFarmTbl extends Migration
     public function down()
     {
         Schema::dropIfExists('farm_owners');
+        Schema::dropIfExists('farm_owners_jobs');
     }
 }
