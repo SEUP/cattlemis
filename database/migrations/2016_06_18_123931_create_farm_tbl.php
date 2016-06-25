@@ -17,7 +17,6 @@ class CreateFarmTbl extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('person_id');
-
             $table->string('house_no')->nullable();
             $table->string('house_moo')->nullable();
             $table->unsignedInteger('house_province')->nullable();
@@ -39,12 +38,6 @@ class CreateFarmTbl extends Migration
             $table->unsignedInteger('avg_cattle_income')->nullable();
             $table->timestamps();
         });
-        Schema::create('farm_owners_jobs', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('jobtype');
-            $table->integer('farm_owner_id');
-            $table->timestamps();
-        });
     }
 
     /**
@@ -55,6 +48,5 @@ class CreateFarmTbl extends Migration
     public function down()
     {
         Schema::dropIfExists('farm_owners');
-        Schema::dropIfExists('farm_owners_jobs');
     }
 }
