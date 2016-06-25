@@ -69,7 +69,7 @@
                         }
                     })
                     $.ajax({
-                        url: '/api/create',
+                        url: '/api/choice',
                         type: 'get',
                         dataType: 'json',
                         async: 'false',
