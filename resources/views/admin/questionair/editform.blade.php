@@ -72,11 +72,11 @@
                     var userOpt = this.newFarmer[opt];
 
                     for (var i = 0; i < choiceOpt.length; i++) {
-                        console.log("choice", choiceOpt[i].id, choiceOpt[i].choice)
+                        //console.log("choice", choiceOpt[i].id, choiceOpt[i].choice)
 
                         for (var j = 0; j < userOpt.length; j++) {
 
-                            console.log("user", userOpt[j])
+                            //console.log("user", userOpt[j])
                             if (choiceOpt[i].id == userOpt[j].id) {
                                 choiceOpt.splice(i, 1, userOpt[j]);
                                 break;

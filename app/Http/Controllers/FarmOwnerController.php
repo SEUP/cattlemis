@@ -16,7 +16,10 @@ class FarmOwnerController extends Controller
 
         if ($request->has("$field.id")) {
             if (isset($form[$field]['pivot'])) {
-                $choices[$form[$field]['id']] = ['remark' => $form[$field]['pivot']['remark']];
+
+                $pivot = $form[$field]['pivot'];
+
+                $choices[$form[$field]['id']] = $pivot;
             } else {
                 $choices[] = $form[$field]['id'];
             }
@@ -35,7 +38,8 @@ class FarmOwnerController extends Controller
             foreach ($fields as $item) {
 
                 if (isset($item['pivot'])) {
-                    $choices[$item['id']] = ['remark' => $item['pivot']['remark']];
+                    $pivot = $item['pivot'];
+                    $choices[$item['id']] = $pivot;
                 } else {
                     $choices[] = $item['id'];
                 }
