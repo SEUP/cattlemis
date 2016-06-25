@@ -1,148 +1,151 @@
 <form class="form-horizontal">
-    <fieldset id="1.1">
-        <legend>1.1 ข้อมูลทั่วไป</legend>
+    <fieldset id="2.1">
+        <legend>2.1 การเลียงโคเนื้อขอท่านมีวัตถุประสงค์เพื่ออะไร (เลือกได้มากกว่า 1 ข้อ)</legend>
         <div class="form-group">
-            <label class="col-sm-2 control-label">ชื่อ</label>
-            <div class="col-sm-10">
-                <input type="text" v-model="newFarmer.first_name" class="form-control"/>
+            <div class="col-sm-3">
+                <label>การเลียงโคเนื้อขอท่านมีวัตถุประสงค์เพื่ออะไร (เลือกได้มากกว่า 1 ข้อ)</label>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">นามสกุล</label>
-            <div class="col-sm-10">
-                <input type="text" v-model="newFarmer.last_name" class="form-control"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">รหัสประจำตัวประชาชน</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" v-model="newFarmer.person_id"
-                       placeholder="รหัสประจำตัวประชาชน">
+            <div class="col-sm-9">
+                <label class="checkbox" v-for="option in options.jobtypes">
+                    <input type="checkbox" v-model="newFarmer.jobtypes" v-bind:value="option">
+                    @{{ option.choice }}:
+                    <input v-if="option.has_text" type="text" class="form-control"
+                           v-model="option['pivot']['remark']">
+                </label>
             </div>
         </div>
     </fieldset>
 
-    <fieldset id="1.2">
-        <legend>1.2 ที่อยู่ตามสำเนาทะเบียนบ้าน</legend>
+    <fieldset id="2.2">
+        <legend>2.2 ท่านมีการจดบันทึกข้อมูลหรือทำประวัติโคเนื้อหรือไม่</legend>
         <div class="form-group">
-            <label for="newFarmer.house_no"
-                   class="col-sm-2 control-label">บ้านเลขที่</label>
+            <label for="เพศ" class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" v-model="newFarmer.house_no"
-                       placeholder="บ้านเลขที่">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="หมู่" class="col-sm-2 control-label">หมู่</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" v-model="newFarmer.house_moo"
-                       placeholder="หมู่">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="ตำบล" class="col-sm-2 control-label">ตำบล</label>
-            <div class="col-sm-10">
-                <input type="text" v-model="newFarmer.house_suburb" class="form-control" id="ตำบล" placeholder="ตำบล">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="อำเภอ" class="col-sm-2 control-label">อำเภอ</label>
-            <div class="col-sm-10">
-                <input type="text" v-model="newFarmer.house_district" class="form-control" id="อำเภอ"
-                       placeholder="อำเภอ">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="จังหวัด" class="col-sm-2 control-label">จังหวัด</label>
-            <div class="col-sm-10">
-                <input type="text" v-model="newFarmer.house_province" class="form-control" id="จังหวัด"
-                       placeholder="จังหวัด">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="รหัสไปรษณีย์" class="col-sm-2 control-label">รหัสไปรษณีย์</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" v-model="newFarmer.house_postcode"
-                       placeholder="รหัสไปรษณีย์">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="โทรศัพท์บ้าน" class="col-sm-2 control-label">โทรศัพท์บ้าน</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" v-model="newFarmer.house_phone"
-                       placeholder="โทรศัพท์บ้าน">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="โทรศัพท์มือถือ" class="col-sm-2 control-label">โทรศัพท์มือถือ</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" v-model="newFarmer.mobile_no"
-                       placeholder="โทรศัพท์มือถือ">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="E-mail" class="col-sm-2 control-label">E-mail</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" v-model="newFarmer.email"
-                       placeholder="E-mail">
+                <select class="form-control" v-model="newFarmer.sex">
+                    <option value="">กรุณาเลือก</option>
+                    <option v-for="option in options.sex"
+                            v-bind:value="option">@{{ option.choice }}</option>
+                </select>
             </div>
         </div>
     </fieldset>
 
-    <fieldset id="1.3">
-        <legend>1.3 ที่อยู่ฟาร์ม</legend>
+    <fieldset id="2.3">
+        <legend>2.3 จำนวนโคเนื้อที่เกษตกรเลี้ยงทั้งหมด (ตัว)</legend>
 
         <div class="form-group">
-            <label for="ที่ตั้งฟาร์มเลขที่"
-                   class="col-sm-2 control-label">ที่ตั้งฟาร์มเลขที่</label>
+            <label
+                    class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
-                <input type="text" v-model="newFarmer.farm_no" class="form-control" id="ที่ตั้งฟาร์มเลขที่"
-                       placeholder="ที่ตั้งฟาร์มเลขที่">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="หมู่" class="col-sm-2 control-label">หมู่</label>
-            <div class="col-sm-10">
-                <input type="text" v-model="newFarmer.farm_moo" class="form-control" id="หมู่" placeholder="หมู่">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="ตำบล" class="col-sm-2 control-label">ตำบล</label>
-            <div class="col-sm-10">
-                <input type="text" v-model="newFarmer.farm_suburb" class="form-control" id="ตำบล" placeholder="ตำบล">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="อำเภอ" class="col-sm-2 control-label">อำเภอ</label>
-            <div class="col-sm-10">
-                <input type="text" v-model="newFarmer.farm_district" class="form-control" id="อำเภอ"
-                       placeholder="อำเภอ">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="จังหวัด" class="col-sm-2 control-label">จังหวัด</label>
-            <div class="col-sm-10">
-                <input type="text" v-model="newFarmer.farm_province" class="form-control" id="จังหวัด"
-                       placeholder="จังหวัด">
+                <input type="text" class="form-control" placeholder="" readonly>
             </div>
         </div>
     </fieldset>
-    <fieldset id="1.4">
-        <legend>1.4 ตำแหน่งพิกัด GPS ของฟาร์ม</legend>
+    <fieldset id="2.10">
+        <legend>2.10 ค่าใช้จ่ายในการเลี้ยงโคเนื้อ</legend>
         <div class="form-group">
-            <label for="พิกัดฟาร์ม (lat)" class="col-sm-2 control-label">พิกัดฟาร์ม (lat)</label>
+            <label class="col-sm-2 control-label">ค่าใช้จ่ายโดยประมาณ (บาท/เดือน)</label>
             <div class="col-sm-10">
-                <input type="text" v-model="newFarmer.farm_lat" class="form-control" id="พิกัดฟาร์ม (lat)"
-                       placeholder="พิกัดฟาร์ม (lat)">
+                <input type="text" class="form-control" placeholder="ค่าใช้จ่ายโดยประมาณ (บาท/เดือน)">
             </div>
         </div>
         <div class="form-group">
-            <label for="พิกัดฟาร์ม (lng)" class="col-sm-2 control-label">พิกัดฟาร์ม (lng)</label>
+            <label class="col-sm-2 control-label">ค่ายา (บาท/เดือน)</label>
             <div class="col-sm-10">
-                <input type="text" v-model="newFarmer.farm_long" class="form-control" id="พิกัดฟาร์ม (lng)"
-                       placeholder="พิกัดฟาร์ม (lng)">
+                <input type="text" class="form-control" placeholder="ค่ายา (บาท/เดือน)">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">ค่าอาหารและแร่ธาตุ (บาท/เดือน)</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" placeholder="ค่าอาหารและแร่ธาตุ (บาท/เดือน)">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">อื่นๆ</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" placeholder="รายละเอียด">
+            </div>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" placeholder="ค่าใช้จ่าย (บาท/เดือน)">
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset id="2.11">
+        <legend>2.11 ท่านมีประสบการณ์การเลี้ยงโคเนื้อมานานแค่ไหน</legend>
+        <div class="form-group">
+            <label class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+                <select class="form-control" v-model="newFarmer.sex">
+                    <option value="">กรุณาเลือก</option>
+                    <option v-for="option in options.sex"
+                            v-bind:value="option">@{{ option.choice }}</option>
+                </select>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset id="2.12">
+        <legend>2.12 ท่านมีเป้าหมายในการเลี้ยงในอนาคตอย่างไร</legend>
+        <div class="form-group">
+            <label class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+                <select class="form-control" v-model="newFarmer.sex">
+                    <option value="">กรุณาเลือก</option>
+                    <option v-for="option in options.sex"
+                            v-bind:value="option">@{{ option.choice }}</option>
+                </select>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset id="2.14">
+        <legend>2.14 ประวัติการตรวจโรคสัตว์ในฟาร์มของท่าน</legend>
+        <div class="form-group">
+            <label class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+                <select class="form-control" v-model="newFarmer.sex">
+                    <option value="">กรุณาเลือก</option>
+                    <option v-for="option in options.sex"
+                            v-bind:value="option">@{{ option.choice }}</option>
+                </select>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset id="2.15">
+        <legend>2.15 สถานภาพการระบาดของโรคในฟาร์มของท่านเป็นอย่างไร</legend>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">โรคแท้งติดต่อ</label>
+            <div class="col-sm-10">
+                <select class="form-control" v-model="newFarmer.sex">
+                    <option value="">กรุณาเลือก</option>
+                    <option v-for="option in options.sex"
+                            v-bind:value="option">@{{ option.choice }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">โรควัณโรค</label>
+            <div class="col-sm-10">
+                <select class="form-control" v-model="newFarmer.sex">
+                    <option value="">กรุณาเลือก</option>
+                    <option v-for="option in options.sex"
+                            v-bind:value="option">@{{ option.choice }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">โรคปากและเท้าเปื่อย</label>
+            <div class="col-sm-10">
+                <select class="form-control" v-model="newFarmer.sex">
+                    <option value="">กรุณาเลือก</option>
+                    <option v-for="option in options.sex"
+                            v-bind:value="option">@{{ option.choice }}</option>
+                </select>
             </div>
         </div>
     </fieldset>
