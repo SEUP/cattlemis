@@ -14,12 +14,8 @@ class CreateFarmOwnerJobsTbl extends Migration
     {
         Schema::create('farm_owners_jobs', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('jobtype');
-            $table->string('tumsuantype')->nullable();
-            $table->string('tumraitype')->nullable();
-            $table->string('other')->nullable();
-            //$table->integer('house_no');
-            $table->unsignedInteger('farm_owner_id');
+            $table->integer('jobtype');
+            $table->integer('farm_owner_id');
             $table->timestamps();
         });
     }
