@@ -22,9 +22,9 @@ class ExecuteThailandDbSql extends Migration
      */
     public function down()
     {
-        Schema::drop('thailand_amphures');
-        Schema::drop('thailand_provinces');
-        Schema::drop('thailand_districts');
-        Schema::drop('thailand_zipcodes');
+        Schema::dropIfExists('thailand_amphures');
+        Schema::dropIfExists('thailand_provinces');
+        Schema::dropIfExists('thailand_districts');
+        Schema::dropIfExists('thailand_zipcodes');
     }
 }
