@@ -150,7 +150,7 @@
     <fieldset id="1.5">
         <legend>1.5 สถานะทางครอบครัว</legend>
         <div class="form-group">
-            <label for="เพศ" class="col-sm-2 control-label">เพศ</label>
+            <label class="col-sm-2 control-label">เพศ</label>
             <div class="col-sm-10">
                 <select class="form-control" v-model="newFarmer.sex">
                     <option value="">กรุณาเลือก</option>

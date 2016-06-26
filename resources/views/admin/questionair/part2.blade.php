@@ -6,8 +6,8 @@
                 <label>การเลียงโคเนื้อขอท่านมีวัตถุประสงค์เพื่ออะไร (เลือกได้มากกว่า 1 ข้อ)</label>
             </div>
             <div class="col-sm-9">
-                <label class="checkbox" v-for="option in options.jobtypes">
-                    <input type="checkbox" v-model="newFarmer.jobtypes" v-bind:value="option">
+                <label class="checkbox" v-for="option in options.farm_purposes">
+                    <input type="checkbox" v-model="newFarmer.farm_purposes" v-bind:value="option">
                     @{{ option.choice }}:
                     <input v-if="option.has_text" type="text" class="form-control"
                            v-model="option['pivot']['remark']">

@@ -78,6 +78,13 @@ class FarmOwner extends Model
             ->where('type', '=', 'income_range');
     }
 
+    public function farm_purposes()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('remark')
+            ->where('type', '=', 'farm_purposes');
+    }
+
 
     public function choices()
     {
@@ -90,7 +97,7 @@ class FarmOwner extends Model
 
     protected $appends = [
         'sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range',
-        'jobtypes'
+        'jobtypes', 'farm_purposes'
     ];
 
     public function getPersonalStatusAttribute()
@@ -166,5 +173,10 @@ class FarmOwner extends Model
     public function getJobtypesAttribute()
     {
         return $this->joptypes()->get();
+    }
+
+    public function getFarmPurposesAttribute()
+    {
+        return $this->farm_purposes()->get();
     }
 }

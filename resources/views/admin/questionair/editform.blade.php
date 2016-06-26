@@ -96,7 +96,7 @@
                     }
 
                     var multipleAttributes = [
-                        'jobtypes',
+                        'jobtypes', 'farm_purposes'
                     ]
 
                     for (var i = 0; i < multipleAttributes.length; i++) {

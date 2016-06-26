@@ -63,7 +63,7 @@ class FarmOwnerController extends Controller
         }
 
         $multiFieldArray = [
-            'jobtypes',
+            'jobtypes','farm_purposes'
         ];
 
         foreach ($multiFieldArray as $field) {
