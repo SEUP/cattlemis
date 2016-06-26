@@ -1,9 +1,9 @@
 <form class="form-horizontal">
     <fieldset id="2.1">
-        <legend>2.1 การเลียงโคเนื้อขอท่านมีวัตถุประสงค์เพื่ออะไร (เลือกได้มากกว่า 1 ข้อ)</legend>
+        <legend>2.1 การเลียงโคเนื้อของท่านมีวัตถุประสงค์เพื่ออะไร (เลือกได้มากกว่า 1 ข้อ)</legend>
         <div class="form-group">
             <div class="col-sm-3">
-                <label>การเลียงโคเนื้อขอท่านมีวัตถุประสงค์เพื่ออะไร (เลือกได้มากกว่า 1 ข้อ)</label>
+                <label>การเลี้ยงโคเนื้อของท่านมีวัตถุประสงค์เพื่ออะไร (เลือกได้มากกว่า 1 ข้อ)</label>
             </div>
             <div class="col-sm-9">
                 <label class="checkbox" v-for="option in options.farm_purposes">
@@ -21,9 +21,9 @@
         <div class="form-group">
             <label for="เพศ" class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
-                <select class="form-control" v-model="newFarmer.sex">
+                <select class="form-control" v-model="newFarmer.farm_record">
                     <option value="">กรุณาเลือก</option>
-                    <option v-for="option in options.sex"
+                    <option v-for="option in options.farm_record"
                             v-bind:value="option">@{{ option.choice }}</option>
                 </select>
             </div>
@@ -113,28 +113,29 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">ค่าใช้จ่ายโดยประมาณ (บาท/เดือน)</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" placeholder="ค่าใช้จ่ายโดยประมาณ (บาท/เดือน)">
+                <input type="text" v-model="newFarmer.total_expense_amount" class="form-control"
+                       placeholder="ค่าใช้จ่ายโดยประมาณ (บาท/เดือน)" readonly>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">ค่ายา (บาท/เดือน)</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" placeholder="ค่ายา (บาท/เดือน)">
+                <input type="text" v-model="newFarmer.drug_price" class="form-control" placeholder="ค่ายา (บาท/เดือน)">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">ค่าอาหารและแร่ธาตุ (บาท/เดือน)</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" placeholder="ค่าอาหารและแร่ธาตุ (บาท/เดือน)">
+                <input type="text" v-model="newFarmer.food_price" class="form-control" placeholder="ค่าอาหารและแร่ธาตุ (บาท/เดือน)">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">อื่นๆ</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" placeholder="รายละเอียด">
+                <input type="text" v-model="newFarmer.expense_remark" class="form-control" placeholder="รายละเอียด">
             </div>
             <div class="col-sm-5">
-                <input type="text" class="form-control" placeholder="ค่าใช้จ่าย (บาท/เดือน)">
+                <input type="text" v-model="newFarmer.expense_price" class="form-control" placeholder="ค่าใช้จ่าย (บาท/เดือน)">
             </div>
         </div>
     </fieldset>
@@ -144,9 +145,9 @@
         <div class="form-group">
             <label class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
-                <select class="form-control" v-model="newFarmer.sex">
+                <select class="form-control" v-model="newFarmer.farm_exp">
                     <option value="">กรุณาเลือก</option>
-                    <option v-for="option in options.sex"
+                    <option v-for="option in options.farm_exp"
                             v-bind:value="option">@{{ option.choice }}</option>
                 </select>
             </div>
@@ -158,9 +159,9 @@
         <div class="form-group">
             <label class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
-                <select class="form-control" v-model="newFarmer.sex">
+                <select class="form-control" v-model="newFarmer.farm_future">
                     <option value="">กรุณาเลือก</option>
-                    <option v-for="option in options.sex"
+                    <option v-for="option in options.farm_future"
                             v-bind:value="option">@{{ option.choice }}</option>
                 </select>
             </div>
@@ -172,9 +173,9 @@
         <div class="form-group">
             <label class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
-                <select class="form-control" v-model="newFarmer.sex">
+                <select class="form-control" v-model="newFarmer.farm_disease_check">
                     <option value="">กรุณาเลือก</option>
-                    <option v-for="option in options.sex"
+                    <option v-for="option in options.farm_disease_check"
                             v-bind:value="option">@{{ option.choice }}</option>
                 </select>
             </div>
@@ -186,9 +187,9 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">โรคแท้งติดต่อ</label>
             <div class="col-sm-10">
-                <select class="form-control" v-model="newFarmer.sex">
+                <select class="form-control" v-model="newFarmer.abortion">
                     <option value="">กรุณาเลือก</option>
-                    <option v-for="option in options.sex"
+                    <option v-for="option in options.abortion"
                             v-bind:value="option">@{{ option.choice }}</option>
                 </select>
             </div>
@@ -197,9 +198,9 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">โรควัณโรค</label>
             <div class="col-sm-10">
-                <select class="form-control" v-model="newFarmer.sex">
+                <select class="form-control" v-model="newFarmer.tuberculosis">
                     <option value="">กรุณาเลือก</option>
-                    <option v-for="option in options.sex"
+                    <option v-for="option in options.tuberculosis"
                             v-bind:value="option">@{{ option.choice }}</option>
                 </select>
             </div>
@@ -208,163 +209,14 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">โรคปากและเท้าเปื่อย</label>
             <div class="col-sm-10">
-                <select class="form-control" v-model="newFarmer.sex">
+                <select class="form-control" v-model="newFarmer.foot_mouth_disease">
                     <option value="">กรุณาเลือก</option>
-                    <option v-for="option in options.sex"
+                    <option v-for="option in options.foot_mouth_disease"
                             v-bind:value="option">@{{ option.choice }}</option>
                 </select>
             </div>
         </div>
     </fieldset>
 
-    <fieldset id="1.5">
-        <legend>1.5 สถานะทางครอบครัว</legend>
-        <div class="form-group">
-            <label for="เพศ" class="col-sm-2 control-label">เพศ</label>
-            <div class="col-sm-10">
-                <select class="form-control" v-model="newFarmer.sex">
-                    <option value="">กรุณาเลือก</option>
-                    <option v-for="option in options.sex"
-                            v-bind:value="option">@{{ option.choice }}</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="อายุ" class="col-sm-2 control-label">อายุ</label>
-            <div class="col-sm-10">
-                <input type="text" v-model="newFarmer.age" class="form-control" id="อายุ" placeholder="อายุ">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="สถานภาพ" class="col-sm-2 control-label">สถานภาพ</label>
-            <div class="col-sm-10">
-                <select class="form-control" v-model="newFarmer.personal_status">
-                    <option value="">กรุณาเลือก</option>
-                    <option v-for="option in options.personal_status"
-                            v-bind:value="option">@{{ option.choice }}</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="สถานภาพในครอบครัว" class="col-sm-2 control-label">สถานภาพในครอบครัว</label>
-            <div class="col-sm-10">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <select class="form-control " v-model="newFarmer.family_status">
-                            <option value="">กรุณาเลือก</option>
-                            <option v-for="option in options.family_status"
-                                    v-bind:value="option">@{{ option.choice }}</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-6" v-if="newFarmer.family_status.has_text==1">
-                        <input type="text" v-model="newFarmer.family_status.pivot.remark"
-                               class="form-control col-sm-6" placeholder="โปรดระบุ"/>
-                    </div>
 
-                </div>
-
-            </div>
-        </div>
-    </fieldset>
-
-    <fieldset id="1.6">
-        <legend>1.6 การศึกษา</legend>
-
-        <div class="form-group">
-            <label for="การศึกษา" class="col-sm-2 control-label">การศึกษา</label>
-            <div class="col-sm-10">
-
-                <select class="form-control " v-model="newFarmer.education">
-                    <option value="">กรุณาเลือก</option>
-                    <option v-for="option in options.education"
-                            v-bind:value="option">@{{ option.choice }}</option>
-                </select>
-            </div>
-        </div>
-    </fieldset>
-    <fieldset id="1.7">
-        <legend>1.7 สถานภาพทางสังคม</legend>
-
-        <div class="form-group">
-            <label for="สถานภาพทางสังคม" class="col-sm-2 control-label">สถานภาพทางสังคม</label>
-            <div class="col-sm-10">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <select class="form-control " v-model="newFarmer.social_status">
-                            <option selected value="">กรุณาเลือก</option>
-                            <option v-for="option in options.social_status"
-                                    v-bind:value="option">@{{ option.choice }}</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-6" v-if="newFarmer.social_status.has_text==1">
-                        <input type="text" v-model="newFarmer.social_status.pivot.remark"
-                               class="form-control col-sm-6" placeholder="โปรดระบุ"/>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </fieldset>
-    <fieldset id="1.8">
-        <legend>1.8 การเลี้ยงโคเนื้อ</legend>
-        <div class="form-group">
-            <label for="การเลี้ยงโคเนื้อเป็น"
-                   class="col-sm-2 control-label">การเลี้ยงโคเนื้อเป็น</label>
-            <div class="col-sm-10">
-                <select class="form-control " v-model="newFarmer.cattle_job">
-                    <option value="">กรุณาเลือก</option>
-                    <option v-for="option in options.cattle_job"
-                            v-bind:value="option">@{{ option.choice }}</option>
-                </select>
-
-            </div>
-        </div>
-    </fieldset>
-    <fieldset id="1.9">
-        <legend>1.9 ท่านมีรายได้จากการประกอบอาชีพอะไรบ้าง (เลือกได้มากกว่า 1 ข้อ)</legend>
-
-        <div class="form-group">
-            <div class="col-sm-3">
-                <label>ท่านมีรายได้จากการประกอบอาชีพอะไรบ้าง (เลือกได้มากกว่า 1 ข้อ)</label>
-            </div>
-            <div class="col-sm-9">
-                <label class="checkbox" v-for="option in options.jobtypes">
-                    <input type="checkbox" v-model="newFarmer.jobtypes" v-bind:value="option">
-                    @{{ option.choice }}:
-                    <input v-if="option.has_text" type="text" class="form-control"
-                           v-model="option['pivot']['remark']">
-                </label>
-            </div>
-        </div>
-    </fieldset>
-
-    <fieldset id="1.10">
-        <legend>1.10 ท่านมีรายได้รวมของครัวเรือนเฉลี่ยเท่าไหร่ (บาท/ปี)</legend>
-        <div class="form-group">
-            <label for="ท่านมีรายได้รวมของครัวเรือนเฉลี่ยเท่าไหร่ (บาท/ปี)"
-                   class="col-sm-2 control-label">ท่านมีรายได้รวมของครัวเรือนเฉลี่ยเท่าไหร่
-                (บาท/ปี)</label>
-            <div class="col-sm-10">
-                <select class="form-control " v-model="newFarmer.income_range">
-                    <option value="">กรุณาเลือก</option>
-                    <option v-for="option in options.income_range"
-                            v-bind:value="option">@{{ option.choice }}</option>
-                </select>
-            </div>
-        </div>
-
-    </fieldset>
-
-    <fieldset id="1.11">
-        <legend>1.11 รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)</legend>
-        <div class="form-group">
-            <label for="รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)" class="col-sm-2 control-label">รายได้เฉลี่ยต่อปีของการขายโคเนื้อ
-                (บาท)</label>
-            <div class="col-sm-10">
-                <input type="text" v-model="newFarmer.avg_cattle_income" class="form-control"
-                       id="รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)"
-                       placeholder="รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)">
-            </div>
-        </div>
-    </fieldset>
 </form>
