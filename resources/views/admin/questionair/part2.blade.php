@@ -52,24 +52,27 @@
                     <input type="text" class="form-control" placeholder="" readonly>
                 </div>
             </div>
-            <div class="form-group" v-for="child in option.children">
+            <div class="form-group" v-for="child in options[option.children[0].type]">
                 <label class="col-sm-2 checkbox control-label">
-                    <input type="checkbox" v-model="" v-bind:value="child">@{{ child.choice }}
+                    <input type="checkbox" v-model="newFarmer[child.type]" v-bind:value="child">@{{ child.choice }}
                 </label>
                 <div class="col-sm-10">
-                    <templace v-for="subchild in child.children">
+                    <templace v-for="subchild in options[child.children[0].type]">
                         <label class="checkbox">
-                            <input type="checkbox" v-bind:value="subchild">
+                            <input type="checkbox" v-model="newFarmer[subchild.type]" v-bind:value="subchild">
                             @{{ subchild.choice }}:
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" placeholder="จำนวน">
+                                    <input type="text" v-model="subchild['pivot']['amount']" class="form-control"
+                                           placeholder="จำนวน">
                                 </div>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" placeholder="แหล่งที่มา">
+                                    <input type="text" v-model="subchild['pivot']['source']" class="form-control"
+                                           placeholder="แหล่งที่มา">
                                 </div>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" placeholder="ราคา">
+                                    <input type="text" v-model="subchild['pivot']['price']" class="form-control"
+                                           placeholder="ราคา">
 
                                 </div>
                             </div>
@@ -78,20 +81,24 @@
                     <templace v-if="child.children.length==0">
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" placeholder="ระบุ">
+                                <input type="text" v-model="child['pivot']['remark']" class="form-control"
+                                       placeholder="ระบุ">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="จำนวน">
+                                <input type="text" v-model="child['pivot']['amount']" class="form-control"
+                                       placeholder="จำนวน">
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="แหล่งที่มา">
+                                <input type="text" v-model="child['pivot']['source']" class="form-control"
+                                       placeholder="แหล่งที่มา">
                             </div>
 
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="ราคา">
+                                <input type="text" v-model="child['pivot']['price']" class="form-control"
+                                       placeholder="ราคา">
                             </div>
                         </div>
                     </templace>

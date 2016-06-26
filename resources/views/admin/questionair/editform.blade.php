@@ -92,17 +92,26 @@
                         'sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range'];
 
                     for (var i = 0; i < attributes.length; i++) {
-                        console.log(attributes[i]);
+//                        console.log(attributes[i]);
                         this.reInitialOption(attributes[i]);
                     }
 
                     var multipleAttributes = [
-                        'jobtypes', 'farm_purposes'
+                        'jobtypes', 'farm_purposes', 'male_breeding_types',
+                        'male_int_breeding_types', 'male_mixed_breeding_types', 'female_breeding_types',
+                        'female_int_breeding_types', 'female_mixed_breeding_types', 'male_over_six_breeding_types',
+                        'male_over_six_int_breeding_types', 'male_over_six_mixed_breeding_types',
+                        'female_over_six_breeding_types', 'female_over_six_int_breeding_types',
+                        'female_over_six_mixed_breeding_types', 'male_under_six_breeding_types',
+                        'male_under_six_int_breeding_types', 'male_under_six_mixed_breeding_types',
+                        'female_under_six_breeding_types', 'female_under_six_int_breeding_types',
+                        'female_under_six_mixed_breeding_types'
                     ]
 
                     for (var i = 0; i < multipleAttributes.length; i++) {
                         this.reInitialMultiOption(multipleAttributes[i]);
                     }
+
                 },
                 initial: function () {
 
@@ -124,7 +133,6 @@
                         self.$http.get('/api/farm-owner/{{$farmOwner->id}}/edit').then(
                                 function (response) {
                                     this.newFarmer = response.data;
-                                    console.log('test2');
                                     this.reSelectedOption();
                                 }
                         )

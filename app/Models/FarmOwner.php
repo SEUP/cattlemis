@@ -21,6 +21,26 @@ class FarmOwner extends Model
 
     ];
 
+    protected $hidden = [
+        'sexes', 'family_statuses', 'choices', 'educations', 'cattle_jobs', 'income_ranges'
+    ];
+
+    protected $appends = [
+        'sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range',
+        'jobtypes', 'farm_purposes','farm_record',
+        'farm_exp','farm_future','farm_register_status','farm_register' ,'farm_disease_check',
+        'abortion','tuberculosis','foot_mouth_disease', 'master_breeding_types', 'male_breeding_types',
+        'male_int_breeding_types','male_mixed_breeding_types', 'female_breeding_types' ,
+        'female_int_breeding_types', 'female_mixed_breeding_types', 'male_over_six_breeding_types',
+        'male_over_six_int_breeding_types', 'male_over_six_mixed_breeding_types',
+        'female_over_six_breeding_types', 'female_over_six_int_breeding_types',
+        'female_over_six_mixed_breeding_types', 'male_under_six_breeding_types',
+        'male_under_six_int_breeding_types', 'male_under_six_mixed_breeding_types',
+        'female_under_six_breeding_types', 'female_under_six_int_breeding_types',
+        'female_under_six_mixed_breeding_types'
+    ];
+
+
     //parts
 
     public function farm_info()
@@ -99,7 +119,7 @@ class FarmOwner extends Model
 
     public function farm_purposes()
     {
-        return $this->belongsToMany(Choice::class)
+        return $this->choices2()
             ->withPivot('remark')
             ->where('type', '=', 'farm_purposes');
     }
@@ -168,10 +188,8 @@ class FarmOwner extends Model
     public function male_breeding_types()
     {
         return $this->choices2()
-            ->withPivot('remark')
-            ->withPivot('source')
-            ->withPivot('amount')
-            ->withPivot('price')
+            ->with(['children'])
+            ->withPivot(['remark','source','amount','price'])
             ->where('type', '=', 'male_breeding_types');
     }
 
@@ -333,24 +351,7 @@ class FarmOwner extends Model
             ->where('type', '=', 'female_under_six_mixed_breeding_types');
     }
 
-    protected $hidden = [
-        'sexes', 'family_statuses', 'choices', 'educations', 'cattle_jobs', 'income_ranges'
-    ];
-
-    protected $appends = [
-        'sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range',
-        'jobtypes', 'farm_purposes','farm_record',
-        'farm_exp','farm_future','farm_register_status','farm_register' ,'farm_disease_check',
-        'abortion','tuberculosis','foot_mouth_disease', 'master_breeding_types', 'male_breeding_types',
-        'male_int_breeding_types','male_mixed_breeding_types', 'female_breeding_types' ,
-        'female_int_breeding_types', 'female_mixed_breeding_types', 'male_over_six_breeding_types',
-        'male_over_six_int_breeding_types', 'male_over_six_mixed_breeding_types',
-        'female_over_six_breeding_types', 'female_over_six_int_breeding_types',
-        'female_over_six_mixed_breeding_types', 'male_under_six_breeding_types',
-        'male_under_six_int_breeding_types', 'male_under_six_mixed_breeding_types',
-        'female_under_six_breeding_types', 'female_under_six_int_breeding_types',
-        'female_under_six_mixed_breeding_types'
-    ];
+    //get attributes
 
     public function getPersonalStatusAttribute()
     {

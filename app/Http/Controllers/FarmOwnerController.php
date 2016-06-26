@@ -63,7 +63,40 @@ class FarmOwnerController extends Controller
         }
 
         $multiFieldArray = [
-            'jobtypes','farm_purposes'
+            'jobtypes',
+        ];
+
+        foreach ($multiFieldArray as $field) {
+            $choices = $this->generateManyChocies($request, $form, $choices, "$field");
+        }
+
+        return $choices;
+    }
+
+    private function getChoices2(Request $request)
+    {
+        $form = $request->all();
+
+        $choices = [];
+
+        $fieldArray = [
+
+        ];
+
+        foreach ($fieldArray as $field) {
+            $choices = $this->generateChoice($request, $form, $choices, "$field");
+        }
+
+        $multiFieldArray = [
+            'farm_purposes', 'male_breeding_types',
+            'male_int_breeding_types', 'male_mixed_breeding_types', 'female_breeding_types',
+            'female_int_breeding_types', 'female_mixed_breeding_types', 'male_over_six_breeding_types',
+            'male_over_six_int_breeding_types', 'male_over_six_mixed_breeding_types',
+            'female_over_six_breeding_types', 'female_over_six_int_breeding_types',
+            'female_over_six_mixed_breeding_types', 'male_under_six_breeding_types',
+            'male_under_six_int_breeding_types', 'male_under_six_mixed_breeding_types',
+            'female_under_six_breeding_types', 'female_under_six_int_breeding_types',
+            'female_under_six_mixed_breeding_types'
         ];
 
         foreach ($multiFieldArray as $field) {
@@ -92,6 +125,7 @@ class FarmOwnerController extends Controller
         $farmOwner->fill($request->all());
         $farmOwner->save();
         $farmOwner->choices()->sync($this->getChoices($request));
+        $farmOwner->choices2()->sync($this->getChoices2($request));
 
         return $farmOwner;
     }
@@ -118,6 +152,7 @@ class FarmOwnerController extends Controller
         $farmOwner->save();
 
         $farmOwner->choices()->sync($this->getChoices($request));
+        $farmOwner->choices2()->sync($this->getChoices2($request));
 
         return $farmOwner;
     }
