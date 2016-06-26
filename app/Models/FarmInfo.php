@@ -14,13 +14,15 @@ class FarmInfo extends Model
 {
     protected $fillable = [
         //part 1
-        'drug_price','food_price' , 'expense_remark','expense_price'
+        'drug_price','food_price' , 'expense_remark','expense_price','total_cattle_amount','total_male_breeder_amount',
+        'total_female_breeder_amount','total_male_cattle_aged_over_six_amount','total_female_cattle_aged_over_six_amount',
+        'total_male_cattle_aged_under_six_amount','total_female_cattle_aged_under_six_amount','total_expense_amount'
         //part2
     ];
 
     public function farm_owner()
     {
-        return $this->hasOne('App\Models\FarmOwner');
+        return $this->belongsTo(FarmOwner::class);
     }
 
     public function getFarmOwner()
