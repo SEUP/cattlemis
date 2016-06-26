@@ -14,6 +14,8 @@ class Choice extends Model
 {
     protected $fillable = ['choice', 'type'];
 
+    protected $appends = ['children'];
+
     public function children()
     {
         return $this->hasMany(Choice::class, 'parent_id');
@@ -22,5 +24,10 @@ class Choice extends Model
     public function parent()
     {
         return $this->hasOne(Choice::class, 'parent_id');
+    }
+
+    public function getChildrenAttribute()
+    {
+        return $this->children()->get();
     }
 }
