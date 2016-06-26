@@ -14,8 +14,8 @@ class Worker extends Model
 {
     protected $fillable = [
         //part 1
-       'farm_owner_id','worker_amount','family_worker_amount','external_worker_amount','total_own_land',
-        'total_rent_land'
+       'workers_amount','family_workers_amount','external_workers_amount','total_own_lands',
+        'total_use_lands'
         //part2
     ];
 
