@@ -251,7 +251,7 @@ class FarmOwner extends Model
 
     public function getFarmRecordAttribute()
     {
-        $obj = $this->farm_record->first();
+        $obj = $this->farm_record()->first();
         if ($obj) {
             return $obj;
         } else {
@@ -261,7 +261,7 @@ class FarmOwner extends Model
 
     public function getFarmExpAttribute()
     {
-        $value = $this->farm_exp->first();
+        $value = $this->farm_exp()->first();
         if ($value) {
             return $value;
         } else {
@@ -271,7 +271,7 @@ class FarmOwner extends Model
 
     public function getFarmFutureAttribute()
     {
-        $value = $this->farm_future->first();
+        $value = $this->farm_future()->first();
         if ($value) {
             return $value;
         } else {
@@ -281,7 +281,7 @@ class FarmOwner extends Model
 
     public function getFarmRegisterStatusAttribute()
     {
-        $value = $this->farm_register_status->first();
+        $value = $this->farm_register_status()->first();
         if ($value) {
             return $value;
         } else {
@@ -291,7 +291,7 @@ class FarmOwner extends Model
 
     public function getFarmRegisterAttribute()
     {
-        $value = $this->farm_register->first();
+        $value = $this->farm_register()->first();
         if ($value) {
             return $value;
         } else {
@@ -301,7 +301,7 @@ class FarmOwner extends Model
 
     public function getFarmDiseaseCheckAttribute()
     {
-        $value = $this->farm_disease_check->first();
+        $value = $this->farm_disease_check()->first();
         if ($value) {
             return $value;
         } else {
@@ -311,7 +311,7 @@ class FarmOwner extends Model
 
     public function getAbortionAttribute()
     {
-        $value = $this->abortion->first();
+        $value = $this->abortion()->first();
         if ($value) {
             return $value;
         } else {
@@ -321,7 +321,7 @@ class FarmOwner extends Model
 
     public function getTuberculosisAttribute()
     {
-        $value = $this->tuberculosis->first();
+        $value = $this->tuberculosis()->first();
         if ($value) {
             return $value;
         } else {
@@ -331,7 +331,7 @@ class FarmOwner extends Model
 
     public function getFootMouthDiseaseAttribute()
     {
-        $value = $this->foot_mouth_disease->first();
+        $value = $this->foot_mouth_disease()->first();
         if ($value) {
             return $value;
         } else {
