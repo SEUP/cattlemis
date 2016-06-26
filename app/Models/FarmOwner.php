@@ -159,6 +159,179 @@ class FarmOwner extends Model
 
     }
 
+    public function master_breeding_types()
+    {
+        return $this->belongsToMany(Choice::class)->where('type', '=', 'master_breeding_types');
+
+    }
+
+    public function male_breeding_types()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('remark')
+            ->withPivot('source')
+            ->withPivot('amount')
+            ->withPivot('price')
+            ->where('type', '=', 'male_breeding_types');
+    }
+
+    public function male_int_breeding_types()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('source')
+            ->withPivot('amount')
+            ->withPivot('price')
+            ->where('type', '=', 'male_int_breeding_types');
+    }
+
+    public function male_mixed_breeding_types()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('source')
+            ->withPivot('amount')
+            ->withPivot('price')
+            ->where('type', '=', 'male_mixed_breeding_types');
+    }
+
+    public function female_breeding_types()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('remark')
+            ->withPivot('source')
+            ->withPivot('amount')
+            ->withPivot('price')
+            ->where('type', '=', 'female_breeding_types');
+    }
+
+    public function female_int_breeding_types()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('source')
+            ->withPivot('amount')
+            ->withPivot('price')
+            ->where('type', '=', 'female_int_breeding_types');
+    }
+
+    public function female_mixed_breeding_types()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('source')
+            ->withPivot('amount')
+            ->withPivot('price')
+            ->where('type', '=', 'female_mixed_breeding_types');
+    }
+
+    public function male_over_six_breeding_types()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('remark')
+            ->withPivot('source')
+            ->withPivot('amount')
+            ->withPivot('price')
+            ->where('type', '=', 'male_over_six_breeding_types');
+    }
+
+    public function male_over_six_int_breeding_types()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('source')
+            ->withPivot('amount')
+            ->withPivot('price')
+            ->where('type', '=', 'male_over_six_int_breeding_types');
+    }
+
+    public function male_over_six_mixed_breeding_types()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('source')
+            ->withPivot('amount')
+            ->withPivot('price')
+            ->where('type', '=', 'male_over_six_mixed_breeding_types');
+    }
+
+    public function female_over_six_breeding_types()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('remark')
+            ->withPivot('source')
+            ->withPivot('amount')
+            ->withPivot('price')
+            ->where('type', '=', 'female_over_six_breeding_types');
+    }
+
+    public function female_over_six_int_breeding_types()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('source')
+            ->withPivot('amount')
+            ->withPivot('price')
+            ->where('type', '=', 'female_over_six_int_breeding_types');
+    }
+
+    public function female_over_six_mixed_breeding_types()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('source')
+            ->withPivot('amount')
+            ->withPivot('price')
+            ->where('type', '=', 'female_over_six_mixed_breeding_types');
+    }
+
+    public function male_under_six_breeding_types()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('remark')
+            ->withPivot('source')
+            ->withPivot('amount')
+            ->withPivot('price')
+            ->where('type', '=', 'male_under_six_breeding_types');
+    }
+
+    public function male_under_six_int_breeding_types()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('source')
+            ->withPivot('amount')
+            ->withPivot('price')
+            ->where('type', '=', 'male_under_six_int_breeding_types');
+    }
+
+    public function male_under_six_mixed_breeding_types()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('source')
+            ->withPivot('amount')
+            ->withPivot('price')
+            ->where('type', '=', 'male_under_six_mixed_breeding_types');
+    }
+
+    public function female_under_six_breeding_types()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('remark')
+            ->withPivot('source')
+            ->withPivot('amount')
+            ->withPivot('price')
+            ->where('type', '=', 'female_under_six_breeding_types');
+    }
+
+    public function female_under_six_int_breeding_types()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('source')
+            ->withPivot('amount')
+            ->withPivot('price')
+            ->where('type', '=', 'female_under_six_int_breeding_types');
+    }
+
+    public function female_under_six_mixed_breeding_types()
+    {
+        return $this->belongsToMany(Choice::class)
+            ->withPivot('source')
+            ->withPivot('amount')
+            ->withPivot('price')
+            ->where('type', '=', 'female_under_six_mixed_breeding_types');
+    }
 
     protected $hidden = [
         'sexes', 'family_statuses', 'choices', 'educations', 'cattle_jobs', 'income_ranges'
@@ -339,5 +512,99 @@ class FarmOwner extends Model
         }
     }
 
+    public function getMasterBreedingTypesAttribute()
+    {
+        return $this->master_breeding_types()->get();
+    }
 
+    public function getMaleBreedingTypesAttribute()
+    {
+        return $this->male_breeding_types()->get();
+    }
+
+    public function getMaleIntBreedingTypesAttribute()
+    {
+        return $this->male_int_breeding_types()->get();
+    }
+
+    public function getMaleMixedBreedingTypesAttribute()
+    {
+        return $this->male_mixed_breeding_types()->get();
+    }
+
+    public function getFemaleBreedingTypesAttribute()
+    {
+        return $this->female_breeding_types()->get();
+    }
+
+    public function getFemaleIntBreedingTypesAttribute()
+    {
+        return $this->female_int_breeding_types()->get();
+    }
+
+    public function getFemaleMixedBreedingTypesAttribute()
+    {
+        return $this->female_mixed_breeding_types()->get();
+    }
+
+    public function getMaleOverSixBreedingTypesAttribute()
+    {
+        return $this->male_over_six_breeding_types()->get();
+    }
+
+    public function getMaleOverSixIntBreedingTypesAttribute()
+    {
+        return $this->male_over_six_int_breeding_types()->get();
+    }
+
+    public function getMaleOverSixMixedBreedingTypesAttribute()
+    {
+        return $this->male_over_six_mixed_breeding_types()->get();
+    }
+
+    public function getFemaleOverSixBreedingTypesAttribute()
+    {
+        return $this->female_over_six_breeding_types()->get();
+    }
+
+    public function getFemaleOverSixIntBreedingTypesAttribute()
+    {
+        return $this->female_over_six_int_breeding_types()->get();
+    }
+
+    public function getFemaleOverSixMixedBreedingTypesAttribute()
+    {
+        return $this->female_over_six_mixed_breeding_types()->get();
+    }
+
+    public function getMaleUnderSixBreedingTypesAttribute()
+    {
+        return $this->male_under_six_breeding_types()->get();
+    }
+
+    public function getMaleUnderSixIntBreedingTypesAttribute()
+    {
+        return $this->male_under_six_int_breeding_types()->get();
+    }
+
+    public function getMaleUnderSixMixedBreedingTypesAttribute()
+    {
+        return $this->male_under_six_mixed_breeding_types()->get();
+    }
+
+    public function getFemaleUnderSixBreedingTypesAttribute()
+    {
+        return $this->female_under_six_breeding_types()->get();
+    }
+
+    public function getFemaleUnderSixIntBreedingTypesAttribute()
+    {
+        return $this->female_under_six_int_breeding_types()->get();
+    }
+
+    public function getFemaleUnderSixMixedBreedingTypesAttribute()
+    {
+        return $this->female_under_six_mixed_breeding_types()->get();
+    }
+    
 }
