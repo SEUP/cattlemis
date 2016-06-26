@@ -167,7 +167,7 @@ class FarmOwner extends Model
 
     public function male_breeding_types()
     {
-        return $this->belongsToMany(Choice::class)
+        return $this->choices2()
             ->withPivot('remark')
             ->withPivot('source')
             ->withPivot('amount')
@@ -177,7 +177,7 @@ class FarmOwner extends Model
 
     public function male_int_breeding_types()
     {
-        return $this->belongsToMany(Choice::class)
+        return $this->choices2()
             ->withPivot('source')
             ->withPivot('amount')
             ->withPivot('price')
@@ -186,7 +186,7 @@ class FarmOwner extends Model
 
     public function male_mixed_breeding_types()
     {
-        return $this->belongsToMany(Choice::class)
+        return $this->choices2()
             ->withPivot('source')
             ->withPivot('amount')
             ->withPivot('price')
@@ -195,7 +195,7 @@ class FarmOwner extends Model
 
     public function female_breeding_types()
     {
-        return $this->belongsToMany(Choice::class)
+        return $this->choices2()
             ->withPivot('remark')
             ->withPivot('source')
             ->withPivot('amount')
@@ -205,7 +205,7 @@ class FarmOwner extends Model
 
     public function female_int_breeding_types()
     {
-        return $this->belongsToMany(Choice::class)
+        return $this->choices2()
             ->withPivot('source')
             ->withPivot('amount')
             ->withPivot('price')
@@ -214,7 +214,7 @@ class FarmOwner extends Model
 
     public function female_mixed_breeding_types()
     {
-        return $this->belongsToMany(Choice::class)
+        return $this->choices2()
             ->withPivot('source')
             ->withPivot('amount')
             ->withPivot('price')
@@ -223,7 +223,7 @@ class FarmOwner extends Model
 
     public function male_over_six_breeding_types()
     {
-        return $this->belongsToMany(Choice::class)
+        return $this->choices2()
             ->withPivot('remark')
             ->withPivot('source')
             ->withPivot('amount')
@@ -233,7 +233,7 @@ class FarmOwner extends Model
 
     public function male_over_six_int_breeding_types()
     {
-        return $this->belongsToMany(Choice::class)
+        return $this->choices2()
             ->withPivot('source')
             ->withPivot('amount')
             ->withPivot('price')
@@ -242,7 +242,7 @@ class FarmOwner extends Model
 
     public function male_over_six_mixed_breeding_types()
     {
-        return $this->belongsToMany(Choice::class)
+        return $this->choices2()
             ->withPivot('source')
             ->withPivot('amount')
             ->withPivot('price')
@@ -251,7 +251,7 @@ class FarmOwner extends Model
 
     public function female_over_six_breeding_types()
     {
-        return $this->belongsToMany(Choice::class)
+        return $this->choices2()
             ->withPivot('remark')
             ->withPivot('source')
             ->withPivot('amount')
@@ -261,7 +261,7 @@ class FarmOwner extends Model
 
     public function female_over_six_int_breeding_types()
     {
-        return $this->belongsToMany(Choice::class)
+        return $this->choices2()
             ->withPivot('source')
             ->withPivot('amount')
             ->withPivot('price')
@@ -270,7 +270,7 @@ class FarmOwner extends Model
 
     public function female_over_six_mixed_breeding_types()
     {
-        return $this->belongsToMany(Choice::class)
+        return $this->choices2()
             ->withPivot('source')
             ->withPivot('amount')
             ->withPivot('price')
@@ -279,7 +279,7 @@ class FarmOwner extends Model
 
     public function male_under_six_breeding_types()
     {
-        return $this->belongsToMany(Choice::class)
+        return $this->choices2()
             ->withPivot('remark')
             ->withPivot('source')
             ->withPivot('amount')
@@ -289,7 +289,7 @@ class FarmOwner extends Model
 
     public function male_under_six_int_breeding_types()
     {
-        return $this->belongsToMany(Choice::class)
+        return $this->choices2()
             ->withPivot('source')
             ->withPivot('amount')
             ->withPivot('price')
@@ -298,7 +298,7 @@ class FarmOwner extends Model
 
     public function male_under_six_mixed_breeding_types()
     {
-        return $this->belongsToMany(Choice::class)
+        return $this->choices2()
             ->withPivot('source')
             ->withPivot('amount')
             ->withPivot('price')
@@ -307,7 +307,7 @@ class FarmOwner extends Model
 
     public function female_under_six_breeding_types()
     {
-        return $this->belongsToMany(Choice::class)
+        return $this->choices2()
             ->withPivot('remark')
             ->withPivot('source')
             ->withPivot('amount')
@@ -317,7 +317,7 @@ class FarmOwner extends Model
 
     public function female_under_six_int_breeding_types()
     {
-        return $this->belongsToMany(Choice::class)
+        return $this->choices2()
             ->withPivot('source')
             ->withPivot('amount')
             ->withPivot('price')
@@ -326,7 +326,7 @@ class FarmOwner extends Model
 
     public function female_under_six_mixed_breeding_types()
     {
-        return $this->belongsToMany(Choice::class)
+        return $this->choices2()
             ->withPivot('source')
             ->withPivot('amount')
             ->withPivot('price')
