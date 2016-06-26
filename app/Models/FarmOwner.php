@@ -161,7 +161,7 @@ class FarmOwner extends Model
 
     public function master_breeding_types()
     {
-        return $this->belongsToMany(Choice::class)->where('type', '=', 'master_breeding_types');
+        return $this->choices2()->where('type', '=', 'master_breeding_types');
 
     }
 

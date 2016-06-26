@@ -35,12 +35,72 @@
 
         <div class="form-group">
             <label
-                    class="col-sm-2 control-label"></label>
+                    class="col-sm-2 control-label "></label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" placeholder="" readonly>
             </div>
         </div>
     </fieldset>
+
+    <template v-for="option in options.master_breeding_types">
+        <fieldset id="">
+            <legend>@{{ option.choice }}</legend>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">จำนวน</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="" readonly>
+                </div>
+            </div>
+            <div class="form-group" v-for="child in option.children">
+                <label class="col-sm-2 checkbox control-label">
+                    <input type="checkbox" v-model="" v-bind:value="child">@{{ child.choice }}
+                </label>
+                <div class="col-sm-10">
+                    <templace v-for="subchild in child.children">
+                        <label class="checkbox">
+                            <input type="checkbox" v-bind:value="subchild">
+                            @{{ subchild.choice }}:
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" placeholder="จำนวน">
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" placeholder="แหล่งที่มา">
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" placeholder="ราคา">
+
+                                </div>
+                            </div>
+                        </label>
+                    </templace>
+                    <templace v-if="child.children.length==0">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" placeholder="ระบุ">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="จำนวน">
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="แหล่งที่มา">
+                            </div>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="ราคา">
+                            </div>
+                        </div>
+                    </templace>
+                </div>
+            </div>
+        </fieldset>
+
+    </template>
+
     <fieldset id="2.10">
         <legend>2.10 ค่าใช้จ่ายในการเลี้ยงโคเนื้อ</legend>
         <div class="form-group">

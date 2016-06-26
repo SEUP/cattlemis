@@ -56,7 +56,7 @@
                     })
                 },
                 reInitialOption: function (opt) {
-                    for (i = 0; i < this.options[opt].length; i++) {
+                    for (var i = 0; i < this.options[opt].length; i++) {
                         if (this.options[opt][i].id == this.newFarmer[opt].id) {
 
                             if (this.options[opt][i].has_text == 1 && this.newFarmer[opt].has_text == 1) {
@@ -92,6 +92,7 @@
                         'sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range'];
 
                     for (var i = 0; i < attributes.length; i++) {
+                        console.log(attributes[i]);
                         this.reInitialOption(attributes[i]);
                     }
 
@@ -105,30 +106,35 @@
                 },
                 initial: function () {
 
-                    var self = this;
 
-                    $.ajax({
-                        url: '/api/choice',
-                        type: 'get',
-                        dataType: 'json',
-                        async: 'false',
-                        success: function (response) {
-                            self.options = response;
-                        }
-                    })
                 }
             },
             created: function () {
-                this.initial();
+                var self = this;
+
+                $.ajax({
+                    url: '/api/choice',
+                    type: 'get',
+                    dataType: 'json',
+                    async: 'false',
+                    success: function (response) {
+
+                        self.options = response;
+
+                        self.$http.get('/api/farm-owner/{{$farmOwner->id}}/edit').then(
+                                function (response) {
+                                    this.newFarmer = response.data;
+                                    console.log('test2');
+                                    this.reSelectedOption();
+                                }
+                        )
+
+                    }
+                })
             },
             ready: function () {
 
-                this.$http.get('/api/farm-owner/{{$farmOwner->id}}/edit').then(
-                        function (response) {
-                            this.newFarmer = response.data;
-                            this.reSelectedOption();
-                        }
-                )
+
             }
         })
     </script>
