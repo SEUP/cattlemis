@@ -339,7 +339,17 @@ class FarmOwner extends Model
 
     protected $appends = [
         'sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range',
-        'jobtypes', 'farm_purposes'
+        'jobtypes', 'farm_purposes','farm_record',
+        'farm_exp','farm_future','farm_register_status','farm_register' ,'farm_disease_check',
+        'abortion','tuberculosis','foot_mouth_disease', 'master_breeding_types', 'male_breeding_types',
+        'male_int_breeding_types','male_mixed_breeding_types', 'female_breeding_types' ,
+        'female_int_breeding_types', 'female_mixed_breeding_types', 'male_over_six_breeding_types',
+        'male_over_six_int_breeding_types', 'male_over_six_mixed_breeding_types',
+        'female_over_six_breeding_types', 'female_over_six_int_breeding_types',
+        'female_over_six_mixed_breeding_types', 'male_under_six_breeding_types',
+        'male_under_six_int_breeding_types', 'male_under_six_mixed_breeding_types',
+        'female_under_six_breeding_types', 'female_under_six_int_breeding_types',
+        'female_under_six_mixed_breeding_types'
     ];
 
     public function getPersonalStatusAttribute()
