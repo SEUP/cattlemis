@@ -80,6 +80,9 @@ class FarmOwnerController extends Controller
         $choices = [];
 
         $fieldArray = [
+            'farm_record','farm_exp','farm_future',
+            'farm_register_status','farm_register','farm_disease_check','abortion',
+            'tuberculosis','foot_mouth_disease'
 
         ];
 
@@ -100,7 +103,7 @@ class FarmOwnerController extends Controller
         ];
 
         foreach ($multiFieldArray as $field) {
-            $choices = $this->generateManyChocies($request, $form, $choices, "$field");
+            $choices = $this->generateManyChoices($request, $form, $choices, "$field");
         }
 
         return $choices;

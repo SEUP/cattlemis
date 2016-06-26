@@ -89,7 +89,11 @@
                 reSelectedOption: function () {
 
                     var attributes = [
-                        'sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range'];
+                        'sex', 'family_status', 'education', 'social_status', 'personal_status',
+                        'cattle_job', 'income_range',
+                        'farm_record','farm_exp','farm_future',
+                        'farm_register_status','farm_register','farm_disease_check','abortion',
+                        'tuberculosis','foot_mouth_disease'];
 
                     for (var i = 0; i < attributes.length; i++) {
 //                        console.log(attributes[i]);

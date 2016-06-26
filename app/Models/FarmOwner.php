@@ -126,56 +126,58 @@ class FarmOwner extends Model
 
     public function farm_record()
     {
-        return $this->belongsToMany(Choice::class)->where('type', '=', 'farm_record');
+        //return $this->belongsToMany(Choice::class)->where('type', '=', 'farm_record');
+        return $this->choices2()->where('type', '=', 'farm_record');
 
+        
     }
 
     public function farm_exp()
     {
-        return $this->belongsToMany(Choice::class)->where('type', '=', 'farm_exp');
+        return $this->choices2()->where('type', '=', 'farm_exp');
 
     }
 
     public function farm_future()
     {
-        return $this->belongsToMany(Choice::class)->where('type', '=', 'farm_future');
+        return $this->choices2()->where('type', '=', 'farm_future');
 
     }
 
     public function farm_register_status()
     {
-        return $this->belongsToMany(Choice::class)->where('type', '=', 'farm_register_status');
+        return $this->choices2()->where('type', '=', 'farm_register_status');
 
     }
 
     public function farm_register()
     {
-        return $this->belongsToMany(Choice::class)
+        return $this->choices2()
             ->withPivot('remark')
             ->where('type', '=', 'farm_register');
     }
 
     public function farm_disease_check()
     {
-        return $this->belongsToMany(Choice::class)->where('type', '=', 'farm_disease_check');
+        return $this->choices2()->where('type', '=', 'farm_disease_check');
 
     }
 
     public function abortion()
     {
-        return $this->belongsToMany(Choice::class)->where('type', '=', 'abortion');
+        return $this->choices2()->where('type', '=', 'abortion');
 
     }
 
     public function tuberculosis()
     {
-        return $this->belongsToMany(Choice::class)->where('type', '=', 'tuberculosis');
+        return $this->choices2()->where('type', '=', 'tuberculosis');
 
     }
 
     public function foot_mouth_disease()
     {
-        return $this->belongsToMany(Choice::class)->where('type', '=', 'foot_mouth_disease');
+        return $this->choices2()->where('type', '=', 'foot_mouth_disease');
 
     }
 
