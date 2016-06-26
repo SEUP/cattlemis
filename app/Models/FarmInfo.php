@@ -20,7 +20,7 @@ class FarmInfo extends Model
 
     public function farm_owner()
     {
-        return $this->hasOne('App\Models\FarmOwner');
+        return $this->belongsTo('App\Models\FarmOwner');
     }
 
     public function getFarmOwner()

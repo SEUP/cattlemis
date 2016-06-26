@@ -12,7 +12,7 @@ class CreateFarmInfoTbl extends Migration
      */
     public function up()
     {
-        Schema::create('farm_info', function (Blueprint $table) {
+        Schema::create('farm_infos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('farm_owner_id');
             $table->integer('total_cattle_amount')->nullable();
@@ -50,7 +50,7 @@ class CreateFarmInfoTbl extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('farm_info');
+        Schema::dropIfExists('farm_infos');
         Schema::dropIfExists('choice_farm_info');
     }
 }
