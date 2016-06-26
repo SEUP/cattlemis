@@ -31,6 +31,9 @@ class CreateWorkersTbl extends Migration
             $table->string('remark')->nullable();
             $table->integer('area')->nullable();
             $table->integer('price')->nullable();
+            $table->integer('width')->nullable();
+            $table->integer('height')->nullable();
+            $table->integer('amount')->nullable();
             $table->timestamps();
 
         });
