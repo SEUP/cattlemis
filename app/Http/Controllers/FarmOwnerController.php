@@ -28,7 +28,7 @@ class FarmOwnerController extends Controller
     }
 
 
-    private function generateManyChocies(Request $request, $form, $choices, $field)
+    private function generateManyChoices(Request $request, $form, $choices, $field)
     {
 
         if ($request->has("$field")) {
@@ -67,7 +67,7 @@ class FarmOwnerController extends Controller
         ];
 
         foreach ($multiFieldArray as $field) {
-            $choices = $this->generateManyChocies($request, $form, $choices, "$field");
+            $choices = $this->generateManyChoices($request, $form, $choices, "$field");
         }
 
         return $choices;
