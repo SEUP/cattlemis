@@ -166,7 +166,7 @@ class FarmOwner extends Model
 
     protected $appends = [
         'sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range',
-        'jobtypes'
+        'jobtypes', 'farm_purposes'
     ];
 
     public function getPersonalStatusAttribute()
