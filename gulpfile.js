@@ -26,9 +26,9 @@ elixir(function (mix) {
         .copy('resources/assets/vendor/startbootstrap-sb-admin-2-sass/dist/js/sb-admin-2.js', 'resources/assets/js/vendor')
         .copy('resources/assets/vendor/moment/moment.js', 'resources/assets/js/vendor')
         .copy('resources/assets/vendor/bootstrap-sass/assets/fonts', 'public/fonts')
-        .copy('resources/assets/vendor/vue/dist/vue.js', 'resources/assets/js/vendor')
+        .copy('resources/assets/vendor/vue/dist/vue.min.js', 'resources/assets/js/vendor')
         .copy('resources/assets/vendor/vue-resource/dist/vue-resource.min.js', 'resources/assets/js/vendor')
-        .copy('resources/assets/vendor/vue-strap/dist/vue-strap.js', 'resources/assets/js/vendor')
+        .copy('resources/assets/vendor/vue-strap/dist/vue-strap.min.js', 'resources/assets/js/vendor')
         .copy('resources/assets/vendor/highcharts/highcharts.js', 'resources/assets/js/vendor')
         .copy('resources/assets/vendor/highcharts/modules/drilldown.js', 'resources/assets/js/vendor')
 
@@ -62,9 +62,9 @@ elixir(function (mix) {
         'vendor/metisMenu.min.js',
         'vendor/bootstrap.min.js',
         'vendor/sb-admin-2.js',
-        'vendor/vue.js',
+        'vendor/vue.min.js',
         'vendor/vue-resource.min.js',
-        'vendor/vue-strap.js',
+        'vendor/vue-strap.min.js',
         'vendor/highcharts.js',
         'vendor/drilldown.js',
 
