@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Amphur;
 use App\Models\FarmOwner;
 use App\Models\Province;
+use App\Models\ThailandProvince;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,7 @@ class ProvinceController extends Controller
 
     public function index()
     {
-        $provinces = Province::with(['amphures'])->get();
+        $provinces = Province::with(['amphurs'])->get();
         return $provinces;
     }
 

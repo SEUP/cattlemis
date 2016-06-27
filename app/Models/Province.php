@@ -14,9 +14,10 @@ class Province extends Model
 {
     protected  $table = "thailand_provinces";
 
-    public function amphures()
+    public function amphurs()
     {
-        return $this->hasMany(Amphure::class);
+        return $this->hasMany(Amphur::class);
     }
+    
 }
 
