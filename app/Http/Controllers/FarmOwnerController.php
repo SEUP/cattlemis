@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FarmInfo;
 use App\Models\FarmOwner;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -117,6 +118,10 @@ class FarmOwnerController extends Controller
         $farmOwner->choices()->sync($this->getChoices($request, $this->fieldArray[0], $this->multiFieldArray[0]));
         $farmOwner->choices2()->sync($this->getChoices($request, $this->fieldArray[1], $this->multiFieldArray[1]));
 
+        $farm_info = new FarmInfo();
+        $farm_info->fill($request->get('farm_info'));
+        $farmOwner->farm_info()->save($farm_info);
+
         return $farmOwner;
     }
 
@@ -143,6 +148,11 @@ class FarmOwnerController extends Controller
 
         $farmOwner->choices()->sync($this->getChoices($request, $this->fieldArray[0], $this->multiFieldArray[0]));
         $farmOwner->choices2()->sync($this->getChoices($request, $this->fieldArray[1], $this->multiFieldArray[1]));
+
+        $farm_info = $farmOwner->farm_info()->first();
+        $farm_info->fill($request->get('farm_info'));
+        $farmOwner->farm_info()->save($farm_info);
+
 
         return $farmOwner;
     }

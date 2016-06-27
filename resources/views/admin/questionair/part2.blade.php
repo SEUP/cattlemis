@@ -49,7 +49,9 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">จำนวน</label>
                 <div class="col-sm-10">
-                    <input type="text" v-bind:value="sumCattle(newFarmer[option.children[0].type])" class="form-control"
+                    <input type="text"
+                           v-model="newFarmer.farm_info['total_'+option.children[0].type]"
+                           v-bind:value="sumCattle(newFarmer[option.children[0].type])" class="form-control"
                            placeholder="" readonly>
                 </div>
             </div>

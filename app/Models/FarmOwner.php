@@ -440,10 +440,12 @@ class FarmOwner extends Model
             return $farmInfo;
         } else {
             $farmInfo = new FarmInfo();
-            $this->farm_info()->save($farmInfo);
+            if ($this->id) {
+                $this->farm_info()->save($farmInfo);
+            }
+
             return $farmInfo;
         }
-
     }
 
     public function getFarmPurposesAttribute()

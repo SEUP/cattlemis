@@ -67,7 +67,10 @@
                                 }
                             }
                         }
+                        console.log("total_" + optType[i].type);
+                        this.newFarmer.farm_info["total_" + optType[i].type] = sum;
                     }
+
                     return sum;
                 },
                 save: function () {
