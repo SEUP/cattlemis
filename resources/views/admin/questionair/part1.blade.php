@@ -1,12 +1,8 @@
 <form class="form-horizontal">
     <fieldset id="1.1">
         <legend>1.1 ข้อมูลทั่วไป</legend>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">ชื่อ</label>
-            <div class="col-sm-10">
-                <input type="text" v-model="newFarmer.first_name" class="form-control"/>
-            </div>
-        </div>
+        <question-text-field label="ชื่อ" :model.sync="newFarmer.first_name"></question-text-field>
+
         <div class="form-group">
             <label class="col-sm-2 control-label">นามสกุล</label>
             <div class="col-sm-10">

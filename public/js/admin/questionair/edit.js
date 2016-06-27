@@ -1,8 +1,32 @@
 /**
  * Created by chaow on 6/27/2016.
  */
+
+var QuestionTextField = Vue.extend({
+    template: `
+    <div class="form-group">
+            <label class="col-sm-2 control-label">{{label}}</label>
+            <div class="col-sm-10">
+                <input type="text" v-model="model" class="form-control"/>
+            </div>
+        </div>
+    `,
+    props: {
+        label: {
+            required: true,
+        },
+        model: {
+            required: true,
+            twoWay: true
+        }
+    }
+})
+
 var app = new AdminApp({
     el: 'body',
+    components: {
+        'question-text-field': QuestionTextField
+    },
     data: {
         newFarmer: {},
         options: {}

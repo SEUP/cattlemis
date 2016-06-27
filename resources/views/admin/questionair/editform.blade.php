@@ -38,8 +38,13 @@
             </affix>
         </div>
     </div>
+
+
+
+
 @endsection
 
 @section('javascript')
+    <script type="text/html" src="/js/admin/questionair/QuestionTextField.vue"></script>
     <script type="text/javascript" src="/js/admin/questionair/edit.js"></script>
 @endsection

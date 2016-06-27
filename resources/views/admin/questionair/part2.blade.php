@@ -19,7 +19,7 @@
     <fieldset id="2.2">
         <legend>2.2 ท่านมีการจดบันทึกข้อมูลหรือทำประวัติโคเนื้อหรือไม่</legend>
         <div class="form-group">
-            <label for="เพศ" class="col-sm-2 control-label"></label>
+            <label class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
                 <select class="form-control" v-model="newFarmer.farm_record">
                     <option value="">กรุณาเลือก</option>
