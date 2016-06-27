@@ -53,9 +53,7 @@
                     var optType = option;
                     var sum = 0;
                     for (var i = 0; i < optType.length; i++) {
-
 //                        console.log("opttype", optType[i]);
-
                         if (optType[i].pivot.amount != null) {
 //                            console.log(optType[i].pivot.amount, sum);
                             sum += parseInt(optType[i].pivot.amount) ? parseInt(optType[i].pivot.amount) : 0;

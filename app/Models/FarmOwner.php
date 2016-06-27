@@ -27,17 +27,17 @@ class FarmOwner extends Model
 
     protected $appends = [
         'sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range',
-        'jobtypes', 'farm_purposes','farm_record',
-        'farm_exp','farm_future','farm_register_status','farm_register' ,'farm_disease_check',
-        'abortion','tuberculosis','foot_mouth_disease', 'master_breeding_types', 'male_breeding_types',
-        'male_int_breeding_types','male_mixed_breeding_types', 'female_breeding_types' ,
+        'jobtypes', 'farm_purposes', 'farm_record',
+        'farm_exp', 'farm_future', 'farm_register_status', 'farm_register', 'farm_disease_check',
+        'abortion', 'tuberculosis', 'foot_mouth_disease', 'master_breeding_types', 'male_breeding_types',
+        'male_int_breeding_types', 'male_mixed_breeding_types', 'female_breeding_types',
         'female_int_breeding_types', 'female_mixed_breeding_types', 'male_over_six_breeding_types',
         'male_over_six_int_breeding_types', 'male_over_six_mixed_breeding_types',
         'female_over_six_breeding_types', 'female_over_six_int_breeding_types',
         'female_over_six_mixed_breeding_types', 'male_under_six_breeding_types',
         'male_under_six_int_breeding_types', 'male_under_six_mixed_breeding_types',
         'female_under_six_breeding_types', 'female_under_six_int_breeding_types',
-        'female_under_six_mixed_breeding_types'
+        'female_under_six_mixed_breeding_types', 'farm_info'
     ];
 
 
@@ -117,6 +117,7 @@ class FarmOwner extends Model
             ->withPivot(['remark', 'amount', 'price', 'source', 'price']);
     }
 
+    //part2
     public function farm_purposes()
     {
         return $this->choices2()
@@ -129,7 +130,7 @@ class FarmOwner extends Model
         //return $this->belongsToMany(Choice::class)->where('type', '=', 'farm_record');
         return $this->choices2()->where('type', '=', 'farm_record');
 
-        
+
     }
 
     public function farm_exp()
@@ -191,7 +192,7 @@ class FarmOwner extends Model
     {
         return $this->choices2()
             ->with(['children'])
-            ->withPivot(['remark','source','amount','price'])
+            ->withPivot(['remark', 'source', 'amount', 'price'])
             ->where('type', '=', 'male_breeding_types');
     }
 
@@ -430,6 +431,21 @@ class FarmOwner extends Model
         return $this->joptypes()->get();
     }
 
+    //part 2
+
+    public function getFarmInfoAttribute()
+    {
+        $farmInfo = $this->farm_info()->first();
+        if ($farmInfo) {
+            return $farmInfo();
+        } else {
+            $farmInfo = new FarmInfo();
+            $this->farm_info()->save($farmInfo);
+            return $farmInfo;
+        }
+
+    }
+
     public function getFarmPurposesAttribute()
     {
         return $this->farm_purposes()->get();
@@ -619,5 +635,5 @@ class FarmOwner extends Model
     {
         return $this->female_under_six_mixed_breeding_types()->get();
     }
-    
+
 }
