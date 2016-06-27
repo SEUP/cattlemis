@@ -437,7 +437,7 @@ class FarmOwner extends Model
     {
         $farmInfo = $this->farm_info()->first();
         if ($farmInfo) {
-            return $farmInfo();
+            return $farmInfo;
         } else {
             $farmInfo = new FarmInfo();
             $this->farm_info()->save($farmInfo);
