@@ -145,32 +145,19 @@
 
     <fieldset id="1.5">
         <legend>1.5 สถานะทางครอบครัว</legend>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">เพศ</label>
-            <div class="col-sm-10">
-                <select class="form-control" v-model="newFarmer.sex">
-                    <option value="">กรุณาเลือก</option>
-                    <option v-for="option in options.sex"
-                            v-bind:value="option">@{{ option.choice }}</option>
-                </select>
-            </div>
-        </div>
+        <!-- sample select -->
+        <question-select label="เพศ" :model.sync="newFarmer.sex" :options.sync="options.sex"></question-select>
+
         <div class="form-group">
             <label for="อายุ" class="col-sm-2 control-label">อายุ</label>
             <div class="col-sm-10">
                 <input type="text" v-model="newFarmer.age" class="form-control" id="อายุ" placeholder="อายุ">
             </div>
         </div>
-        <div class="form-group">
-            <label for="สถานภาพ" class="col-sm-2 control-label">สถานภาพ</label>
-            <div class="col-sm-10">
-                <select class="form-control" v-model="newFarmer.personal_status">
-                    <option value="">กรุณาเลือก</option>
-                    <option v-for="option in options.personal_status"
-                            v-bind:value="option">@{{ option.choice }}</option>
-                </select>
-            </div>
-        </div>
+
+        <question-select label="สถานภาพ" :model.sync="newFarmer.personal_status"
+                         :options.sync="options.personal_status"></question-select>
+
         <div class="form-group">
             <label for="สถานภาพในครอบครัว" class="col-sm-2 control-label">สถานภาพในครอบครัว</label>
             <div class="col-sm-10">
