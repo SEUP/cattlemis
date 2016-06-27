@@ -43,13 +43,14 @@
     </fieldset>
 
     <template v-for="option in options.master_breeding_types">
-        <fieldset id="">
-            <legend>@{{ option.choice }}</legend>
+        <fieldset id="2.@{{ 4+$index }}">
+            <legend>2.@{{ 4+$index }} @{{ option.choice }}</legend>
 
             <div class="form-group">
                 <label class="col-sm-2 control-label">จำนวน</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="" readonly>
+                    <input type="text" v-bind:value="sumCattle(newFarmer[option.children[0].type])" class="form-control"
+                           placeholder="" readonly>
                 </div>
             </div>
             <div class="form-group" v-for="child in options[option.children[0].type]">
@@ -172,8 +173,6 @@
 
     <fieldset id="2.13">
         <legend>2.13 การขึ้นทะเบียนฟาร์มกับภาครัฐ</legend>
-
-
         <templace v-for="option in options.farm_register_status">
             <div class="form-group">
                 <label class="col-sm-4 radio control-label">

@@ -47,7 +47,31 @@
                 newFarmer: {},
                 options: {}
             },
+
             methods: {
+                sumCattle: function (option) {
+                    var optType = option;
+                    var sum = 0;
+                    for (var i = 0; i < optType.length; i++) {
+
+//                        console.log("opttype", optType[i]);
+
+                        if (optType[i].pivot.amount != null) {
+//                            console.log(optType[i].pivot.amount, sum);
+                            sum += parseInt(optType[i].pivot.amount) ? parseInt(optType[i].pivot.amount) : 0;
+                        } else {
+                            var childtype = this.newFarmer[optType[i].children[0].type]
+//                            console.log("opttype for children", childtype);
+                            for (var j = 0; j < childtype.length; j++) {
+                                if (childtype[j].pivot.amount != null) {
+//                                    console.log(childtype[j].pivot.amount, sum);
+                                    sum += parseInt(childtype[j].pivot.amount) ? parseInt(childtype[j].pivot.amount) : 0;
+                                }
+                            }
+                        }
+                    }
+                    return sum;
+                },
                 save: function () {
                     this.$http.patch('/api/farm-owner/' + this.newFarmer.id, this.newFarmer).then(function (response) {
                         data = response.data;
