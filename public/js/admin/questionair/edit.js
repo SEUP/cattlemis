@@ -6,7 +6,9 @@ var app = new AdminApp({
     el: 'body',
     components: {
         'question-text-field': QuestionTextField,
-        'question-select': QuestionSelect
+        'question-select': QuestionSelect,
+        'question-select-with-text': QuestionSelectWithText,
+        'question-multi-checkbox': QuestionMultiCheckbox
     },
     data: {
         newFarmer: {},

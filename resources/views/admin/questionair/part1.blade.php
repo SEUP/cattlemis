@@ -197,26 +197,9 @@
     </fieldset>
     <fieldset id="1.7">
         <legend>1.7 สถานภาพทางสังคม</legend>
+        <question-select-with-text label="สถานภาพทางสังคม" :model.sync="newFarmer.social_status"
+                                   :options.sync="options.social_status"></question-select-with-text>
 
-        <div class="form-group">
-            <label for="สถานภาพทางสังคม" class="col-sm-2 control-label">สถานภาพทางสังคม</label>
-            <div class="col-sm-10">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <select class="form-control " v-model="newFarmer.social_status">
-                            <option selected value="">กรุณาเลือก</option>
-                            <option v-for="option in options.social_status"
-                                    v-bind:value="option">@{{ option.choice }}</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-6" v-if="newFarmer.social_status.has_text==1">
-                        <input type="text" v-model="newFarmer.social_status.pivot.remark"
-                               class="form-control col-sm-6" placeholder="โปรดระบุ"/>
-                    </div>
-                </div>
-
-            </div>
-        </div>
     </fieldset>
     <fieldset id="1.8">
         <legend>1.8 การเลี้ยงโคเนื้อ</legend>
@@ -235,20 +218,12 @@
     </fieldset>
     <fieldset id="1.9">
         <legend>1.9 ท่านมีรายได้จากการประกอบอาชีพอะไรบ้าง (เลือกได้มากกว่า 1 ข้อ)</legend>
+        <question-multi-checkbox label="ท่านมีรายได้จากการประกอบอาชีพอะไรบ้าง (เลือกได้มากกว่า 1 ข้อ)"
+                                 :model.sync="newFarmer.jobtypes"
+                                 :options.sync="options.jobtypes">
 
-        <div class="form-group">
-            <div class="col-sm-3">
-                <label>ท่านมีรายได้จากการประกอบอาชีพอะไรบ้าง (เลือกได้มากกว่า 1 ข้อ)</label>
-            </div>
-            <div class="col-sm-9">
-                <label class="checkbox" v-for="option in options.jobtypes">
-                    <input type="checkbox" v-model="newFarmer.jobtypes" v-bind:value="option">
-                    @{{ option.choice }}:
-                    <input v-if="option.has_text" type="text" class="form-control"
-                           v-model="option['pivot']['remark']">
-                </label>
-            </div>
-        </div>
+        </question-multi-checkbox>
+
     </fieldset>
 
     <fieldset id="1.10">
