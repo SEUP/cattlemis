@@ -168,6 +168,35 @@
         </div>
     </fieldset>
 
+    <fieldset id="2.13">
+        <legend>2.13 การขึ้นทะเบียนฟาร์มกับภาครัฐ</legend>
+        <templace v-for="option in options.farm_register_status">
+            <div class="form-group">
+                <label class="col-sm-4 checkbox control-label">
+                    <input type="checkbox" v-model="newFarmer[option.type]" v-bind:value="option">@{{ option.choice }}
+                </label>
+                <templace v-if="option.children.length!=0">
+                    <div class="col-sm-8">
+                    <select class="form-control" v-model="newFarmer[child.type]">
+                        <option value="">กรุณาเลือก</option>
+                        <option v-for="child in options[option.children[0].type]"
+                                v-bind:value="child">@{{ child.choice }}
+                        </option>
+                    </select>
+                    </div>
+                </templace>
+            </div>
+
+        </templace>
+    </fieldset>
+
+
+
+
+
+
+
+
     <fieldset id="2.14">
         <legend>2.14 ประวัติการตรวจโรคสัตว์ในฟาร์มของท่าน</legend>
         <div class="form-group">
