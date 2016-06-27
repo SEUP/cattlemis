@@ -10,13 +10,14 @@ use Illuminate\Database\Eloquent\Model;
  * Date: 5/25/2016
  * Time: 3:50 PM
  */
-class Province extends Model
+class Amphure extends Model
 {
-    protected  $table = "thailand_provinces";
-
-    public function amphures()
+    protected  $table = "thailand_amphures";
+    
+    public function province()
     {
-        return $this->hasMany(Amphure::class);
+        return $this->belongsTo(Province::class);
     }
-}
 
+
+}
