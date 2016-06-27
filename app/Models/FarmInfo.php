@@ -13,11 +13,14 @@ use Illuminate\Database\Eloquent\Model;
 class FarmInfo extends Model
 {
     protected $fillable = [
-        //part 1
-        'drug_price', 'food_price', 'expense_remark', 'expense_price', 'total_cattle_amount', 'total_male_breeder_amount',
-        'total_female_breeder_amount', 'total_male_cattle_aged_over_six_amount', 'total_female_cattle_aged_over_six_amount',
-        'total_male_cattle_aged_under_six_amount', 'total_female_cattle_aged_under_six_amount', 'total_expense_amount'
         //part2
+        'drug_price', 'food_price', 'expense_remark', 'expense_price', 
+        'total_master_breeding_types', 'total_male_breeding_types',
+        'total_female_breeding_types', 'total_male_over_six_breeding_types', 
+        'total_female_over_six_breeding_types',
+        'total_male_under_six_breeding_types', 'total_female_under_six_breeding_types', 
+        'total_expense_amount'
+        
     ];
 
     public function farm_owner()

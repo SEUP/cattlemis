@@ -15,13 +15,13 @@ class CreateFarmInfoTbl extends Migration
         Schema::create('farm_infos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('farm_owner_id');
-            $table->integer('total_cattle_amount')->nullable();
-            $table->integer('total_male_breeder_amount')->nullable();
-            $table->integer('total_female_breeder_amount')->nullable();
-            $table->integer('total_male_cattle_aged_over_six_amount')->nullable();
-            $table->integer('total_female_cattle_aged_over_six_amount')->nullable();
-            $table->integer('total_male_cattle_aged_under_six_amount')->nullable();
-            $table->integer('total_female_cattle_aged_under_six_amount')->nullable();
+            $table->integer('total_master_breeding_types')->nullable();
+            $table->integer('total_male_breeding_types')->nullable();
+            $table->integer('total_female_breeding_types')->nullable();
+            $table->integer('total_male_over_six_breeding_types')->nullable();
+            $table->integer('total_female_over_six_breeding_types')->nullable();
+            $table->integer('total_male_under_six_breeding_types')->nullable();
+            $table->integer('total_female_under_six_breeding_types')->nullable();
             $table->integer('total_expense_amount')->nullable();
             $table->integer('drug_price')->nullable();
             $table->integer('food_price')->nullable();
