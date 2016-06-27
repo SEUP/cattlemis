@@ -91,9 +91,10 @@
                     var attributes = [
                         'sex', 'family_status', 'education', 'social_status', 'personal_status',
                         'cattle_job', 'income_range',
-                        'farm_record','farm_exp','farm_future',
-                        'farm_register_status','farm_register','farm_disease_check','abortion',
-                        'tuberculosis','foot_mouth_disease'];
+                        //part2
+                        'farm_record', 'farm_exp', 'farm_future',
+                        'farm_register_status', 'farm_register', 'farm_disease_check', 'abortion',
+                        'tuberculosis', 'foot_mouth_disease'];
 
                     for (var i = 0; i < attributes.length; i++) {
 //                        console.log(attributes[i]);
@@ -101,7 +102,9 @@
                     }
 
                     var multipleAttributes = [
-                        'jobtypes', 'farm_purposes', 'male_breeding_types',
+                        'jobtypes',
+                        //part 2
+                        'farm_purposes', 'male_breeding_types',
                         'male_int_breeding_types', 'male_mixed_breeding_types', 'female_breeding_types',
                         'female_int_breeding_types', 'female_mixed_breeding_types', 'male_over_six_breeding_types',
                         'male_over_six_int_breeding_types', 'male_over_six_mixed_breeding_types',

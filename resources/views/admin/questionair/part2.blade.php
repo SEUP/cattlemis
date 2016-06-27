@@ -126,7 +126,8 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">ค่าอาหารและแร่ธาตุ (บาท/เดือน)</label>
             <div class="col-sm-10">
-                <input type="text" v-model="newFarmer.food_price" class="form-control" placeholder="ค่าอาหารและแร่ธาตุ (บาท/เดือน)">
+                <input type="text" v-model="newFarmer.food_price" class="form-control"
+                       placeholder="ค่าอาหารและแร่ธาตุ (บาท/เดือน)">
             </div>
         </div>
         <div class="form-group">
@@ -135,7 +136,8 @@
                 <input type="text" v-model="newFarmer.expense_remark" class="form-control" placeholder="รายละเอียด">
             </div>
             <div class="col-sm-5">
-                <input type="text" v-model="newFarmer.expense_price" class="form-control" placeholder="ค่าใช้จ่าย (บาท/เดือน)">
+                <input type="text" v-model="newFarmer.expense_price" class="form-control"
+                       placeholder="ค่าใช้จ่าย (บาท/เดือน)">
             </div>
         </div>
     </fieldset>
@@ -170,31 +172,27 @@
 
     <fieldset id="2.13">
         <legend>2.13 การขึ้นทะเบียนฟาร์มกับภาครัฐ</legend>
+
+
         <templace v-for="option in options.farm_register_status">
             <div class="form-group">
-                <label class="col-sm-4 checkbox control-label">
-                    <input type="checkbox" v-model="newFarmer[option.type]" v-bind:value="option">@{{ option.choice }}
+                <label class="col-sm-4 radio control-label">
+                    <input type="radio" v-model="newFarmer[option.type]" v-bind:value="option">@{{ option.choice }}
                 </label>
                 <templace v-if="option.children.length!=0">
                     <div class="col-sm-8">
-                    <select class="form-control" v-model="newFarmer[child.type]">
-                        <option value="">กรุณาเลือก</option>
-                        <option v-for="child in options[option.children[0].type]"
-                                v-bind:value="child">@{{ child.choice }}
-                        </option>
-                    </select>
+                        <select class="form-control" v-model="newFarmer[option.children[0].type]">
+                            <option value="">กรุณาเลือก</option>
+                            <option v-for="child in options[option.children[0].type]"
+                                    v-bind:value="child">@{{ child.choice }}
+                            </option>
+                        </select>
                     </div>
                 </templace>
             </div>
 
         </templace>
     </fieldset>
-
-
-
-
-
-
 
 
     <fieldset id="2.14">

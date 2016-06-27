@@ -16,6 +16,9 @@ class FarmOwnerController extends Controller
             'sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range'
         ],
         [
+            'farm_record', 'farm_exp', 'farm_future',
+            'farm_register_status', 'farm_register', 'farm_disease_check', 'abortion',
+            'tuberculosis', 'foot_mouth_disease'
 
         ],
     ];
@@ -74,23 +77,17 @@ class FarmOwnerController extends Controller
         return $choices;
     }
 
-    private function getChoices(Request $request)
+    private function getChoices(Request $request, $fieldArray, $multiFieldArray)
     {
         $form = $request->all();
 
         $choices = [];
 
-        $fieldArray = [
-            'sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range'
-        ];
 
         foreach ($fieldArray as $field) {
             $choices = $this->generateChoice($request, $form, $choices, "$field");
         }
 
-        $multiFieldArray = [
-            'jobtypes',
-        ];
 
         foreach ($multiFieldArray as $field) {
             $choices = $this->generateManyChoices($request, $form, $choices, "$field");
@@ -117,8 +114,8 @@ class FarmOwnerController extends Controller
         $farmOwner = new FarmOwner();
         $farmOwner->fill($request->all());
         $farmOwner->save();
-        $farmOwner->choices()->sync($this->getChoices($request));
-        $farmOwner->choices2()->sync($this->getChoices2($request));
+        $farmOwner->choices()->sync($this->getChoices($request, $this->fieldArray[0], $this->multiFieldArray[0]));
+        $farmOwner->choices2()->sync($this->getChoices($request, $this->fieldArray[1], $this->multiFieldArray[1]));
 
         return $farmOwner;
     }
@@ -144,8 +141,8 @@ class FarmOwnerController extends Controller
         $farmOwner->fill($form);
         $farmOwner->save();
 
-        $farmOwner->choices()->sync($this->getChoices($request));
-        $farmOwner->choices2()->sync($this->getChoices2($request));
+        $farmOwner->choices()->sync($this->getChoices($request, $this->fieldArray[0], $this->multiFieldArray[0]));
+        $farmOwner->choices2()->sync($this->getChoices($request, $this->fieldArray[1], $this->multiFieldArray[1]));
 
         return $farmOwner;
     }
@@ -156,6 +153,7 @@ class FarmOwnerController extends Controller
         $farmOwner = FarmOwner::find($id);
 
         $farmOwner->choices()->detach();
+        $farmOwner->choices2()->detach();
 
         $farmOwner->delete();
         return [true];
