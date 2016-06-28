@@ -46,14 +46,10 @@
         <!-- sample select with text-->
         <question-select-with-text label="สถานภาพในครอบครัว" :model.sync="newFarmer.family_status"
                                    :options.sync="options.family_status"></question-select-with-text>
-
-
     </fieldset>
 
     <fieldset id="1.6">
         <legend>1.6 การศึกษา</legend>
-
-
         <question-select-with-text label="การศึกษา" :model.sync="newFarmer.education"
                                    :options.sync="options.education"></question-select-with-text>
 
