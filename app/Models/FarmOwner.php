@@ -30,7 +30,10 @@ class FarmOwner extends Model
         //normal relationship
         //select option or checkbox relationship
         'sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range',
-        'jobtypes', 'farm_purposes', 'farm_record',
+        'jobtypes', 
+        
+        //part2
+        'farm_purposes', 'farm_record',
         'farm_exp', 'farm_future', 'farm_register_status', 'farm_register', 'farm_disease_check',
         'abortion', 'tuberculosis', 'foot_mouth_disease', 'master_breeding_types', 'male_breeding_types',
         'male_int_breeding_types', 'male_mixed_breeding_types', 'female_breeding_types',
@@ -41,6 +44,8 @@ class FarmOwner extends Model
         'male_under_six_int_breeding_types', 'male_under_six_mixed_breeding_types',
         'female_under_six_breeding_types', 'female_under_six_int_breeding_types',
         'female_under_six_mixed_breeding_types', 'farm_info'
+        
+        //part3
     ];
 
     //parts
@@ -50,10 +55,10 @@ class FarmOwner extends Model
         return $this->hasOne(FarmInfo::class);
     }
 
-    public function worker()
-    {
-        return $this->hasOne(Worker::class);
-    }
+   // public function worker()
+    //{
+      //  return $this->hasOne(Worker::class);
+    //}
 
 
     //relationships to choices
@@ -120,15 +125,15 @@ class FarmOwner extends Model
 
     public function choices2()
     {
-        return $this->belongsToMany(Choice::class, "choice_farm_infos")
+        return $this->belongsToMany(Choice::class, "choice_farm_info")
             ->withPivot(['remark', 'amount', 'price', 'source', 'price']);
     }
 
-    public function choices3()
+   /* public function choices3()
     {
-        return $this->belongsToMany(Choice::class, "choice_workers")
+        return $this->belongsToMany(Choice::class, "choice_worker")
             ->withPivot(['remark', 'amount', 'price', 'source', 'price']);
-    }
+    }*/
 
     //part2
     public function farm_purposes()

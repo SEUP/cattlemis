@@ -103,21 +103,25 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">ค่าใช้จ่ายโดยประมาณ (บาท/เดือน)</label>
             <div class="col-sm-10">
-                <input type="text" v-model="newFarmer.total_expense_amount" class="form-control"
+                <input type="text" v-model="newFarmer.farm_info.total_expense_amount" class="form-control"
                        placeholder="ค่าใช้จ่ายโดยประมาณ (บาท/เดือน)" readonly>
             </div>
+
+
         </div>
-        <question-text-field label="ค่ายา (บาท/เดือน)" placeholder="ค่ายา (บาท/เดือน)" :model.sync="newFarmer.drug_price"></question-text-field>
+        <question-text-field label="ค่ายา (บาท/เดือน)" placeholder="ค่ายา (บาท/เดือน)"
+                             :model.sync="newFarmer.farm_info.drug_price"></question-text-field>
         <question-text-field label="ค่าอาหารและแร่ธาตุ (บาท/เดือน)"
-                             placeholder="ค่าอาหารและแร่ธาตุ (บาท/เดือน)" :model.sync="newFarmer.food_price"></question-text-field>
+                             placeholder="ค่าอาหารและแร่ธาตุ (บาท/เดือน)"
+                             :model.sync="newFarmer.farm_info.food_price"></question-text-field>
 
         <div class="form-group">
             <label class="col-sm-2 control-label">อื่นๆ</label>
             <div class="col-sm-5">
-                <input type="text" v-model="newFarmer.expense_remark" class="form-control" placeholder="รายละเอียด">
+                <input type="text" v-model="newFarmer.farm_info.expense_remark" class="form-control" placeholder="รายละเอียด">
             </div>
             <div class="col-sm-5">
-                <input type="text" v-model="newFarmer.expense_price" class="form-control"
+                <input type="text" v-model="newFarmer.farm_info.expense_price" class="form-control"
                        placeholder="ค่าใช้จ่าย (บาท/เดือน)">
             </div>
         </div>
@@ -125,12 +129,12 @@
 
     <fieldset id="2.11">
         <legend>2.11 ท่านมีประสบการณ์การเลี้ยงโคเนื้อมานานแค่ไหน</legend>
-        <question-select  :model.sync="newFarmer.farm_exp" :options.sync="options.farm_exp"></question-select>
+        <question-select :model.sync="newFarmer.farm_exp" :options.sync="options.farm_exp"></question-select>
     </fieldset>
 
     <fieldset id="2.12">
         <legend>2.12 ท่านมีเป้าหมายในการเลี้ยงในอนาคตอย่างไร</legend>
-        <question-select  :model.sync="newFarmer.farm_future" :options.sync="options.farm_future"></question-select>
+        <question-select :model.sync="newFarmer.farm_future" :options.sync="options.farm_future"></question-select>
 
     </fieldset>
 
@@ -162,14 +166,18 @@
 
     <fieldset id="2.14">
         <legend>2.14 ประวัติการตรวจโรคสัตว์ในฟาร์มของท่าน</legend>
-        <question-select  :model.sync="newFarmer.farm_disease_check" :options.sync="options.farm_disease_check"></question-select>
+        <question-select :model.sync="newFarmer.farm_disease_check"
+                         :options.sync="options.farm_disease_check"></question-select>
     </fieldset>
 
     <fieldset id="2.15">
         <legend>2.15 สถานภาพการระบาดของโรคในฟาร์มของท่านเป็นอย่างไร</legend>
-        <question-select label="โรคแท้งติดต่อ" :model.sync="newFarmer.abortion" :options.sync="options.abortion"></question-select>
-        <question-select label="โรควัณโรค" :model.sync="newFarmer.tuberculosis" :options.sync="options.tuberculosis"></question-select>
-        <question-select label="โรคปากและเท้าเปื่อย" :model.sync="newFarmer.foot_mouth_disease" :options.sync="options.foot_mouth_disease"></question-select>
+        <question-select label="โรคแท้งติดต่อ" :model.sync="newFarmer.abortion"
+                         :options.sync="options.abortion"></question-select>
+        <question-select label="โรควัณโรค" :model.sync="newFarmer.tuberculosis"
+                         :options.sync="options.tuberculosis"></question-select>
+        <question-select label="โรคปากและเท้าเปื่อย" :model.sync="newFarmer.foot_mouth_disease"
+                         :options.sync="options.foot_mouth_disease"></question-select>
     </fieldset>
 
 

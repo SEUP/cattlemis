@@ -120,6 +120,8 @@ class FarmOwnerController extends Controller
 
         $farm_info = new FarmInfo();
         $farm_info->fill($request->get('farm_info'));
+        $farm_info->total_expense_amount =  $farm_info->drug_price+
+            $farm_info->food_price+$farm_info->expense_price;
         $farmOwner->farm_info()->save($farm_info);
 
         return $farmOwner;
@@ -151,6 +153,9 @@ class FarmOwnerController extends Controller
 
         $farm_info = $farmOwner->farm_info()->first();
         $farm_info->fill($request->get('farm_info'));
+        $farm_info->total_expense_amount =  $farm_info->drug_price+
+            $farm_info->food_price+$farm_info->expense_price;
+
         $farmOwner->farm_info()->save($farm_info);
 
 
