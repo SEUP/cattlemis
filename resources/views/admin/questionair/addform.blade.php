@@ -39,10 +39,18 @@
 
 
 @section('javascript')
+    <script type="text/javascript" src="/js/admin/questionair/QuestionTextField.js"></script>
     <script type="text/javascript">
 
         var app = new AdminApp({
             el: 'body',
+            components: {
+                'question-text-field': QuestionTextField,
+                'question-text-field': QuestionTextField,
+                'question-select': QuestionSelect,
+                'question-select-with-text': QuestionSelectWithText,
+                'question-multi-checkbox': QuestionMultiCheckbox
+            },
             data: {
                 newFarmer: {},
                 options: {}
@@ -87,6 +95,7 @@
 
             }
         })
-
     </script>
+
+
 @endsection
