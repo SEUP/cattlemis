@@ -67,7 +67,10 @@ Route::group(['middleware' => 'api'], function () {
 
 
     Route::resource('/api/farm-owner', "FarmOwnerController");
-    
+
     Route::resource('/api/thailand/province', "ProvinceController");
+    Route::resource('/api/thailand/province.amphure', "ProvinceAmphureController");
+    Route::resource('/api/thailand/province.amphure.district', "ProvinceAmphurDistrictController");
+
 });
 

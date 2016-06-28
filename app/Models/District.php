@@ -12,7 +12,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class District extends Model
 {
-    protected  $table = "thailand_districts";
-    
+    protected $table = "thailand_districts";
+
+    protected $primaryKey = 'district_id';
+
 }
 

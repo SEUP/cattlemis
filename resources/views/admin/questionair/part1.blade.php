@@ -60,6 +60,7 @@
     </fieldset>
     <fieldset id="1.7">
         <legend>1.7 สถานภาพทางสังคม</legend>
+        <!-- refactor -->
         <question-select-with-text label="สถานภาพทางสังคม" :model.sync="newFarmer.social_status"
                                    :options.sync="options.social_status"></question-select-with-text>
 
