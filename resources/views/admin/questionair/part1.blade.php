@@ -1,7 +1,7 @@
 <form class="form-horizontal">
     <fieldset id="1.1">
         <legend>1.1 ข้อมูลทั่วไป</legend>
-        <question-text-field label="ชื่อ" :model.sync="newFarmer.first_name"></question-text-field>
+        <question-text-field label="ชื่อ" placeholder="กรุณากรอกชื่อ" :model.sync="newFarmer.first_name"></question-text-field>
         <question-text-field label="นามสกุล" :model.sync="newFarmer.last_name"></question-text-field>
         <question-text-field label="รหัสประจำตัวประชาชน" :model.sync="newFarmer.personal_id"></question-text-field>
 
@@ -91,6 +91,6 @@
     <fieldset id="1.11">
         <legend>1.11 รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)</legend>
         <question-text-field label="รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)" :model.sync="newFarmer.avg_cattle_income"></question-text-field>
-        
+
     </fieldset>
 </form>
