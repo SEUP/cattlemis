@@ -26,6 +26,9 @@ class FarmOwner extends Model
     ];
 
     protected $appends = [
+
+        //normal relationship
+        //select option or checkbox relationship
         'sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range',
         'jobtypes', 'farm_purposes', 'farm_record',
         'farm_exp', 'farm_future', 'farm_register_status', 'farm_register', 'farm_disease_check',
@@ -39,7 +42,6 @@ class FarmOwner extends Model
         'female_under_six_breeding_types', 'female_under_six_int_breeding_types',
         'female_under_six_mixed_breeding_types', 'farm_info'
     ];
-
 
     //parts
 
@@ -367,6 +369,7 @@ class FarmOwner extends Model
 
     //get attributes
 
+
     public function getPersonalStatusAttribute()
     {
         $obj = $this->personal_statuses()->first();
@@ -441,6 +444,7 @@ class FarmOwner extends Model
     {
         return $this->joptypes()->get();
     }
+
 
     //part 2
 

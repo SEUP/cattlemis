@@ -52,35 +52,101 @@ var QuestionSelect = Vue.extend({
     }
 });
 
-var ProvinceAmphureDistrict = Vue.extend({
+var ProvinceAmphurDistrict = Vue.extend({
 
     template: `
     <div class="form-group">
-            <label class="col-sm-2 control-label">{{label}}</label>
+            <label class="col-sm-2 control-label" >จังหวัด</label>
             <div class="col-sm-10">
-                <select class="form-control" v-model="model">
-                    <option value="">กรุณาเลือก</option>
-                    <option v-for="option in options"
-                            v-bind:value="option">{{ option.choice }}</option>
+                <select class="form-control" v-on:change="provinceChange" v-model="model_province" >
+                    <option value="0">กรุณาเลือก</option>
+                    <option v-for="option in provinces"
+                            v-bind:value="option.PROVINCE_ID">{{ option.PROVINCE_NAME }}</option>
                 </select>
             </div>
         </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" >อำเภอ</label>
+        <div class="col-sm-10">
+            <select class="form-control" v-on:change="amphurChange" v-model="model_amphur" >
+                <option value="0">กรุณาเลือก</option>
+                <option v-for="option in amphurs"
+                        v-bind:value="option.AMPHUR_ID">{{ option.AMPHUR_NAME }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label" >ตำบล</label>
+        <div class="col-sm-10">
+            <select class="form-control" v-on:change="districtChange" v-model="model_district" >
+                <option value="0">กรุณาเลือก</option>
+                <option v-for="option in districts"
+                        v-bind:value="option.DISTRICT_ID">{{ option.DISTRICT_NAME }}</option>
+            </select>
+        </div>
+    </div>
     `,
 
     props: {
-        label: {
+        provinces: {},
+        amphurs: {},
+        districts: {},
+
+        model_province: {
             required: true,
+            twoWay: true
         },
-        model: {
+        model_amphur: {
             required: true,
             twoWay: true
         },
-        options: {
-            required: true,
+        model_district: {
+            required: false,
             twoWay: true
+        },
+    },
+    methods: {
+        provinceChange: function () {
+            this.model_amphur = 0
+            this.model_district = 0;
+            this.$http.get('/api/thailand/province/' + this.model_province + "/amphure", function (r) {
+                this.amphurs = r;
+            })
+        },
+
+        amphurChange: function () {
+            this.model_district = 0;
+            this.$http.get('/api/thailand/province/' + this.model_province + "/amphure/" + this.model_amphur + "/district",
+                function (r) {
+                    this.districts = r;
+                })
         }
     },
-    ready : function(){
+
+    ready: function () {
+        var self = this;
+        console.log(this.model_province);
+
+        // DOM updated
+        self.$http.get("/api/thailand/province", function (response) {
+            self.provinces = response;
+
+            if (self.model_province) {
+                this.$http.get('/api/thailand/province/' + this.model_province + "/amphure", function (r) {
+                    this.amphurs = r;
+
+                    if (self.model_amphur) {
+                        this.$http.get('/api/thailand/province/' + this.model_province + "/amphure/" + this.model_amphur + "/district",
+                            function (r) {
+                                this.districts = r;
+                            })
+                    }
+
+                })
+            }
+
+        });
 
     }
 

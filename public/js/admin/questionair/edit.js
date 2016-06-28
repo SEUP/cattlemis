@@ -8,10 +8,11 @@ var app = new AdminApp({
         'question-text-field': QuestionTextField,
         'question-select': QuestionSelect,
         'question-select-with-text': QuestionSelectWithText,
-        'question-multi-checkbox': QuestionMultiCheckbox
+        'question-multi-checkbox': QuestionMultiCheckbox,
+        'province-amphur-district': ProvinceAmphurDistrict,
     },
     data: {
-        newFarmer: {},
+        newFarmer: null,
         options: {}
     },
 
