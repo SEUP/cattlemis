@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2016 at 01:29 PM
+-- Generation Time: Jun 28, 2016 at 11:50 AM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 5.5.33
 
@@ -125,7 +125,7 @@ INSERT INTO `choices` (`id`, `choice`, `type`, `has_text`, `parent_id`, `created
 (82, 'พันธุ์พื้นเมือง', 'female_over_six_breeding_types', 1, 48, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
 (83, 'พันธุ์แท้จากต่างประเทศ', 'female_over_six_breeding_types', 0, 48, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
 (84, 'พันธุ์ลูกผสมระหว่าง', 'female_over_six_breeding_types', 0, 48, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
-(85, 'พันธุ์อื่นๆ', 'female_over_six_breeding_types', 1, 48, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
+(85, 'พันธุ์อื่นๆ', 'female_over_six_breeding_types', 1, 49, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
 (86, 'บราห์มัน', 'female_over_six_int_breeding_types', 1, 83, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
 (87, 'ชาร์โรเล่ส์', 'female_over_six_int_breeding_types', 1, 83, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
 (88, 'อินดูบราซิล', 'female_over_six_int_breeding_types', 1, 83, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
