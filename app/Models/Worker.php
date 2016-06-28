@@ -18,6 +18,8 @@ class Worker extends Model
         'total_use_lands'
         //part2
     ];
+    
+    
 
     public function farm_owner()
     {

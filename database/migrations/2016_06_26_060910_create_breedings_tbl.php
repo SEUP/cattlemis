@@ -21,7 +21,7 @@ class CreateBreedingsTbl extends Migration
 
         });
 
-        Schema::create('choice_breedings', function (Blueprint $table) {
+        Schema::create('choice_breeding', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('choice_id');
             $table->integer('farm_owner_id');

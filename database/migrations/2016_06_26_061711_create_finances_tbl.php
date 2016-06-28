@@ -21,7 +21,7 @@ class CreateFinancesTbl extends Migration
 
         });
 
-        Schema::create('choice_finances', function (Blueprint $table) {
+        Schema::create('choice_finance', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('choice_id');
             $table->integer('farm_owner_id');

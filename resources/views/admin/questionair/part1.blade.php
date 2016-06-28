@@ -51,14 +51,18 @@
     <fieldset id="1.6">
         <legend>1.6 การศึกษา</legend>
         <question-select-with-text label="การศึกษา" :model.sync="newFarmer.education"
-                                   :options.sync="options.education"></question-select-with-text>
+                                   :options.sync="options.education">
+
+        </question-select-with-text>
 
     </fieldset>
     <fieldset id="1.7">
         <legend>1.7 สถานภาพทางสังคม</legend>
         <!-- refactor -->
         <question-select-with-text label="สถานภาพทางสังคม" :model.sync="newFarmer.social_status"
-                                   :options.sync="options.social_status"></question-select-with-text>
+                                   :options.sync="options.social_status">
+
+        </question-select-with-text>
 
     </fieldset>
     <fieldset id="1.8">

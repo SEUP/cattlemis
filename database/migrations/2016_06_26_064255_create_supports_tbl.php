@@ -19,7 +19,7 @@ class CreateSupportsTbl extends Migration
 
         });
 
-        Schema::create('choice_supports', function (Blueprint $table) {
+        Schema::create('choice_support', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('choice_id');
             $table->integer('farm_owner_id');
