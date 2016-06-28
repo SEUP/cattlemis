@@ -16,7 +16,7 @@ class ProvinceController extends Controller
 
     public function index()
     {
-        $provinces = Province::with(['amphurs'])->get();
+        $provinces = Province::with(['amphurs','amphurs.districts'])->get();
         return $provinces;
     }
 

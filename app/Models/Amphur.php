@@ -14,10 +14,9 @@ class Amphur extends Model
 {
     protected  $table = "thailand_amphures";
 
-    public function province()
+    public function districts()
     {
-        return $this->belongsTo(Province::class);
+        return $this->hasMany(District::class,"AMPHUR_ID","AMPHUR_ID");
     }
-    
 }
 

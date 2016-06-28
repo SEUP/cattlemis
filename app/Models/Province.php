@@ -16,7 +16,7 @@ class Province extends Model
 
     public function amphurs()
     {
-        return $this->hasMany(Amphur::class);
+        return $this->hasMany(Amphur::class,"PROVINCE_ID","PROVINCE_ID");
     }
     
 }
