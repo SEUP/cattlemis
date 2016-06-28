@@ -7,7 +7,7 @@ var QuestionTextField = Vue.extend({
     <div class="form-group">
             <label class="col-sm-2 control-label">{{label}}</label>
             <div class="col-sm-10">
-                <input type="text" v-model="model" class="form-control" placeholder="{{placeHolder}}"/>
+                <input type="text" v-model="model" class="form-control" placeholder="{{placeholder}}"/>
             </div>
         </div>
     `,
@@ -19,7 +19,7 @@ var QuestionTextField = Vue.extend({
             required: true,
             twoWay: true
         },
-        placeHolder: {}
+        placeholder: {}
     }
 });
 
