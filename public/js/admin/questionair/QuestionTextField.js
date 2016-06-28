@@ -30,7 +30,7 @@ var QuestionSelect = Vue.extend({
             <label class="col-sm-2 control-label">{{label}}</label>
             <div class="col-sm-10">
                 <select class="form-control" v-model="model">
-                    <option value="">กรุณาเลือก</option>
+                    <option selected value="">กรุณาเลือก</option>
                     <option v-for="option in options"
                             v-bind:value="option">{{ option.choice }}</option>
                 </select>

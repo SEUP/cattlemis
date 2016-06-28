@@ -48,6 +48,11 @@ class FarmOwner extends Model
         return $this->hasOne(FarmInfo::class);
     }
 
+    public function worker()
+    {
+        return $this->hasOne(Worker::class);
+    }
+
 
     //relationships to choices
 
@@ -113,7 +118,13 @@ class FarmOwner extends Model
 
     public function choices2()
     {
-        return $this->belongsToMany(Choice::class, "choice_farm_info")
+        return $this->belongsToMany(Choice::class, "choice_farm_infos")
+            ->withPivot(['remark', 'amount', 'price', 'source', 'price']);
+    }
+
+    public function choices3()
+    {
+        return $this->belongsToMany(Choice::class, "choice_workers")
             ->withPivot(['remark', 'amount', 'price', 'source', 'price']);
     }
 

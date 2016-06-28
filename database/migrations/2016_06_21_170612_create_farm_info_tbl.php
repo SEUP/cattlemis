@@ -31,7 +31,7 @@ class CreateFarmInfoTbl extends Migration
 
         });
         
-        Schema::create('choice_farm_info', function (Blueprint $table) {
+        Schema::create('choice_farm_infos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('choice_id');
             $table->integer('farm_owner_id');
