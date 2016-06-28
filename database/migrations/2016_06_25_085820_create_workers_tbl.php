@@ -24,7 +24,7 @@ class CreateWorkersTbl extends Migration
 
         });
 
-        Schema::create('choice_workers', function (Blueprint $table) {
+        Schema::create('choice_worker', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('choice_id');
             $table->integer('farm_owner_id');

@@ -21,7 +21,7 @@ class CreateCommunityTbl extends Migration
 
         });
 
-        Schema::create('choice_communities', function (Blueprint $table) {
+        Schema::create('choice_community', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('choice_id');
             $table->integer('farm_owner_id');
