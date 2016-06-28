@@ -12,11 +12,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Amphur extends Model
 {
-    protected  $table = "thailand_amphures";
+    protected $table = "thailand_amphures";
+
+
+    protected $primaryKey = 'amphur_id';
 
     public function districts()
     {
-        return $this->hasMany(District::class,"AMPHUR_ID","AMPHUR_ID");
+        return $this->hasMany(District::class, "AMPHUR_ID", "AMPHUR_ID");
     }
 }
 

@@ -12,12 +12,15 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Province extends Model
 {
-    protected  $table = "thailand_provinces";
+    protected $table = "thailand_provinces";
+
+    protected $primaryKey = 'province_id';
+
 
     public function amphurs()
     {
-        return $this->hasMany(Amphur::class,"PROVINCE_ID","PROVINCE_ID");
+        return $this->hasMany(Amphur::class, "PROVINCE_ID", "PROVINCE_ID");
     }
-    
+
 }
 

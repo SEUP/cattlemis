@@ -11,13 +11,15 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class ProvinceController extends Controller
+class ProvinceAmphureController extends Controller
 {
 
-    public function index()
+    public function index($provinceId)
     {
-        $provinces = Province::with([])->get();
-        return $provinces;
+        /* @var Province $province */
+        $province = Province::find($provinceId);
+        $amphurs = $province->amphurs()->get();
+        return $amphurs;
     }
 
     public function create()
