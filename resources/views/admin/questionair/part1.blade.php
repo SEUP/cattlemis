@@ -11,9 +11,14 @@
         <legend>1.2 ที่อยู่ตามสำเนาทะเบียนบ้าน</legend>
         <question-text-field label="บ้านเลขที่" :model.sync="newFarmer.house_no"></question-text-field>
         <question-text-field label="หมู่" :model.sync="newFarmer.house_moo"></question-text-field>
-        <question-text-field label="ตำบล" :model.sync="newFarmer.house_suburb"></question-text-field>
-        <question-text-field label="อำเภอ" :model.sync="newFarmer.house_district"></question-text-field>
-        <question-text-field label="จังหวัด" :model.sync="newFarmer.house_province"></question-text-field>
+
+        <province-amphur-district v-if="newFarmer.house_province != undefined"
+                                  :model_province.sync="newFarmer.house_province"
+                                  :model_amphur.sync="newFarmer.house_district"
+                                  :model_district.sync="newFarmer.house_suburb">
+
+        </province-amphur-district>
+
         <question-text-field label="รหัสไปรษณีย์" :model.sync="newFarmer.house_postcode"></question-text-field>
         <question-text-field label="โทรศัพท์บ้าน" :model.sync="newFarmer.house_phone"></question-text-field>
         <question-text-field label="โทรศัพท์มือถือ" :model.sync="newFarmer.mobile_no"></question-text-field>
@@ -25,9 +30,13 @@
         <legend>1.3 ที่อยู่ฟาร์ม</legend>
         <question-text-field label="ที่ตั้งฟาร์มเลขที่" :model.sync="newFarmer.farm_no"></question-text-field>
         <question-text-field label="หมู่" :model.sync="newFarmer.farm_moo"></question-text-field>
-        <question-text-field label="ตำบล" :model.sync="newFarmer.farm_suburb"></question-text-field>
-        <question-text-field label="อำเภอ" :model.sync="newFarmer.farm_district"></question-text-field>
-        <question-text-field label="จังหวัด" :model.sync="newFarmer.farm_province"></question-text-field>
+
+        <province-amphur-district v-if="newFarmer.house_province != undefined"
+                                  :model_province.sync="newFarmer.farm_province"
+                                  :model_amphur.sync="newFarmer.farm_district"
+                                  :model_district.sync="newFarmer.farm_suburb">
+
+        </province-amphur-district>
     </fieldset>
     <fieldset id="1.4">
         <legend>1.4 ตำแหน่งพิกัด GPS ของฟาร์ม</legend>
@@ -42,7 +51,8 @@
 
         <question-text-field label="อายุ" :model.sync="newFarmer.age"></question-text-field>
 
-        <question-select label="สถานภาพ" :model.sync="newFarmer.personal_status" :options.sync="options.personal_status"></question-select>
+        <question-select label="สถานภาพ" :model.sync="newFarmer.personal_status"
+                         :options.sync="options.personal_status"></question-select>
         <!-- sample select with text-->
         <question-select-with-text label="สถานภาพในครอบครัว" :model.sync="newFarmer.family_status"
                                    :options.sync="options.family_status"></question-select-with-text>
@@ -85,13 +95,15 @@
 
     <fieldset id="1.10">
         <legend>1.10 ท่านมีรายได้รวมของครัวเรือนเฉลี่ยเท่าไหร่ (บาท/ปี)</legend>
-        <question-select label="ท่านมีรายได้รวมของครัวเรือนเฉลี่ยเท่าไหร่ (บาท/ปี)" :model.sync="newFarmer.income_range" :options.sync="options.income_range"></question-select>
+        <question-select label="ท่านมีรายได้รวมของครัวเรือนเฉลี่ยเท่าไหร่ (บาท/ปี)" :model.sync="newFarmer.income_range"
+                         :options.sync="options.income_range"></question-select>
 
     </fieldset>
 
     <fieldset id="1.11">
         <legend>1.11 รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)</legend>
-        <question-text-field label="รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)" :model.sync="newFarmer.avg_cattle_income"></question-text-field>
-        
+        <question-text-field label="รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)"
+                             :model.sync="newFarmer.avg_cattle_income"></question-text-field>
+
     </fieldset>
 </form>
