@@ -110,8 +110,13 @@
     </nav>
 
     <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                @yield('page-wrapper')
+                <spinner id="spinner-box" :size="lg" :fixed="spinnerFixed" text="Loading..."></spinner>
 
-        @yield('page-wrapper')
+            </div>
+        </div>
 
 
     </div>
@@ -128,10 +133,14 @@
 
     var AdminApp = Vue.extend({
         el: "body",
-        data: {
-            currentUser: {},
-            user_id: {},
-            ajaxCount: 0,
+        data: function () {
+            return {
+                currentUser: {},
+                user_id: {},
+                ajaxCount: 0,
+                spinnerFixed: true
+            }
+
         },
         components: {
             tabs: VueStrap.tabset,
@@ -158,7 +167,6 @@
         ready: function () {
             this.loadCurrentUser();
             this.user_id = $("#user_id").attr('value');
-            this.ajaxCount = 0;
             this.show = true;
 
         },
@@ -180,8 +188,6 @@
     Vue.http.interceptors.push(
             {
                 request(req){
-//                    console.log('Intercepted REQ:', req);
-//                    console.log(app.ajaxCount);
 
                     if (app.ajaxCount == 0) {
                         app.$broadcast("show::spinner")
@@ -190,8 +196,6 @@
                     return req;
                 },
                 response(res){
-//                    console.log('Intercepted RES:', res)
-//                    console.log(app.ajaxCount);
                     app.ajaxCount--;
                     if (app.ajaxCount == 0) {
                         app.$broadcast("hide::spinner")
