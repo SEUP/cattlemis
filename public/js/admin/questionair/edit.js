@@ -53,21 +53,15 @@ var app = new AdminApp({
         }
         ,
         reInitialOption: function (opt) {
-            console.log(opt);
-            for (var i = 0; i < this.options[opt].length; i++) {
-                if (this.options[opt][i].id == this.newFarmer[opt].id) {
-
-                    this.options[opt].splice(i, 1, this.newFarmer[opt]);
-
-                    //
-                    //if (this.options[opt][i].has_text == 1 && this.newFarmer[opt].has_text == 1) {
-                    //    this.options[opt][i].pivot = this.newFarmer[opt].pivot;
-                    //    this.newFarmer[opt] = this.options[opt][i];
-                    //} else {
-                    //    this.newFarmer[opt] = this.options[opt][i];
-                    //}
+            //console.log(opt);
+            if (this.newFarmer[opt] & this.newFarmer[opt].id) {
+                for (var i = 0; i < this.options[opt].length; i++) {
+                    if (this.options[opt][i].id == this.newFarmer[opt].id) {
+                        this.options[opt].splice(i, 1, this.newFarmer[opt]);
+                    }
                 }
             }
+
         }
         ,
         reInitialMultiOption: function (opt) {

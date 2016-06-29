@@ -131,6 +131,7 @@
         data: {
             currentUser: {},
             user_id: {},
+            ajaxCount: 0,
         },
         components: {
             tabs: VueStrap.tabset,
@@ -139,7 +140,9 @@
             panel: VueStrap.panel,
             'my-select': VueStrap.select,
             'my-option': VueStrap.option,
-            affix: VueStrap.affix
+            affix: VueStrap.affix,
+            spinner: VueStrap.spinner,
+            alert: VueStrap.alert,
         },
         methods: {
             loadCurrentUser: function () {
@@ -155,7 +158,9 @@
         ready: function () {
             this.loadCurrentUser();
             this.user_id = $("#user_id").attr('value');
+            this.ajaxCount = 0;
             this.show = true;
+
         },
     });
 
@@ -169,6 +174,33 @@
         })
     </script>
 @show
+
+<script>
+
+    Vue.http.interceptors.push(
+            {
+                request(req){
+//                    console.log('Intercepted REQ:', req);
+//                    console.log(app.ajaxCount);
+                    if (app.ajaxCount == 0) {
+                        app.ajaxCount++;
+                        app.$broadcast("show:spinner")
+                    }
+                    return req;
+                },
+                response(res){
+//                    console.log('Intercepted RES:', res)
+//                    console.log(app.ajaxCount);
+                    if (app.ajaxCount > 0) {
+                        app.ajaxCount--;
+                        app.$broadcast("hide:spinner")
+                    }
+                    return res;
+                }
+            }
+    )
+
+</script>
 
 </body>
 </html>

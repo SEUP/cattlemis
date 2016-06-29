@@ -718,7 +718,12 @@ class FarmOwner extends Model
 
     public function getFarmRegisterAttribute()
     {
-        return $this->farm_register()->first();
+        $value = $this->farm_register()->first();
+        if ($value) {
+            return $value;
+        } else {
+            return [];
+        }
     }
 
     public function getFarmDiseaseCheckAttribute()
