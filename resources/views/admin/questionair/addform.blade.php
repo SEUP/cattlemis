@@ -1,9 +1,6 @@
 @extends('admin.layout')
 
 @section('page-wrapper')
-
-
-
     <div class="row">
         <div class="col-lg-10">
             <h1 class="page-header">บันทึกข้อมูลเกษตรกรใหม่</h1>
@@ -45,7 +42,6 @@
                         </panel>
                     </accordion>
                 </div>
-
             </div>
         </div>
 
@@ -57,7 +53,6 @@
                             <button type="button" class="btn btn-primary btn-block" v-on:click="save()">Save</button>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-lg-12">
                             <ul class="list-unstyled">
@@ -88,15 +83,11 @@
                             </ul>
                         </div>
                     </div>
-
-
                 </div>
             </affix>
         </div>
 
     </div>
-
-
 @endsection
 
 
