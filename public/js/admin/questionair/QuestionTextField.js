@@ -23,6 +23,27 @@ var QuestionTextField = Vue.extend({
     }
 });
 
+var QuestionTextAreaField = Vue.extend({
+    template: `
+    <div class="form-group">
+            <label class="col-sm-2 control-label">{{label}}</label>
+            <div class="col-sm-10">
+            ​    <textarea v-model="model" class="form-control" rows="10" cols="70" placeholder="{{placeholder}}"></textarea>
+            </div>
+        </div>
+    `,
+    props: {
+        label: {
+            required: true,
+        },
+        model: {
+            required: true,
+            twoWay: true
+        },
+        placeholder: {}
+    }
+});
+
 
 var QuestionSelect = Vue.extend({
     template: `

@@ -6,6 +6,7 @@ var app = new AdminApp({
     el: 'body',
     components: {
         'question-text-field': QuestionTextField,
+        'question-textarea-field': QuestionTextAreaField,
         'question-select': QuestionSelect,
         'question-select-with-text': QuestionSelectWithText,
         'question-multi-checkbox': QuestionMultiCheckbox,
@@ -36,12 +37,13 @@ var app = new AdminApp({
                     }
                 }
                 //console.log("total_" + optType[i].type);
-                this.newFarmer.farm_info["total_" + optType[i].type] = sum;
+                this.newFarmer["total_" + optType[i].type] = sum;
             }
 
             return sum;
         },
         save: function () {
+           
             this.$http.patch('/api/farm-owner/' + this.newFarmer.id, this.newFarmer).then(function (response) {
                 data = response.data;
                 this.newFarmer = data;
@@ -82,12 +84,21 @@ var app = new AdminApp({
         reSelectedOption: function () {
 
             var attributes = [
+                //part1
                 'sex', 'family_status', 'education', 'social_status', 'personal_status',
                 'cattle_job', 'income_range',
                 //part2
                 'farm_record', 'farm_exp', 'farm_future',
-                'farm_register_status', 'farm_register', 'farm_disease_check', 'abortion',
-                'tuberculosis', 'foot_mouth_disease'];
+                'farm_register_status',
+                //'farm_register',
+                'farm_disease_check', 'abortion',
+                'tuberculosis', 'foot_mouth_disease',
+
+                //part7
+                'support_visit','production_support','cattle_heath_support',
+                'training_support','observe_support','female_breeder_support'
+
+            ];
 
             for (var i = 0; i < attributes.length; i++) {
 //                        console.log(attributes[i]);
@@ -95,6 +106,7 @@ var app = new AdminApp({
             }
 
             var multipleAttributes = [
+                //part1
                 'jobtypes',
                 //part 2
                 'farm_purposes', 'male_breeding_types',
@@ -105,7 +117,13 @@ var app = new AdminApp({
                 'female_over_six_mixed_breeding_types', 'male_under_six_breeding_types',
                 'male_under_six_int_breeding_types', 'male_under_six_mixed_breeding_types',
                 'female_under_six_breeding_types', 'female_under_six_int_breeding_types',
-                'female_under_six_mixed_breeding_types'
+                'female_under_six_mixed_breeding_types',
+
+                //part5
+                'budget_sources','loan_types',
+
+                //part7
+                'support_sources'
             ]
 
             for (var i = 0; i < multipleAttributes.length; i++) {
