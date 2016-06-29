@@ -3,7 +3,7 @@
         <legend>1.1 ข้อมูลทั่วไป</legend>
         <question-text-field label="ชื่อ" placeholder="กรุณากรอกชื่อ" :model.sync="newFarmer.first_name"></question-text-field>
         <question-text-field label="นามสกุล" :model.sync="newFarmer.last_name"></question-text-field>
-        <question-text-field label="รหัสประจำตัวประชาชน" :model.sync="newFarmer.personal_id"></question-text-field>
+        <question-text-field label="รหัสประจำตัวประชาชน" :model.sync="newFarmer.person_id"></question-text-field>
 
     </fieldset>
 
@@ -11,9 +11,12 @@
         <legend>1.2 ที่อยู่ตามสำเนาทะเบียนบ้าน</legend>
         <question-text-field label="บ้านเลขที่" :model.sync="newFarmer.house_no"></question-text-field>
         <question-text-field label="หมู่" :model.sync="newFarmer.house_moo"></question-text-field>
-        <question-text-field label="ตำบล" :model.sync="newFarmer.house_suburb"></question-text-field>
-        <question-text-field label="อำเภอ" :model.sync="newFarmer.house_district"></question-text-field>
-        <question-text-field label="จังหวัด" :model.sync="newFarmer.house_province"></question-text-field>
+        <province-amphur-district v-if="newFarmer.house_province != undefined"
+                                  :model_province.sync="newFarmer.house_province"
+                                  :model_amphur.sync="newFarmer.house_amphur"
+                                  :model_district.sync="newFarmer.house_district">
+        </province-amphur-district>
+
         <question-text-field label="รหัสไปรษณีย์" :model.sync="newFarmer.house_postcode"></question-text-field>
         <question-text-field label="โทรศัพท์บ้าน" :model.sync="newFarmer.house_phone"></question-text-field>
         <question-text-field label="โทรศัพท์มือถือ" :model.sync="newFarmer.mobile_no"></question-text-field>
@@ -25,9 +28,11 @@
         <legend>1.3 ที่อยู่ฟาร์ม</legend>
         <question-text-field label="ที่ตั้งฟาร์มเลขที่" :model.sync="newFarmer.farm_no"></question-text-field>
         <question-text-field label="หมู่" :model.sync="newFarmer.farm_moo"></question-text-field>
-        <question-text-field label="ตำบล" :model.sync="newFarmer.farm_suburb"></question-text-field>
-        <question-text-field label="อำเภอ" :model.sync="newFarmer.farm_district"></question-text-field>
-        <question-text-field label="จังหวัด" :model.sync="newFarmer.farm_province"></question-text-field>
+        <province-amphur-district
+                                  :model_province.sync="newFarmer.farm_province"
+                                  :model_amphur.sync="newFarmer.farm_amphur"
+                                  :model_district.sync="newFarmer.farm_district">
+        </province-amphur-district>
     </fieldset>
     <fieldset id="1.4">
         <legend>1.4 ตำแหน่งพิกัด GPS ของฟาร์ม</legend>
@@ -45,7 +50,9 @@
         <question-select label="สถานภาพ" :model.sync="newFarmer.personal_status" :options.sync="options.personal_status"></question-select>
         <!-- sample select with text-->
         <question-select-with-text label="สถานภาพในครอบครัว" :model.sync="newFarmer.family_status"
-                                   :options.sync="options.family_status"></question-select-with-text>
+                                   :options.sync="options.family_status">
+
+        </question-select-with-text>
     </fieldset>
 
     <fieldset id="1.6">
@@ -68,15 +75,18 @@
     <fieldset id="1.8">
         <legend>1.8 การเลี้ยงโคเนื้อ</legend>
 
-        <question-select label="การเลี้ยงโคเนื้อเป็น" :model.sync="newFarmer.cattle_job"
-                         :options.sync="options.cattle_job"></question-select>
+        <question-select label="การเลี้ยงโคเนื้อเป็น"
+                         :model.sync="newFarmer.cattle_job"
+                         :options.sync="options.cattle_job">
+
+        </question-select>
 
     </fieldset>
     <fieldset id="1.9">
         <legend>1.9 ท่านมีรายได้จากการประกอบอาชีพอะไรบ้าง (เลือกได้มากกว่า 1 ข้อ)</legend>
         <!-- sample multi choices -->
-        <question-multi-checkbox label="ท่านมีรายได้จากการประกอบอาชีพอะไรบ้าง (เลือกได้มากกว่า 1 ข้อ)"
-                                 :model.sync="newFarmer.jobtypes"
+
+        <question-multi-checkbox :model.sync="newFarmer.jobtypes"
                                  :options.sync="options.jobtypes">
 
         </question-multi-checkbox>
@@ -86,7 +96,6 @@
     <fieldset id="1.10">
         <legend>1.10 ท่านมีรายได้รวมของครัวเรือนเฉลี่ยเท่าไหร่ (บาท/ปี)</legend>
         <question-select label="ท่านมีรายได้รวมของครัวเรือนเฉลี่ยเท่าไหร่ (บาท/ปี)" :model.sync="newFarmer.income_range" :options.sync="options.income_range"></question-select>
-
     </fieldset>
 
     <fieldset id="1.11">

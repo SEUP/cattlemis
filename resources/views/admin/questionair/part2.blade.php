@@ -19,16 +19,16 @@
 
     <fieldset id="2.3">
         <legend>2.3 จำนวนโคเนื้อที่เกษตกรเลี้ยงทั้งหมด (ตัว)</legend>
-
         <div class="form-group">
-            <label
-                    class="col-sm-2 control-label "></label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" placeholder="" readonly>
+               <!-- <input type="text" v-model="newFarmer.farm_info.total_master_breeding_types" class="form-control"
+                       readonly>-->
+                <input type="text" v-model="newFarmer.total_master_breeding_types" class="form-control"
+                       readonly>
             </div>
         </div>
     </fieldset>
-
+    <!--v-model="newFarmer.farm_info['total_'+option.children[0].type]"-->
     <template v-for="option in options.master_breeding_types">
         <fieldset id="2.@{{ 4+$index }}">
             <legend>2.@{{ 4+$index }} @{{ option.choice }}</legend>
@@ -37,7 +37,8 @@
                 <label class="col-sm-2 control-label">จำนวน</label>
                 <div class="col-sm-10">
                     <input type="text"
-                           v-model="newFarmer.farm_info['total_'+option.children[0].type]"
+
+                           v-model="newFarmer['total_'+option.children[0].type]"
                            v-bind:value="sumCattle(newFarmer[option.children[0].type])" class="form-control"
                            placeholder="" readonly>
                 </div>
@@ -103,25 +104,23 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">ค่าใช้จ่ายโดยประมาณ (บาท/เดือน)</label>
             <div class="col-sm-10">
-                <input type="text" v-model="newFarmer.farm_info.total_expense_amount" class="form-control"
+                <input type="text" v-model="newFarmer.total_expense_amount" class="form-control"
                        placeholder="ค่าใช้จ่ายโดยประมาณ (บาท/เดือน)" readonly>
             </div>
-
-
         </div>
         <question-text-field label="ค่ายา (บาท/เดือน)" placeholder="ค่ายา (บาท/เดือน)"
-                             :model.sync="newFarmer.farm_info.drug_price"></question-text-field>
+                             :model.sync="newFarmer.drug_price"></question-text-field>
         <question-text-field label="ค่าอาหารและแร่ธาตุ (บาท/เดือน)"
                              placeholder="ค่าอาหารและแร่ธาตุ (บาท/เดือน)"
-                             :model.sync="newFarmer.farm_info.food_price"></question-text-field>
+                             :model.sync="newFarmer.food_price"></question-text-field>
 
         <div class="form-group">
             <label class="col-sm-2 control-label">อื่นๆ</label>
             <div class="col-sm-5">
-                <input type="text" v-model="newFarmer.farm_info.expense_remark" class="form-control" placeholder="รายละเอียด">
+                <input type="text" v-model="newFarmer.expense_remark" class="form-control" placeholder="รายละเอียด">
             </div>
             <div class="col-sm-5">
-                <input type="text" v-model="newFarmer.farm_info.expense_price" class="form-control"
+                <input type="text" v-model="newFarmer.expense_price" class="form-control"
                        placeholder="ค่าใช้จ่าย (บาท/เดือน)">
             </div>
         </div>
@@ -140,27 +139,8 @@
 
     <fieldset id="2.13">
         <legend>2.13 การขึ้นทะเบียนฟาร์มกับภาครัฐ</legend>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">ขึ้นทะเบียนกับฟาร์มกับภาครัฐหรือไม่</label>
-            <div class="col-sm-10">
-                <select class="form-control" v-model="newFarmer.farm_register_status">
-                    <option value="">กรุณาเลือก</option>
-                    <option v-for="option in options.farm_register_status"
-                            v-bind:value="option">@{{ option.choice }}</option>
-                </select>
-            </div>
+        <question-select  :model.sync="newFarmer.farm_register_status" :options.sync="options.farm_register_status"></question-select>
 
-        </div>
-        <div class="form-group" v-if="newFarmer.farm_register_status.children.length!=0">
-            <div class="col-sm-10">
-                <select class="form-control" v-model="newFarmer[newFarmer.farm_register_status.children[0].type]">
-                    <option value="">กรุณาเลือก</option>
-                    <option v-for="child in options[newFarmer.farm_register_status.children[0].type]"
-                            v-bind:value="child">@{{ child.choice }}
-                    </option>
-                </select>
-            </div>
-        </div>
     </fieldset>
 
 
