@@ -20,7 +20,7 @@
     </fieldset>
     <fieldset id="3.3">
         <legend>3.3 ลักษณะการเลี้ยงโคเนื้อของท่าน</legend>
-        <question-multi-checkbox label="ลักษณะการเลี้ยงโคเนื้อของท่าน (เลือกได้มากกว่า 1 ข้อ)"
+        <question-multi-checkbox
                                  :model.sync="newFarmer.take_care_types"
                                  :options.sync="options.take_care_types">
 
@@ -29,7 +29,7 @@
     <fieldset id="3.4">
         <legend>3.4 พื้นที่ถือครองทางการเกษตร(ไร่/ครัวเรือน)</legend>
 
-        <question-select label="พื้นที่ถือครองทางการเกษตร(ไร่/ครัวเรือน)" :model.sync="newFarmer.own_land"
+        <question-select :model.sync="newFarmer.own_land"
                          :options.sync="options.own_land">
 
         </question-select>
