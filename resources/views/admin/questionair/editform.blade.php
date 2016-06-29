@@ -5,58 +5,97 @@
 
 
     <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">แก้ไขข้อมูลเกษตรกร
-            </h1>
-        </div>
-    </div>
-
-    <input type="hidden" id="newFamer_id" value="{{$farmOwner->id}}"/>
-
-
-
-    <div class="row" v-show="isLoaded">
-
         <div class="col-lg-10">
-            <accordion :one-at-time="false">
-                <panel header="ส่วนที่ 1 ข้อมูลพื้นฐานของเกษตรกร" :is-open="true">
-                    @include('admin.questionair.part1')
-                </panel>
-                <panel header="ส่วนที่ 2 ข้อมูลการเลี้ยงและสถานภาพฟาร์ม" :is-open="true">
-                    @include('admin.questionair.part2')
-                </panel>
-                <panel header="ส่วนที่ 3 ข้อมูลแรงงาน พื้นที่ในการเลี้ยง และการจัดการอาหาร">
-                    @include('admin.questionair.part3')
+            <h1 class="page-header">แก้ไขข้อมูลเกษตรกร</h1>
 
-                </panel>
-                <panel header="ส่วนที่ 4 การผสมพันธ์ุ ประสิทธิภาพการผลิต และการรักษาโรค">
-                    @include('admin.questionair.part4')
-                </panel>
-                <panel header="ส่วนที่ 5 ข้อมูลแหล่งเงินทุนที่ใช้ในการเลี้ยงโคเนื้อ">
-                    @include('admin.questionair.part5')
-                </panel>
-                <panel header="ส่วนที่ 6 ข้อมูลการตลาด การรวมกลุ่มของสมาชิก(วิสาหกิจชุมชนและสหกรณ์)">
-                    @include('admin.questionair.part6')
-                </panel>
-                <panel header="ส่วนที่ 7 การได้รับบริการ การส่งเสริมและสนับสนุนจากหน่วยงานต่างๆ">
-                    @include('admin.questionair.part7')
-                </panel>
-                <panel header="ส่วนที่ 8 ปัญหา อุปสรรค และข้อเสนอแนะ">
-                    @include('admin.questionair.part8')
-                </panel>
-            </accordion>
+
+            <input type="hidden" id="newFamer_id" value="{{$farmOwner->id}}"/>
+            <div class="row" v-show="isLoaded">
+
+                <div class="col-lg-12">
+                    <accordion :one-at-atime="true" v-ref:questionforms>
+                        <panel v-ref:panel1 header="ส่วนที่ 1 ข้อมูลพื้นฐานของเกษตรกร" id="panel_1">
+                            @include('admin.questionair.part1')
+                        </panel>
+                        <panel v-ref:panel2 header="ส่วนที่ 2 ข้อมูลการเลี้ยงและสถานภาพฟาร์ม"
+                               id="panel_2">
+                            @include('admin.questionair.part2')
+                        </panel>
+                        <panel v-ref:panel3 header="ส่วนที่ 3 ข้อมูลแรงงาน พื้นที่ในการเลี้ยง และการจัดการอาหาร"
+                               id="panel_3">
+                            @include('admin.questionair.part3')
+
+                        </panel>
+                        <panel v-ref:panel4 header="ส่วนที่ 4 การผสมพันธ์ุ ประสิทธิภาพการผลิต และการรักษาโรค"
+                               id="panel_4">
+                            @include('admin.questionair.part4')
+                        </panel>
+                        <panel v-ref:panel5 header="ส่วนที่ 5 ข้อมูลแหล่งเงินทุนที่ใช้ในการเลี้ยงโคเนื้อ" id="panel_5">
+                            @include('admin.questionair.part5')
+                        </panel>
+                        <panel v-ref:panel6
+                               header="ส่วนที่ 6 ข้อมูลการตลาด การรวมกลุ่มของสมาชิก(วิสาหกิจชุมชนและสหกรณ์)"
+                               id="panel_6">
+                            @include('admin.questionair.part6')
+                        </panel>
+                        <panel v-ref:panel7 header="ส่วนที่ 7 การได้รับบริการ การส่งเสริมและสนับสนุนจากหน่วยงานต่างๆ"
+                               id="panel_7">
+                            @include('admin.questionair.part7')
+                        </panel>
+                        <panel v-ref:panel8 header="ส่วนที่ 8 ปัญหา อุปสรรค และข้อเสนอแนะ" id="panel_8">
+                            @include('admin.questionair.part8')
+                        </panel>
+                    </accordion>
+                </div>
+
+            </div>
+
         </div>
         <div class="col-lg-2">
             <affix>
                 <div style="margin-top:20px;">
-                    <button type="button" class="btn btn-primary btn-block" v-on:click="save()">Save</button>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <button type="button" class="btn btn-primary btn-block" v-on:click="save()">Save</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <ul class="list-unstyled">
+                                <li class="">
+                                    <a href="#panel_1" @click="showPanel($refs.panel1,$event)">ส่วนที่ 1</a>
+                                </li>
+                                <li class="">
+                                    <a href="#panel_2" @click="showPanel($refs.panel2,$event)">ส่วนที่ 2</a>
+                                </li>
+                                <li class="">
+                                    <a href="#panel_3" @click="showPanel($refs.panel3,$event)">ส่วนที่ 3</a>
+                                </li>
+                                <li class="">
+                                    <a href="#panel_4" @click="showPanel($refs.panel4,$event)">ส่วนที่ 4</a>
+                                </li>
+                                <li class="">
+                                    <a href="#panel_5" @click="showPanel($refs.panel5,$event)">ส่วนที่ 5</a>
+                                </li>
+                                <li class="">
+                                    <a href="#panel_6" @click="showPanel($refs.panel6,$event)">ส่วนที่ 6</a>
+                                </li>
+                                <li class="">
+                                    <a href="#panel_7" @click="showPanel($refs.panel7,$event)">ส่วนที่ 7</a>
+                                </li>
+                                <li class="">
+                                    <a href="#panel_8" @click="showPanel($refs.panel8,$event)">ส่วนที่ 8</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
                 </div>
             </affix>
         </div>
     </div>
-
-
-
 
 @endsection
 

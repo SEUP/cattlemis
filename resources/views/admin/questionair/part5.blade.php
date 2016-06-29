@@ -18,10 +18,13 @@
                     @{{ option.choice }}:
                     <input v-if="option.choice=='เงินกู้จากธนาคารพาณิชย์(ระบุธนาคาร)'" placeholder="ชื่อธนาคาร" type="text" class="form-control"
                            v-model="option['pivot']['remark']">
-                    <input placeholder="จำนวนเงิน(บาท)" type="text" class="form-control"
-                           v-model="option['pivot']['amount']">
-                    <input placeholder="อัตราดอกเบี้ย(%)" type="text" class="form-control"
-                           v-model="option['pivot']['rate']">
+                    <div class="row">
+                        <input class="col-lg-6 form-control" placeholder="จำนวนเงิน(บาท)" type="text"
+                               v-model="option['pivot']['amount']">
+                        <input placeholder="อัตราดอกเบี้ย(%)" type="text" class="form-control"
+                               v-model="option['pivot']['rate']">
+                    </div>
+
                 </label>
             </div>
         </div>

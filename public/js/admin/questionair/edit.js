@@ -19,6 +19,18 @@ var app = new AdminApp({
     },
 
     methods: {
+        showPanel: function (panel, event) {
+            event.preventDefault();
+            if (panel.isOpen) {
+
+            } else {
+                panel.toggleIsOpen();
+            }
+            setTimeout(function () {
+                window.location = $(event.target).attr('href');
+            }, 500)
+
+        },
         sumCattle: function (option) {
             var sum = 0;
             //console.log('option', option);
@@ -54,11 +66,11 @@ var app = new AdminApp({
         ,
         reInitialOption: function (opt) {
             //console.log(opt);
-                for (var i = 0; i < this.options[opt].length; i++) {
-                    if (this.options[opt][i].id == this.newFarmer[opt].id) {
-                        this.options[opt].splice(i, 1, this.newFarmer[opt]);
-                    }
+            for (var i = 0; i < this.options[opt].length; i++) {
+                if (this.options[opt][i].id == this.newFarmer[opt].id) {
+                    this.options[opt].splice(i, 1, this.newFarmer[opt]);
                 }
+            }
 
 
         }
@@ -164,7 +176,6 @@ var app = new AdminApp({
     }
     ,
     ready: function () {
-
 
     }
 })
