@@ -22,18 +22,13 @@
                            v-model="option['pivot']['amount']">
                     <input placeholder="อัตราดอกเบี้ย(%)" type="text" class="form-control"
                            v-model="option['pivot']['rate']">
-
                 </label>
             </div>
         </div>
-
     </fieldset>
     <fieldset id="5.3">
         <legend>5.3 เงินทุนในการเลี้ยงโคเนื้อรวมทั้งหมด (บาท) (รวมจาก 5.1 และ 5.2)</legend>
         <input type="text" v-model="newFarmer.total_budjet" class="form-control"
                readonly>
     </fieldset>
-
-
-
 </form>
