@@ -12,7 +12,7 @@
     </div>
 
     <input type="hidden" id="newFamer_id" value="{{$farmOwner->id}}"/>
-    <div class="row" v-if="isLoaded">
+    <div class="row" v-show="isLoaded">
         <div class="col-lg-10">
             <accordion :one-at-time="false">
                 <panel header="ส่วนที่ 1 ข้อมูลพื้นฐานของเกษตรกร" :is-open="true">

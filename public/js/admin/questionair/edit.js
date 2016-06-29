@@ -53,15 +53,19 @@ var app = new AdminApp({
         }
         ,
         reInitialOption: function (opt) {
+            console.log(opt);
             for (var i = 0; i < this.options[opt].length; i++) {
                 if (this.options[opt][i].id == this.newFarmer[opt].id) {
 
-                    if (this.options[opt][i].has_text == 1 && this.newFarmer[opt].has_text == 1) {
-                        this.options[opt][i].pivot = this.newFarmer[opt].pivot;
-                        this.newFarmer[opt] = this.options[opt][i];
-                    } else {
-                        this.newFarmer[opt] = this.options[opt][i];
-                    }
+                    this.options[opt].splice(i, 1, this.newFarmer[opt]);
+
+                    //
+                    //if (this.options[opt][i].has_text == 1 && this.newFarmer[opt].has_text == 1) {
+                    //    this.options[opt][i].pivot = this.newFarmer[opt].pivot;
+                    //    this.newFarmer[opt] = this.options[opt][i];
+                    //} else {
+                    //    this.newFarmer[opt] = this.options[opt][i];
+                    //}
                 }
             }
         }
@@ -94,7 +98,7 @@ var app = new AdminApp({
                 //part2
                 'farm_record', 'farm_exp', 'farm_future',
                 'farm_register_status',
-                //'farm_register',
+                'farm_register',
                 'farm_disease_check', 'abortion',
                 'tuberculosis', 'foot_mouth_disease',
 
@@ -105,7 +109,6 @@ var app = new AdminApp({
             ];
 
             for (var i = 0; i < attributes.length; i++) {
-//                        console.log(attributes[i]);
                 this.reInitialOption(attributes[i]);
             }
 

@@ -17,7 +17,7 @@ class FarmOwner extends Model
         'first_name', 'last_name', 'person_id', 'house_no', 'house_moo', 'house_province',
         'house_district', 'house_amphur', 'house_postcode', 'house_phone', 'mobile_no', 'email',
         'farm_name', 'farm_no', 'farm_moo', 'farm_province', 'farm_district', 'farm_amphur',
-        'farm_lat', 'farm_long', 'age', 'avg_cattle_income' ,
+        'farm_lat', 'farm_long', 'age', 'avg_cattle_income',
 
         //part2
         'drug_price', 'food_price', 'expense_remark', 'expense_price',
@@ -28,16 +28,16 @@ class FarmOwner extends Model
         'total_expense_amount',
 
         //part3
-       // 'total_workers_amount','family_workers_amount','external_workers_amount','total_own_lands',
-       // 'total_use_lands',
-        
+        // 'total_workers_amount','family_workers_amount','external_workers_amount','total_own_lands',
+        // 'total_use_lands',
+
         //part5
         'total_budjet',
-        
+
         //part 8
         'problem', 'suggestion'
 
-        
+
     ];
 
     protected $hidden = [
@@ -51,12 +51,12 @@ class FarmOwner extends Model
         //select option or checkbox relationship
         //part1
         'sex', 'family_status', 'education', 'social_status', 'personal_status', 'cattle_job', 'income_range',
-        'jobtypes', 
-        
+        'jobtypes',
+
         //part2
         'farm_purposes', 'farm_record',
         'farm_exp', 'farm_future',
-         'master_breeding_types', 'male_breeding_types',
+        'master_breeding_types', 'male_breeding_types',
         'male_int_breeding_types', 'male_mixed_breeding_types', 'female_breeding_types',
         'female_int_breeding_types', 'female_mixed_breeding_types', 'male_over_six_breeding_types',
         'male_over_six_int_breeding_types', 'male_over_six_mixed_breeding_types',
@@ -66,31 +66,23 @@ class FarmOwner extends Model
         'female_under_six_breeding_types', 'female_under_six_int_breeding_types',
         'female_under_six_mixed_breeding_types',
         //'farm_info',
-       'farm_register_status',
-         //'farm_register',
+        'farm_register_status',
+        'farm_register',
         'farm_disease_check',
         'abortion', 'tuberculosis', 'foot_mouth_disease',
-        
+
         //part3
-       // 'water_source_types','take_care_types','own_land','sub_own_lands',
-        
+        // 'water_source_types','take_care_types','own_land','sub_own_lands',
+
         //part5
-        'budget_sources','loan_types',
-        
+        'budget_sources', 'loan_types',
+
         //part7
-        'support_sources','support_visit','production_support','cattle_heath_support',
-        'training_support','observe_support','female_breeder_support',
-       //part8
+        'support_sources', 'support_visit', 'production_support', 'cattle_heath_support',
+        'training_support', 'observe_support', 'female_breeder_support',
+        //part8
     ];
 
-    //parts
-
-  /*  public function farm_info()
-    {
-        return $this->hasOne(FarmInfo::class);
-    }*/
-
-    
     //relationships to choices
 
     public function sexes()
@@ -117,8 +109,8 @@ class FarmOwner extends Model
         return $this->choices()->withPivot('remark')
             ->where('type', '=', 'jobtypes');
         //return $this->belongsToMany(Choice::class)
-         //   ->withPivot('remark')
-          //  ->where('type', '=', 'jobtypes');
+        //   ->withPivot('remark')
+        //  ->where('type', '=', 'jobtypes');
     }
 
     public function cattle_jobs()
@@ -154,17 +146,11 @@ class FarmOwner extends Model
         return $this->belongsToMany(Choice::class)->withPivot('remark');
     }
 
-   /* public function choices2()
-    {
-        return $this->belongsToMany(Choice::class, "choice_farm_info")
-            ->withPivot(['remark', 'amount', 'source', 'price']);
-    }
-*/
     //part2
     public function farm_purposes()
     {
         return $this->belongsToMany(Choice::class)
-        //return $this->choices2()
+            //return $this->choices2()
             ->withPivot('remark')
             ->where('type', '=', 'farm_purposes');
     }
@@ -179,7 +165,7 @@ class FarmOwner extends Model
     public function farm_exp()
     {
         return $this->belongsToMany(Choice::class)
-        //return $this->choices2()
+            //return $this->choices2()
             ->where('type', '=', 'farm_exp');
 
     }
@@ -187,7 +173,7 @@ class FarmOwner extends Model
     public function farm_future()
     {
         return $this->belongsToMany(Choice::class)
-        //return $this->choices2()
+            //return $this->choices2()
             ->where('type', '=', 'farm_future');
 
     }
@@ -198,12 +184,12 @@ class FarmOwner extends Model
             ->where('type', '=', 'farm_register_status');
 
     }
-    
-       /* public function farm_register()
-        {
-            return $this->choices()
-                ->where('type', '=', 'farm_register');
-        }*/
+
+    public function farm_register()
+    {
+        return $this->choices()
+            ->where('type', '=', 'farm_register');
+    }
 
     public function farm_disease_check()
     {
@@ -233,7 +219,7 @@ class FarmOwner extends Model
     {
         return $this->choices()
             //return $this->belongsToMany(Choice::class)
-               // ->with(['children'])
+            // ->with(['children'])
             ->where('type', '=', 'master_breeding_types');
 
     }
@@ -242,8 +228,8 @@ class FarmOwner extends Model
     {
         //return $this->choices2()
         return $this->choices()
-        // return $this->belongsToMany(Choice::class)
-           // ->with('children')
+            // return $this->belongsToMany(Choice::class)
+            // ->with('children')
             ->withPivot(['remark', 'source', 'amount', 'price'])
             ->where('type', '=', 'male_breeding_types');
     }
@@ -252,17 +238,17 @@ class FarmOwner extends Model
     {
         //return $this->choices2()
         return $this->choices()
-        //return $this->belongsToMany(Choice::class)
-            ->withPivot(['source','amount','price'])
+            //return $this->belongsToMany(Choice::class)
+            ->withPivot(['source', 'amount', 'price'])
             ->where('type', '=', 'male_int_breeding_types');
     }
 
     public function male_mixed_breeding_types()
     {
-       // return $this->choices2()
+        // return $this->choices2()
         return $this->choices()
-        // return $this->belongsToMany(Choice::class)
-            ->withPivot(['source','amount','price'])
+            // return $this->belongsToMany(Choice::class)
+            ->withPivot(['source', 'amount', 'price'])
             ->where('type', '=', 'male_mixed_breeding_types');
     }
 
@@ -270,7 +256,7 @@ class FarmOwner extends Model
     {
         //return $this->choices2()
         //return $this->belongsToMany(Choice::class)
-           // ->with(['children'])
+        // ->with(['children'])
         return $this->choices()
             ->withPivot(['remark', 'source', 'amount', 'price'])
             ->where('type', '=', 'female_breeding_types');
@@ -279,9 +265,9 @@ class FarmOwner extends Model
     public function female_int_breeding_types()
     {
         //return $this->choices2()
-       // return $this->belongsToMany(Choice::class)
+        // return $this->belongsToMany(Choice::class)
         return $this->choices()
-            ->withPivot(['source','amount','price'])
+            ->withPivot(['source', 'amount', 'price'])
             ->where('type', '=', 'female_int_breeding_types');
     }
 
@@ -289,8 +275,8 @@ class FarmOwner extends Model
     {
         //return $this->choices2()
         return $this->choices()
-        // return $this->belongsToMany(Choice::class)
-            ->withPivot(['source','amount','price'])
+            // return $this->belongsToMany(Choice::class)
+            ->withPivot(['source', 'amount', 'price'])
             ->where('type', '=', 'female_mixed_breeding_types');
     }
 
@@ -298,8 +284,8 @@ class FarmOwner extends Model
     {
         //return $this->choices2()
         return $this->choices()
-        //return $this->belongsToMany(Choice::class)
-           // ->with(['children'])
+            //return $this->belongsToMany(Choice::class)
+            // ->with(['children'])
             ->withPivot(['remark', 'source', 'amount', 'price'])
             ->where('type', '=', 'male_over_six_breeding_types');
     }
@@ -307,23 +293,23 @@ class FarmOwner extends Model
     public function male_over_six_int_breeding_types()
     {
         return $this->choices()
-        //return $this->belongsToMany(Choice::class)
-            ->withPivot(['source','amount','price'])
+            //return $this->belongsToMany(Choice::class)
+            ->withPivot(['source', 'amount', 'price'])
             ->where('type', '=', 'male_over_six_int_breeding_types');
     }
 
     public function male_over_six_mixed_breeding_types()
     {
         return $this->choices()
-        //    return $this->belongsToMany(Choice::class)
-            ->withPivot(['source','amount','price'])
+            //    return $this->belongsToMany(Choice::class)
+            ->withPivot(['source', 'amount', 'price'])
             ->where('type', '=', 'male_over_six_mixed_breeding_types');
     }
 
     public function female_over_six_breeding_types()
     {
         return $this->choices()
-       // return $this->belongsToMany(Choice::class)
+            // return $this->belongsToMany(Choice::class)
             ->with(['children'])
             ->withPivot(['remark', 'source', 'amount', 'price'])
             ->where('type', '=', 'female_over_six_breeding_types');
@@ -332,48 +318,48 @@ class FarmOwner extends Model
     public function female_over_six_int_breeding_types()
     {
         return $this->choices()
-        //return $this->belongsToMany(Choice::class)
-            ->withPivot(['source','amount','price'])
+            //return $this->belongsToMany(Choice::class)
+            ->withPivot(['source', 'amount', 'price'])
             ->where('type', '=', 'female_over_six_int_breeding_types');
     }
 
     public function female_over_six_mixed_breeding_types()
     {
         return $this->choices()
-       // return $this->belongsToMany(Choice::class)
-            ->withPivot(['source','amount','price'])
+            // return $this->belongsToMany(Choice::class)
+            ->withPivot(['source', 'amount', 'price'])
             ->where('type', '=', 'female_over_six_mixed_breeding_types');
     }
 
     public function male_under_six_breeding_types()
     {
         return $this->choices()
-        //return $this->belongsToMany(Choice::class)
-           // ->with(['children'])
-            ->withPivot(['remark','source','amount','price'])
+            //return $this->belongsToMany(Choice::class)
+            // ->with(['children'])
+            ->withPivot(['remark', 'source', 'amount', 'price'])
             ->where('type', '=', 'male_under_six_breeding_types');
     }
 
     public function male_under_six_int_breeding_types()
     {
         return $this->choices()
-       // return $this->belongsToMany(Choice::class)
-            ->withPivot(['source','amount','price'])
+            // return $this->belongsToMany(Choice::class)
+            ->withPivot(['source', 'amount', 'price'])
             ->where('type', '=', 'male_under_six_int_breeding_types');
     }
 
     public function male_under_six_mixed_breeding_types()
     {
         return $this->choices()
-        //return $this->belongsToMany(Choice::class)
-            ->withPivot(['source','amount','price'])
+            //return $this->belongsToMany(Choice::class)
+            ->withPivot(['source', 'amount', 'price'])
             ->where('type', '=', 'male_under_six_mixed_breeding_types');
     }
 
     public function female_under_six_breeding_types()
     {
         return $this->choices()
-        //return $this->belongsToMany(Choice::class)
+            //return $this->belongsToMany(Choice::class)
             ->with(['children'])
             ->withPivot(['remark', 'source', 'amount', 'price'])
             ->where('type', '=', 'female_under_six_breeding_types');
@@ -382,52 +368,52 @@ class FarmOwner extends Model
     public function female_under_six_int_breeding_types()
     {
         return $this->choices()
-           // return $this->belongsToMany(Choice::class)
-            ->withPivot(['source','amount','price'])
+            // return $this->belongsToMany(Choice::class)
+            ->withPivot(['source', 'amount', 'price'])
             ->where('type', '=', 'female_under_six_int_breeding_types');
     }
 
     public function female_under_six_mixed_breeding_types()
     {
         return $this->choices()
-        //return $this->belongsToMany(Choice::class)
-            ->withPivot(['source','amount','price'])
+            //return $this->belongsToMany(Choice::class)
+            ->withPivot(['source', 'amount', 'price'])
             ->where('type', '=', 'female_under_six_mixed_breeding_types');
     }
 
     //part3
 
-  /*  public function water_source_types()
-    {
-        return $this->choices3()
-            ->withPivot('remark')
-            ->where('type', '=', 'water_source_types');
-    }
+    /*  public function water_source_types()
+      {
+          return $this->choices3()
+              ->withPivot('remark')
+              ->where('type', '=', 'water_source_types');
+      }
 
-    public function take_care_types()
-    {
-        return $this->choices3()
-            ->where('type', '=', 'take_care_types');
-    }
+      public function take_care_types()
+      {
+          return $this->choices3()
+              ->where('type', '=', 'take_care_types');
+      }
 
-    public function own_land()
-    {
-        return $this->choices3()->where('type', '=', 'own_land');
+      public function own_land()
+      {
+          return $this->choices3()->where('type', '=', 'own_land');
 
-    }
+      }
 
-    public function sub_own_lands()
-    {
-        return $this->choices3()
-            ->withPivot('area')
-            ->where('type', '=', 'sub_own_lands');
-    }*/
+      public function sub_own_lands()
+      {
+          return $this->choices3()
+              ->withPivot('area')
+              ->where('type', '=', 'sub_own_lands');
+      }*/
 
     //part5
     public function budget_sources()
     {
-       // return $this->belongsToMany(Choice::class)
-            return $this->choices()
+        // return $this->belongsToMany(Choice::class)
+        return $this->choices()
             ->withPivot('remark')
             ->where('type', '=', 'budget_sources');
 
@@ -437,8 +423,8 @@ class FarmOwner extends Model
     public function loan_types()
     {
         //return $this->belongsToMany(Choice::class)
-            return $this->choices()
-            ->withPivot(['remark','amount','rate'])
+        return $this->choices()
+            ->withPivot(['remark', 'amount', 'rate'])
             ->where('type', '=', 'loan_types');
     }
 
@@ -448,37 +434,43 @@ class FarmOwner extends Model
         return $this->choices()
             ->where('type', '=', 'support_sources');
     }
+
     public function support_visit()
     {
         return $this->choices()
             ->where('type', '=', 'support_visit');
 
     }
+
     public function production_support()
     {
         return $this->choices()
             ->where('type', '=', 'production_support');
 
     }
+
     public function cattle_heath_support()
     {
-        
+
         return $this->choices()
             ->where('type', '=', 'cattle_heath_support');
 
     }
+
     public function training_support()
     {
         return $this->choices()
             ->where('type', '=', 'training_support');
 
     }
+
     public function observe_support()
     {
         return $this->choices()
             ->where('type', '=', 'observe_support');
 
     }
+
     public function female_breeder_support()
     {
         return $this->choices()
@@ -488,7 +480,7 @@ class FarmOwner extends Model
 
 
     //get attributes
-    
+
 
     public function getPersonalStatusAttribute()
     {
@@ -568,20 +560,20 @@ class FarmOwner extends Model
 
     //part 2
 
-  /*  public function getFarmInfoAttribute()
-    {
-        $farmInfo = $this->farm_info()->first();
-        if ($farmInfo) {
-            return $farmInfo;
-        } else {
-            $farmInfo = new FarmInfo();
-            if ($this->id) {
-                $this->farm_info()->save($farmInfo);
-            }
+    /*  public function getFarmInfoAttribute()
+      {
+          $farmInfo = $this->farm_info()->first();
+          if ($farmInfo) {
+              return $farmInfo;
+          } else {
+              $farmInfo = new FarmInfo();
+              if ($this->id) {
+                  $this->farm_info()->save($farmInfo);
+              }
 
-            return $farmInfo;
-        }
-    }*/
+              return $farmInfo;
+          }
+      }*/
 
     public function getFarmPurposesAttribute()
     {
@@ -723,12 +715,12 @@ class FarmOwner extends Model
             return [];
         }
     }
-    
-       /* public function getFarmRegisterAttribute()
-        {
-            return $this->farm_register()->first();
-        }*/
-    
+
+    public function getFarmRegisterAttribute()
+    {
+        return $this->farm_register()->first();
+    }
+
     public function getFarmDiseaseCheckAttribute()
     {
         $value = $this->farm_disease_check()->first();
@@ -769,36 +761,36 @@ class FarmOwner extends Model
         }
     }
 
-    
+
     //part 3
-/*
-    public function getWaterSourceTypesAttribute()
-    {
-        return $this->water_source_types()->get();
-    }
-
-    public function getTakeCareTypesAttribute()
-    {
-        return $this->take_care_types()->get();
-    }
-
-    public function getOwnLandAttribute()
-    {
-        $value = $this->own_land()->first();
-        if ($value) {
-            return $value;
-        } else {
-            return [];
+    /*
+        public function getWaterSourceTypesAttribute()
+        {
+            return $this->water_source_types()->get();
         }
-    }
 
-    public function getSubOwnLandsAttribute()
-    {
-        return $this->sub_own_lands()->first();
+        public function getTakeCareTypesAttribute()
+        {
+            return $this->take_care_types()->get();
+        }
 
-    }
+        public function getOwnLandAttribute()
+        {
+            $value = $this->own_land()->first();
+            if ($value) {
+                return $value;
+            } else {
+                return [];
+            }
+        }
 
-*/
+        public function getSubOwnLandsAttribute()
+        {
+            return $this->sub_own_lands()->first();
+
+        }
+
+    */
 
     //part5
 
