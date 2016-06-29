@@ -1,7 +1,8 @@
 <form class="form-horizontal">
     <fieldset id="1.1">
         <legend>1.1 ข้อมูลทั่วไป</legend>
-        <question-text-field label="ชื่อ" placeholder="กรุณากรอกชื่อ" :model.sync="newFarmer.first_name"></question-text-field>
+        <question-text-field label="ชื่อ" placeholder="กรุณากรอกชื่อ"
+                             :model.sync="newFarmer.first_name"></question-text-field>
         <question-text-field label="นามสกุล" :model.sync="newFarmer.last_name"></question-text-field>
         <question-text-field label="รหัสประจำตัวประชาชน" :model.sync="newFarmer.person_id"></question-text-field>
 
@@ -9,9 +10,10 @@
 
     <fieldset id="1.2">
         <legend>1.2 ที่อยู่ตามสำเนาทะเบียนบ้าน</legend>
+
         <question-text-field label="บ้านเลขที่" :model.sync="newFarmer.house_no"></question-text-field>
         <question-text-field label="หมู่" :model.sync="newFarmer.house_moo"></question-text-field>
-        <province-amphur-district v-if="newFarmer.house_province != undefined"
+        <province-amphur-district v-if="newFarmer.house_province != null"
                                   :model_province.sync="newFarmer.house_province"
                                   :model_amphur.sync="newFarmer.house_amphur"
                                   :model_district.sync="newFarmer.house_district">
@@ -28,10 +30,10 @@
         <legend>1.3 ที่อยู่ฟาร์ม</legend>
         <question-text-field label="ที่ตั้งฟาร์มเลขที่" :model.sync="newFarmer.farm_no"></question-text-field>
         <question-text-field label="หมู่" :model.sync="newFarmer.farm_moo"></question-text-field>
-        <province-amphur-district
-                                  :model_province.sync="newFarmer.farm_province"
-                                  :model_amphur.sync="newFarmer.farm_amphur"
-                                  :model_district.sync="newFarmer.farm_district">
+        <province-amphur-district v-if="newFarmer.farm_province != null"
+                :model_province.sync="newFarmer.farm_province"
+                :model_amphur.sync="newFarmer.farm_amphur"
+                :model_district.sync="newFarmer.farm_district">
         </province-amphur-district>
     </fieldset>
     <fieldset id="1.4">
@@ -47,7 +49,8 @@
 
         <question-text-field label="อายุ" :model.sync="newFarmer.age"></question-text-field>
 
-        <question-select label="สถานภาพ" :model.sync="newFarmer.personal_status" :options.sync="options.personal_status"></question-select>
+        <question-select label="สถานภาพ" :model.sync="newFarmer.personal_status"
+                         :options.sync="options.personal_status"></question-select>
         <!-- sample select with text-->
         <question-select-with-text label="สถานภาพในครอบครัว" :model.sync="newFarmer.family_status"
                                    :options.sync="options.family_status">
@@ -95,12 +98,14 @@
 
     <fieldset id="1.10">
         <legend>1.10 ท่านมีรายได้รวมของครัวเรือนเฉลี่ยเท่าไหร่ (บาท/ปี)</legend>
-        <question-select label="ท่านมีรายได้รวมของครัวเรือนเฉลี่ยเท่าไหร่ (บาท/ปี)" :model.sync="newFarmer.income_range" :options.sync="options.income_range"></question-select>
+        <question-select label="ท่านมีรายได้รวมของครัวเรือนเฉลี่ยเท่าไหร่ (บาท/ปี)" :model.sync="newFarmer.income_range"
+                         :options.sync="options.income_range"></question-select>
     </fieldset>
 
     <fieldset id="1.11">
         <legend>1.11 รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)</legend>
-        <question-text-field label="รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)" :model.sync="newFarmer.avg_cattle_income"></question-text-field>
+        <question-text-field label="รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)"
+                             :model.sync="newFarmer.avg_cattle_income"></question-text-field>
 
     </fieldset>
 </form>
