@@ -15,8 +15,8 @@ class FarmOwner extends Model
     protected $fillable = [
         //part 1
         'first_name', 'last_name', 'person_id', 'house_no', 'house_moo', 'house_province',
-        'house_district', 'house_suburb', 'house_postcode', 'house_phone', 'mobile_no', 'email',
-        'farm_name', 'farm_no', 'farm_moo', 'farm_province', 'farm_district', 'farm_suburb',
+        'house_district', 'house_amphur', 'house_postcode', 'house_phone', 'mobile_no', 'email',
+        'farm_name', 'farm_no', 'farm_moo', 'farm_province', 'farm_district', 'farm_amphur',
         'farm_lat', 'farm_long', 'age', 'avg_cattle_income' ,
 
         //part2

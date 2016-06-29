@@ -31,7 +31,7 @@ class CreateFarmTbl extends Migration
             $table->unsignedInteger('farm_moo')->nullable();
             $table->unsignedInteger('farm_province')->nullable();
             $table->unsignedInteger('farm_district')->nullable();
-            $table->unsignedInteger('farm_suburb')->nullable();
+            $table->unsignedInteger('farm_amphur')->nullable();
             $table->unsignedInteger('farm_lat')->nullable();
             $table->unsignedInteger('farm_long')->nullable();
             $table->unsignedInteger('age')->nullable();
