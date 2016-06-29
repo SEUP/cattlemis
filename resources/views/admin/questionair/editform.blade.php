@@ -13,11 +13,11 @@
 
     <input type="hidden" id="newFamer_id" value="{{$farmOwner->id}}"/>
 
-
+    <spinner id="spinner-box" :size="lg" :fixed="true"
+             text="Loading..." v-ref:spinner></spinner>
 
     <div class="row" v-show="isLoaded">
-        <spinner id="spinner-box" :size="lg" :fixed="true"
-                 text="Loading..." v-ref:spinner></spinner>
+
         <div class="col-lg-10">
             <accordion :one-at-time="false">
                 <panel header="ส่วนที่ 1 ข้อมูลพื้นฐานของเกษตรกร" :is-open="true">

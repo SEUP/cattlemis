@@ -54,13 +54,12 @@ var app = new AdminApp({
         ,
         reInitialOption: function (opt) {
             //console.log(opt);
-            if (this.newFarmer[opt] & this.newFarmer[opt].id) {
                 for (var i = 0; i < this.options[opt].length; i++) {
                     if (this.options[opt][i].id == this.newFarmer[opt].id) {
                         this.options[opt].splice(i, 1, this.newFarmer[opt]);
                     }
                 }
-            }
+
 
         }
         ,

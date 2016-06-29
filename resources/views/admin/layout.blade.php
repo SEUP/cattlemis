@@ -182,18 +182,19 @@
                 request(req){
 //                    console.log('Intercepted REQ:', req);
 //                    console.log(app.ajaxCount);
+
                     if (app.ajaxCount == 0) {
-                        app.ajaxCount++;
-                        app.$broadcast("show:spinner")
+                        app.$broadcast("show::spinner")
                     }
+                    app.ajaxCount++;
                     return req;
                 },
                 response(res){
 //                    console.log('Intercepted RES:', res)
 //                    console.log(app.ajaxCount);
-                    if (app.ajaxCount > 0) {
-                        app.ajaxCount--;
-                        app.$broadcast("hide:spinner")
+                    app.ajaxCount--;
+                    if (app.ajaxCount == 0) {
+                        app.$broadcast("hide::spinner")
                     }
                     return res;
                 }
