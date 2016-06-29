@@ -147,7 +147,6 @@ var ProvinceAmphurDistrict = Vue.extend({
 
     ready: function () {
         var self = this;
-        console.log(this.model_province);
 
         // DOM updated
         self.$http.get("/api/thailand/province", function (response) {

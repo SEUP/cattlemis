@@ -21,8 +21,8 @@
         <legend>2.3 จำนวนโคเนื้อที่เกษตกรเลี้ยงทั้งหมด (ตัว)</legend>
         <div class="form-group">
             <div class="col-sm-10">
-               <!-- <input type="text" v-model="newFarmer.farm_info.total_master_breeding_types" class="form-control"
-                       readonly>-->
+                <!-- <input type="text" v-model="newFarmer.farm_info.total_master_breeding_types" class="form-control"
+                        readonly>-->
                 <input type="text" v-model="newFarmer.total_master_breeding_types" class="form-control"
                        readonly>
             </div>
@@ -46,6 +46,9 @@
             <div class="form-group" v-for="child in options[option.children[0].type]">
                 <label class="col-sm-2 checkbox control-label">
                     <input type="checkbox" v-model="newFarmer[child.type]" v-bind:value="child">@{{ child.choice }}
+                    <input type="hidden" v-model="child['pivot']['amount']"
+                           v-bind:value="sumSubChildCattle(options[child.children[0].type])"
+                    />
                 </label>
                 <div class="col-sm-10">
                     <templace v-for="subchild in options[child.children[0].type]">
@@ -139,7 +142,8 @@
 
     <fieldset id="2.13">
         <legend>2.13 การขึ้นทะเบียนฟาร์มกับภาครัฐ</legend>
-        <question-select  :model.sync="newFarmer.farm_register_status" :options.sync="options.farm_register_status"></question-select>
+        <question-select :model.sync="newFarmer.farm_register_status"
+                         :options.sync="options.farm_register_status"></question-select>
 
     </fieldset>
 

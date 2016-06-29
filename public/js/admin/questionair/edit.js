@@ -14,42 +14,44 @@ var app = new AdminApp({
     },
     data: {
         newFarmer: null,
-        options: {}
+        options: {},
+        isLoaded: false
     },
 
     methods: {
         sumCattle: function (option) {
-            var optType = option;
             var sum = 0;
-            for (var i = 0; i < optType.length; i++) {
-//                        console.log("opttype", optType[i]);
-                if (optType[i].pivot.amount != null) {
-//                            console.log(optType[i].pivot.amount, sum);
-                    sum += parseInt(optType[i].pivot.amount) ? parseInt(optType[i].pivot.amount) : 0;
-                } else {
-                    var childtype = this.newFarmer[optType[i].children[0].type]
-//                            console.log("opttype for children", childtype);
-                    for (var j = 0; j < childtype.length; j++) {
-                        if (childtype[j].pivot.amount != null) {
-//                                    console.log(childtype[j].pivot.amount, sum);
-                            sum += parseInt(childtype[j].pivot.amount) ? parseInt(childtype[j].pivot.amount) : 0;
-                        }
-                    }
-                }
-                //console.log("total_" + optType[i].type);
-                this.newFarmer["total_" + optType[i].type] = sum;
+            //console.log('option', option);
+
+            for (var i = 0; i < option.length; i++) {
+                var objOption = option[i];
+                //console.log('objOption', objOption);
+                sum += parseInt(objOption.pivot.amount) ? parseInt(objOption.pivot.amount) : 0;
             }
 
             return sum;
         },
+        sumSubChildCattle: function (option) {
+            var subChildOption = this.newFarmer[option[0].type];
+            //console.log("sumSubChildCattle", subChildOption);
+            var sum = 0;
+            for (var i = 0; i < subChildOption.length; i++) {
+                var subOption = subChildOption[i];
+                sum += parseInt(subOption.pivot.amount) ? parseInt(subOption.pivot.amount) : 0;
+            }
+
+            return sum;
+
+        },
         save: function () {
-           
+
             this.$http.patch('/api/farm-owner/' + this.newFarmer.id, this.newFarmer).then(function (response) {
                 data = response.data;
                 this.newFarmer = data;
                 this.reSelectedOption();
             })
-        },
+        }
+        ,
         reInitialOption: function (opt) {
             for (var i = 0; i < this.options[opt].length; i++) {
                 if (this.options[opt][i].id == this.newFarmer[opt].id) {
@@ -62,7 +64,8 @@ var app = new AdminApp({
                     }
                 }
             }
-        },
+        }
+        ,
         reInitialMultiOption: function (opt) {
 
             var choiceOpt = this.options[opt];
@@ -80,7 +83,8 @@ var app = new AdminApp({
                     }
                 }
             }
-        },
+        }
+        ,
         reSelectedOption: function () {
 
             var attributes = [
@@ -95,8 +99,8 @@ var app = new AdminApp({
                 'tuberculosis', 'foot_mouth_disease',
 
                 //part7
-                'support_visit','production_support','cattle_heath_support',
-                'training_support','observe_support','female_breeder_support'
+                'support_visit', 'production_support', 'cattle_heath_support',
+                'training_support', 'observe_support', 'female_breeder_support'
 
             ];
 
@@ -120,7 +124,7 @@ var app = new AdminApp({
                 'female_under_six_mixed_breeding_types',
 
                 //part5
-                'budget_sources','loan_types',
+                'budget_sources', 'loan_types',
 
                 //part7
                 'support_sources'
@@ -130,12 +134,14 @@ var app = new AdminApp({
                 this.reInitialMultiOption(multipleAttributes[i]);
             }
 
-        },
+        }
+        ,
         initial: function () {
 
 
         }
-    },
+    }
+    ,
     created: function () {
         var self = this;
 
@@ -151,13 +157,16 @@ var app = new AdminApp({
                 self.$http.get('/api/farm-owner/' + self.newFarmer_id + '/edit').then(
                     function (response) {
                         this.newFarmer = response.data;
+                        this.isLoaded = true;
                         this.reSelectedOption();
+
                     }
                 )
 
             }
         })
-    },
+    }
+    ,
     ready: function () {
 
 

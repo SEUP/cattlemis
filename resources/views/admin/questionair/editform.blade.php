@@ -11,11 +11,10 @@
         </div>
     </div>
 
-
-    <div class="row">
+    <input type="hidden" id="newFamer_id" value="{{$farmOwner->id}}"/>
+    <div class="row" v-if="isLoaded">
         <div class="col-lg-10">
             <accordion :one-at-time="false">
-                <input type="hidden" id="newFamer_id" value="{{$farmOwner->id}}"/>
                 <panel header="ส่วนที่ 1 ข้อมูลพื้นฐานของเกษตรกร" :is-open="true">
                     @include('admin.questionair.part1')
                 </panel>
