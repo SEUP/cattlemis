@@ -46,6 +46,7 @@ Route::get('logout', function () {
     return redirect('/login');
 });
 
+
 Route::group(['middleware' => 'api'], function () {
     Route::resource('/api/user', "UserResourceController");
     Route::resource('/api/user.calendar', "UserCalendarResourceController");
