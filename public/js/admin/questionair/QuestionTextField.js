@@ -187,10 +187,8 @@ var QuestionSelectWithText = Vue.extend({
                         </select>
                     </div>
                     <div class="col-sm-6" v-if="model.has_text==1">
-                        <input type="text" 
-                        placeholder="{{placeholder}}"
-                         v-model="model.pivot.remark"
-                               class="form-control col-sm-6" />
+                        <input type="text" v-model="model.pivot[pivotField]"
+                               class="form-control col-sm-6" placeholder="{{placeholder}}"/>
                     </div>
                 </div>
 
@@ -208,6 +206,10 @@ var QuestionSelectWithText = Vue.extend({
         options: {
             required: true,
             twoWay: true
+        },
+        pivotField: {
+            required: false,
+            default: "remark"
         },
         placeholder: {
             required: false,
