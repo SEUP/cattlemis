@@ -32,7 +32,10 @@ class FarmOwner extends Model
         // 'total_use_lands',
 
         //part5
-        'total_budjet',
+        'total_budget',
+
+        //part6
+        'cattle_sold_age','cattle_sold_weight',
 
         //part 8
         'problem', 'suggestion'
@@ -75,7 +78,12 @@ class FarmOwner extends Model
         // 'water_source_types','take_care_types','own_land','sub_own_lands',
 
         //part5
-        'budget_sources', 'loan_types',
+        'budget_source', 'loan_types',
+
+        //part6
+        'seller_types','cattle_sale_methods','group_joins',
+        'group_join_future','cooperative_help_types','feed_purchase_cooperative',
+        'cattle_sales','sale_satisfaction',
 
         //part7
         'support_sources', 'support_visit', 'production_support', 'cattle_heath_support',
@@ -410,14 +418,13 @@ class FarmOwner extends Model
       }*/
 
     //part5
-    public function budget_sources()
+    public function budget_source()
     {
         // return $this->belongsToMany(Choice::class)
         return $this->choices()
-            ->withPivot('remark')
-            ->where('type', '=', 'budget_sources');
-
-
+            ->withPivot(['amount','remark'])
+            ->where('type', '=', 'budget_source');
+        
     }
 
     public function loan_types()
@@ -426,6 +433,65 @@ class FarmOwner extends Model
         return $this->choices()
             ->withPivot(['remark', 'amount', 'rate'])
             ->where('type', '=', 'loan_types');
+    }
+
+    //part6
+    public function seller_types()
+    {
+        //return $this->belongsToMany(Choice::class)
+        return $this->choices()
+            ->where('type', '=', 'seller_types');
+    }
+
+    public function cattle_sale_methods()
+    {
+        //return $this->belongsToMany(Choice::class)
+        return $this->choices()
+            ->where('type', '=', 'cattle_sale_methods');
+    }
+
+    public function group_joins()
+    {
+        //return $this->belongsToMany(Choice::class)
+        return $this->choices()
+            ->withPivot('joined')
+            ->where('type', '=', 'group_joins');
+    }
+
+    public function group_join_future()
+    {
+        //return $this->belongsToMany(Choice::class)
+        return $this->choices()
+            ->where('type', '=', 'group_join_future');
+    }
+
+    public function cooperative_help_types()
+    {
+        //return $this->belongsToMany(Choice::class)
+        return $this->choices()
+            ->where('type', '=', 'cooperative_help_types');
+    }
+
+    public function feed_purchase_cooperative()
+    {
+        //return $this->belongsToMany(Choice::class)
+        return $this->choices()
+            ->where('type', '=', 'feed_purchase_cooperative');
+    }
+
+    public function cattle_sales()
+    {
+        //return $this->belongsToMany(Choice::class)
+        return $this->choices()
+            ->withPivot('duration')
+            ->where('type', '=', 'cattle_sales');
+    }
+
+    public function sale_satisfaction()
+    {
+        //return $this->belongsToMany(Choice::class)
+        return $this->choices()
+            ->where('type', '=', 'sale_satisfaction');
     }
 
     //part7
@@ -799,9 +865,14 @@ class FarmOwner extends Model
 
     //part5
 
-    public function getBudgetSourcesAttribute()
+    public function getBudgetSourceAttribute()
     {
-        return $this->budget_sources()->get();
+        $value = $this->budget_source()->first();
+        if ($value) {
+            return $value;
+        } else {
+            return [];
+        }
     }
 
     public function getLoanTypesAttribute()
@@ -809,6 +880,62 @@ class FarmOwner extends Model
         return $this->loan_types()->get();
     }
 
+
+    //part6
+    public function getSellerTypesAttribute()
+    {
+        return $this->seller_types()->get();
+    }
+
+    public function getCattleSaleMethodsAttribute()
+    {
+        return $this->cattle_sale_methods()->get();
+    }
+
+    public function getGroupJoinsAttribute()
+    {
+        return $this->group_joins()->get();
+    }
+
+    public function getGroupJoinFutureAttribute()
+    {
+        $value = $this->group_join_future()->first();
+        if ($value) {
+            return $value;
+        } else {
+            return [];
+        }
+    }
+
+    public function getCooperativeHelpTypesAttribute()
+    {
+        return $this->cooperative_help_types()->get();
+    }
+
+    public function getFeedPurchaseCooperativeAttribute()
+    {
+        $value = $this->feed_purchase_cooperative()->first();
+        if ($value) {
+            return $value;
+        } else {
+            return [];
+        }
+    }
+
+    public function getCattleSalesAttribute()
+    {
+        return $this->cattle_sales()->get();
+    }
+
+    public function getSaleSatisfactionAttribute()
+    {
+        $value = $this->sale_satisfaction()->first();
+        if ($value) {
+            return $value;
+        } else {
+            return [];
+        }
+    }
 
     //part7
     public function getSupportSourcesAttribute()

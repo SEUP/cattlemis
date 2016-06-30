@@ -22,7 +22,13 @@ class FarmOwnerController extends Controller
             'farm_record', 'farm_exp', 'farm_future',
             'farm_register_status', 'farm_register', 'farm_disease_check', 'abortion',
             'tuberculosis', 'foot_mouth_disease',
-            
+
+            //part5
+            'budget_source',
+
+            //part6
+            'group_join_future','feed_purchase_cooperative',
+            'sale_satisfaction',
             
             //part7
             'support_visit','production_support','cattle_heath_support',
@@ -55,7 +61,13 @@ class FarmOwnerController extends Controller
             'male_under_six_int_breeding_types', 'male_under_six_mixed_breeding_types',
             'female_under_six_breeding_types', 'female_under_six_int_breeding_types',
             'female_under_six_mixed_breeding_types',
-            
+
+            //part5
+             'loan_types',
+
+            //part6
+            'seller_types','cattle_sale_methods','group_joins','cooperative_help_types','cattle_sales',
+
             //part7
             'support_sources'
         ],

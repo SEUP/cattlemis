@@ -107,6 +107,13 @@ var app = new AdminApp({
                 'farm_disease_check', 'abortion',
                 'tuberculosis', 'foot_mouth_disease',
 
+                //part5
+                'budget_source',
+
+                //part6
+                'group_join_future','feed_purchase_cooperative',
+                'sale_satisfaction',
+                
                 //part7
                 'support_visit', 'production_support', 'cattle_heath_support',
                 'training_support', 'observe_support', 'female_breeder_support'
@@ -132,7 +139,10 @@ var app = new AdminApp({
                 'female_under_six_mixed_breeding_types',
 
                 //part5
-                'budget_sources', 'loan_types',
+                 'loan_types',
+                
+                //part6
+                'seller_types','cattle_sale_methods','group_joins','cooperative_help_types','cattle_sales',
 
                 //part7
                 'support_sources'

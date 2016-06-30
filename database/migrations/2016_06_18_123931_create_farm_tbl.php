@@ -58,7 +58,7 @@ class CreateFarmTbl extends Migration
             //part4
             $table->integer('breeding_rate')->nullable();
             //part5
-            $table->integer('total_budjet')->nullable();
+            $table->integer('total_budget')->nullable();
             //part6
             $table->string('cattle_sold_age')->nullable();
             $table->string('cattle_sold_weight')->nullable();

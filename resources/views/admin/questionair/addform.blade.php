@@ -125,29 +125,28 @@
                 },
 
                 sumCattle: function (option) {
-                    var optType = option;
                     var sum = 0;
-                    for (var i = 0; i < optType.length; i++) {
-                        //  console.log("opttype", optType[i]);
-                        if (optType[i].pivot.amount != null) {
-                            // console.log(optType[i].pivot.amount, sum);
-                            sum += parseInt(optType[i].pivot.amount) ? parseInt(optType[i].pivot.amount) : 0;
-                        } else {
+                    //console.log('option', option);
 
-                            var childtype = this.newFarmer[optType[i].children[0].type]
-                            console.log("opttype for children", childtype);
-                            for (var j = 0; j < childtype.length; j++) {
-                                if (childtype[j].pivot.amount != null) {
-                                    //  console.log(childtype[j].pivot.amount, sum);
-                                    sum += parseInt(childtype[j].pivot.amount) ? parseInt(childtype[j].pivot.amount) : 0;
-                                }
-                            }
-                        }
-                        //console.log("total_" + optType[i].type);
-                        this.newFarmer["total_" + optType[i].type] = sum;
+                    for (var i = 0; i < option.length; i++) {
+                        var objOption = option[i];
+                        //console.log('objOption', objOption);
+                        sum += parseInt(objOption.pivot.amount) ? parseInt(objOption.pivot.amount) : 0;
                     }
 
                     return sum;
+                },
+                sumSubChildCattle: function (option) {
+                    var subChildOption = this.newFarmer[option[0].type];
+                    //console.log("sumSubChildCattle", subChildOption);
+                    var sum = 0;
+                    for (var i = 0; i < subChildOption.length; i++) {
+                        var subOption = subChildOption[i];
+                        sum += parseInt(subOption.pivot.amount) ? parseInt(subOption.pivot.amount) : 0;
+                    }
+
+                    return sum;
+
                 },
                 save: function () {
                     // this.newFarmer["total_master_breeding_types"] = 500;

@@ -64,20 +64,16 @@
 
     <fieldset id="4.8">
         <legend>4.8 ท่านมีการจัดการมูลโคในฟาร์มของท่านอย่างไร (เลือกได้มากกว่า 1 ข้อ)</legend>
-        <div class="form-group">
-            <div class="col-sm-3">
-            </div>
-            <div class="col-sm-9">
-                <label class="checkbox" v-for="option in options.cattle_dung_uses">
-                    <input type="checkbox" v-model="newFarmer.cattle_dung_uses" v-bind:value="option">
-                    @{{ option.choice }}:
-                    <input v-if="option.hastext==1" placeholder="(บาท/ปี)"
-                           type="text" class="form-control"
-                           v-model="option['pivot']['remark']">
-                </label>
-            </div>
-        </div>
-    </fieldset>
 
+                <question-multi-checkbox :model.sync="newFarmer.cattle_dung_uses"
+                                         :options.sync="options.cattle_dung_uses">
+
+                </question-multi-checkbox>
+                    <question-select :model.sync="newFarmer.biogas_status"
+                                     v-show="newFarmer.cattle_dung_uses.children.length > 0"
+                                     :options.sync="options.biogas_status">
+                    </question-select>
+
+    </fieldset>
 
 </form>
