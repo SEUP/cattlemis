@@ -47,7 +47,7 @@ class CreateFarmTbl extends Migration
             $table->integer('total_expense_amount')->nullable();
             $table->integer('drug_price')->nullable();
             $table->integer('food_price')->nullable();
-            $table->string('expense_remark')->nullable();
+            //$table->string('expense_remark')->nullable();
             $table->integer('expense_price')->nullable();
             //part3
             $table->integer('total_workers_amount')->nullable();

@@ -118,9 +118,7 @@
 
         <div class="form-group">
             <label class="col-sm-2 control-label">อื่นๆ</label>
-            <div class="col-sm-5">
-                <input type="text" v-model="newFarmer.expense_remark" class="form-control" placeholder="รายละเอียด">
-            </div>
+
             <div class="col-sm-5">
                 <input type="text" v-model="newFarmer.expense_price" class="form-control"
                        placeholder="ค่าใช้จ่าย (บาท/เดือน)">
