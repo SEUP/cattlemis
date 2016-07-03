@@ -19,7 +19,9 @@ var QuestionTextField = Vue.extend({
             required: true,
             twoWay: true
         },
-        placeholder: {}
+        placeholder: {
+            required: false
+        },
     }
 });
 
