@@ -2,7 +2,8 @@
     <fieldset id="5.1">
         <legend>5.1 เงินทุนที่ท่านใช้เลี้ยงโคเนื้อ</legend>
 
-        <question-select-with-text  placeholder="จำนวนเงินทุนของตัวเอง(บาท)"
+        <question-select-with-text  pivotField="amount"
+                                    placeholder="จำนวนเงินทุนของตัวเอง(บาท)"
                                     :model.sync="newFarmer.budget_source"
                                     :options.sync="options.budget_source">
         </question-select-with-text>
@@ -28,9 +29,14 @@
         </div>
     </fieldset>
     <fieldset id="5.3">
-        <legend>5.3 เงินทุนในการเลี้ยงโคเนื้อรวมทั้งหมด (บาท) (รวมจาก 5.1 และ 5.2)</legend>
-        <input type="text"
-               v-model="newFarmer['total_budget']"
-               readonly>
+        <legend>5.3 เงินทุนในการเลี้ยงโคเนื้อรวมทั้งหมด (บาท) (รวมจาก 5.1 และ 5.2)
+            <div class="form-group">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-9">
+                    <input type="text" v-model="newFarmer['total_budget']"
+                           readonly>
+                </div>
+            </div>
+        </legend>
     </fieldset>
 </form>

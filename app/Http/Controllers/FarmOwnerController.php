@@ -23,6 +23,14 @@ class FarmOwnerController extends Controller
             'farm_register_status', 'farm_register', 'farm_disease_check', 'abortion',
             'tuberculosis', 'foot_mouth_disease',
 
+            //part3
+            'own_land','rent_land','use_land','minerals_feed','feedstock','sub_feedstock_type',
+
+            //part4
+            'farm_breeding_type','cattle_death','dewormed_amount','vaccine_ever','biogas_status',
+            'vaccined_by',
+            
+            
             //part5
             'budget_source',
 
@@ -62,6 +70,15 @@ class FarmOwnerController extends Controller
             'female_under_six_breeding_types', 'female_under_six_int_breeding_types',
             'female_under_six_mixed_breeding_types',
 
+            //part3
+            'water_source_types','take_care_types','sub_own_lands','sub_use_lands',
+            'feed_types','feed_sources','feedstock_types',
+            'feed_summer_sources',
+            
+            //part4
+            'inseminate_sources','breeders','cattle_death_causes','disease_cured_by',
+            'cattle_dung_uses',
+            
             //part5
              'loan_types',
 

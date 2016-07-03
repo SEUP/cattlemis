@@ -107,13 +107,20 @@ var app = new AdminApp({
                 'farm_disease_check', 'abortion',
                 'tuberculosis', 'foot_mouth_disease',
 
+                //part3
+                'own_land','rent_land','use_land','minerals_feed','feedstock','sub_feedstock_type',
+
+                //part4
+                'farm_breeding_type','cattle_death','dewormed_amount','vaccine_ever','biogas_status',
+                'vaccined_by',
+                
                 //part5
                 'budget_source',
 
                 //part6
-                'group_join_future','feed_purchase_cooperative',
+                'group_join_future', 'feed_purchase_cooperative',
                 'sale_satisfaction',
-                
+
                 //part7
                 'support_visit', 'production_support', 'cattle_heath_support',
                 'training_support', 'observe_support', 'female_breeder_support'
@@ -138,11 +145,20 @@ var app = new AdminApp({
                 'female_under_six_breeding_types', 'female_under_six_int_breeding_types',
                 'female_under_six_mixed_breeding_types',
 
+                //part3
+                'water_source_types','take_care_types','sub_own_lands','sub_use_lands',
+                'feed_types','feed_sources','feedstock_types',
+                'feed_summer_sources',
+
+                //part4
+                'inseminate_sources','breeders','cattle_death_causes','disease_cured_by',
+                'cattle_dung_uses',
+
                 //part5
-                 'loan_types',
-                
+                'loan_types',
+
                 //part6
-                'seller_types','cattle_sale_methods','group_joins','cooperative_help_types','cattle_sales',
+                'seller_types', 'cattle_sale_methods', 'group_joins', 'cooperative_help_types', 'cattle_sales',
 
                 //part7
                 'support_sources'
