@@ -80,7 +80,7 @@ class FarmOwner extends Model
         'abortion', 'tuberculosis', 'foot_mouth_disease',
 
         //part3
-        'own_land', 'rent_land', 'use_land', 'minerals_feed', 'feedstock','sub_feedstock_type',
+        'own_land', 'rent_land', 'use_land', 'minerals_feed', 'feedstock',
         'water_source_types', 'take_care_types',
         'sub_own_lands', 'sub_use_lands',
         'feed_types', 'feed_sources', 'feedstock_types',
@@ -91,7 +91,7 @@ class FarmOwner extends Model
         'vaccined_by',
         'inseminate_sources','breeders','cattle_death_causes','disease_cured_by',
         'cattle_dung_uses',
-        
+
         //part5
         'budget_source', 'loan_types',
 
@@ -172,7 +172,8 @@ class FarmOwner extends Model
     //part2
     public function farm_purposes()
     {
-        return $this->belongsToMany(Choice::class)
+        //return $this->belongsToMany(Choice::class)
+        return $this->choices()
             //return $this->choices2()
             ->withPivot('remark')
             ->where('type', '=', 'farm_purposes');
@@ -443,13 +444,6 @@ class FarmOwner extends Model
 
     }
 
-    public function sub_feedstock_type()
-    {
-        return $this->choices()
-            ->withPivot(['height', 'width','amount'])
-            ->where('type', '=', 'sub_feedstock_type');
-
-    }
 
     public function water_source_types()
     {
@@ -568,7 +562,7 @@ class FarmOwner extends Model
             ->withPivot('price')
             ->where('type', '=', 'water_source_types');
     }
-    
+
     //part5
     public function budget_source()
     {
@@ -785,21 +779,6 @@ class FarmOwner extends Model
 
     //part 2
 
-    /*  public function getFarmInfoAttribute()
-      {
-          $farmInfo = $this->farm_info()->first();
-          if ($farmInfo) {
-              return $farmInfo;
-          } else {
-              $farmInfo = new FarmInfo();
-              if ($this->id) {
-                  $this->farm_info()->save($farmInfo);
-              }
-
-              return $farmInfo;
-          }
-      }*/
-
     public function getFarmPurposesAttribute()
     {
         return $this->farm_purposes()->get();
@@ -992,6 +971,7 @@ class FarmOwner extends Model
     }
 
     //part 3
+
     public function getOwnLandAttribute()
     {
         $value = $this->own_land()->first();
@@ -1042,16 +1022,6 @@ class FarmOwner extends Model
         }
     }
 
-    public function getSubFeedstockTypeAttribute()
-    {
-        $value = $this->sub_feedstock_type()->first();
-        if ($value) {
-            return $value;
-        } else {
-            return [];
-        }
-
-    }
 
     public function getWaterSourceTypesAttribute()
     {

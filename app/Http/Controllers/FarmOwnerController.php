@@ -24,7 +24,7 @@ class FarmOwnerController extends Controller
             'tuberculosis', 'foot_mouth_disease',
 
             //part3
-            'own_land','rent_land','use_land','minerals_feed','feedstock','sub_feedstock_type',
+            'own_land','rent_land','use_land','minerals_feed','feedstock',
 
             //part4
             'farm_breeding_type','cattle_death','dewormed_amount','vaccine_ever','biogas_status',
@@ -41,7 +41,7 @@ class FarmOwnerController extends Controller
             //part7
             'support_visit','production_support','cattle_heath_support',
             'training_support','observe_support','female_breeder_support',
-            
+           
         ]
         /*,
         [

@@ -54,6 +54,7 @@
                 </div>
             </div>
             <question-multi-checkbox
+                    placeholder="จำนวน(ไร่)"
                     :model.sync="newFarmer.sub_own_lands"
                     :options.sync="options.sub_own_lands">
 
