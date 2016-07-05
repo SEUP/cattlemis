@@ -48,7 +48,7 @@ var app = new AdminApp({
             var newFarmer = this.newFarmer;
             if (newFarmer.use_land.children.length == 0) {
                 return 0;
-            }else {
+            } else {
                 var sum = 0;
                 for (var i = 0; i < newFarmer.sub_use_lands.length; i++) {
                     var subUseLand = newFarmer.sub_use_lands[i];
@@ -101,6 +101,8 @@ var app = new AdminApp({
                 data = response.data;
                 this.newFarmer = data;
                 this.reSelectedOption();
+            }, function (error) {
+                this.formError = error.data;
             })
         }
         ,

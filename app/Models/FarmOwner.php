@@ -20,7 +20,7 @@ class FarmOwner extends Model
         'farm_lat', 'farm_long', 'age', 'avg_cattle_income',
 
         //part2
-        'drug_price', 'food_price', 
+        'drug_price', 'food_price',
         //'expense_remark', 
         'expense_price',
         'total_master_breeding_types', 'total_male_breeding_types',
@@ -32,7 +32,7 @@ class FarmOwner extends Model
         //part3
         'total_workers_amount', 'family_workers_amount', 'external_workers_amount', 'total_own_lands',
         'total_use_lands',
-        
+
         //part4
         'breeding_rate',
 
@@ -87,9 +87,9 @@ class FarmOwner extends Model
         'feed_summer_sources',
 
         //part4
-        'farm_breeding_type','cattle_death','dewormed_amount','vaccine_ever','biogas_status',
+        'farm_breeding_type', 'cattle_death', 'dewormed_amount', 'vaccine_ever', 'biogas_status',
         'vaccined_by',
-        'inseminate_sources','breeders','cattle_death_causes','disease_cured_by',
+        'inseminate_sources', 'breeders', 'cattle_death_causes', 'disease_cured_by',
         'cattle_dung_uses',
 
         //part5
@@ -419,7 +419,7 @@ class FarmOwner extends Model
     public function rent_land()
     {
         return $this->choices()
-            ->withPivot(['remark', 'area','price'])
+            ->withPivot(['remark', 'area', 'price'])
             ->where('type', '=', 'rent_land');
 
     }
@@ -505,57 +505,66 @@ class FarmOwner extends Model
         return $this->choices()
             ->where('type', '=', 'farm_breeding_type');
     }
+
     public function cattle_death()
     {
         return $this->choices()
             ->withPivot('amount')
             ->where('type', '=', 'cattle_death');
     }
+
     public function dewormed_amount()
     {
         return $this->choices()
-            ->withPivot(['remark','amount'])
+            ->withPivot(['remark', 'amount'])
             ->where('type', '=', 'dewormed_amount');
     }
+
     public function vaccine_ever()
     {
         return $this->choices()
             ->where('type', '=', 'vaccine_ever');
     }
+
     public function biogas_status()
     {
         return $this->choices()
             ->where('type', '=', 'biogas_status');
     }
+
     public function vaccined_by()
     {
         return $this->choices()
             ->where('type', '=', 'vaccined_by');
     }
-    
+
     public function inseminate_sources()
     {
         return $this->choices()
-            ->withPivot('remark','price')
+            ->withPivot('remark', 'price')
             ->where('type', '=', 'inseminate_sources');
     }
+
     public function breeders()
     {
         return $this->choices()
             ->withPivot('remark')
             ->where('type', '=', 'breeders');
     }
+
     public function cattle_death_causes()
     {
         return $this->choices()
             ->where('type', '=', 'cattle_death_causes');
     }
+
     public function disease_cured_by()
     {
         return $this->choices()
             ->withPivot('remark')
             ->where('type', '=', 'disease_cured_by');
     }
+
     public function cattle_dung_uses()
     {
         return $this->choices()
@@ -601,7 +610,7 @@ class FarmOwner extends Model
     {
         //return $this->belongsToMany(Choice::class)
         return $this->choices()
-            ->withPivot(['remark','joined'])
+            ->withPivot(['remark', 'joined'])
             ->where('type', '=', 'group_joins');
     }
 
@@ -631,7 +640,7 @@ class FarmOwner extends Model
     {
         //return $this->belongsToMany(Choice::class)
         return $this->choices()
-            ->withPivot(['remark','duration'])
+            ->withPivot(['remark', 'duration'])
             ->where('type', '=', 'cattle_sales');
     }
 
@@ -700,7 +709,7 @@ class FarmOwner extends Model
 
 
     //get attributes
-    
+
     public function getPersonalStatusAttribute()
     {
         $obj = $this->personal_statuses()->first();
@@ -1075,27 +1084,31 @@ class FarmOwner extends Model
         return $this->inseminate_sources()->get();
 
     }
+
     public function getBreedersAttribute()
     {
         return $this->breeders()->get();
 
     }
+
     public function getCattleDeathCausesAttribute()
     {
         return $this->cattle_death_causes()->get();
 
     }
+
     public function getDiseaseCuredByAttribute()
     {
         return $this->disease_cured_by()->get();
 
     }
+
     public function getCattleDungUsesAttribute()
     {
         return $this->cattle_dung_uses()->get();
 
     }
-    
+
     public function getFarmBreedingTypeAttribute()
     {
         $value = $this->farm_breeding_type()->first();
@@ -1105,6 +1118,7 @@ class FarmOwner extends Model
             return [];
         }
     }
+
     public function getCattleDeathAttribute()
     {
         $value = $this->cattle_death()->first();
@@ -1114,6 +1128,7 @@ class FarmOwner extends Model
             return [];
         }
     }
+
     public function getDewormedAmountAttribute()
     {
         $value = $this->dewormed_amount()->first();
@@ -1123,6 +1138,7 @@ class FarmOwner extends Model
             return [];
         }
     }
+
     public function getVaccineEverAttribute()
     {
         $value = $this->vaccine_ever()->first();
@@ -1132,6 +1148,7 @@ class FarmOwner extends Model
             return [];
         }
     }
+
     public function getBiogasStatusAttribute()
     {
         $value = $this->biogas_status()->first();
@@ -1141,6 +1158,7 @@ class FarmOwner extends Model
             return [];
         }
     }
+
     public function getVaccinedByAttribute()
     {
         $value = $this->vaccined_by()->first();

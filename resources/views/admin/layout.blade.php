@@ -111,6 +111,13 @@
 
     <div id="page-wrapper">
         <div class="row">
+            <div class=col-lg-12">
+                <template v-for="error in formError">
+                    <alert type="danger" dismissable>
+                        @{{error}}
+                    </alert>
+                </template>
+            </div>
             <div class="col-lg-12">
                 @yield('page-wrapper')
                 <spinner id="spinner-box" :size="lg" :fixed="spinnerFixed" text="Loading..."></spinner>
@@ -138,7 +145,8 @@
                 currentUser: {},
                 user_id: {},
                 ajaxCount: 0,
-                spinnerFixed: true
+                spinnerFixed: true,
+                formError: {},
             }
 
         },

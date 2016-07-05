@@ -150,11 +150,13 @@
                 },
                 save: function () {
                     // this.newFarmer["total_master_breeding_types"] = 500;
-
+                    this.formError = {};
                     console.log(this.newFarmer);
                     this.$http.post('/api/farm-owner', this.newFarmer).then(function (response) {
                         console.log(response.data);
                         window.location.href = "/admin/questionair/" + response.data.id + '/edit';
+                    }, function (error) {
+                        this.formError = error.data;
                     })
                 },
                 initial: function () {

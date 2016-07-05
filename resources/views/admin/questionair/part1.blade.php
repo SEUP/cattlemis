@@ -3,8 +3,10 @@
         <legend>1.1 ข้อมูลทั่วไป</legend>
         <question-text-field label="ชื่อ" placeholder="กรุณากรอกชื่อ"
                              :model.sync="newFarmer.first_name"></question-text-field>
-        <question-text-field label="นามสกุล" :model.sync="newFarmer.last_name"></question-text-field>
-        <question-text-field label="รหัสประจำตัวประชาชน" :model.sync="newFarmer.person_id"></question-text-field>
+        <question-text-field label="นามสกุล" placeholder="กรุณากรอกนามสกุล"
+                             :model.sync="newFarmer.last_name"></question-text-field>
+        <question-text-field label="รหัสประจำตัวประชาชน" placeholder="กรุณากรอกรหัสประจำตัวประชาชน"
+                             :model.sync="newFarmer.person_id"></question-text-field>
 
     </fieldset>
 
@@ -31,9 +33,9 @@
         <question-text-field label="ที่ตั้งฟาร์มเลขที่" :model.sync="newFarmer.farm_no"></question-text-field>
         <question-text-field label="หมู่" :model.sync="newFarmer.farm_moo"></question-text-field>
         <province-amphur-district v-if="newFarmer.farm_province != null"
-                :model_province.sync="newFarmer.farm_province"
-                :model_amphur.sync="newFarmer.farm_amphur"
-                :model_district.sync="newFarmer.farm_district">
+                                  :model_province.sync="newFarmer.farm_province"
+                                  :model_amphur.sync="newFarmer.farm_amphur"
+                                  :model_district.sync="newFarmer.farm_district">
         </province-amphur-district>
     </fieldset>
     <fieldset id="1.4">
