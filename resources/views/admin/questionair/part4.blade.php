@@ -38,7 +38,7 @@
 
     <fieldset id="4.4">
         <legend>4.4 การตายของโคในรอบปี </legend>
-        <question-select-with-text  pivotField="amount"
+        <question-select-with-text  pivotfield="amount"
                                     placeholder="จำนวนโคที่ตาย(ตัว)"
                                     :model.sync="newFarmer.cattle_death"
                                    :options.sync="options.cattle_death">
@@ -57,7 +57,7 @@
     </fieldset>
     <fieldset id="4.6">
         <legend>4.6 การถ่ายพยาธิ(ครั้ง/ปี)</legend>
-        <question-select-with-text  pivotField="amount"
+        <question-select-with-text  pivotfield="amount"
                                     placeholder="จำนวนครั้งต่อปี"
                                     :model.sync="newFarmer.dewormed_amount"
                                    :options.sync="options.dewormed_amount">

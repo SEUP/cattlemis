@@ -2,10 +2,10 @@
     <fieldset id="5.1">
         <legend>5.1 เงินทุนที่ท่านใช้เลี้ยงโคเนื้อ</legend>
 
-        <question-select-with-text  pivotField="amount"
-                                    placeholder="จำนวนเงินทุนของตัวเอง(บาท)"
-                                    :model.sync="newFarmer.budget_source"
-                                    :options.sync="options.budget_source">
+        <question-select-with-text pivotfield="amount"
+                                   placeholder="จำนวนเงินทุนของตัวเอง(บาท)"
+                                   :model.sync="newFarmer.budget_source"
+                                   :options.sync="options.budget_source">
         </question-select-with-text>
 
     </fieldset>
@@ -18,7 +18,8 @@
                 <label class="checkbox" v-for="option in options.loan_types">
                     <input type="checkbox" v-model="newFarmer.loan_types" v-bind:value="option">
                     @{{ option.choice }}:
-                    <input v-show="option.choice=='เงินกู้จากธนาคารพาณิชย์(ระบุธนาคาร)'" placeholder="ชื่อธนาคาร" type="text" class="form-control"
+                    <input v-show="option.choice=='เงินกู้จากธนาคารพาณิชย์(ระบุธนาคาร)'" placeholder="ชื่อธนาคาร"
+                           type="text" class="form-control"
                            v-model="option['pivot']['remark']">
                     <input class="col-lg-6 form-control" placeholder="จำนวนเงิน(บาท)" type="text"
                            v-model="option['pivot']['amount']">
@@ -33,7 +34,8 @@
 
             <div class="form-group">
                 <div class="col-sm-10">
-                    <input type="text" v-model="newFarmer['total_budget']" class="form-control"
+                    <input type="text" v-model="newFarmer['total_budget']" v-bind:value="sumBudget()"
+                           class="form-control"
                            readonly>
                 </div>
             </div>

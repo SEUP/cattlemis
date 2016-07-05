@@ -31,6 +31,20 @@ var app = new AdminApp({
             }, 500)
 
         },
+        sumBudget: function () {
+            var budgetSourcePrice = parseFloat(this.newFarmer['budget_source']['pivot']['amount'], 0);
+            var loneTypesSum = 0;
+            for (var i = 0; i < this.newFarmer.loan_types.length; i++) {
+                var loneType = this.newFarmer.loan_types[i];
+                loneTypesSum += parseFloat(
+                    loneType.pivot.amount, 0
+                )
+            }
+            var sum = 0;
+            sum += budgetSourcePrice;
+            sum += loneTypesSum;
+            return sum;
+        },
         sumCattle: function (option) {
             var sum = 0;
             //console.log('option', option);
@@ -108,12 +122,12 @@ var app = new AdminApp({
                 'tuberculosis', 'foot_mouth_disease',
 
                 //part3
-                'own_land','rent_land','use_land','minerals_feed','feedstock',
+                'own_land', 'rent_land', 'use_land', 'minerals_feed', 'feedstock',
 
                 //part4
-                'farm_breeding_type','cattle_death','dewormed_amount','vaccine_ever','biogas_status',
+                'farm_breeding_type', 'cattle_death', 'dewormed_amount', 'vaccine_ever', 'biogas_status',
                 'vaccined_by',
-                
+
                 //part5
                 'budget_source',
 
@@ -146,12 +160,12 @@ var app = new AdminApp({
                 'female_under_six_mixed_breeding_types',
 
                 //part3
-                'water_source_types','take_care_types','sub_own_lands','sub_use_lands',
-                'feed_types','feed_sources','feedstock_types',
+                'water_source_types', 'take_care_types', 'sub_own_lands', 'sub_use_lands',
+                'feed_types', 'feed_sources', 'feedstock_types',
                 'feed_summer_sources',
 
                 //part4
-                'inseminate_sources','breeders','cattle_death_causes','disease_cured_by',
+                'inseminate_sources', 'breeders', 'cattle_death_causes', 'disease_cured_by',
                 'cattle_dung_uses',
 
                 //part5
