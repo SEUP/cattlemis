@@ -31,6 +31,19 @@ var app = new AdminApp({
             }, 500)
 
         },
+        sumOwnLand: function () {
+            var newFarmer = this.newFarmer;
+            if (newFarmer.own_land.children.length == 0) {
+                return 0;
+            } else {
+                var sum = 0;
+                for (var i = 0; i < newFarmer.sub_own_lands.length; i++) {
+                    var subOwnLand = newFarmer.sub_own_lands[i];
+                    sum += parseFloat(subOwnLand.pivot.remark, 0);
+                }
+                return sum;
+            }
+        },
         sumBudget: function () {
             var budgetSourcePrice = parseFloat(this.newFarmer['budget_source']['pivot']['amount'], 0);
             var loneTypesSum = 0;

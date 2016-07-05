@@ -21,16 +21,16 @@
     <fieldset id="3.2">
         <legend>3.2 แหล่งน้ำที่ใช้ในการเลี้ยง</legend>
         <question-multi-checkbox
-                                 :model.sync="newFarmer.water_source_types"
-                                 :options.sync="options.water_source_types">
+                :model.sync="newFarmer.water_source_types"
+                :options.sync="options.water_source_types">
 
         </question-multi-checkbox>
     </fieldset>
     <fieldset id="3.3">
         <legend>3.3 ลักษณะการเลี้ยงโคเนื้อของท่าน</legend>
         <question-multi-checkbox
-                                 :model.sync="newFarmer.take_care_types"
-                                 :options.sync="options.take_care_types">
+                :model.sync="newFarmer.take_care_types"
+                :options.sync="options.take_care_types">
 
         </question-multi-checkbox>
     </fieldset>
@@ -49,7 +49,8 @@
                 <div class="col-sm-3"></div>
                 <div class="col-sm-9">
                     <label>รวมพื้นที่ถือครองทางการเกษตร(ไร่/ครัวเรือน)</label>
-                    <input type="text" v-model="newFarmer.total_own_lands" class="form-control"
+                    <input type="text" v-model="newFarmer.total_own_lands" v-bind:value="sumOwnLand()"
+                           class="form-control"
                            readonly>
                 </div>
             </div>
@@ -71,7 +72,7 @@
                          :options.sync="options.rent_land">
 
         </question-select>
-        <div class="col-sm-3" ></div>
+        <div class="col-sm-3"></div>
         <div class="form-group col-sm-6" v-if="newFarmer.rent_land.has_text==1">
 
             <input type="text" v-model="newFarmer.rent_land.pivot.area"
@@ -84,39 +85,40 @@
         <legend>3.6 พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ (ไร่/ครัวเรือน)
 
             <div class="form-group">
-                             <div class="col-sm-10">
+                <div class="col-sm-10">
                     <select class="form-control" v-model="newFarmer.use_land">
                         <option selected value="">กรุณาเลือก</option>
                         <option v-for="option in options.use_land"
                                 v-bind:value="option">@{{ option.choice }}</option>
                     </select>
 
-                                 <div class="form-group" v-if="newFarmer.use_land.children.length!=0">
-                                     <div class="form-group">
-                                         <div class="col-sm-3"></div>
-                                         <div class="col-sm-9">
-                                             <label>รวมพื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ (ไร่/ครัวเรือน)</label>
-                                             <input  type="text"
-                                                    v-model="newFarmer.total_use_lands" class="form-control"
-                                                    readonly>
-                                         </div>
-                                     </div>
+                    <div class="form-group" v-if="newFarmer.use_land.children.length!=0">
+                        <div class="form-group">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-9">
+                                <label>รวมพื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ (ไร่/ครัวเรือน)</label>
+                                <input type="text"
+                                       v-model="newFarmer.total_use_lands" class="form-control"
+                                       readonly>
+                            </div>
+                        </div>
 
-                                     <div class="form-group">
-                                         <div class="col-sm-3">
-                                         </div>
-                                         <div class="col-sm-9">
-                                             <label class="checkbox" v-for="option in options.sub_use_lands">
-                                                 <input type="checkbox" v-model="newFarmer.sub_use_lands" v-bind:value="option">
-                                                 @{{ option.choice }}:
-                                                 <input v-if="option.has_text" placeholder="จำนวน(ไร่)" type="text" class="form-control"
-                                                        v-model="option['pivot']['area']">
-                                             </label>
-                                         </div>
-                                     </div>
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                            </div>
+                            <div class="col-sm-9">
+                                <label class="checkbox" v-for="option in options.sub_use_lands">
+                                    <input type="checkbox" v-model="newFarmer.sub_use_lands" v-bind:value="option">
+                                    @{{ option.choice }}:
+                                    <input v-if="option.has_text" placeholder="จำนวน(ไร่)" type="text"
+                                           class="form-control"
+                                           v-model="option['pivot']['area']">
+                                </label>
+                            </div>
+                        </div>
 
 
-                                 </div>
+                    </div>
                 </div>
             </div>
         </legend>
@@ -124,11 +126,11 @@
     </fieldset>
     <fieldset id="3.7">
         <legend> 3.7 อาหารที่ท่านใช้เลี้ยงโคเนื้อเป็นอาหารประเภทใด (ตอบได้มากกว่า 1 ข้อ)</legend>
-            <question-multi-checkbox
-                    :model.sync="newFarmer.feed_types"
-                    :options.sync="options.feed_types">
+        <question-multi-checkbox
+                :model.sync="newFarmer.feed_types"
+                :options.sync="options.feed_types">
 
-            </question-multi-checkbox>
+        </question-multi-checkbox>
 
     </fieldset>
     <fieldset id="3.8">
@@ -147,8 +149,8 @@
 
         <div class="form-group" v-if="newFarmer.minerals_feed.children.length!=0">
             <question-select label="ความถี่การให้แร่ธาตุก้อน"
-                    :model.sync="newFarmer.sub_minerals_feed"
-                    :options.sync="options.sub_minerals_feed">
+                             :model.sync="newFarmer.sub_minerals_feed"
+                             :options.sync="options.sub_minerals_feed">
 
             </question-select>
 
@@ -186,14 +188,13 @@
         </div>
     </fieldset>
     <fieldset id="3.11">
-        <legend>3.11  ท่านใช้แหล่งอาหารหยาบในฤดูแล้งจาก</legend>
-            <question-multi-checkbox
-                    :model.sync="newFarmer.feed_summer_sources"
-                    :options.sync="options.feed_summer_sources">
-            </question-multi-checkbox>
+        <legend>3.11 ท่านใช้แหล่งอาหารหยาบในฤดูแล้งจาก</legend>
+        <question-multi-checkbox
+                :model.sync="newFarmer.feed_summer_sources"
+                :options.sync="options.feed_summer_sources">
+        </question-multi-checkbox>
 
     </fieldset>
-
 
 
 </form>
