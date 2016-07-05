@@ -30,10 +30,10 @@
     </fieldset>
     <fieldset id="5.3">
         <legend>5.3 เงินทุนในการเลี้ยงโคเนื้อรวมทั้งหมด (บาท) (รวมจาก 5.1 และ 5.2)
+
             <div class="form-group">
-                <div class="col-sm-3"></div>
-                <div class="col-sm-9">
-                    <input type="text" v-model="newFarmer['total_budget']"
+                <div class="col-sm-10">
+                    <input type="text" v-model="newFarmer['total_budget']" class="form-control"
                            readonly>
                 </div>
             </div>

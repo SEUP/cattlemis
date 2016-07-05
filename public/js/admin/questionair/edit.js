@@ -108,7 +108,7 @@ var app = new AdminApp({
                 'tuberculosis', 'foot_mouth_disease',
 
                 //part3
-                'own_land','rent_land','use_land','minerals_feed','feedstock','sub_feedstock_type',
+                'own_land','rent_land','use_land','minerals_feed','feedstock',
 
                 //part4
                 'farm_breeding_type','cattle_death','dewormed_amount','vaccine_ever','biogas_status',
