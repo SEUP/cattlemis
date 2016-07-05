@@ -98,7 +98,9 @@
                             <div class="col-sm-9">
                                 <label>รวมพื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ (ไร่/ครัวเรือน)</label>
                                 <input type="text"
-                                       v-model="newFarmer.total_use_lands" class="form-control"
+                                       v-model="newFarmer.total_use_lands"
+                                       v-bind:value="sumUseLand()"
+                                       class="form-control"
                                        readonly>
                             </div>
                         </div>
@@ -113,6 +115,13 @@
                                     <input v-if="option.has_text" placeholder="จำนวน(ไร่)" type="text"
                                            class="form-control"
                                            v-model="option['pivot']['area']">
+                                    <template v-if="option.choice == 'พื้นที่ปลูกหญ้า'">
+                                        ชนิดหญ้า
+                                        <input v-if="option.choice == 'พื้นที่ปลูกหญ้า'" placeholder="ชนิดหญ้า"
+                                               type="text"
+                                               class="form-control"
+                                               v-model="option['pivot']['remark']">
+                                    </template>
                                 </label>
                             </div>
                         </div>
