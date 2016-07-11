@@ -18,18 +18,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($farmOwners as $owner)
-                    <tr>
-                        <td>{{$owner->person_id}}</td>
-                        <td>{{$owner->first_name}} {{$owner->last_name}} </td>
-                        <td>
-                            <a href="/admin/questionair/{{$owner->id}}/edit" class="btn btn-info">แก้ไข</a>
-                            <button v-on:click="deleteFarmOwner({{$owner->id}})"
-                                    class="btn btn-danger">ลบ
-                            </button>
-                        </td>
-                    </tr>
-                @endforeach
+
+                <tr v-for="owner in farmOwners">
+                    <td>@{{ owner.person_id }}</td>
+                    <td>@{{ owner.first_name }} @{{ owner.last_name }}</td>
+                    <td>
+                        <a href="/admin/questionair/@{{owner.id}}/edit" class="btn btn-info">แก้ไข</a>
+                        <button v-on:click="deleteFarmOwner(owner.id)"
+                                class="btn btn-danger">ลบ
+                        </button>
+                    </td>
+                </tr>
                 </tbody>
                 <tfoot>
 
@@ -44,9 +43,12 @@
     <script type="text/javascript">
         var app = new AdminApp({
             el: 'body',
-            data: {},
+            data: {
+                farmOwners: []
+            },
             methods: {
                 deleteFarmOwner: function (id) {
+                    console.log(id)
                     if (confirm("คุณต้องการลบข้อมูลเกษตกรรายนี้หรือไม่?")) {
                         this.$http.delete('/api/farm-owner/' + id).then(function (response) {
                             window.location.href = window.location.href;
@@ -55,7 +57,15 @@
                 }
             },
             ready: function () {
+                this.$http.get('/api/farm-owner').then(
+                        function (response) {
+                            this.farmOwners = response.data;
+                            console.log(this.farmOwners)
+                        },
+                        function (error) {
 
+                        }
+                );
             }
         })
     </script>
