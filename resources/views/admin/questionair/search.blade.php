@@ -31,6 +31,17 @@
                 </tr>
                 </tbody>
                 <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <ul class="pagination">
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                        </ul>
+                    </td>
+                </tr>
 
                 </tfoot>
             </table>
@@ -44,7 +55,8 @@
         var app = new AdminApp({
             el: 'body',
             data: {
-                farmOwners: []
+                farmOwners: [],
+                farmOwnerPage : {}
             },
             methods: {
                 deleteFarmOwner: function (id) {
@@ -59,8 +71,9 @@
             ready: function () {
                 this.$http.get('/api/farm-owner').then(
                         function (response) {
-                            this.farmOwners = response.data;
-                            console.log(this.farmOwners)
+
+                            this.farmOwnerPage = response.data;
+                            this.farmOwners = this.farmOwnerPage.data;
                         },
                         function (error) {
 

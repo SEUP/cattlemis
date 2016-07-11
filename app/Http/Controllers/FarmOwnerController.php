@@ -160,7 +160,7 @@ class FarmOwnerController extends Controller
 
     public function index()
     {
-        $farmOwners = FarmOwner::with([])->get();
+        $farmOwners = FarmOwner::with([])->paginate(20);
         return $farmOwners;
     }
 
