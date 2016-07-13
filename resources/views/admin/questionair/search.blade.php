@@ -48,11 +48,10 @@
                 <tr>
                     <td colspan="4">
                         <ul class="pagination">
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
+                            <li v-for="n in farmOwnerPage.last_page ">
+                                <a v-on:click="gotoPage(n+1)">@{{ n+1 }}</a>
+                            </li>
+
                         </ul>
                     </td>
                 </tr>
@@ -96,6 +95,10 @@
 
                             }
                     );
+                },
+                gotoPage: function (page) {
+                    this.form.page = page;
+                    this.search();
                 }
             },
             ready: function () {
