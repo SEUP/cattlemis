@@ -158,9 +158,18 @@ class FarmOwnerController extends Controller
         return $choices;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $farmOwners = FarmOwner::with([])->paginate(20);
+        $query = FarmOwner::query();
+
+        if ($request->has('keyword')) {
+            $keyword = $request->get('keyword');
+            $query->where('person_id', 'like', "%$keyword%");
+            $query->orWhere('first_name', 'like', "%$keyword%");
+            $query->orWhere('last_name', 'like', "%$keyword%");
+        }
+
+        $farmOwners = $query->paginate(20);
         return $farmOwners;
     }
 

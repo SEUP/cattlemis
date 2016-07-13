@@ -118,11 +118,12 @@
                     </alert>
                 </template>
             </div>
-            <div class="col-lg-12">
-                @yield('page-wrapper')
-                <spinner id="spinner-box" :size="lg" :fixed="spinnerFixed" text="Loading..."></spinner>
-
-            </div>
+            @section('spinner')
+                <div class="col-lg-12">
+                    @yield('page-wrapper')
+                    <spinner id="spinner-box" :size="lg" :fixed="spinnerFixed" text="Loading..."></spinner>
+                </div>
+            @show
         </div>
 
 

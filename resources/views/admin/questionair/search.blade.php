@@ -8,7 +8,21 @@
         <!-- /.col-lg-12 -->
     </div>
     <div class="row">
+
         <div class="col-lg-12">
+            <div clas="form-group">
+                <label for="search">ค้นหา</label>
+
+                <div class="input-group">
+                    <input type="text" v-on:keyup.13="search()" class="form-control" placeholder="ค้นหา"
+                           v-model="form.keyword">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button" v-on:click="search()">ค้นหา</button>
+                </span>
+                </div>
+            </div>
+
+
             <table class="table ">
                 <thead>
                 <tr>
@@ -56,7 +70,11 @@
             el: 'body',
             data: {
                 farmOwners: [],
-                farmOwnerPage : {}
+                farmOwnerPage: {},
+                form: {
+                    keyword: "",
+                    page: "",
+                }
             },
             methods: {
                 deleteFarmOwner: function (id) {
@@ -66,19 +84,22 @@
                             window.location.href = window.location.href;
                         })
                     }
+                },
+                search: function () {
+                    this.$http.get('/api/farm-owner', this.form).then(
+                            function (response) {
+
+                                this.farmOwnerPage = response.data;
+                                this.farmOwners = this.farmOwnerPage.data;
+                            },
+                            function (error) {
+
+                            }
+                    );
                 }
             },
             ready: function () {
-                this.$http.get('/api/farm-owner').then(
-                        function (response) {
-
-                            this.farmOwnerPage = response.data;
-                            this.farmOwners = this.farmOwnerPage.data;
-                        },
-                        function (error) {
-
-                        }
-                );
+                this.search();
             }
         })
     </script>
