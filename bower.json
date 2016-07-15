@@ -1,0 +1,36 @@
+{
+  "name": "cattlemis",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Chaow Porkaew <chaow.po@up.ac.th>"
+  ],
+  "license": "University of Phayao",
+  "homepage": "https://github.com/pchaow/cattlemis",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "resources/assets/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "^3.3.6",
+    "bootstrap-social": "^5.0.0",
+    "datetimepicker": "^2.5.4",
+    "flot.tooltip": "^0.8.7",
+    "datatables": "^1.10.12",
+    "highcharts": "^4.2.5",
+    "holderjs": "^2.9.3",
+    "fullcalendar": "^2.7.2",
+    "metisMenu": "^2.5.2",
+    "mocha": "^2.5.3",
+    "startbootstrap-sb-admin-2-sass": "^1.0.7",
+    "startbootstrap-sb-admin-2": "^1.0.8",
+    "vue": "^1.0.*",
+    "vue-resource": "0.9.3",
+    "vue-strap": "^1.0.11"
+  }
+}

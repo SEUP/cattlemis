@@ -85,7 +85,7 @@
                     }
                 },
                 search: function () {
-                    this.$http.get('/api/farm-owner', this.form).then(
+                    this.$http.get('/api/farm-owner', {params : this.form}).then(
                             function (response) {
 
                                 this.farmOwnerPage = response.data;
