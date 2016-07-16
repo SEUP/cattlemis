@@ -84,20 +84,28 @@
                         </div>
                         <div class="col-sm-9">
                             <template v-for="option in options.vaccine_types">
-                            <label class="checkbox">
-                                <input type="checkbox" v-model="newFarmer.vaccine_types" v-bind:value="option">
-                                @{{ option.choice }}:
-                            </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" v-model="newFarmer.vaccine_types" v-bind:value="option">
+                                    @{{ option.choice }}:
+                                </label>
+                                <div class="form-group">
+                                    <div class="col-sm-12 col-md-6">
+                                        <label>จำนวนครั้ง/ปี</label>
+                                        <input placeholder="" type="text"
+                                               class="form-control"
+                                               v-model="option['pivot']['amount']">
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <label>ผู้ทำ</label>
+                                        <select class="form-control" v-model="option['pivot']['remark']">
+                                            <option :value="null">กรุณาเลือกผู้ทำ</option>
+                                            <option v-for="option in options.vaccined_by"
+                                                    v-bind:value="option.choice">@{{ option.choice }}</option>
+                                        </select>
+                                    </div>
 
-                            <input placeholder="จำนวนครั้ง/ปี" type="text"
-                                   class="form-control"
-                                   v-model="option['pivot']['amount']">
+                                </div>
 
-                            <select class="form-control" v-model="option['pivot']['remark']">
-                                <option value="">กรุณาเลือกผู้ทำ</option>
-                                <option v-for="option in options.vaccined_by"
-                                        v-bind:value="option.choice">@{{ option.choice }}</option>
-                            </select>
                             </template>
                         </div>
                     </div>
