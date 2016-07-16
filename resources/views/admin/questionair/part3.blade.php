@@ -84,52 +84,44 @@
     <fieldset id="3.6">
         <legend>3.6 พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ (ไร่/ครัวเรือน)</legend>
 
-
         <div class="form-group">
+            <label class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
                 <select class="form-control" v-model="newFarmer.use_land">
                     <option selected value="">กรุณาเลือก</option>
                     <option v-for="option in options.use_land"
                             v-bind:value="option">@{{ option.choice }}</option>
                 </select>
-
-                <div class="form-group" v-if="newFarmer.use_land.children.length!=0">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-9">
-                        <label>รวมพื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ (ไร่/ครัวเรือน)</label>
-                        <input type="text"
-                               v-model="newFarmer.total_use_lands"
-                               v-bind:value="sumUseLand()"
-                               class="form-control"
-                               readonly>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-3">
-                        </div>
-                        <div class="col-sm-9">
-                            <label class="checkbox" v-for="option in options.sub_use_lands">
-                                <input type="checkbox" v-model="newFarmer.sub_use_lands" v-bind:value="option">
-                                @{{ option.choice }}:
-                                <input v-if="option.has_text" placeholder="จำนวน(ไร่)" type="text"
-                                       class="form-control"
-                                       v-model="option['pivot']['area']">
-                                <template v-if="option.choice == 'พื้นที่ปลูกหญ้า'">
-                                    ชนิดหญ้า
-                                    <input v-if="option.choice == 'พื้นที่ปลูกหญ้า'" placeholder="ชนิดหญ้า"
-                                           type="text"
-                                           class="form-control"
-                                           v-model="option['pivot']['remark']">
-                                </template>
-                            </label>
-                        </div>
-                    </div>
-
-
-                </div>
             </div>
         </div>
 
+        <div class="form-group" v-if="newFarmer.use_land.children.length!=0">
+            <label class="col-sm-3 control-label"></label>
+            <div class="col-sm-9">
+
+                <label>รวมพื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ (ไร่/ครัวเรือน)</label>
+                <input type="text" v-model="newFarmer.total_use_lands" v-bind:value="sumUseLand()" class="form-control"
+                       readonly>
+
+
+                <label class="checkbox" v-for="option in options.sub_use_lands">
+                    <input type="checkbox" v-model="newFarmer.sub_use_lands" v-bind:value="option">
+                    @{{ option.choice }}:
+                    <input v-if="option.has_text" placeholder="จำนวน(ไร่)" type="text"
+                           class="form-control"
+                           v-model="option['pivot']['area']">
+                    <template v-if="option.choice == 'พื้นที่ปลูกหญ้า'">
+                        ชนิดหญ้า
+                        <input v-if="option.choice == 'พื้นที่ปลูกหญ้า'" placeholder="ชนิดหญ้า"
+                               type="text"
+                               class="form-control"
+                               v-model="option['pivot']['remark']">
+                    </template>
+                </label>
+
+            </div>
+
+        </div>
     </fieldset>
     <fieldset id="3.7">
         <legend> 3.7 อาหารที่ท่านใช้เลี้ยงโคเนื้อเป็นอาหารประเภทใด (ตอบได้มากกว่า 1 ข้อ)</legend>
