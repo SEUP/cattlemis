@@ -140,7 +140,9 @@
     <fieldset id="2.13">
         <legend>2.13 การขึ้นทะเบียนฟาร์มกับภาครัฐ</legend>
         <question-select :model.sync="newFarmer.farm_register_status"
-                         :options.sync="options.farm_register_status"></question-select>
+                         :options.sync="options.farm_register_status">
+
+        </question-select>
         <question-select :model.sync="newFarmer.farm_register"
                          label="ระบุ"
                          v-show="newFarmer.farm_register_status.children.length > 0"

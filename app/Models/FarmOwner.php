@@ -91,14 +91,16 @@ class FarmOwner extends Model
         'vaccined_by',
         'inseminate_sources', 'breeders', 'cattle_death_causes', 'disease_cured_by',
         'cattle_dung_uses',
+        'vaccine_types',
 
         //part5
         'budget_source', 'loan_types',
 
         //part6
+        'age_sale','weight_range_sale',
         'seller_types', 'cattle_sale_methods', 'group_joins',
         'group_join_future', 'cooperative_help_types', 'feed_purchase_cooperative',
-        'cattle_sales', 'sale_satisfaction',
+        'cattle_sales','sale_satisfaction',
 
         //part7
         'support_sources', 'support_visit', 'production_support', 'cattle_heath_support',
@@ -541,7 +543,7 @@ class FarmOwner extends Model
     public function inseminate_sources()
     {
         return $this->choices()
-            ->withPivot('remark', 'price')
+            ->withPivot(['remark', 'price'])
             ->where('type', '=', 'inseminate_sources');
     }
 
@@ -563,6 +565,13 @@ class FarmOwner extends Model
         return $this->choices()
             ->withPivot('remark')
             ->where('type', '=', 'disease_cured_by');
+    }
+
+    public function vaccine_types()
+    {
+        return $this->choices()
+            ->withPivot(['remark', 'amount'])
+            ->where('type', '=', 'vaccine_types');
     }
 
     public function cattle_dung_uses()
@@ -597,6 +606,20 @@ class FarmOwner extends Model
         return $this->choices()
             ->withPivot('remark')
             ->where('type', '=', 'seller_types');
+    }
+
+    public function age_sale()
+    {
+        //return $this->belongsToMany(Choice::class)
+        return $this->choices()
+            ->where('type', '=', 'age_sale');
+    }
+
+    public function weight_range_sale()
+    {
+        //return $this->belongsToMany(Choice::class)
+        return $this->choices()
+            ->where('type', '=', 'weight_range_sale');
     }
 
     public function cattle_sale_methods()
@@ -640,7 +663,7 @@ class FarmOwner extends Model
     {
         //return $this->belongsToMany(Choice::class)
         return $this->choices()
-            ->withPivot(['remark', 'duration'])
+            ->withPivot(['price_range_sale', 'age_range_sale'])
             ->where('type', '=', 'cattle_sales');
     }
 
@@ -1103,6 +1126,14 @@ class FarmOwner extends Model
 
     }
 
+
+    public function getVaccineTypesAttribute()
+    {
+        return $this->vaccine_types()->get();
+
+
+    }
+
     public function getCattleDungUsesAttribute()
     {
         return $this->cattle_dung_uses()->get();
@@ -1190,6 +1221,25 @@ class FarmOwner extends Model
     public function getSellerTypesAttribute()
     {
         return $this->seller_types()->get();
+    }
+
+    public function getAgeSaleAttribute()
+    {
+        $value = $this->age_sale()->first();
+        if ($value) {
+            return $value;
+        } else {
+            return [];
+        }
+    }
+    public function getWeightRangeSaleAttribute()
+    {
+        $value = $this->weight_range_sale()->first();
+        if ($value) {
+            return $value;
+        } else {
+            return [];
+        }
     }
 
     public function getCattleSaleMethodsAttribute()

@@ -35,6 +35,7 @@ class FarmOwnerController extends Controller
             'budget_source',
 
             //part6
+            'age_sale','weight_range_sale',
             'group_join_future', 'feed_purchase_cooperative',
             'sale_satisfaction',
 
@@ -78,6 +79,7 @@ class FarmOwnerController extends Controller
             //part4
             'inseminate_sources', 'breeders', 'cattle_death_causes', 'disease_cured_by',
             'cattle_dung_uses',
+            'vaccine_types',
 
             //part5
             'loan_types',

@@ -65,9 +65,41 @@
     </fieldset>
     <fieldset id="4.7">
         <legend>4.7 ท่านได้ทำวัคซีนป้องกันโรคให้กับโคเนื้อที่เลี้ยงหรือไม่</legend>
-        <question-select :model.sync="newFarmer.vaccine_ever"
-                         :options.sync="options.vaccine_ever">
-        </question-select>
+
+        <div class="form-group">
+        <div class="col-sm-10">
+            <select class="form-control" v-model="newFarmer.vaccine_ever">
+                <option selected value="">กรุณาเลือก</option>
+                <option v-for="option in options.vaccine_ever"
+                        v-bind:value="option">@{{ option.choice }}</option>
+            </select>
+
+            <div class="form-group" v-if="newFarmer.vaccine_ever.children.length!=0">
+                <div class="form-group">
+                    <div class="col-sm-3">
+                    </div>
+                    <div class="col-sm-9">
+                        <label class="checkbox" v-for="option in options.vaccine_types">
+                            <input type="checkbox" v-model="newFarmer.vaccine_types" v-bind:value="option">
+                            @{{ option.choice }}:
+                            <input  placeholder="จำนวนครั้ง/ปี" type="text"
+                                    class="form-control"
+                                    v-model="option['pivot']['amount']">
+
+                            <select class="form-control" v-model="option['pivot']['remark']">
+                                <option selected value="">กรุณาเลือกผู้ทำ</option>
+                                <option v-for="option in options.vaccined_by"
+                                        v-bind:value="option">@{{ option.choice }}</option>
+                            </select>
+
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
     </fieldset>
 
     <fieldset id="4.8">

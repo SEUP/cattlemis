@@ -156,10 +156,12 @@ var app = new AdminApp({
                 'farm_breeding_type', 'cattle_death', 'dewormed_amount', 'vaccine_ever', 'biogas_status',
                 'vaccined_by',
 
+
                 //part5
                 'budget_source',
 
                 //part6
+                'age_sale','weight_range_sale',
                 'group_join_future', 'feed_purchase_cooperative',
                 'sale_satisfaction',
 
@@ -195,12 +197,14 @@ var app = new AdminApp({
                 //part4
                 'inseminate_sources', 'breeders', 'cattle_death_causes', 'disease_cured_by',
                 'cattle_dung_uses',
+                'vaccine_types',
 
                 //part5
                 'loan_types',
 
                 //part6
                 'seller_types', 'cattle_sale_methods', 'group_joins', 'cooperative_help_types', 'cattle_sales',
+
 
                 //part7
                 'support_sources'

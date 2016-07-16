@@ -7,11 +7,11 @@
     </fieldset>
     <fieldset id="6.2">
         <legend>6.2 อายุของโคเนื้อที่ท่านจำหน่าย(ปี)</legend>
-        <question-text-field label="อายุของโคเนื้อที่ท่านจำหน่าย(ปี)" :model.sync="newFarmer.cattle_sold_age"></question-text-field>
+        <question-select :model.sync="newFarmer.age_sale" :options.sync="options.age_sale"></question-select>
     </fieldset>
     <fieldset id="6.3">
         <legend>6.3 น้ำหนักของโคเนื้อที่ท่านจำหน่าย(กิโลกรัม)</legend>
-        <question-text-field label="น้ำหนักของโคเนื้อที่ท่านจำหน่าย(กิโลกรัม)" :model.sync="newFarmer.cattle_sold_weight"></question-text-field>
+        <question-select :model.sync="newFarmer.weight_range_sale" :options.sync="options.weight_range_sale"></question-select>
     </fieldset>
     <fieldset id="6.4">
         <legend>6.4 ลักษณะการจำหน่าย</legend>

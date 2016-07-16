@@ -60,8 +60,8 @@ class CreateFarmTbl extends Migration
             //part5
             $table->integer('total_budget')->nullable();
             //part6
-            $table->string('cattle_sold_age')->nullable();
-            $table->string('cattle_sold_weight')->nullable();
+           // $table->string('cattle_sold_age')->nullable();
+            //$table->string('cattle_sold_weight')->nullable();
             //part8
             $table->string('problem')->nullable();
             $table->string('suggestion')->nullable();
@@ -86,7 +86,9 @@ class CreateFarmTbl extends Migration
             $table->integer('rate')->nullable();
             //part6 remark joined duration
             $table->string('joined')->nullable();
-            $table->string('duration')->nullable();
+            //$table->string('duration')->nullable();
+            $table->string('age_range_sale')->nullable();
+            $table->string('price_range_sale')->nullable();
             //part7 none
             //part8 none
             $table->timestamps();
