@@ -4,6 +4,7 @@
 
 
 
+
     <div class="row">
         <div class="col-lg-10">
             <h1 class="page-header">แก้ไขข้อมูลเกษตรกร</h1>
@@ -52,6 +53,7 @@
 
         </div>
         <div class="col-lg-2">
+
             <affix>
                 <div style="margin-top:20px;">
                     <div class="row">
@@ -94,6 +96,26 @@
 
                 </div>
             </affix>
+
+            <alert
+                    :show.sync="showRight"
+                    :duration="3000"
+                    type="success"
+                    dismissable>
+                <span class="icon-ok-circled alert-icon-float-left"></span>
+                <strong>Well Done!</strong>
+                <p>Save Complete</p>
+            </alert>
+
+            <alert
+                    :show.sync="showTop"
+                    :duration="3000"
+                    type="danger"
+                    dismissable>
+                <span class="icon-info-circled alert-icon-float-left"></span>
+                <strong>Danger !</strong>
+                <p>Save Error</p>
+            </alert>
         </div>
     </div>
 

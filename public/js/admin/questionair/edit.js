@@ -11,12 +11,14 @@ var app = new AdminApp({
         'question-select-with-text': QuestionSelectWithText,
         'question-multi-checkbox': QuestionMultiCheckbox,
         'province-amphur-district': ProvinceAmphurDistrict,
-        'question-multi-checkbox-with-dropdowns':QuestionMultiCheckboxWithDropdowns,
+        'question-multi-checkbox-with-dropdowns': QuestionMultiCheckboxWithDropdowns,
     },
     data: {
         newFarmer: null,
         options: {},
-        isLoaded: false
+        isLoaded: false,
+        showRight: false,
+        showTop: false
     },
 
     methods: {
@@ -98,12 +100,18 @@ var app = new AdminApp({
         },
         save: function () {
 
+
             this.$http.patch('/api/farm-owner/' + this.newFarmer.id, this.newFarmer).then(function (response) {
                 data = response.data;
                 this.newFarmer = data;
                 this.reSelectedOption();
+
+                this.showRight = !this.showRight
+
             }, function (error) {
                 this.formError = error.data;
+                this.showTop = !this.showTop
+
             })
         }
         ,
@@ -162,7 +170,7 @@ var app = new AdminApp({
                 'budget_source',
 
                 //part6
-                'age_sale','weight_range_sale',
+                'age_sale', 'weight_range_sale',
                 'group_join_future', 'feed_purchase_cooperative',
                 'sale_satisfaction',
 
