@@ -67,20 +67,26 @@
                         <input type="checkbox" v-model="newFarmer.cattle_sales" v-bind:value="option">
                         @{{ option.choice }}:
                     </label>
-                    <label>ราคาขายต่อตัว : </label>
-                    <select class="form-control" v-model="option['pivot']['remark']">
-                        <option>กรุณาเลือก</option>
-                        <option v-for="child in options.price_breeding_sale" v-bind:value="child.choice">
-                            @{{child.choice}}
-                        </option>
-                    </select>
+                    <div class="form-group">
+                        <div class="col-sm-12 col-md-6">
+                            <label>ราคาขายต่อตัว : </label>
+                            <select class="form-control" v-model="option['pivot']['remark']">
+                                <option>กรุณาเลือก</option>
+                                <option v-for="child in options.price_breeding_sale" v-bind:value="child.choice">
+                                    @{{child.choice}}
+                                </option>
+                            </select>
+                        </div>
 
-                    <label>ระยะเวลาที่เลี้ยง: </label>
-                    <select class="form-control" v-model="option['pivot']['age_range_sale']">
-                        <option v-for="child in options.age_breeding_sale" v-bind:value="child.choice">
-                            @{{child.choice}}
-                        </option>
-                    </select>
+                        <div class="col-sm-12 col-md-6">
+                            <label>ระยะเวลาที่เลี้ยง: </label>
+                            <select class="form-control" v-model="option['pivot']['age_range_sale']">
+                                <option v-for="child in options.age_breeding_sale" v-bind:value="child.choice">
+                                    @{{child.choice}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
                 </template>
             </div>
         </div>
