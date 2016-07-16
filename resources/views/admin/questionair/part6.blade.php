@@ -11,7 +11,8 @@
     </fieldset>
     <fieldset id="6.3">
         <legend>6.3 น้ำหนักของโคเนื้อที่ท่านจำหน่าย(กิโลกรัม)</legend>
-        <question-select :model.sync="newFarmer.weight_range_sale" :options.sync="options.weight_range_sale"></question-select>
+        <question-select :model.sync="newFarmer.weight_range_sale"
+                         :options.sync="options.weight_range_sale"></question-select>
     </fieldset>
     <fieldset id="6.4">
         <legend>6.4 ลักษณะการจำหน่าย</legend>
@@ -59,19 +60,28 @@
     <fieldset id="6.9">
         <legend>6.9 ท่านขายโคเนื้อได้ราคาเท่าไหร่ และใช้เวลาในการเลี้ยงนานเท่าใด</legend>
         <div class="form-group">
-            <div class="col-sm-3">
-            </div>
-            <div class="col-sm-9">
-                <label class="checkbox" v-for="option in options.cattle_sales">
-                    <input type="checkbox" v-model="newFarmer.cattle_sales" v-bind:value="option">
-                    @{{ option.choice }}:
-                    <input placeholder="(บาท/ตัว)"
-                           type="text" class="form-control"
-                           v-model="option['pivot']['remark']">
-                    <input placeholder="ระยะเวลาที่เลี้ยงตัว(ปี)"
-                           type="text" class="form-control"
-                           v-model="option['pivot']['duration']">
-                </label>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
+                <template v-for="option in options.cattle_sales">
+                    <label class="checkbox">
+                        <input type="checkbox" v-model="newFarmer.cattle_sales" v-bind:value="option">
+                        @{{ option.choice }}:
+                    </label>
+                    <label>ราคาขายต่อตัว : </label>
+                    <select class="form-control" v-model="option['pivot']['remark']">
+                        <option>กรุณาเลือก</option>
+                        <option v-for="child in options.price_breeding_sale" v-bind:value="child.choice">
+                            @{{child.choice}}
+                        </option>
+                    </select>
+
+                    <label>ระยะเวลาที่เลี้ยง: </label>
+                    <select class="form-control" v-model="option['pivot']['age_range_sale']">
+                        <option v-for="child in options.age_breeding_sale" v-bind:value="child.choice">
+                            @{{child.choice}}
+                        </option>
+                    </select>
+                </template>
             </div>
         </div>
     </fieldset>

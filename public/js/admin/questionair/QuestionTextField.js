@@ -256,3 +256,46 @@ var QuestionMultiCheckbox = Vue.extend({
         }
     }
 });
+
+var QuestionMultiCheckboxWithDropdowns = Vue.extend({
+    template: `
+<div class="form-group">
+    <div class="col-sm-3">
+        <label>{{label}}</label>
+    </div>
+    <div class="col-sm-9">
+        <label class="checkbox" v-for="option in options">
+            <input type="checkbox" v-model="model" v-bind:value="option">
+                {{ option.choice }}:
+             <template v-for="child in children">
+                {{child}}
+            </template>
+        </label>
+        
+    
+</template>
+    </div>
+</div>
+    `,
+    props: {
+        label: {
+            required: true,
+        },
+        model: {
+            required: true,
+            twoWay: true
+        },
+        options: {
+            required: true,
+            twoWay: true
+        },
+        placeholder: {
+            required: false,
+            default: "โปรดระบุ"
+        },
+
+    },
+    ready: function () {
+        console.log(this.children);
+    }
+});

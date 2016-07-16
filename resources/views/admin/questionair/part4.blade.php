@@ -31,20 +31,21 @@
     </fieldset>
     <fieldset id="4.3">
         <legend>4.3 การใช้พ่อพันธุ์คุมฝูง</legend>
-        <question-text-field label="อัตราส่วนพ่อพันธุ์คุมฝูง 1 ตัวต่อแม่พันธุ์ (ตัว)" placeholder="อัตราส่วนพ่อพันธุ์คุมฝูง 1 ตัวต่อแม่พันธุ์ (ตัว)"
+        <question-text-field label="อัตราส่วนพ่อพันธุ์คุมฝูง 1 ตัวต่อแม่พันธุ์ (ตัว)"
+                             placeholder="อัตราส่วนพ่อพันธุ์คุมฝูง 1 ตัวต่อแม่พันธุ์ (ตัว)"
                              :model.sync="newFarmer.breeding_rate">
         </question-text-field>
-     </fieldset>
+    </fieldset>
 
     <fieldset id="4.4">
-        <legend>4.4 การตายของโคในรอบปี </legend>
-        <question-select-with-text  pivotfield="amount"
-                                    placeholder="จำนวนโคที่ตาย(ตัว)"
-                                    :model.sync="newFarmer.cattle_death"
+        <legend>4.4 การตายของโคในรอบปี</legend>
+        <question-select-with-text pivotfield="amount"
+                                   placeholder="จำนวนโคที่ตาย(ตัว)"
+                                   :model.sync="newFarmer.cattle_death"
                                    :options.sync="options.cattle_death">
-            </question-select-with-text>
+        </question-select-with-text>
 
-        <legend>4.4.1 สาเหตุการตาย </legend>
+        <legend>4.4.1 สาเหตุการตาย</legend>
         <question-multi-checkbox :model.sync="newFarmer.cattle_death_causes"
                                  :options.sync="options.cattle_death_causes">
         </question-multi-checkbox>
@@ -57,9 +58,9 @@
     </fieldset>
     <fieldset id="4.6">
         <legend>4.6 การถ่ายพยาธิ(ครั้ง/ปี)</legend>
-        <question-select-with-text  pivotfield="amount"
-                                    placeholder="จำนวนครั้งต่อปี"
-                                    :model.sync="newFarmer.dewormed_amount"
+        <question-select-with-text pivotfield="amount"
+                                   placeholder="จำนวนครั้งต่อปี"
+                                   :model.sync="newFarmer.dewormed_amount"
                                    :options.sync="options.dewormed_amount">
         </question-select-with-text>
     </fieldset>
@@ -67,36 +68,41 @@
         <legend>4.7 ท่านได้ทำวัคซีนป้องกันโรคให้กับโคเนื้อที่เลี้ยงหรือไม่</legend>
 
         <div class="form-group">
-        <div class="col-sm-10">
-            <select class="form-control" v-model="newFarmer.vaccine_ever">
-                <option selected value="">กรุณาเลือก</option>
-                <option v-for="option in options.vaccine_ever"
-                        v-bind:value="option">@{{ option.choice }}</option>
-            </select>
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="row">
 
-            <div class="form-group" v-if="newFarmer.vaccine_ever.children.length!=0">
-                <div class="form-group">
-                    <div class="col-sm-3">
-                    </div>
-                    <div class="col-sm-9">
-                        <label class="checkbox" v-for="option in options.vaccine_types">
-                            <input type="checkbox" v-model="newFarmer.vaccine_types" v-bind:value="option">
-                            @{{ option.choice }}:
-                            <input  placeholder="จำนวนครั้ง/ปี" type="text"
-                                    class="form-control"
-                                    v-model="option['pivot']['amount']">
+
+                    <select class="form-control" v-model="newFarmer.vaccine_ever">
+                        <option selected value="">กรุณาเลือก</option>
+                        <option v-for="option in options.vaccine_ever"
+                                v-bind:value="option">@{{ option.choice }}</option>
+                    </select>
+                </div>
+                <div class="form-group" v-if="newFarmer.vaccine_ever.children.length!=0">
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                        </div>
+                        <div class="col-sm-9">
+                            <template v-for="option in options.vaccine_types">
+                            <label class="checkbox">
+                                <input type="checkbox" v-model="newFarmer.vaccine_types" v-bind:value="option">
+                                @{{ option.choice }}:
+                            </label>
+
+                            <input placeholder="จำนวนครั้ง/ปี" type="text"
+                                   class="form-control"
+                                   v-model="option['pivot']['amount']">
 
                             <select class="form-control" v-model="option['pivot']['remark']">
-                                <option selected value="">กรุณาเลือกผู้ทำ</option>
+                                <option value="">กรุณาเลือกผู้ทำ</option>
                                 <option v-for="option in options.vaccined_by"
-                                        v-bind:value="option">@{{ option.choice }}</option>
+                                        v-bind:value="option.choice">@{{ option.choice }}</option>
                             </select>
-
-                        </label>
+                            </template>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
 
 

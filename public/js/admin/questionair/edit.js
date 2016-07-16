@@ -11,6 +11,7 @@ var app = new AdminApp({
         'question-select-with-text': QuestionSelectWithText,
         'question-multi-checkbox': QuestionMultiCheckbox,
         'province-amphur-district': ProvinceAmphurDistrict,
+        'question-multi-checkbox-with-dropdowns':QuestionMultiCheckboxWithDropdowns,
     },
     data: {
         newFarmer: null,
