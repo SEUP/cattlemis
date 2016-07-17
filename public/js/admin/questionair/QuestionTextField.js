@@ -133,16 +133,16 @@ var ProvinceAmphurDistrict = Vue.extend({
         provinceChange: function () {
             this.model_amphur = 0
             this.model_district = 0;
-            this.$http.get('/api/thailand/province/' + this.model_province + "/amphure", function (r) {
-                this.amphurs = r;
+            this.$http.get('/api/thailand/province/' + this.model_province + "/amphure").then(function (r) {
+                this.amphurs = r.data;
             })
         },
 
         amphurChange: function () {
             this.model_district = 0;
-            this.$http.get('/api/thailand/province/' + this.model_province + "/amphure/" + this.model_amphur + "/district",
+            this.$http.get('/api/thailand/province/' + this.model_province + "/amphure/" + this.model_amphur + "/district").then(
                 function (r) {
-                    this.districts = r;
+                    this.districts = r.data;
                 })
         }
     },
@@ -151,18 +151,18 @@ var ProvinceAmphurDistrict = Vue.extend({
         var self = this;
 
         // DOM updated
-        self.$http.get("/api/thailand/province", function (response) {
-            self.provinces = response;
+        self.$http.get("/api/thailand/province").then(function (response) {
+            self.provinces = response.data;
 
             if (self.model_province) {
-                this.$http.get('/api/thailand/province/' + this.model_province + "/amphure", function (r) {
-                    this.amphurs = r;
+                this.$http.get('/api/thailand/province/' + this.model_province + "/amphure").then(function (r) {
+                    this.amphurs = r.data;
 
                     if (self.model_amphur) {
-                        this.$http.get('/api/thailand/province/' + this.model_province + "/amphure/" + this.model_amphur + "/district",
-                            function (r) {
-                                this.districts = r;
-                            })
+                        this.$http.get('/api/thailand/province/' + this.model_province + "/amphure/" + this.model_amphur + "/district"
+                        ).then(function (r) {
+                            this.districts = r.data;
+                        })
                     }
 
                 })

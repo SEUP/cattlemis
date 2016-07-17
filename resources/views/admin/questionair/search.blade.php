@@ -101,7 +101,7 @@
                     this.search();
                 }
             },
-            ready: function () {
+            created: function () {
                 this.search();
             }
         })

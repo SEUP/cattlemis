@@ -240,6 +240,7 @@ var app = new AdminApp({
             type: 'get',
             dataType: 'json',
             async: 'false',
+
             success: function (response) {
 
                 self.options = response;
