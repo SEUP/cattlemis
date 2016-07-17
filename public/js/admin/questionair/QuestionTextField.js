@@ -7,7 +7,7 @@ var QuestionTextField = Vue.extend({
     <div class="form-group">
             <label class="col-sm-2 control-label">{{label}}</label>
             <div class="col-sm-10">
-                <input type="text" v-model="model" class="form-control" placeholder="{{placeholder}}"/>
+                <input type="{{type}}" v-model="model" class="form-control" placeholder="{{placeholder}}"/>
             </div>
         </div>
     `,
@@ -20,8 +20,18 @@ var QuestionTextField = Vue.extend({
             twoWay: true
         },
         placeholder: {
-            required: false
+            required: false,
+            default: function () {
+                return this.label
+            }
         },
+        type: {
+            required: false,
+            default: function () {
+                return "text"
+            }
+
+        }
     }
 });
 
@@ -254,48 +264,5 @@ var QuestionMultiCheckbox = Vue.extend({
             required: false,
             default: "โปรดระบุ"
         }
-    }
-});
-
-var QuestionMultiCheckboxWithDropdowns = Vue.extend({
-    template: `
-<div class="form-group">
-    <div class="col-sm-3">
-        <label>{{label}}</label>
-    </div>
-    <div class="col-sm-9">
-        <label class="checkbox" v-for="option in options">
-            <input type="checkbox" v-model="model" v-bind:value="option">
-                {{ option.choice }}:
-             <template v-for="child in children">
-                {{child}}
-            </template>
-        </label>
-        
-    
-</template>
-    </div>
-</div>
-    `,
-    props: {
-        label: {
-            required: true,
-        },
-        model: {
-            required: true,
-            twoWay: true
-        },
-        options: {
-            required: true,
-            twoWay: true
-        },
-        placeholder: {
-            required: false,
-            default: "โปรดระบุ"
-        },
-
-    },
-    ready: function () {
-        console.log(this.children);
     }
 });
