@@ -59,6 +59,7 @@
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
+
                     <li class="sidebar-search">
 
                         <div class="input-group custom-search-form">
@@ -70,6 +71,9 @@
                             </span>
                         </div>
                         <!-- /input-group -->
+                    </li>
+                    <li class="sidebar-search">
+                        ยินดีต้อนรับ, {{Auth::user()->firstname}} {{Auth::user()->lastname}}
                     </li>
                     <li>
                         <a href="/admin#"><i class="fa fa-dashboard fa-fw"></i> หน้าหลัก</a>
@@ -97,10 +101,6 @@
                     </li>
                     <li>
                         <a href="/admin/user"><i class="fa fa-user fa-fw"></i> จัดการข้อมูลผู้ใช้</a>
-                    </li>
-
-                    <li>
-                        <a href="/admin/choice"><i class="fa fa-list fa-fw"></i> จัดการข้อมูลตัวเลือก</a>
                     </li>
                 </ul>
             </div>
