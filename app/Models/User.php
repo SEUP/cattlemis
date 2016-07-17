@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Authenticatable
 {
 
+    protected $guarded = ['password'];
     protected $fillable = ["firstname", "lastname", "email"];
 
     public function roles()
@@ -49,11 +50,7 @@ class User extends Authenticatable
 
     public function hasRole($roles)
     {
-        $this->have_role = $this->getUserRole();
-        // Check if the user is a root account
-        if ($this->have_role->key == 'Root') {
-            return true;
-        }
+
         if (is_array($roles)) {
             foreach ($roles as $need_role) {
                 if ($this->checkIfUserHasRole($need_role)) {
@@ -73,7 +70,7 @@ class User extends Authenticatable
 
     private function checkIfUserHasRole($need_role)
     {
-        return (strtolower($need_role) == strtolower($this->have_role->key)) ? true : false;
+        return $this->roles()->where('key', '=', $need_role)->first();
     }
 
 }

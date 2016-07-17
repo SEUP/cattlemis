@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/css/vendor.style.css">
     <link href='/css/vendor.print.style.css' rel='stylesheet' media='print'/>
 
-    <meta id="user_id" value="{{Auth::user()->id}}"/>
 
     <style>
         [v-cloak] {
@@ -73,7 +72,6 @@
                         <!-- /input-group -->
                     </li>
                     <li class="sidebar-search">
-                        ยินดีต้อนรับ, {{Auth::user()->firstname}} {{Auth::user()->lastname}}
                     </li>
                     <li>
                         <a href="/admin#"><i class="fa fa-dashboard fa-fw"></i> หน้าหลัก</a>
@@ -194,7 +192,8 @@
 
 <script>
 
-    Vue.http.interceptors.push(function (request, next) {
+    Vue.http.interceptors.push(
+            function (request, next) {
 
                 if (app.ajaxCount == 0) {
                     app.$broadcast("show::spinner")
@@ -209,9 +208,7 @@
                     }
 
                 });
-
-            }
-    )
+            })
 
 </script>
 </body>

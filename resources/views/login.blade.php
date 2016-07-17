@@ -29,15 +29,15 @@
                             </ul>
                         </div>
                     @endif
-                    <form role="form" method="post" action="/login" v-on:submit="login()">
+                    <form role="form" method="post" action="/login">
                         {{csrf_field()}}
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="E-mail" v-model="loginForm.email" name="login[email]" type="email"
+                                <input class="form-control" placeholder="E-mail" name="login[email]" type="email"
                                        autofocus>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Password" v-model="loginForm.password" name="login[password]"
+                                <input class="form-control" placeholder="Password" name="login[password]"
                                        type="password"
                                        value="">
                             </div>
@@ -59,24 +59,5 @@
 </div>
 
 <script src="/js/vendor.js"></script>
-<script type="text/javascript">
-    var app = new Vue({
-
-        el : 'body',
-        data : {
-            loginForm : {}
-        },
-        methods : {
-            login : function(){
-
-            }
-        },
-        ready : function(){
-
-        }
-
-
-    })
-</script>
 </body>
 </html>

@@ -58,17 +58,11 @@ class RouteServiceProvider extends ServiceProvider
             require app_path('Http/routes.php');
         });
 
-
-        $router->group([
-            'namespace' => $this->namespace, 'middleware' => 'api', 'middlewareGroups' => 'api',
-        ], function ($router) {
-            require app_path('Http/routes.api.php');
-        });
-
         $router->group([
             'namespace' => "$this->namespace\\Admin",
-            'middleware' => 'web',
+            'middleware' => ['web', 'roles'],
             'middlewareGroups' => 'web',
+            'roles' => ['admin'],
             'prefix' => 'admin'
         ], function ($router) {
             require app_path('Http/routes.admin.php');

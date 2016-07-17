@@ -20,15 +20,13 @@ class CheckRole
         // if so, ensure that the user has that role.
 
         $user = \Auth::user();
+        if (!$user) {
+            return redirect('/login');
+        }
         if ($user->hasRole($roles) || !$roles) {
             return $next($request);
         }
-        return response([
-            'error' => [
-                'code' => 'INSUFFICIENT_ROLE',
-                'description' => 'You are not authorized to access this resource.'
-            ]
-        ], 401);
+        return redirect('/login')->withErrors(["Permission" => "You don't have permission to access."]);
     }
 
     private function getRequiredRoleForRoute($route)
