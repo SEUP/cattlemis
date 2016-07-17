@@ -55,6 +55,6 @@
     "commit": "de60899f7e4083e0a0fde85cfe761e4fd77cc9b2"
   },
   "_source": "https://github.com/fullcalendar/fullcalendar.git",
-  "_target": "^2.7.2",
+  "_target": "^2.7.*",
   "_originalSource": "fullcalendar"
 }

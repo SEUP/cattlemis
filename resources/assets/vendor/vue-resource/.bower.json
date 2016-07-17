@@ -18,7 +18,6 @@
     "commit": "42247ed9737b788d691ee95c13e89b78afed5a98"
   },
   "_source": "https://github.com/vuejs/vue-resource.git",
-  "_target": "0.9.3",
-  "_originalSource": "vue-resource",
-  "_direct": true
+  "_target": "0.9.*",
+  "_originalSource": "vue-resource"
 }

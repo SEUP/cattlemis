@@ -110,6 +110,7 @@ var app = new AdminApp({
 
             }, function (error) {
                 this.formError = error.data;
+
                 this.showTop = !this.showTop
 
             })

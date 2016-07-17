@@ -63,7 +63,7 @@
 
                         <div class="input-group custom-search-form">
                             <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
+                            <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
                                     <span class="fa fa-search"></span>
                                 </button>
@@ -194,23 +194,22 @@
 
 <script>
 
-    Vue.http.interceptors.push(
-            {
-                request(req){
+    Vue.http.interceptors.push(function (request, next) {
 
-                    if (app.ajaxCount == 0) {
-                        app.$broadcast("show::spinner")
-                    }
-                    app.ajaxCount++;
-                    return req;
-                },
-                response(res){
+                if (app.ajaxCount == 0) {
+                    app.$broadcast("show::spinner")
+                }
+                app.ajaxCount++;
+
+                next((response) => {
+
                     app.ajaxCount--;
                     if (app.ajaxCount == 0) {
                         app.$broadcast("hide::spinner")
                     }
-                    return res;
-                }
+
+                });
+                
             }
     )
 

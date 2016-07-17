@@ -11,7 +11,6 @@
     "commit": "7cd75ca5c8169c5173dcab4f195e56ff5f75657a"
   },
   "_source": "https://github.com/imsky/holder.git",
-  "_target": "^2.9.3",
-  "_originalSource": "holderjs",
-  "_direct": true
+  "_target": "^2.9.*",
+  "_originalSource": "holderjs"
 }
