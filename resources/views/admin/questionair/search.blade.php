@@ -80,7 +80,7 @@
                     console.log(id)
                     if (confirm("คุณต้องการลบข้อมูลเกษตกรรายนี้หรือไม่?")) {
                         this.$http.delete('/api/farm-owner/' + id).then(function (response) {
-                            window.location.href = window.location.href;
+                            this.search();
                         })
                     }
                 },
