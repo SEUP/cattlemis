@@ -54,7 +54,7 @@
         </div>
         <div class="col-lg-2">
 
-            <affix>
+            <affix v-show="isLoaded">
                 <div style="margin-top:20px;">
                     <div class="row">
                         <div class="col-lg-12">

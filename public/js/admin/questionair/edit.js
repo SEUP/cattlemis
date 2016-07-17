@@ -17,7 +17,8 @@ var app = new AdminApp({
         options: {},
         isLoaded: false,
         showRight: false,
-        showTop: false
+        showTop: false,
+        appReady: false,
     },
 
     methods: {
@@ -247,9 +248,8 @@ var app = new AdminApp({
                 self.$http.get('/api/farm-owner/' + self.newFarmer_id + '/edit').then(
                     function (response) {
                         this.newFarmer = response.data;
-                        this.isLoaded = true;
                         this.reSelectedOption();
-
+                        this.isLoaded = true;
                     }
                 )
 
