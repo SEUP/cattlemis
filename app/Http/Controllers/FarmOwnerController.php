@@ -8,7 +8,7 @@ use App\Models\Suggestion;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-use App\Http\Requests\FarmOwnerCreateRequest;
+use App\Http\Requests\FarmOwnerRequest;
 
 class FarmOwnerController extends Controller
 {
@@ -187,7 +187,7 @@ class FarmOwnerController extends Controller
         return $owner;
     }
 
-    public function store(FarmOwnerCreateRequest $request)
+    public function store(FarmOwnerRequest $request)
     {
         $form = $request->all();
 
@@ -234,7 +234,7 @@ class FarmOwnerController extends Controller
         return $farmOwner;
     }
 
-    public function update(Request $request, $id)
+    public function update(FarmOwnerRequest $request, $id)
     {
         $form = $request->all();
         $farmOwner = FarmOwner::find($id);
