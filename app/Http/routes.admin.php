@@ -40,5 +40,5 @@ Route::get('choice', 'ChoiceController@index');
 
 //charts
 Route::get('charts/normal/{type}', function ($type) {
-    return view("admin.charts.$type");
+    return view("admin.charts.normalChart")->with('type', $type);
 });
