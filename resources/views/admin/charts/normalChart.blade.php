@@ -2,6 +2,7 @@
 
 @section('page-wrapper')
     <input type="hidden" id="chartType" value="{{$type}}"/>
+    <input type="hidden" id="chartTitle" value="{{$title}}"/>
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">{{$type}}</h1>
@@ -21,7 +22,9 @@
         var app = new AdminApp({
             el: 'body',
             data: {
-                chartData: {}
+                chartData: {},
+                chartType: "",
+                chartTitle: ""
             },
             methods: {
                 displayChart: function () {
@@ -31,10 +34,7 @@
                             type: 'bar'
                         },
                         title: {
-                            text: 'Historic World Population by Region'
-                        },
-                        subtitle: {
-                            text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+                            text: self.chartTitle,
                         },
                         xAxis: {
                             categories: self.chartData.xAxis.categories,
@@ -88,6 +88,7 @@
             },
             ready: function () {
                 this.chartType = $("#chartType").val();
+                this.chartTitle = $("#chartTitle").val();
                 this.loadData();
             }
         })

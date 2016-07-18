@@ -39,6 +39,9 @@ Route::get('questionair/{id}/delete', "QuestionairController@doDelete");
 Route::get('choice', 'ChoiceController@index');
 
 //charts
-Route::get('charts/normal/{type}', function ($type) {
-    return view("admin.charts.normalChart")->with('type', $type);
+Route::get('charts/normal/{title}/{type}', function ($title, $type) {
+
+    return view("admin.charts.normalChart")
+        ->with('title', $title)
+        ->with('type', $type);
 });

@@ -60,7 +60,7 @@ Route::get('normal/{type}', function ($type) {
 
     $chart['series'][] =
         [
-            'name' => 'All Data',
+            'name' => 'Quantity',
             'data' => $data
         ];
 
