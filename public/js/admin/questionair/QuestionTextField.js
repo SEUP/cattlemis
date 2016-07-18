@@ -30,7 +30,6 @@ var QuestionTextField = Vue.extend({
             default: function () {
                 return "text"
             }
-
         }
     }
 });

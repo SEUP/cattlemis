@@ -39,7 +39,7 @@ Route::get('normal/{type}', function ($type) {
 
     $query->where('choices.type', '=', $type);
     $query->groupBy('choices.choice');
-
+    $query->orderBy('choices.id', 'asc');
     $query->select(DB::raw('count(farm_owners.id) as user_count, choices.choice'));
 
     $results = $query->get();
