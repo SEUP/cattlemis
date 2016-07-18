@@ -72,6 +72,7 @@
                         <!-- /input-group -->
                     </li>
                     <li class="sidebar-search">
+                        ยินดีต้อนรับ, {{Auth::user()->firstname}} {{Auth::user()->lastname}}
                     </li>
                     <li>
                         <a href="/admin#"><i class="fa fa-dashboard fa-fw"></i> หน้าหลัก</a>
@@ -160,19 +161,8 @@
             spinner: VueStrap.spinner,
             alert: VueStrap.alert,
         },
-        methods: {
-            loadCurrentUser: function () {
-                return this.$http({url: "/api/current_user", method: "get"}).then(function (r) {
-                    this.currentUser = r;
-                    //console.log(this.currentUser);
-                })
-            },
-            getCurrentUser: function () {
-                return this.currentUser;
-            }
-        },
+        methods: {},
         ready: function () {
-            this.loadCurrentUser();
             this.user_id = $("#user_id").attr('value');
             this.show = true;
 

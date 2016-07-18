@@ -59,6 +59,13 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         $router->group([
+            'namespace' => $this->namespace, 'middleware' => 'web', 'middlewareGroups' => 'web',
+            'prefix' => 'chart'
+        ], function ($router) {
+            require app_path('Http/routes.chart.api.php');
+        });
+
+        $router->group([
             'namespace' => "$this->namespace\\Admin",
             'middleware' => ['web', 'roles'],
             'middlewareGroups' => 'web',

@@ -24,6 +24,7 @@ Route::get('user/{id}/edit', "UserController@edit");
 Route::post('user/{id}/edit', "UserController@doEdit");
 Route::get('user/{id}/delete', "UserController@doDelete");
 
+
 //profile routes
 Route::get('profile', "ProfileController@index");
 Route::post('profile', "ProfileController@doEdit");
@@ -34,6 +35,10 @@ Route::get('questionair/search', 'QuestionairController@index');
 Route::get('questionair/{id}/edit', "QuestionairController@edit");
 Route::get('questionair/{id}/delete', "QuestionairController@doDelete");
 
-
 //choice
 Route::get('choice', 'ChoiceController@index');
+
+//charts
+Route::get('charts/normal/{type}', function ($type) {
+    return view("admin.charts.$type");
+});
