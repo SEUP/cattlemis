@@ -8,7 +8,7 @@
     <input type="hidden" id="step" value="{{$step}}"/>
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">{{$type}}</h1>
+            <h1 class="page-header">{{$title}}</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
