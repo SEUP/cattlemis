@@ -45,3 +45,14 @@ Route::get('charts/normal/{title}/{type}', function ($title, $type) {
         ->with('title', $title)
         ->with('type', $type);
 });
+
+Route::get('charts/range-farmowner/{title}/{type}/{min}/{max}/{step}',
+    function ($title, $type, $min, $max, $step) {
+
+        return view("admin.charts.farmownerRangeChart")
+            ->with('title', $title)
+            ->with('type', $type)
+            ->with('min', $min)
+            ->with('max', $max)
+            ->with('step', $step);
+    });
