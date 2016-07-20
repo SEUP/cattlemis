@@ -19,7 +19,6 @@
     </div>
 @endsection
 
-
 @section('javascript')
     <script type="text/javascript">
         var app = new AdminApp({
@@ -37,7 +36,7 @@
                     var self = this;
                     $('#container').highcharts({
                         chart: {
-                            type: 'bar'
+                            type: 'column'
                         },
                         title: {
                             text: self.chartTitle,

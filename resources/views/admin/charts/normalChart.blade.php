@@ -31,7 +31,7 @@
                     var self = this;
                     $('#container').highcharts({
                         chart: {
-                            type: 'bar'
+                            type: 'column'
                         },
                         title: {
                             text: self.chartTitle,
@@ -42,7 +42,7 @@
                         yAxis: {
                             min: 0,
                             title: {
-                                text: 'Population (millions)',
+                                text: '',
                                 align: 'high'
                             },
                             labels: {
@@ -50,7 +50,7 @@
                             }
                         },
                         tooltip: {
-                            valueSuffix: ' millions'
+                            valueSuffix: ''
                         },
                         plotOptions: {
                             bar: {

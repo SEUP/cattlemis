@@ -31,7 +31,7 @@
                     var self = this;
                     $('#container').highcharts({
                         chart: {
-                            type: 'bar'
+                            type: 'column'
                         },
                         title: {
                             text: self.chartTitle,

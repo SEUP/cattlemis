@@ -86,17 +86,8 @@
                         <a href="/admin/questionair/search"><i class="fa fa-search fa-fw"></i> ค้นหาข้อมูลเกษตรกร</a>
                     </li>
                     <li>
-                        <a href="/admin/#chart"><i class="fa fa-bar-chart-o fa-fw"></i> แผนภูมิรายงาน<span
-                                    class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="flot.html">จำนวนเกษตรกรแยกตามจังหวัด</a>
-                            </li>
-                            <li>
-                                <a href="morris.html">จำนวนเกษตรกรแบ่งตามรายได้</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
+                        <a href="/admin/charts/menuchart"><i class="fa fa-bar-chart-o fa-fw"></i> แผนภูมิรายงาน</a>
+
                     </li>
                     <li>
                         <a href="/admin/user"><i class="fa fa-user fa-fw"></i> จัดการข้อมูลผู้ใช้</a>
