@@ -46,6 +46,14 @@ Route::get('charts/normal/{title}/{type}', function ($title, $type) {
         ->with('type', $type);
 });
 
+Route::get('charts/multi-choice/{title}/{type}', function ($title, $type) {
+
+    return view("admin.charts.multiChoiceChart")
+        ->with('title', $title)
+        ->with('type', $type);
+});
+
+
 Route::get('charts/range-farmowner/{title}/{type}/{min}/{max}/{step}',
     function ($title, $type, $min, $max, $step) {
 

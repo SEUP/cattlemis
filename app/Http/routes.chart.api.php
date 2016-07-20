@@ -6,6 +6,26 @@ use App\Models\Choice;
 
 use Illuminate\Support\Facades\DB;
 
+Route::get('test2/{choices}', function ($choices) {
+    $choices = explode(",", $choices);
+
+    $query = DB::table('choices');
+    $query->leftJoin('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
+    $query->leftJoin('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
+    foreach ($choices as $choice) {
+        $query->orWhere('choices.type', '=', $choice);
+    }
+    $query->groupBy('choices.id');
+    $query->orderBy('choices.id');
+    $query->select(DB::raw('count(farm_owners.id) as user_count, choices.choice'));
+    $query->addSelect('choices.type');
+
+    $results = $query->get();
+    $results = (new \Illuminate\Support\Collection($results))->groupBy('choice');
+
+    return $results;
+});
+
 Route::get('test', function () {
     $min = 15;
     $max = 70;
@@ -18,6 +38,52 @@ Route::get('test', function () {
 //    }
 
     return $arr;
+});
+
+Route::get('multi/choices/{type}', function ($type) {
+    $choices = explode(",", $type);
+
+    $query = DB::table('choices');
+    $query->leftJoin('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
+    $query->leftJoin('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
+    foreach ($choices as $choice) {
+        $query->orWhere('choices.type', '=', $choice);
+    }
+    $query->groupBy('choices.id');
+    $query->orderBy('choices.id');
+    $query->select(DB::raw('count(farm_owners.id) as user_count, choices.choice'));
+    $query->addSelect('choices.type');
+
+    $results = $query->get();
+    $results = (new \Illuminate\Support\Collection($results))->groupBy('choice');
+
+    $xAxis = [];
+    foreach ($choices as $choice) {
+        $xAxis[] = $choice;
+    }
+
+    $chart = [];
+    $chart['xAxis'] = [];
+    $chart['xAxis']['categories'] = $xAxis;
+
+    foreach ($results as $key => $value) {
+
+        $name = $key;
+        $data = [];
+        foreach ($value as $v) {
+            $data[] = $v->user_count;
+        }
+
+        $chart['series'][] =
+            [
+                'name' => $key,
+                'data' => $data
+            ];
+    }
+
+    return $chart;
+
+
 });
 
 Route::get('range/farm-owner/{type}/{min}/{max}/{step}', function ($type, $min, $max, $step) {
@@ -71,13 +137,13 @@ Route::get('range/farm-owner/{type}/{min}/{max}/{step}', function ($type, $min, 
 
 Route::get('normal/{type}', function ($type) {
 
-    $query = DB::table('farm_owners');
-    $query->join('choice_farm_owner', 'farm_owners.id', '=', 'choice_farm_owner.farm_owner_id');
-    $query->join('choices', 'choice_farm_owner.choice_id', '=', 'choices.id');
-    //$results = $query->get(['farm_owners.id', 'choices.id as choices_id', 'choices.type', 'choices.choice']);
-    $query->groupBy('choices.choice');
-    $query->select(DB::raw('count(*) as user_count, choices.choice'));
-    $results = $query->get();
+//    $query = DB::table('farm_owners');
+//    $query->join('choice_farm_owner', 'farm_owners.id', '=', 'choice_farm_owner.farm_owner_id');
+//    $query->join('choices', 'choice_farm_owner.choice_id', '=', 'choices.id');
+//    //$results = $query->get(['farm_owners.id', 'choices.id as choices_id', 'choices.type', 'choices.choice']);
+//    $query->groupBy('choices.choice');
+//    $query->select(DB::raw('count(*) as user_count, choices.choice'));
+//    $results = $query->get();
 
     $query = DB::table('choices');
     $query->leftJoin('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
