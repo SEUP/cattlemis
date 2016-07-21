@@ -50,12 +50,12 @@
                         <div id="collapse3" class="panel-collapse collapse in">
                             <div class="panel-body">
                                 <li><a href="#collaps1">จำนวนแรงงานที่เลี้ยงโคเนื้อ</a></li>
-                                <li><a href="#normal/ลักษณะการเลี้ยงโคเนื้อ/take_care_types">ลักษณะการเลี้ยงโคเนื้อ</a></li>
+                                <li><a href="normal/ลักษณะการเลี้ยงโคเนื้อ/take_care_types">ลักษณะการเลี้ยงโคเนื้อ</a></li>
                                 <li><a href="#collaps1">พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ (ไร่/ครัวเรือน)</a></li>
-                                <li><a href="#normal/อาหารที่ท่านใช้เลี้ยงโคเนื้อ/feed_types">อาหารที่ท่านใช้เลี้ยงโคเนื้อ</a></li>
-                                <li><a href="#normal/การให้แร่ธาตุก้อน/minerals_feed">การให้แร่ธาตุก้อน</a></li>
+                                <li><a href="normal/อาหารที่ท่านใช้เลี้ยงโคเนื้อ/feed_types">อาหารที่ท่านใช้เลี้ยงโคเนื้อ</a></li>
+                                <li><a href="normal/การให้แร่ธาตุก้อน/minerals_feed">การให้แร่ธาตุก้อน</a></li>
                                 <li><a href="#collaps1">การสำรองฟางข้าว หรือเปลือกข้าวโพด</a></li>
-                                <li><a href="#normal/แหล่งอาหารหยาบในฤดูแล้ง/feed_summer_sources">แหล่งอาหารหยาบในฤดูแล้ง</a></li>
+                                <li><a href="normal/แหล่งอาหารหยาบในฤดูแล้ง/feed_summer_sources">แหล่งอาหารหยาบในฤดูแล้ง</a></li>
                             </div>
                         </div>
                     </div>
