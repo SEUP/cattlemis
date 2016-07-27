@@ -49,9 +49,7 @@
                                 overflow: 'justify'
                             }
                         },
-                        tooltip: {
-                            valueSuffix: ''
-                        },
+                        tooltip: self.chartData.tooltip,
                         plotOptions: {
                             bar: {
                                 dataLabels: {

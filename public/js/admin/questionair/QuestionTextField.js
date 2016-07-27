@@ -198,7 +198,7 @@ var QuestionSelectWithText = Vue.extend({
                         </select>
                     </div>
                     <div class="col-sm-6" v-if="model.has_text==1">
-                        <input type="text" v-model="model.pivot[pivotfield]"
+                        <input  type="{{type}}" v-model="model.pivot[pivotfield]"
                                class="form-control col-sm-6" placeholder="{{placeholder}}"/>
                     </div>
                 </div>
@@ -226,6 +226,12 @@ var QuestionSelectWithText = Vue.extend({
         placeholder: {
             required: false,
             default: "โปรดระบุ"
+        },
+        type: {
+            required: false,
+            default: function () {
+                return "text"
+            }
         }
     }
 });
@@ -241,7 +247,7 @@ var QuestionMultiCheckbox = Vue.extend({
         <label class="checkbox" v-for="option in options">
             <input type="checkbox" v-model="model" v-bind:value="option">
                 {{ option.choice }}:
-                <input v-if="option.has_text" placeholder="{{placeholder}}" type="text" class="form-control"
+                <input type="{{type}}" v-if="option.has_text" placeholder="{{placeholder}}" type="text" class="form-control"
                        v-model="option['pivot']['remark']">
         </label>
     </div>
@@ -262,6 +268,12 @@ var QuestionMultiCheckbox = Vue.extend({
         placeholder: {
             required: false,
             default: "โปรดระบุ"
+        },
+        type: {
+            required: false,
+            default: function () {
+                return "text"
+            }
         }
     }
 });

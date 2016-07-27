@@ -18,7 +18,7 @@
                     <input v-if="option.has_text==1" placeholder="ชื่อหน่วยงาน" type="text" class="form-control"
                            v-model="option['pivot']['remark']">
                     <input placeholder="ราคาต่อโด๊ส(บาท)"
-                           type="text" class="form-control"
+                           type="number" class="form-control"
                            v-model="option['pivot']['price']">
                 </label>
             </div>
@@ -39,7 +39,7 @@
 
     <fieldset id="4.4">
         <legend>4.4 การตายของโคในรอบปี</legend>
-        <question-select-with-text pivotfield="amount"
+        <question-select-with-text type="number" pivotfield="amount"
                                    placeholder="จำนวนโคที่ตาย(ตัว)"
                                    :model.sync="newFarmer.cattle_death"
                                    :options.sync="options.cattle_death">
@@ -58,7 +58,7 @@
     </fieldset>
     <fieldset id="4.6">
         <legend>4.6 การถ่ายพยาธิ(ครั้ง/ปี)</legend>
-        <question-select-with-text pivotfield="amount"
+        <question-select-with-text type="number" pivotfield="amount"
                                    placeholder="จำนวนครั้งต่อปี"
                                    :model.sync="newFarmer.dewormed_amount"
                                    :options.sync="options.dewormed_amount">

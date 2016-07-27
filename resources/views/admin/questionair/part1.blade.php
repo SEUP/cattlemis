@@ -49,7 +49,7 @@
         <!-- sample select -->
         <question-select label="เพศ" :model.sync="newFarmer.sex" :options.sync="options.sex"></question-select>
 
-        <question-text-field label="อายุ" :model.sync="newFarmer.age"></question-text-field>
+        <question-text-field type="number" label="อายุ" :model.sync="newFarmer.age"></question-text-field>
 
         <question-select label="สถานภาพ" :model.sync="newFarmer.personal_status"
                          :options.sync="options.personal_status"></question-select>
@@ -106,7 +106,7 @@
 
     <fieldset id="1.11">
         <legend>1.11 รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)</legend>
-        <question-text-field label="รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)"
+        <question-text-field type="number" label="รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)"
                              :model.sync="newFarmer.avg_cattle_income"></question-text-field>
 
     </fieldset>

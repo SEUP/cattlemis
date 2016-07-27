@@ -95,27 +95,29 @@
 
 
                 </div>
+
+                <alert
+                        :show.sync="showRight"
+                        :duration="3000"
+                        type="success"
+                        dismissable>
+                    <span class="icon-ok-circled alert-icon-float-left"></span>
+                    <strong>Well Done!</strong>
+                    <p>Save Complete</p>
+                </alert>
+
+                <alert
+                        :show.sync="showTop"
+                        :duration="3000"
+                        type="danger"
+                        dismissable>
+                    <span class="icon-info-circled alert-icon-float-left"></span>
+                    <strong>Danger !</strong>
+                    <p>Save Error</p>
+                </alert>
             </affix>
 
-            <alert
-                    :show.sync="showRight"
-                    :duration="3000"
-                    type="success"
-                    dismissable>
-                <span class="icon-ok-circled alert-icon-float-left"></span>
-                <strong>Well Done!</strong>
-                <p>Save Complete</p>
-            </alert>
 
-            <alert
-                    :show.sync="showTop"
-                    :duration="3000"
-                    type="danger"
-                    dismissable>
-                <span class="icon-info-circled alert-icon-float-left"></span>
-                <strong>Danger !</strong>
-                <p>Save Error</p>
-            </alert>
         </div>
     </div>
 

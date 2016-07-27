@@ -10,10 +10,10 @@
             </div>
         </legend>
 
-        <question-text-field label="3.1.1 จำนวนแรงงานภายในครอบครัว" placeholder="จำนวนแรงงานภายในครอบครัว"
+        <question-text-field type="number" label="3.1.1 จำนวนแรงงานภายในครอบครัว" placeholder="จำนวนแรงงานภายในครอบครัว"
                              :model.sync="newFarmer.family_workers_amount">
         </question-text-field>
-        <question-text-field label="3.1.2 จำนวนแรงงานภายนอก" placeholder="จำนวนแรงงานภายนอก"
+        <question-text-field type="number" label="3.1.2 จำนวนแรงงานภายนอก" placeholder="จำนวนแรงงานภายนอก"
                              :model.sync="newFarmer.external_workers_amount">
         </question-text-field>
 
@@ -57,7 +57,8 @@
             <question-multi-checkbox
                     placeholder="จำนวน(ไร่)"
                     :model.sync="newFarmer.sub_own_lands"
-                    :options.sync="options.sub_own_lands">
+                    :options.sync="options.sub_own_lands"
+                    type="number">
 
             </question-multi-checkbox>
 
@@ -75,9 +76,9 @@
         <div class="col-sm-3"></div>
         <div class="form-group col-sm-6" v-if="newFarmer.rent_land.has_text==1">
 
-            <input type="text" v-model="newFarmer.rent_land.pivot.area"
+            <input type="number" v-model="newFarmer.rent_land.pivot.area"
                    class="form-control col-sm-6" placeholder="จำนวน(ไร่)"/>
-            <input type="text" v-model="newFarmer.rent_land.pivot.price"
+            <input type="number" v-model="newFarmer.rent_land.pivot.price"
                    class="form-control col-sm-6" placeholder="ค่าเช่าที่ดิน(บาท/ไร่)"/>
         </div>
     </fieldset>
@@ -100,14 +101,15 @@
             <div class="col-sm-9">
 
                 <label>รวมพื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ (ไร่/ครัวเรือน)</label>
-                <input type="text" v-model="newFarmer.total_use_lands" v-bind:value="sumUseLand()" class="form-control"
+                <input type="number" v-model="newFarmer.total_use_lands" v-bind:value="sumUseLand()"
+                       class="form-control"
                        readonly>
 
 
                 <label class="checkbox" v-for="option in options.sub_use_lands">
                     <input type="checkbox" v-model="newFarmer.sub_use_lands" v-bind:value="option">
                     @{{ option.choice }}:
-                    <input v-if="option.has_text" placeholder="จำนวน(ไร่)" type="text"
+                    <input v-if="option.has_text" placeholder="จำนวน(ไร่)" type="number"
                            class="form-control"
                            v-model="option['pivot']['area']">
                     <template v-if="option.choice == 'พื้นที่ปลูกหญ้า'">

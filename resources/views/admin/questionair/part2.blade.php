@@ -56,7 +56,7 @@
                             @{{ subchild.choice }}:
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <input type="text" v-model="subchild['pivot']['amount']" class="form-control"
+                                    <input type="number" v-model="subchild['pivot']['amount']" class="form-control"
                                            placeholder="จำนวน">
                                 </div>
                                 <div class="col-sm-4">
@@ -64,7 +64,7 @@
                                            placeholder="แหล่งที่มา">
                                 </div>
                                 <div class="col-sm-4">
-                                    <input type="text" v-model="subchild['pivot']['price']" class="form-control"
+                                    <input type="number" v-model="subchild['pivot']['price']" class="form-control"
                                            placeholder="ราคา">
 
                                 </div>
@@ -81,7 +81,7 @@
 
                         <div class="form-group row">
                             <div class="col-sm-4">
-                                <input type="text" v-model="child['pivot']['amount']" class="form-control"
+                                <input type="number" v-model="child['pivot']['amount']" class="form-control"
                                        placeholder="จำนวน">
                             </div>
                             <div class="col-sm-4">
@@ -90,7 +90,7 @@
                             </div>
 
                             <div class="col-sm-4">
-                                <input type="text" v-model="child['pivot']['price']" class="form-control"
+                                <input type="number" v-model="child['pivot']['price']" class="form-control"
                                        placeholder="ราคา">
                             </div>
                         </div>
@@ -106,13 +106,13 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">ค่าใช้จ่ายโดยประมาณ (บาท/เดือน)</label>
             <div class="col-sm-10">
-                <input type="text" v-model="newFarmer.total_expense_amount" class="form-control"
+                <input type="number" v-model="newFarmer.total_expense_amount" class="form-control"
                        placeholder="ค่าใช้จ่ายโดยประมาณ (บาท/เดือน)" readonly>
             </div>
         </div>
-        <question-text-field label="ค่ายา (บาท/เดือน)" placeholder="ค่ายา (บาท/เดือน)"
+        <question-text-field type="number" label="ค่ายา (บาท/เดือน)" placeholder="ค่ายา (บาท/เดือน)"
                              :model.sync="newFarmer.drug_price"></question-text-field>
-        <question-text-field label="ค่าอาหารและแร่ธาตุ (บาท/เดือน)"
+        <question-text-field type="number" label="ค่าอาหารและแร่ธาตุ (บาท/เดือน)"
                              placeholder="ค่าอาหารและแร่ธาตุ (บาท/เดือน)"
                              :model.sync="newFarmer.food_price"></question-text-field>
 
@@ -120,7 +120,7 @@
             <label class="col-sm-2 control-label">อื่นๆ</label>
 
             <div class="col-sm-5">
-                <input type="text" v-model="newFarmer.expense_price" class="form-control"
+                <input type="number" v-model="newFarmer.expense_price" class="form-control"
                        placeholder="ค่าใช้จ่าย (บาท/เดือน)">
             </div>
         </div>

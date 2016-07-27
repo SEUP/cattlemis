@@ -63,6 +63,9 @@ Route::get('multi/choices/{type}', function ($type) {
     }
 
     $chart = [];
+    $chart['tooltip'] = [];
+    $chart['tooltip']['valueSuffix'] = " คน";
+
     $chart['xAxis'] = [];
     $chart['xAxis']['categories'] = $xAxis;
 
@@ -120,6 +123,10 @@ Route::get('range/farm-owner/{type}/{min}/{max}/{step}', function ($type, $min, 
     }
 
     $chart = [];
+    $chart['tooltip'] = [];
+    $chart['tooltip']['valueSuffix'] = " คน";
+
+
     $chart['xAxis'] = [];
     $chart['xAxis']['categories'] = $xAxis;
 
@@ -127,7 +134,7 @@ Route::get('range/farm-owner/{type}/{min}/{max}/{step}', function ($type, $min, 
 
     $chart['series'][] =
         [
-            'name' => 'Quantity',
+            'name' => 'จำนวน',
             'data' => $data
         ];
 
@@ -165,6 +172,8 @@ Route::get('normal/{type}', function ($type) {
 
 
     $chart = [];
+    $chart['tooltip'] = [];
+    $chart['tooltip']['valueSuffix'] = " คน";
     $chart['xAxis'] = [];
     $chart['xAxis']['categories'] = $xAxis;
 
@@ -172,7 +181,7 @@ Route::get('normal/{type}', function ($type) {
 
     $chart['series'][] =
         [
-            'name' => 'Quantity',
+            'name' => 'จำนวน',
             'data' => $data
         ];
 

@@ -54,9 +54,7 @@
                                 overflow: 'justify'
                             }
                         },
-                        tooltip: {
-                            valueSuffix: ' millions'
-                        },
+                        tooltip: self.chartData.tooltip,
                         plotOptions: {
                             bar: {
                                 dataLabels: {
