@@ -79,7 +79,7 @@
             <input type="number" v-model="newFarmer.rent_land.pivot.area"
                    class="form-control col-sm-6" placeholder="จำนวน(ไร่)"/>
             <input type="number" v-model="newFarmer.rent_land.pivot.price"
-                   class="form-control col-sm-6" placeholder="ค่าเช่าที่ดิน(บาท/ไร่)"/>
+                   class="form-control col-sm-6" placeholder="ค่าเช่าที่ดิน(บาท/ไร่/ปี)"/>
         </div>
     </fieldset>
     <fieldset id="3.6">
