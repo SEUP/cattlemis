@@ -22,7 +22,7 @@ use App\Models\User;
 use Symfony\Component\HttpFoundation\Request;
 
 
-class QuestionairController extends Controller
+class QuestionaireController extends Controller
 {
 
     private $namespace = __NAMESPACE__;
@@ -30,13 +30,13 @@ class QuestionairController extends Controller
     public function index()
     {
         $farmOwners = FarmOwner::paginate(20);
-        return view('admin.questionair.search')
+        return view('admin.questionaire.search')
             ->with('farmOwners', $farmOwners);
     }
 
     public function add()
     {
-        return view('admin.questionair.addform');
+        return view('admin.questionaire.addform');
     }
 
     function doAdd(UserCreateRequest $request)
@@ -47,7 +47,7 @@ class QuestionairController extends Controller
     function edit($id)
     {
         $farmOwner = FarmOwner::find($id);
-        return view('admin.questionair.editform')
+        return view('admin.questionaire.editform')
             ->with('farmOwner', $farmOwner);
 
     }
@@ -61,7 +61,7 @@ class QuestionairController extends Controller
     {
         $farmOwner = FarmOwner::find($id);
         $farmOwner->delete();
-        return redirect()->action("\\$this->namespace\\QuestionairController@index")->with("SUCCESS_MESSAGE", ["msg" => "ลบข้อมูลเกษตรเรียบร้อย"]);
+        return redirect()->action("\\$this->namespace\\QuestionaireController@index")->with("SUCCESS_MESSAGE", ["msg" => "ลบข้อมูลเกษตรเรียบร้อย"]);
     }
 
 }

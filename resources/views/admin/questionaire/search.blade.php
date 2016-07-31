@@ -16,7 +16,7 @@
                 <div class="input-group">
                     <input type="text" v-on:keyup.13="search()" class="form-control" placeholder="ค้นหา"
                            v-model="form.keyword">
-                <span class="input-group-btn">
+                    <span class="input-group-btn">
                     <button class="btn btn-primary" type="button" v-on:click="search()">ค้นหา</button>
                 </span>
                 </div>
@@ -37,7 +37,9 @@
                     <td>@{{ owner.person_id }}</td>
                     <td>@{{ owner.first_name }} @{{ owner.last_name }}</td>
                     <td>
-                        <a href="/admin/questionair/@{{owner.id}}/edit" class="btn btn-info">แก้ไข</a>
+                        <a href="/admin/questionaire/@{{owner.id}}/export" target="_blank"
+                           class="btn btn-success">ส่งออก</a>
+                        <a href="/admin/questionaire/@{{owner.id}}/edit" class="btn btn-info">แก้ไข</a>
                         <button v-on:click="deleteFarmOwner(owner.id)"
                                 class="btn btn-danger">ลบ
                         </button>
@@ -85,7 +87,7 @@
                     }
                 },
                 search: function () {
-                    this.$http.get('/api/farm-owner', {params : this.form}).then(
+                    this.$http.get('/api/farm-owner', {params: this.form}).then(
                             function (response) {
 
                                 this.farmOwnerPage = response.data;

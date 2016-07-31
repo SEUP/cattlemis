@@ -29,12 +29,12 @@ Route::get('user/{id}/delete', "UserController@doDelete");
 Route::get('profile', "ProfileController@index");
 Route::post('profile', "ProfileController@doEdit");
 
-//questionair routes
-Route::get('questionair/add', 'QuestionairController@add');
-Route::get('questionair/search', 'QuestionairController@index');
-Route::get('questionair/{id}/edit', "QuestionairController@edit");
-Route::get('questionair/{id}/delete', "QuestionairController@doDelete");
-
+//questionaire routes
+Route::get('questionaire/add', 'QuestionaireController@add');
+Route::get('questionaire/search', 'QuestionaireController@index');
+Route::get('questionaire/{id}/edit', "QuestionaireController@edit");
+Route::get('questionaire/{id}/delete', "QuestionaireController@doDelete");
+Route::get('questionaire/{id}/export', 'QuestionaireController@export');
 //choice
 Route::get('choice', 'ChoiceController@index');
 

@@ -1,58 +1,67 @@
 @extends('admin.layout')
 
 @section('page-wrapper')
+
+
+
+
     <div class="row">
         <div class="col-lg-10">
-            <h1 class="page-header">บันทึกข้อมูลเกษตรกรใหม่</h1>
+            <h1 class="page-header">แก้ไขข้อมูลเกษตรกร</h1>
 
+
+            <input type="hidden" id="newFamer_id" value="{{$farmOwner->id}}"/>
             <div class="row" v-show="isLoaded">
 
                 <div class="col-lg-12">
                     <accordion :one-at-atime="true" v-ref:questionforms>
                         <panel v-ref:panel1 header="ส่วนที่ 1 ข้อมูลพื้นฐานของเกษตรกร" id="panel_1">
-                            @include('admin.questionair.part1')
+                            @include('admin.questionaire.part1')
                         </panel>
                         <panel v-ref:panel2 header="ส่วนที่ 2 ข้อมูลการเลี้ยงและสถานภาพฟาร์ม"
                                id="panel_2">
-                            @include('admin.questionair.part2')
+                            @include('admin.questionaire.part2')
                         </panel>
                         <panel v-ref:panel3 header="ส่วนที่ 3 ข้อมูลแรงงาน พื้นที่ในการเลี้ยง และการจัดการอาหาร"
                                id="panel_3">
-                            @include('admin.questionair.part3')
+                            @include('admin.questionaire.part3')
 
                         </panel>
                         <panel v-ref:panel4 header="ส่วนที่ 4 การผสมพันธ์ุ ประสิทธิภาพการผลิต และการรักษาโรค"
                                id="panel_4">
-                            @include('admin.questionair.part4')
+                            @include('admin.questionaire.part4')
                         </panel>
                         <panel v-ref:panel5 header="ส่วนที่ 5 ข้อมูลแหล่งเงินทุนที่ใช้ในการเลี้ยงโคเนื้อ" id="panel_5">
-                            @include('admin.questionair.part5')
+                            @include('admin.questionaire.part5')
                         </panel>
                         <panel v-ref:panel6
                                header="ส่วนที่ 6 ข้อมูลการตลาด การรวมกลุ่มของสมาชิก(วิสาหกิจชุมชนและสหกรณ์)"
                                id="panel_6">
-                            @include('admin.questionair.part6')
+                            @include('admin.questionaire.part6')
                         </panel>
                         <panel v-ref:panel7 header="ส่วนที่ 7 การได้รับบริการ การส่งเสริมและสนับสนุนจากหน่วยงานต่างๆ"
                                id="panel_7">
-                            @include('admin.questionair.part7')
+                            @include('admin.questionaire.part7')
                         </panel>
                         <panel v-ref:panel8 header="ส่วนที่ 8 ปัญหา อุปสรรค และข้อเสนอแนะ" id="panel_8">
-                            @include('admin.questionair.part8')
+                            @include('admin.questionaire.part8')
                         </panel>
                     </accordion>
                 </div>
-            </div>
-        </div>
 
+            </div>
+
+        </div>
         <div class="col-lg-2">
-            <affix>
+
+            <affix v-show="isLoaded">
                 <div style="margin-top:20px;">
                     <div class="row">
                         <div class="col-lg-12">
                             <button type="button" class="btn btn-primary btn-block" v-on:click="save()">Save</button>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-lg-12">
                             <ul class="list-unstyled">
@@ -83,117 +92,38 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-            </affix>
-        </div>
 
+
+                </div>
+
+                <alert
+                        :show.sync="showRight"
+                        :duration="3000"
+                        type="success"
+                        dismissable>
+                    <span class="icon-ok-circled alert-icon-float-left"></span>
+                    <strong>Well Done!</strong>
+                    <p>Save Complete</p>
+                </alert>
+
+                <alert
+                        :show.sync="showTop"
+                        :duration="3000"
+                        type="danger"
+                        dismissable>
+                    <span class="icon-info-circled alert-icon-float-left"></span>
+                    <strong>Danger !</strong>
+                    <p>Save Error</p>
+                </alert>
+            </affix>
+
+
+        </div>
     </div>
+
 @endsection
 
-
 @section('javascript')
-    <script type="text/javascript" src="/js/admin/questionair/QuestionTextField.js"></script>
-    <script type="text/javascript">
-
-        var app = new AdminApp({
-            el: 'body',
-            components: {
-                'question-text-field': QuestionTextField,
-                'question-textarea-field': QuestionTextAreaField,
-                'question-select': QuestionSelect,
-                'question-select-with-text': QuestionSelectWithText,
-                'question-multi-checkbox': QuestionMultiCheckbox,
-                'province-amphur-district': ProvinceAmphurDistrict,
-            },
-            data: {
-                newFarmer: {},
-                options: {},
-                isLoaded: false,
-            },
-            methods: {
-                showPanel: function (panel, event) {
-                    event.preventDefault();
-                    if (panel.isOpen) {
-
-                    } else {
-                        panel.toggleIsOpen();
-                    }
-                    setTimeout(function () {
-                        window.location = $(event.target).attr('href');
-                    }, 500)
-
-                },
-
-                sumCattle: function (option) {
-                    var sum = 0;
-                    //console.log('option', option);
-
-                    for (var i = 0; i < option.length; i++) {
-                        var objOption = option[i];
-                        //console.log('objOption', objOption);
-                        sum += parseInt(objOption.pivot.amount) ? parseInt(objOption.pivot.amount) : 0;
-                    }
-
-                    return sum;
-                },
-                sumSubChildCattle: function (option) {
-                    var subChildOption = this.newFarmer[option[0].type];
-                    //console.log("sumSubChildCattle", subChildOption);
-                    var sum = 0;
-                    for (var i = 0; i < subChildOption.length; i++) {
-                        var subOption = subChildOption[i];
-                        sum += parseInt(subOption.pivot.amount) ? parseInt(subOption.pivot.amount) : 0;
-                    }
-
-                    return sum;
-
-                },
-                save: function () {
-                    // this.newFarmer["total_master_breeding_types"] = 500;
-                    this.formError = {};
-                    console.log(this.newFarmer);
-                    this.$http.post('/api/farm-owner', this.newFarmer).then(function (response) {
-                        console.log(response.data);
-                        window.location.href = "/admin/questionair/" + response.data.id + '/edit';
-                    }, function (error) {
-                        this.formError = error.data;
-                    })
-                },
-                initial: function () {
-
-                    var self = this;
-
-                    $.ajax({
-                        url: '/api/farm-owner/create',
-                        type: 'get',
-                        dataType: 'json',
-                        async: 'false',
-                        success: function (response) {
-                            self.newFarmer = response;
-                            self.isLoaded = true;
-                        }
-                    })
-
-                    $.ajax({
-                        url: '/api/choice',
-                        type: 'get',
-                        dataType: 'json',
-                        async: 'false',
-                        success: function (response) {
-                            self.options = response;
-                        }
-                    })
-                }
-
-            },
-            created: function () {
-                this.initial();
-            },
-            ready: function () {
-
-            }
-        })
-    </script>
-
-
+    <script type="text/javascript" src="/js/admin/questionaire/QuestionTextField.js"></script>
+    <script type="text/javascript" src="/js/admin/questionaire/edit.js"></script>
 @endsection

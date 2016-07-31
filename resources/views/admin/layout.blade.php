@@ -79,11 +79,11 @@
                     </li>
 
                     <li>
-                        <a href="/admin/questionair/add"><i class="fa fa-plus fa-fw"></i> บันทึกข้อมูลเกษตรกรใหม่</a>
+                        <a href="/admin/questionaire/add"><i class="fa fa-plus fa-fw"></i> บันทึกข้อมูลเกษตรกรใหม่</a>
                     </li>
 
                     <li>
-                        <a href="/admin/questionair/search"><i class="fa fa-search fa-fw"></i> ค้นหาข้อมูลเกษตรกร</a>
+                        <a href="/admin/questionaire/search"><i class="fa fa-search fa-fw"></i> ค้นหาข้อมูลเกษตรกร</a>
                     </li>
                     <li>
                         <a href="/admin/charts/menuchart"><i class="fa fa-bar-chart-o fa-fw"></i> แผนภูมิรายงาน</a>
