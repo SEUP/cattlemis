@@ -89,12 +89,14 @@ Route::get('multi/choices/{type}', function ($type) {
 
 });
 
-Route::get('range/farm-owner/{type}/{min}/{max}/{step}', function ($type, $min, $max, $step) {
+Route::get('range/farm-owner/{type}/{min}/{max}/{numberGroup}', function ($type, $min, $max, $numberGroup) {
 
 //    SELECT SUM(CASE WHEN age_c < 18 THEN 1 ELSE 0 END) AS [Under 18],
 //        SUM(CASE WHEN age_c BETWEEN 18 AND 24 THEN 1 ELSE 0 END) AS [18-24],
 //        SUM(CASE WHEN age_c BETWEEN 25 AND 34 THEN 1 ELSE 0 END) AS [25-34]
 //     FROM contacts
+
+    $step = intval(($max - $min) / $numberGroup);
     $arr = range($min, $max, $step);
 
 
