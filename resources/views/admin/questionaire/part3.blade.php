@@ -112,13 +112,7 @@
                     <input v-if="option.has_text" placeholder="จำนวน(ไร่)" type="number"
                            class="form-control"
                            v-model="option['pivot']['area']">
-                    <template v-if="option.choice == 'พื้นที่ปลูกหญ้า'">
-                        ชนิดหญ้า
-                        <input v-if="option.choice == 'พื้นที่ปลูกหญ้า'" placeholder="ชนิดหญ้า"
-                               type="text"
-                               class="form-control"
-                               v-model="option['pivot']['remark']">
-                    </template>
+
                 </label>
 
             </div>
