@@ -64,4 +64,17 @@ class QuestionaireController extends Controller
         return redirect()->action("\\$this->namespace\\QuestionaireController@index")->with("SUCCESS_MESSAGE", ["msg" => "ลบข้อมูลเกษตรเรียบร้อย"]);
     }
 
+    function export($id)
+    {
+        $pdf = \App::make('dompdf.wrapper');
+
+        $farmOwner = FarmOwner::find($id);
+        $view = view('admin.questionaire.export')
+            ->with("farmOwner", $farmOwner)->render();
+
+        $pdf->loadHTML($view);
+        return $pdf->stream();
+
+    }
+
 }
