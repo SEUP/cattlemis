@@ -4,7 +4,9 @@
             <div class="form-group">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-9">
-                    <input type="text" v-model="newFarmer.total_workers_amount" class="form-control"
+                    <input type="text" v-model="newFarmer.total_workers_amount"
+                           v-bind:value="sumWorkers()"
+                           class="form-control"
                            readonly>
                 </div>
             </div>
@@ -176,8 +178,11 @@
                 <input v-if="option.choice=='ฟางข้าวหรือเปลือกข้าวโพดหมักหรือปรุงแต่ง'"
                        placeholder="เก็บไว้ในบ่อเก็บขนาดยาว(เมตร)" type="text" class="form-control"
                        v-model="option['pivot']['height']">
+                <templace v-if="option.choice=='ฟางข้าวหรือเปลือกข้าวโพดหมักหรือปรุงแต่ง'">
+                <label><b>หรือ</b></label>
+                </templace>
                 <input v-if="option.choice=='ฟางข้าวหรือเปลือกข้าวโพดหมักหรือปรุงแต่ง'"
-                       placeholder="หรือ ถังหมัก จำนวน(ถัง)" type="text" class="form-control"
+                       placeholder="ถังหมัก จำนวน(ถัง)" type="text" class="form-control"
                        v-model="option['pivot']['amount']">
             </label>
         </div>

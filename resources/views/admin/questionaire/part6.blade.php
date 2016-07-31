@@ -29,11 +29,12 @@
                 <label class="checkbox" v-for="option in options.group_joins">
                     <input type="checkbox" v-model="newFarmer.group_joins" v-bind:value="option">
                     @{{ option.choice }}:
-                    <input placeholder="ชื่อกลุ่มวืสาหกิจชุมชน/ชื่อสหกรณ์โคเนื้อ"
+                    <input placeholder="ชื่อกลุ่มวิสาหกิจชุมชน/ชื่อสหกรณ์โคเนื้อ"
                            type="text" class="form-control"
                            v-model="option['pivot']['remark']">
-                    <input placeholder="เข้าร่วมเมื่อ"
-                           type="text" class="form-control"
+                    <label><b>เข้าร่วมเมื่อ:</b></label>
+                    <input
+                           type="date" class="form-control"
                            v-model="option['pivot']['joined']">
                 </label>
             </div>

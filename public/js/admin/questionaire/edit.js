@@ -34,6 +34,13 @@ var app = new AdminApp({
             }, 500)
 
         },
+        sumWorkers: function () {
+            var newFarmer = this.newFarmer;
+                var sum = 0;
+                        sum = (parseInt(newFarmer.family_workers_amount)? parseInt(newFarmer.family_workers_amount) : 0)
+                        + (parseInt(newFarmer.external_workers_amount)? parseInt(newFarmer.external_workers_amount) : 0);
+            return sum;
+        },
         sumOwnLand: function () {
             var newFarmer = this.newFarmer;
             if (newFarmer.own_land.children.length == 0) {

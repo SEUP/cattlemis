@@ -85,7 +85,7 @@ class CreateFarmTbl extends Migration
             //part5 remark rate amount
             $table->integer('rate')->nullable();
             //part6 remark joined duration
-            $table->string('joined')->nullable();
+            $table->date('joined')->nullable();
             //$table->string('duration')->nullable();
             $table->string('age_range_sale')->nullable();
             $table->string('price_range_sale')->nullable();
