@@ -246,7 +246,8 @@ var QuestionMultiCheckbox = Vue.extend({
     <div class="col-sm-9">
         <label class="checkbox" v-for="option in options">
             <input type="checkbox" v-model="model" v-bind:value="option">
-                {{ option.choice }}:
+                {{ option.choice }}
+                <template v-if="option.has_text">:</template>
                 <input type="{{type}}" v-if="option.has_text" placeholder="{{placeholder}}" type="text" class="form-control"
                        v-model="option['pivot']['remark']">
         </label>
