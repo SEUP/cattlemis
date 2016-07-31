@@ -80,7 +80,7 @@ class FarmOwner extends Model
         'abortion', 'tuberculosis', 'foot_mouth_disease',
 
         //part3
-        'own_land', 'rent_land', 'use_land', 'minerals_feed', 'feedstock',
+        'own_land', 'rent_land', 'use_land', 'minerals_feed', 'feedstock', 'sub_minerals_feed',
         'water_source_types', 'take_care_types',
         'sub_own_lands', 'sub_use_lands',
         'feed_types', 'feed_sources', 'feedstock_types',
@@ -437,6 +437,12 @@ class FarmOwner extends Model
     public function minerals_feed()
     {
         return $this->choices()->where('type', '=', 'minerals_feed');
+
+    }
+
+    public function sub_minerals_feed()
+    {
+        return $this->choices()->where('type', '=', 'sub_minerals_feed');
 
     }
 
@@ -1037,6 +1043,16 @@ class FarmOwner extends Model
     public function getMineralsFeedAttribute()
     {
         $value = $this->minerals_feed()->first();
+        if ($value) {
+            return $value;
+        } else {
+            return [];
+        }
+    }
+
+    public function getSubMineralsFeedAttribute()
+    {
+        $value = $this->sub_minerals_feed()->first();
         if ($value) {
             return $value;
         } else {

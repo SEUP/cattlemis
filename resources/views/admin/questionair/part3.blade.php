@@ -148,7 +148,7 @@
 
         </question-select>
 
-        <div class="form-group" v-if="newFarmer.minerals_feed.children.length!=0">
+        <div class="form-group" v-show="newFarmer.minerals_feed.children.length!=0">
             <question-select label="ความถี่การให้แร่ธาตุก้อน"
                              :model.sync="newFarmer.sub_minerals_feed"
                              :options.sync="options.sub_minerals_feed">

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2016 at 04:42 PM
+-- Generation Time: Jul 31, 2016 at 04:53 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 5.5.33
 
@@ -321,19 +321,20 @@ INSERT INTO `choices` (`id`, `choice`, `type`, `has_text`, `parent_id`, `created
 (278, '400-600 กิโลกรัม', 'weight_range_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
 (279, '600-800 กิโลกรัม', 'weight_range_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
 (280, 'มากกว่า 800 กิโลกรัม', 'weight_range_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
-(281, '10,000-20,000 บาท/ตัว', 'price_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
-(282, '20,000-30,000 บาท/ตัว', 'price_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
-(283, '30,000-40,000 บาท/ตัว', 'price_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
-(284, '40,000-50,000 บาท/ตัว', 'price_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
-(285, '50,000-60,000 บาท/ตัว', 'price_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
-(286, 'มากกว่า 60,000 บาท/ตัว', 'price_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
-(287, '1 ปี', 'age_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
-(288, '2 ปี', 'age_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
-(289, '3 ปี', 'age_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
-(290, '4 ปี', 'age_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
-(291, '5 ปี', 'age_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
-(292, '6 ปี', 'age_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
-(293, 'มากกว่า 6 ปี', 'age_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33');
+(281, 'น้อยกว่า 10,000 บาท/ตัว', 'price_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
+(282, '10,000-20,000 บาท/ตัว', 'price_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
+(283, '20,000-30,000 บาท/ตัว', 'price_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
+(284, '30,000-40,000 บาท/ตัว', 'price_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
+(285, '40,000-50,000 บาท/ตัว', 'price_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
+(286, '50,000-60,000 บาท/ตัว', 'price_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
+(287, 'มากกว่า 60,000 บาท/ตัว', 'price_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
+(288, '1 ปี', 'age_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
+(289, '2 ปี', 'age_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
+(290, '3 ปี', 'age_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
+(291, '4 ปี', 'age_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
+(292, '5 ปี', 'age_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
+(293, '6 ปี', 'age_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33'),
+(294, 'มากกว่า 6 ปี', 'age_breeding_sale', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33');
 
 --
 -- Indexes for dumped tables
@@ -353,7 +354,7 @@ ALTER TABLE `choices`
 -- AUTO_INCREMENT for table `choices`
 --
 ALTER TABLE `choices`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=294;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=295;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
