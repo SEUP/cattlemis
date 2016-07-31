@@ -107,7 +107,7 @@
             <label class="col-sm-2 control-label">ค่าใช้จ่ายโดยประมาณ (บาท/เดือน)</label>
             <div class="col-sm-10">
                 <input type="number" v-model="newFarmer.total_expense_amount" class="form-control"
-                       placeholder="ค่าใช้จ่ายโดยประมาณ (บาท/เดือน)" readonly>
+                       placeholder="ค่าใช้จ่ายโดยประมาณ (บาท/เดือน)" >
             </div>
         </div>
         <question-text-field type="number" label="ค่ายา (บาท/เดือน)" placeholder="ค่ายา (บาท/เดือน)"

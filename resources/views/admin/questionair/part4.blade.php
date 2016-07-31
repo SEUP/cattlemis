@@ -91,7 +91,7 @@
                                 <div class="form-group">
                                     <div class="col-sm-12 col-md-6">
                                         <label>จำนวนครั้ง/ปี</label>
-                                        <input placeholder="" type="text"
+                                        <input placeholder="" type="number"
                                                class="form-control"
                                                v-model="option['pivot']['amount']">
                                     </div>
