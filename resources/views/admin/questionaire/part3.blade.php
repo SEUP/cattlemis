@@ -95,6 +95,7 @@
                     <option v-for="option in options.use_land"
                             v-bind:value="option">@{{ option.choice }}</option>
                 </select>
+
             </div>
         </div>
 
@@ -115,7 +116,17 @@
                            class="form-control"
                            v-model="option['pivot']['area']">
 
+                    <template v-if="option.choice == 'พื้นที่ปลูกหญ้า'">
+                        ชนิดหญ้า:
+                        <input v-if="option.choice == 'พื้นที่ปลูกหญ้า'" placeholder="ชนิดหญ้า"
+                               type="text"
+                               class="form-control"
+                               v-model="option['pivot']['remark']">
+                    </template>
+
                 </label>
+
+
 
             </div>
 
@@ -179,7 +190,7 @@
                        placeholder="เก็บไว้ในบ่อเก็บขนาดยาว(เมตร)" type="text" class="form-control"
                        v-model="option['pivot']['height']">
                 <templace v-if="option.choice=='ฟางข้าวหรือเปลือกข้าวโพดหมักหรือปรุงแต่ง'">
-                <label><b>หรือ</b></label>
+                    <label><b>หรือ</b></label>
                 </templace>
                 <input v-if="option.choice=='ฟางข้าวหรือเปลือกข้าวโพดหมักหรือปรุงแต่ง'"
                        placeholder="ถังหมัก จำนวน(ถัง)" type="text" class="form-control"

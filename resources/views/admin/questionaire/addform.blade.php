@@ -124,6 +124,14 @@
 
                 },
 
+                sumWorkers: function () {
+                    var newFarmer = this.newFarmer;
+                    var sum = 0;
+                    sum = (parseInt(newFarmer.family_workers_amount)? parseInt(newFarmer.family_workers_amount) : 0)
+                            + (parseInt(newFarmer.external_workers_amount)? parseInt(newFarmer.external_workers_amount) : 0);
+                    return sum;
+                },
+
                 sumCattle: function (option) {
                     var sum = 0;
                     //console.log('option', option);
