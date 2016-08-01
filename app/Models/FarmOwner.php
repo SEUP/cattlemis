@@ -97,10 +97,10 @@ class FarmOwner extends Model
         'budget_source', 'loan_types',
 
         //part6
-        'age_sale','weight_range_sale',
+        'age_sale', 'weight_range_sale',
         'seller_types', 'cattle_sale_methods', 'group_joins',
         'group_join_future', 'cooperative_help_types', 'feed_purchase_cooperative',
-        'cattle_sales','sale_satisfaction',
+        'cattle_sales', 'sale_satisfaction',
 
         //part7
         'support_sources', 'support_visit', 'production_support', 'cattle_heath_support',
@@ -109,6 +109,19 @@ class FarmOwner extends Model
     ];
 
     //relationships to choices
+
+    public function district_house()
+    {
+        return $this->belongsTo(District::class, "house_district");
+    }
+
+    public function amphur_house(){
+        return $this->belongsTo(Amphur::class, "house_amphur");
+    }
+
+    public function province_house(){
+        return $this->belongsTo(Province::class, "house_province");
+    }
 
     public function sexes()
     {
@@ -1248,6 +1261,7 @@ class FarmOwner extends Model
             return [];
         }
     }
+
     public function getWeightRangeSaleAttribute()
     {
         $value = $this->weight_range_sale()->first();

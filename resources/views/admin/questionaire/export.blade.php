@@ -72,6 +72,18 @@
         {{$farmOwner->person_id}}
     </div>
 
+    <div class="line-report">
+        <label class="header"> ที่อยู่ตามสำเนาทะเบียนบ้าน: </label>
+        <b>บ้านเลขที่ </b>{{$farmOwner->house_no or '-'}}
+        <b>หมู่ </b>{{$farmOwner->house_moo or '-'}}
+        <b>ตำบล </b>{{$farmOwner->district_house->DISTRICT_NAME or '-'}}
+        <b>อำเภอ </b>{{$farmOwner->amphur_house->AMPHUR_NAME or '-'}}
+        <b>จังหวัด </b>{{$farmOwner->province_house->PROVINCE_NAME or '-'}}
+        <b>รหัสไปรษณีย์ </b>{{$farmOwner->house_postcode or '-'}}
+        <b>โทรศัพท์บ้าน </b>{{$farmOwner->house_phone or '-'}}
+        <b>โทรศัพท์มือถือ </b>{{$farmOwner->mobile_no or '-'}}
+
+    </div>
 </div>
 
 </body>
