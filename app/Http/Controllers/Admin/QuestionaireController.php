@@ -24,7 +24,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class QuestionaireController extends Controller
 {
-
     private $namespace = __NAMESPACE__;
 
     public function index()
@@ -49,7 +48,6 @@ class QuestionaireController extends Controller
         $farmOwner = FarmOwner::find($id);
         return view('admin.questionaire.editform')
             ->with('farmOwner', $farmOwner);
-
     }
 
     function doEdit(Request $request, $id)
@@ -74,7 +72,6 @@ class QuestionaireController extends Controller
 
         $pdf->loadHTML($view);
         return $pdf->stream();
-
     }
 
 }
