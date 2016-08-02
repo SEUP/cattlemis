@@ -41,7 +41,7 @@
     </div>
 
     <div class="line-report">
-        <label class="header"> เพศ: </label>{{$farmOwner->sex->choice}}
+        <label class="header"> เพศ: </label>{{$farmOwner->sex? $farmOwner->sex->choice : '-'}}
     </div>
 
     <div class="line-report">
