@@ -14,7 +14,7 @@
 
 Route::get('/', function () {
     if (Auth::user()) {
-        return "index";
+        return redirect("/admin");
     } else {
         return redirect('/login');
     }

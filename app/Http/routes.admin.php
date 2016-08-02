@@ -13,7 +13,8 @@
 
 
 Route::get('/', function () {
-    return view('admin.dashboard');
+//    return view('admin.dashboard');
+    return redirect()->action("Admin\\QuestionaireController@index");
 });
 
 //user routes
