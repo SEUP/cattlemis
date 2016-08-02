@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Chaow Porkaew</title>
+    <title>ระบบฐานข้อมูลเกษตรกรผู้เลี้ยงโคเนื้อ 4 จังหวัด</title>
 
     <link rel="stylesheet" href="/css/vendor.sass.css">
     <link rel="stylesheet" href="/css/vendor.less.css">
