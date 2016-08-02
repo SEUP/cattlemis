@@ -60,7 +60,7 @@
 
 </head>
 <body>
-<h1 class="text-center">แบบสอบถาม เกษตรกร</h1>
+<h1 class="text-center">แบบสอบถามเกษตรกรผู้เลี้ยงโคเนื้อ</h1>
 <div>
     <h2>ส่วนที่ 1 ข้อมูลพื้นฐานของเกษตรกร</h2>
     <div class="line-report">
@@ -74,15 +74,38 @@
 
     <div class="line-report">
         <label class="header"> ที่อยู่ตามสำเนาทะเบียนบ้าน: </label>
-        <b>บ้านเลขที่ </b>{{$farmOwner->house_no or '-'}}
-        <b>หมู่ </b>{{$farmOwner->house_moo or '-'}}
-        <b>ตำบล </b>{{$farmOwner->district_house->DISTRICT_NAME or '-'}}
-        <b>อำเภอ </b>{{$farmOwner->amphur_house->AMPHUR_NAME or '-'}}
-        <b>จังหวัด </b>{{$farmOwner->province_house->PROVINCE_NAME or '-'}}
-        <b>รหัสไปรษณีย์ </b>{{$farmOwner->house_postcode or '-'}}
-        <b>โทรศัพท์บ้าน </b>{{$farmOwner->house_phone or '-'}}
-        <b>โทรศัพท์มือถือ </b>{{$farmOwner->mobile_no or '-'}}
+        <div style="text-indent: 5%;">
+            <b>เลขที่ </b>{{$farmOwner->house_no or '-'}}
+            <b>หมู่ </b>{{$farmOwner->house_moo or '-'}}
+            <b>ตำบล </b>{{$farmOwner->district_house->DISTRICT_NAME or '-'}}
+            <b>อำเภอ </b>{{$farmOwner->amphur_house->AMPHUR_NAME or '-'}}
+            <b>จังหวัด </b>{{$farmOwner->province_house->PROVINCE_NAME or '-'}}
+            <b>รหัสไปรษณีย์ </b>{{$farmOwner->house_postcode or '-'}}
+            <b>โทรศัพท์บ้าน </b>{{$farmOwner->house_phone or '-'}}
+            <b>โทรศัพท์มือถือ </b>{{$farmOwner->mobile_no or '-'}}
+        </div>
 
+
+    </div>
+
+    <div class="line-report">
+        <label class="header"> ที่อยู่ฟาร์ม: </label><br/>
+        <div style="text-indent: 5%;">
+            <b>เลขที่ </b>{{$farmOwner->farm_no or '-'}}
+            <b>หมู่ </b>{{$farmOwner->farm_moo or '-'}}
+            <b>ตำบล </b>{{$farmOwner->district_farm->DISTRICT_NAME or '-'}}
+            <b>อำเภอ </b>{{$farmOwner->amphur_farm->AMPHUR_NAME or '-'}}
+            <b>จังหวัด </b>{{$farmOwner->province_farm->PROVINCE_NAME or '-'}}
+        </div>
+    </div>
+
+
+    <div class="line-report">
+        <label class="header"> เพศ: </label>{{$farmOwner->sex->choice}}
+    </div>
+
+    <div class="line-report">
+        <label class="header"> อายุ: </label>{{$farmOwner->age}} ปี
     </div>
 </div>
 

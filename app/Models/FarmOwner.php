@@ -123,6 +123,19 @@ class FarmOwner extends Model
         return $this->belongsTo(Province::class, "house_province");
     }
 
+    public function district_farm()
+    {
+        return $this->belongsTo(District::class, "farm_district");
+    }
+
+    public function amphur_farm(){
+        return $this->belongsTo(Amphur::class, "farm_amphur");
+    }
+
+    public function province_farm(){
+        return $this->belongsTo(Province::class, "farm_province");
+    }
+
     public function sexes()
     {
         return $this->belongsToMany(Choice::class)->where('type', '=', 'sex');
