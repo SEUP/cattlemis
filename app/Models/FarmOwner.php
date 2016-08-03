@@ -610,7 +610,7 @@ class FarmOwner extends Model
     {
         return $this->choices()
             ->withPivot('price')
-            ->where('type', '=', 'water_source_types');
+            ->where('type', '=', 'cattle_dung_uses');
     }
 
     //part5

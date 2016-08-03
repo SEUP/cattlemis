@@ -35,7 +35,7 @@ class FarmOwnerController extends Controller
             'budget_source',
 
             //part6
-            'age_sale','weight_range_sale',
+            'age_sale', 'weight_range_sale',
             'group_join_future', 'feed_purchase_cooperative',
             'sale_satisfaction',
 
@@ -164,14 +164,16 @@ class FarmOwnerController extends Controller
     {
         $query = FarmOwner::query();
 
+
         if ($request->has('keyword')) {
             $keyword = $request->get('keyword');
             $query->where('person_id', 'like', "%$keyword%");
             $query->orWhere('first_name', 'like', "%$keyword%");
             $query->orWhere('last_name', 'like', "%$keyword%");
         }
-
+        $query->select(['id','first_name', 'last_name','person_id']);
         $farmOwners = $query->paginate(20);
+
         return $farmOwners;
     }
 

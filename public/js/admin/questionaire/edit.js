@@ -36,9 +36,9 @@ var app = new AdminApp({
         },
         sumWorkers: function () {
             var newFarmer = this.newFarmer;
-                var sum = 0;
-                        sum = (parseInt(newFarmer.family_workers_amount)? parseInt(newFarmer.family_workers_amount) : 0)
-                        + (parseInt(newFarmer.external_workers_amount)? parseInt(newFarmer.external_workers_amount) : 0);
+            var sum = 0;
+            sum = (parseInt(newFarmer.family_workers_amount) ? parseInt(newFarmer.family_workers_amount) : 0)
+                + (parseInt(newFarmer.external_workers_amount) ? parseInt(newFarmer.external_workers_amount) : 0);
             return sum;
         },
         sumOwnLand: function () {
@@ -68,13 +68,32 @@ var app = new AdminApp({
             }
         },
         sumBudget: function () {
-            var budgetSourcePrice = parseFloat(this.newFarmer['budget_source']['pivot']['amount'], 0);
+            var budgetSourcePrice = 0;
+            if (this.newFarmer['budget_source']['has_text']) {
+                budgetSourcePrice = parseFloat(this.newFarmer['budget_source']['pivot']['amount']);
+            }
+
             var loneTypesSum = 0;
-            for (var i = 0; i < this.newFarmer.loan_types.length; i++) {
-                var loneType = this.newFarmer.loan_types[i];
-                loneTypesSum += parseFloat(
-                    loneType.pivot.amount, 0
-                )
+            try {
+
+
+                for (var i = 0; i < this.newFarmer.loan_types.length; i++) {
+                    var loneType = this.newFarmer.loan_types[i];
+                    var amount = 0;
+                    if (loneType.hasOwnProperty('pivot')) {
+                        amount = parseFloat(loneType.pivot.amount)
+                    } else {
+                        Vue.set(loneType, 'pivot', {
+                            amount: 0
+                        })
+                    }
+                    if (amount) {
+                        loneTypesSum += amount;
+                    }
+
+                }
+            } catch (e) {
+                console.log(e);
             }
             var sum = 0;
             sum += budgetSourcePrice;
