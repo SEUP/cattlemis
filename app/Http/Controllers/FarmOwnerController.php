@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\FarmOwnerRequest;
+use Illuminate\Support\Facades\DB;
 
 class FarmOwnerController extends Controller
 {
@@ -162,7 +163,7 @@ class FarmOwnerController extends Controller
 
     public function index(Request $request)
     {
-        $query = FarmOwner::query();
+        $query = DB::table('farm_owners');
 
 
         if ($request->has('keyword')) {
