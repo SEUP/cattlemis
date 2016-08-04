@@ -51,7 +51,7 @@
                         },
                         tooltip: self.chartData.tooltip,
                         plotOptions: {
-                            bar: {
+                            column: {
                                 dataLabels: {
                                     enabled: true
                                 }

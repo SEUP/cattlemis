@@ -47,8 +47,7 @@
                         yAxis: {
                             min: 0,
                             title: {
-                                text: 'Population (millions)',
-                                align: 'high'
+                                text: self.chartTitle,
                             },
                             labels: {
                                 overflow: 'justify'
@@ -56,7 +55,7 @@
                         },
                         tooltip: self.chartData.tooltip,
                         plotOptions: {
-                            bar: {
+                            column: {
                                 dataLabels: {
                                     enabled: true
                                 }
