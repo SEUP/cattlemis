@@ -29,6 +29,7 @@
             methods: {
                 displayChart: function () {
                     var self = this;
+
                     $('#container').highcharts({
                         chart: {
                             plotBackgroundColor: null,
@@ -39,19 +40,19 @@
                         title: {
                             text: self.chartTitle,
                         },
-                        tooltip: self.chartData.tooltip,
+                        //tooltip: self.chartData.tooltip,
                         plotOptions: {
+
                             pie: {
                                 allowPointSelect: true,
                                 cursor: 'pointer',
                                 dataLabels: {
                                     enabled: true
                                 },
-                                showInLegend: true
+
                             }
                         }
                         ,
-
                         series: self.chartData.series,
                     });
 

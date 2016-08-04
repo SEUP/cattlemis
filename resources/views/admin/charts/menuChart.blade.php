@@ -68,8 +68,8 @@
                         <div id="collapse4" class="panel-collapse collapse in">
                             <div class="panel-body">
                                 <li><a href="normal/การผสมพันธุ์โคเนื้อในฟาร์ม/farm_breeding_type">การผสมพันธุ์โคเนื้อในฟาร์ม</a></li>
-                                <li><a href="normal/แหล่งน้ำเชื้อการผสมเทียท/inseminate_sources">แหล่งน้ำเชื้อการผสมเทียท</a></li>
-                                <li><a href="normal/ผู้ให้บริการผสมเทียท/breeders">ผู้ให้บริการผสมเทียท</a></li>
+                                <li><a href="normal/แหล่งน้ำเชื้อการผสมเทียท/inseminate_sources">แหล่งน้ำเชื้อการผสมเทียม</a></li>
+                                <li><a href="normal/ผู้ให้บริการผสมเทียท/breeders">ผู้ให้บริการผสมเทียม</a></li>
                                 <li><a href="range-farmowner/อัตราส่วนพ่อพันธ์คุมฝูง/breeding_rate/5/10/3">อัตราส่วนพ่อพันธ์คุมฝูง</a></li>
                                 <li><a href="#collaps1">วัคซีนป้องกันโรค</a></li>
                                 <li><a href="#collaps1">การจัดการมูลโคในฟาร์ม</a></li>

@@ -232,28 +232,30 @@ Route::get('pie/{type}', function ($type) {
 
     $results = $query->get();
 
-    return $results;
 
     $data = [];
-    $xAxis = [];
+
     foreach ($results as $result) {
-        $data[] = $result->user_count;
-        $xAxis[] = $result->choice;
+        $each = new stdClass();
+        $each->name = $result->choice;
+        $each->y = $result->user_count;
+
+        $data[] = $each;
     }
+
 
 
     $chart = [];
     $chart['tooltip'] = [];
-    $chart['tooltip']['valueSuffix'] = " คน";
-    $chart['xAxis'] = [];
-    $chart['xAxis']['categories'] = $xAxis;
+    $chart['tooltip']['pointFormat'] = "{series.name}: <b>{point.percentage:.1f}%</b>";
 
     $chart['series'] = [];
 
     $chart['series'][] =
         [
-            'name' => 'จำนวน',
-            'data' => $data
+            "name" => $type,
+            "colorByPoint" => true,
+            "data" => $data
         ];
 
     return $chart;
