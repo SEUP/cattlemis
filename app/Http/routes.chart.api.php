@@ -102,7 +102,7 @@ Route::get('range/farm-owner/{type}/{min}/{max}/{numberGroup}', function ($type,
 
     $query = DB::table('farm_owners');
 
-    $query->addSelect(DB::raw("SUM(IF($type < $min,1,0)) as 'below $min'"));
+    $query->addSelect(DB::raw("SUM(IF($type < $min,1,0)) as 'ต่ำกว่า $min'"));
 
     for ($i = 0; $i < sizeof($arr) - 1; $i++) {
         $low = $arr[$i];
@@ -113,7 +113,7 @@ Route::get('range/farm-owner/{type}/{min}/{max}/{numberGroup}', function ($type,
 
     $max = $arr[sizeof($arr) - 1];
 
-    $query->addSelect(DB::raw("SUM(IF($type > $max,1,0)) as 'over $max'"));
+    $query->addSelect(DB::raw("SUM(IF($type > $max,1,0)) as 'สูงกว่า $max'"));
 
 
     $results = $query->get()[0];
