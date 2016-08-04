@@ -28,6 +28,7 @@
                 <tr>
                     <th class="col-md-3">รหัสประจำตัวประชาชน</th>
                     <th>ชื่อ - นามสกุล</th>
+                    <th>เวลา</th>
                     <th class="col-md-3">การจัดการ</th>
                 </tr>
                 </thead>
@@ -36,6 +37,7 @@
                 <tr v-for="owner in farmOwners">
                     <td>@{{ owner.person_id }}</td>
                     <td>@{{ owner.first_name }} @{{ owner.last_name }}</td>
+                    <td>@{{ owner.updated_at }}</td>
                     <td>
                         <a href="/admin/questionaire/@{{owner.id}}/export" target="_blank"
                            class="btn btn-success">ส่งออก</a>

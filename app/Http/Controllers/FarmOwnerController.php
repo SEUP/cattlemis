@@ -172,8 +172,9 @@ class FarmOwnerController extends Controller
             $query->orWhere('first_name', 'like', "%$keyword%");
             $query->orWhere('last_name', 'like', "%$keyword%");
         }
-        $query->select(['id','first_name', 'last_name','person_id']);
-        $farmOwners = $query->paginate(20);
+        $query->select(['id','first_name', 'last_name','person_id','updated_at']);
+        $query->orderBy('updated_at','desc');
+        $farmOwners = $query->paginate(12);
 
         return $farmOwners;
     }
