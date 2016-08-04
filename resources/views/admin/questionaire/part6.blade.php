@@ -34,8 +34,8 @@
                            v-model="option['pivot']['remark']">
                     <label><b>เข้าร่วมเมื่อ:</b></label>
                     <input
-                           type="date" class="form-control"
-                           v-model="option['pivot']['joined']">
+                           type="text" class="form-control"
+                           v-model="option['pivot']['source']">
                 </label>
             </div>
         </div>

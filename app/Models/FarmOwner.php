@@ -115,11 +115,13 @@ class FarmOwner extends Model
         return $this->belongsTo(District::class, "house_district");
     }
 
-    public function amphur_house(){
+    public function amphur_house()
+    {
         return $this->belongsTo(Amphur::class, "house_amphur");
     }
 
-    public function province_house(){
+    public function province_house()
+    {
         return $this->belongsTo(Province::class, "house_province");
     }
 
@@ -128,11 +130,13 @@ class FarmOwner extends Model
         return $this->belongsTo(District::class, "farm_district");
     }
 
-    public function amphur_farm(){
+    public function amphur_farm()
+    {
         return $this->belongsTo(Amphur::class, "farm_amphur");
     }
 
-    public function province_farm(){
+    public function province_farm()
+    {
         return $this->belongsTo(Province::class, "farm_province");
     }
 
@@ -665,7 +669,7 @@ class FarmOwner extends Model
     {
         //return $this->belongsToMany(Choice::class)
         return $this->choices()
-            ->withPivot(['remark', 'joined'])
+            ->withPivot(['remark', 'source'])
             ->where('type', '=', 'group_joins');
     }
 
