@@ -28,6 +28,6 @@ class Choice extends Model
 
     public function getChildrenAttribute()
     {
-        return $this->children()->get();
+        return $this->children()->orderBy('order','asc')->get();
     }
 }
