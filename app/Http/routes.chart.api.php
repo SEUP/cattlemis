@@ -40,7 +40,18 @@ Route::get('test', function () {
     return $arr;
 });
 
+
+
 Route::get('multi/choices/{type}', function ($type) {
+
+    //fix data tables
+    $translate = [
+        "abortion" => "โรคแท้งติดต่อ",
+        "tuberculosis" => "โรควัณโรค",
+        "foot_mouth_disease" => "โรคปากและเท้าเปื่อย",
+
+    ];
+
     $choices = explode(",", $type);
 
     $query = DB::table('choices');
@@ -59,7 +70,12 @@ Route::get('multi/choices/{type}', function ($type) {
 
     $xAxis = [];
     foreach ($choices as $choice) {
-        $xAxis[] = $choice;
+
+        if (array_has($translate,$choice)){
+            $xAxis[] = $translate[$choice];
+        }else {
+            $xAxis[] = $choice;
+        }
     }
 
     $chart = [];
@@ -72,6 +88,7 @@ Route::get('multi/choices/{type}', function ($type) {
     foreach ($results as $key => $value) {
 
         $name = $key;
+
         $data = [];
         foreach ($value as $v) {
             $data[] = $v->user_count;
@@ -79,7 +96,7 @@ Route::get('multi/choices/{type}', function ($type) {
 
         $chart['series'][] =
             [
-                'name' => $key,
+                'name' => $name,
                 'data' => $data,
                // 'colorByPoint' => true,
             ];
