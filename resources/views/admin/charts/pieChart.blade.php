@@ -31,52 +31,34 @@
                     var self = this;
                     $('#container').highcharts({
                         chart: {
-                            type: 'column'
+                            plotBackgroundColor: null,
+                            plotBorderWidth: null,
+                            plotShadow: false,
+                            type: 'pie'
                         },
                         title: {
                             text: self.chartTitle,
                         },
-                        xAxis: {
-                            categories: self.chartData.xAxis.categories,
-                        },
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: self.chartTitle,
-                            },
-                            labels: {
-                                overflow: 'justify'
-                            }
-                        },
                         tooltip: self.chartData.tooltip,
                         plotOptions: {
-                            column: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
                                 dataLabels: {
                                     enabled: true
-                                }
+                                },
+                                showInLegend: true
                             }
-                        },
-                        legend: {
-                            layout: 'vertical',
-                            align: 'right',
-                            verticalAlign: 'top',
-                            x: -40,
-                            y: 80,
-                            floating: true,
-                            borderWidth: 1,
-                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                            shadow: true
-                        },
-                        credits: {
-                            enabled: false
-                        },
+                        }
+                        ,
+
                         series: self.chartData.series,
                     });
 
                 }
                 ,
                 loadData: function () {
-                    this.$http.get('/chart/multi/choices/' + this.chartType).then(function (r) {
+                    this.$http.get('/chart/pie/' + this.chartType).then(function (r) {
                         data = r.data;
                         this.chartData = data;
                         this.displayChart();
