@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 INSERT INTO `choices` (`id`, `choice`, `type`, `has_text`, `parent_id`, `created_at`, `updated_at`) VALUES
-(295, 'กรมปศุสัตว์', 'support_sources', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33');
+(295, 'กรมส่งเสริมการเกษตร', 'support_sources', 0, NULL, '2016-06-23 21:36:33', '2016-06-23 21:36:33');
 --
 -- Indexes for dumped tables
 --
