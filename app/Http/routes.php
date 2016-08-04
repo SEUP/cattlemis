@@ -54,7 +54,7 @@ Route::resource('/api/thailand/province.amphure', "ProvinceAmphureController");
 Route::resource('/api/thailand/province.amphure.district', "ProvinceAmphurDistrictController");
 
 Route::get('/api/choice', function () {
-    $choices = \App\Models\Choice::with([])->get()->groupBy("type");
+    $choices = \App\Models\Choice::with([])->orderBy('order','asc')->orderBy('id','asc')->get()->groupBy('type');
     return $choices;
 });
 
