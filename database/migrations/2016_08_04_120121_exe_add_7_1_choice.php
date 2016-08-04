@@ -12,6 +12,9 @@ class ExeAdd71Choice extends Migration
      */
     public function up()
     {
+        Schema::table('choices', function ($table) {
+            $table->integer('order');
+        });
         DB::unprepared(file_get_contents(resource_path("assets/sql/add_7_1_choice.sql")));
     }
 
