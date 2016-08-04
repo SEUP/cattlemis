@@ -127,9 +127,9 @@
                     @{{ option.choice }}:
                     <input v-if="option.has_text" placeholder="บาท/ปี" type="text" class="form-control"
                            v-model="option['pivot']['price']">
-                    <select class="form-control" v-if="option.children.length > 0"
+                    <select class="form-control" v-show="option.children.length > 0"
                             v-model="newFarmer.biogas_status">
-                        <option selected value="">กรุณาเลือก</option>
+                        <option value="">กรุณาเลือก</option>biogas_status
                         <option v-for="option in options.biogas_status"
                                 v-bind:value="option">@{{ option.choice }}</option>
                     </select>
