@@ -80,7 +80,8 @@ Route::get('multi/choices/{type}', function ($type) {
         $chart['series'][] =
             [
                 'name' => $key,
-                'data' => $data
+                'data' => $data,
+               // 'colorByPoint' => true,
             ];
     }
 
@@ -137,7 +138,9 @@ Route::get('range/farm-owner/{type}/{min}/{max}/{numberGroup}', function ($type,
     $chart['series'][] =
         [
             'name' => 'จำนวน',
-            'data' => $data
+            'data' => $data,
+            'colorByPoint' => true,
+
         ];
 
     return $chart;
@@ -184,7 +187,8 @@ Route::get('normal/{type}', function ($type) {
     $chart['series'][] =
         [
             'name' => 'จำนวน',
-            'data' => $data
+            'data' => $data,
+            'colorByPoint' => true,
         ];
 
     return $chart;
