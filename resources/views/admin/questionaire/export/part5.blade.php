@@ -12,7 +12,7 @@
         <ol style="margin-top: 0px;">
             @foreach($farmOwner->loan_types as $j)
                 <li>
-                    {{$j->choice}}
+                    {{$j->choice or '-'}}
                     @if($j->pivot->amount)
                         <b>จำนวนเงิน : </b>{{$j->pivot->amount}} <b>บาท</b>
                     @endif

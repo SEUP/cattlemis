@@ -5,7 +5,7 @@
         <ol style="margin-top: 0px;">
             @foreach($farmOwner->seller_types as $j)
                 <li>
-                    {{$j->choice}}
+                    {{$j->choice or '-'}}
                     @if($j->has_text)
                         <b>ระบุ : </b>{{$j->pivot->remark}}
                     @endif
@@ -24,7 +24,7 @@
         <ol style="margin-top: 0px;">
             @foreach($farmOwner->cattle_sale_methods as $j)
                 <li>
-                    {{$j->choice}}
+                    {{$j->choice or '-'}}
                 </li>
             @endforeach
         </ol>
