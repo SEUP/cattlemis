@@ -1,6 +1,6 @@
 <form class="form-horizontal">
     <fieldset id="2.1">
-        <legend>2.1 การเลียงโคเนื้อของท่านมีวัตถุประสงค์เพื่ออะไร (เลือกได้มากกว่า 1 ข้อ)</legend>
+        <legend>2.1 การเลี้ยงโคเนื้อของท่านมีวัตถุประสงค์เพื่ออะไร (เลือกได้มากกว่า 1 ข้อ)</legend>
         <!-- sample multi choices -->
         <question-multi-checkbox :model.sync="newFarmer.farm_purposes"
                                  :options.sync="options.farm_purposes">
