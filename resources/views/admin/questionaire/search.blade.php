@@ -52,7 +52,7 @@
                 <tr>
                     <td colspan="4">
                         <ul class="pagination">
-                            <li v-for="n in farmOwnerPage.last_page ">
+                            <li v-bind:class="{ 'active' : (farmOwnerPage.current_page == n+1) }" v-for="n in farmOwnerPage.last_page ">
                                 <a v-on:click="gotoPage(n+1)">@{{ n+1 }}</a>
                             </li>
 
