@@ -63,6 +63,8 @@
 <h1 class="text-center">แบบสอบถามเกษตรกรผู้เลี้ยงโคเนื้อ</h1>
 
 @include("admin.questionaire.export.part1")
+@include("admin.questionaire.export.part7")
+@include("admin.questionaire.export.part8")
 
 </body>
 </html>
