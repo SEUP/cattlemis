@@ -7,39 +7,11 @@ use App\Models\Choice;
 use Illuminate\Support\Facades\DB;
 
 Route::get('test2/{choices}', function ($choices) {
-    $choices = explode(",", $choices);
-
-    $query = DB::table('choices');
-    $query->leftJoin('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
-    $query->leftJoin('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
-    foreach ($choices as $choice) {
-        $query->orWhere('choices.type', '=', $choice);
-    }
-    $query->groupBy('choices.id');
-    $query->orderBy('choices.id');
-    $query->select(DB::raw('count(farm_owners.id) as user_count, choices.choice'));
-    $query->addSelect('choices.type');
-
-    $results = $query->get();
-    $results = (new \Illuminate\Support\Collection($results))->groupBy('choice');
-
-    return $results;
 });
 
 Route::get('test', function () {
-    $min = 15;
-    $max = 70;
-    $step = intval(($max - $min) / 6);
-    $arr = range($min, $max, $step);
 
-//    $length = sizeof($arr);
-//    if ($arr[$length - 1] < $max) {
-//        $arr[] = $max;
-//    }
-
-    return $arr;
 });
-
 
 
 Route::get('multi/choices/{type}', function ($type) {
@@ -71,9 +43,9 @@ Route::get('multi/choices/{type}', function ($type) {
     $xAxis = [];
     foreach ($choices as $choice) {
 
-        if (array_has($translate,$choice)){
+        if (array_has($translate, $choice)) {
             $xAxis[] = $translate[$choice];
-        }else {
+        } else {
             $xAxis[] = $choice;
         }
     }
@@ -98,7 +70,7 @@ Route::get('multi/choices/{type}', function ($type) {
             [
                 'name' => $name,
                 'data' => $data,
-               // 'colorByPoint' => true,
+                // 'colorByPoint' => true,
             ];
     }
 
@@ -164,21 +136,18 @@ Route::get('range/farm-owner/{type}/{min}/{max}/{numberGroup}', function ($type,
 
 });
 
-Route::get('normal/{type}', function ($type) {
-
-//    $query = DB::table('farm_owners');
-//    $query->join('choice_farm_owner', 'farm_owners.id', '=', 'choice_farm_owner.farm_owner_id');
-//    $query->join('choices', 'choice_farm_owner.choice_id', '=', 'choices.id');
-//    //$results = $query->get(['farm_owners.id', 'choices.id as choices_id', 'choices.type', 'choices.choice']);
-//    $query->groupBy('choices.choice');
-//    $query->select(DB::raw('count(*) as user_count, choices.choice'));
-//    $results = $query->get();
+Route::get('normal/{type}/{province?}', function ($type, $province = null) {
 
     $query = DB::table('choices');
     $query->leftJoin('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
     $query->leftJoin('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
 
     $query->where('choices.type', '=', $type);
+
+    if ($province) {
+        $query->where('farm_owners.house_province', '=', $province);
+    }
+
     $query->groupBy('choices.choice');
     $query->orderBy('choices.id', 'asc');
     $query->select(DB::raw('count(farm_owners.id) as user_count, choices.choice'));
@@ -242,7 +211,6 @@ Route::get('pie/{type}', function ($type) {
 
         $data[] = $each;
     }
-
 
 
     $chart = [];

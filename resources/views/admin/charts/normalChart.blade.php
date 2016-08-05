@@ -10,6 +10,13 @@
         <!-- /.col-lg-12 -->
     </div>
     <div class="row">
+        <div class="col-xs-12">
+            <select class="form-control" v-on:change="provinceChange" v-model="selProvince">
+                <option value="0">กรุณาเลือก</option>
+                <option v-for="option in provinces"
+                        v-bind:value="option.PROVINCE_ID">@{{ option.PROVINCE_NAME }}</option>
+            </select>
+        </div>
         <div class="col-lg-12">
             <div id="container"></div>
         </div>
@@ -18,15 +25,26 @@
 
 
 @section('javascript')
+
     <script type="text/javascript">
         var app = new AdminApp({
             el: 'body',
+
             data: {
                 chartData: {},
                 chartType: "",
-                chartTitle: ""
+                chartTitle: "",
+                provinces: [],
+                selProvince: 0,
             },
             methods: {
+                provinceChange: function () {
+                    this.$http.get('/chart/normal/' + this.chartType+'/'+this.selProvince).then(function (r) {
+                        data = r.data;
+                        this.chartData = data;
+                        this.displayChart();
+                    });
+                },
                 displayChart: function () {
                     var self = this;
                     $('#container').highcharts({
@@ -77,6 +95,9 @@
                 }
                 ,
                 loadData: function () {
+                    this.$http.get("/api/thailand/province").then(function (response) {
+                        this.provinces = response.data;
+                    });
                     this.$http.get('/chart/normal/' + this.chartType).then(function (r) {
                         data = r.data;
                         this.chartData = data;
