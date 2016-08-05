@@ -159,12 +159,12 @@
 
     <fieldset id="2.15">
         <legend>2.15 สถานภาพการระบาดของโรคในฟาร์มของท่านเป็นอย่างไร</legend>
-        <question-select label="โรคแท้งติดต่อ" :model.sync="newFarmer.abortion"
-                         :options.sync="options.abortion"></question-select>
-        <question-select label="โรควัณโรค" :model.sync="newFarmer.tuberculosis"
-                         :options.sync="options.tuberculosis"></question-select>
-        <question-select label="โรคปากและเท้าเปื่อย" :model.sync="newFarmer.foot_mouth_disease"
-                         :options.sync="options.foot_mouth_disease"></question-select>
+        <question-radio label="โรคแท้งติดต่อ" :model.sync="newFarmer.abortion"
+                         :options.sync="options.abortion"></question-radio>
+        <question-radio label="โรควัณโรค" :model.sync="newFarmer.tuberculosis"
+                         :options.sync="options.tuberculosis"></question-radio>
+        <question-radio label="โรคปากและเท้าเปื่อย" :model.sync="newFarmer.foot_mouth_disease"
+                         :options.sync="options.foot_mouth_disease"></question-radio>
     </fieldset>
 
 

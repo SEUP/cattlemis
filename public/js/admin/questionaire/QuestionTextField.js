@@ -55,6 +55,35 @@ var QuestionTextAreaField = Vue.extend({
     }
 });
 
+var QuestionRadio = Vue.extend({
+    template: `
+    <div class="form-group">
+            <label class="col-sm-2 control-label">{{label}}</label>
+            <div class="col-sm-10">
+                <div class="radio" v-for="option in options">
+                    <label>
+                        <input type="radio" v-bind:value="option" v-model="model" >
+                            {{ option.choice }}
+                    </label>
+                </div>
+            </div>
+        </div>
+    `,
+    props: {
+        label: {
+            required: true,
+        },
+        model: {
+            required: true,
+            twoWay: true
+        },
+        options: {
+            required: true,
+            twoWay: true
+        }
+    }
+});
+
 
 var QuestionSelect = Vue.extend({
     template: `

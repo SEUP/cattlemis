@@ -101,6 +101,8 @@
                 'question-text-field': QuestionTextField,
                 'question-textarea-field': QuestionTextAreaField,
                 'question-select': QuestionSelect,
+                'question-radio': QuestionRadio,
+
                 'question-select-with-text': QuestionSelectWithText,
                 'question-multi-checkbox': QuestionMultiCheckbox,
                 'province-amphur-district': ProvinceAmphurDistrict,
