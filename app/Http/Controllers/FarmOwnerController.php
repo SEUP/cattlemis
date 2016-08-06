@@ -116,7 +116,7 @@ class FarmOwnerController extends Controller
 
                 $choices[$form[$field]['id']] = $pivot;
             } else {
-                $choices[] = $form[$field]['id'];
+                $choices[$form[$field]['id']] = [];
             }
         }
         return $choices;
@@ -145,14 +145,13 @@ class FarmOwnerController extends Controller
     private function getChoices(Request $request, $fieldArray, $multiFieldArray)
     {
         $form = $request->all();
-
         $choices = [];
 
 
-        foreach ($fieldArray as $field) {
-            $choices = $this->generateChoice($request, $form, $choices, "$field");
-        }
 
+        foreach ($fieldArray as $field) {
+            $choices = $this->generateChoice($request, $form, $choices, $field);
+        }
 
         foreach ($multiFieldArray as $field) {
             $choices = $this->generateManyChoices($request, $form, $choices, "$field");
@@ -172,8 +171,8 @@ class FarmOwnerController extends Controller
             $query->orWhere('first_name', 'like', "%$keyword%");
             $query->orWhere('last_name', 'like', "%$keyword%");
         }
-        $query->select(['id','first_name', 'last_name','person_id','updated_at']);
-        $query->orderBy('updated_at','desc');
+        $query->select(['id', 'first_name', 'last_name', 'person_id', 'updated_at']);
+        $query->orderBy('updated_at', 'desc');
         $farmOwners = $query->paginate(12);
 
         return $farmOwners;
@@ -213,7 +212,8 @@ class FarmOwnerController extends Controller
 
         $farmOwner->save();
 
-        $farmOwner->choices()->sync($this->getChoices($request, $this->fieldArray[0], $this->multiFieldArray[0]));
+        $choices = $this->getChoices($request, $this->fieldArray[0], $this->multiFieldArray[0]);
+        $farmOwner->choices()->sync($choices);
         // $farmOwner->choices2()->sync($this->getChoices($request, $this->fieldArray[1], $this->multiFieldArray[1]));
 
         // $farm_info = new FarmInfo();
@@ -257,7 +257,11 @@ class FarmOwnerController extends Controller
 
         $farmOwner->save();
 
-        $farmOwner->choices()->sync($this->getChoices($request, $this->fieldArray[0], $this->multiFieldArray[0]));
+        $choices = $this->getChoices($request, $this->fieldArray[0], $this->multiFieldArray[0]);
+
+//        return $choices;
+
+        $farmOwner->choices()->sync($choices);
         // $farmOwner->choices2()->sync($this->getChoices($request, $this->fieldArray[1], $this->multiFieldArray[1]));
 
         //$farm_info = $farmOwner->farm_info()->first();

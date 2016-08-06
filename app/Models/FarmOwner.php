@@ -451,7 +451,7 @@ class FarmOwner extends Model
     public function rent_land()
     {
         return $this->choices()
-            ->withPivot(['remark', 'area', 'price'])
+            ->withPivot(['remark', 'area'])
             ->where('type', '=', 'rent_land');
 
     }
