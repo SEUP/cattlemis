@@ -300,7 +300,7 @@ class FarmOwnerController extends Controller
         $farmOwner->save();
 
         $choices = $this->getChoices($request, $this->fieldArray[0], $this->multiFieldArray[0]);
-        $choicest = $this->filterChoices($request, $choices, $this->fieldArray[0], $this->multiFieldArray[0]);
+//        $choices = $this->filterChoices($request, $choices, $this->fieldArray[0], $this->multiFieldArray[0]);
 
         $farmOwner->choices()->sync($choices);
 
