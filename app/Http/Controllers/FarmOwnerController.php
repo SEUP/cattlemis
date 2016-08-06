@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\FarmOwnerRequest;
 use Illuminate\Support\Facades\DB;
+use Mockery\CountValidator\Exception;
 
 class FarmOwnerController extends Controller
 {
@@ -147,8 +148,6 @@ class FarmOwnerController extends Controller
         $form = $request->all();
         $choices = [];
 
-
-
         foreach ($fieldArray as $field) {
             $choices = $this->generateChoice($request, $form, $choices, $field);
         }
@@ -158,6 +157,49 @@ class FarmOwnerController extends Controller
         }
 
         return $choices;
+    }
+
+    private function filterChoices(Request $request, $choices, $fieldArray, $multiFieldArray)
+    {
+        $form = $request->all();
+        $fchoices = [];
+        foreach ($fieldArray as $field) {
+            try {
+
+                if ($request->has("$field.parent_id")) {
+                    $fieldId = $request->get("$field.id");
+                    $parent_id = $request->get("$field.parent_id");
+                    if (array_has($choices, $parent_id)) {
+                        $fchoices[$fieldId] = $choices[$fieldId];
+                    }
+                } else {
+                    if ($request->has("$field.id")) {
+                        $fchoices[$form[$field]['id']] = $choices[$form[$field]['id']];
+                    }
+                }
+
+            } catch (\Exception $e) {
+                return $field;
+            }
+        }
+
+
+        foreach ($multiFieldArray as $field) {
+            if ($request->has("$field")) {
+                $fields = $request->get("$field");
+                foreach ($fields as $item) {
+                    if (isset($item['parent_id'])) {
+                        if (array_has($choices, $item['parent_id'])) {
+                            $fchoices[$item['id']] = $choices[$item['id']];
+                        }
+                    } else {
+                        $fchoices[$item['id']] = $choices[$item['id']];
+                    }
+                }
+            }
+        }
+
+        return $fchoices;
     }
 
     public function index(Request $request)
@@ -258,16 +300,9 @@ class FarmOwnerController extends Controller
         $farmOwner->save();
 
         $choices = $this->getChoices($request, $this->fieldArray[0], $this->multiFieldArray[0]);
-
-//        return $choices;
+        $choicest = $this->filterChoices($request, $choices, $this->fieldArray[0], $this->multiFieldArray[0]);
 
         $farmOwner->choices()->sync($choices);
-        // $farmOwner->choices2()->sync($this->getChoices($request, $this->fieldArray[1], $this->multiFieldArray[1]));
-
-        //$farm_info = $farmOwner->farm_info()->first();
-        //$farm_info->fill($request->get('farm_info'));
-        // $farmOwner->farm_info()->save($farm_info);
-
 
         return $farmOwner;
     }
