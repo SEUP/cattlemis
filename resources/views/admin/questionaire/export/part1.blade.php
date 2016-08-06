@@ -1,7 +1,7 @@
 <div style="page-break-before: auto">
     <h2>ส่วนที่ 1 ข้อมูลพื้นฐานของเกษตรกร</h2>
     <div class="line-report">
-        <label class="header">ชื่อ - นามสกุล : </label>
+        <label class="header">1.1 ชื่อ - นามสกุล : </label>
         {{$farmOwner->first_name}} {{$farmOwner->last_name}}
     </div>
     <div class="line-report">
@@ -10,7 +10,7 @@
     </div>
 
     <div class="line-report">
-        <label class="header"> ที่อยู่ตามสำเนาทะเบียนบ้าน: </label>
+        <label class="header">1.2 ที่อยู่ตามสำเนาทะเบียนบ้าน: </label>
         <div style="text-indent: 5%;">
             <b>เลขที่ </b>{{$farmOwner->house_no or '-'}}
             <b>หมู่ </b>{{$farmOwner->house_moo or '-'}}
@@ -26,7 +26,7 @@
     </div>
 
     <div class="line-report">
-        <label class="header"> ที่อยู่ฟาร์ม: </label><br/>
+        <label class="header">1.3 ที่อยู่ฟาร์ม: </label><br/>
         <div style="text-indent: 5%;">
             <b>เลขที่ </b>{{$farmOwner->farm_no or '-'}}
             <b>หมู่ </b>{{$farmOwner->farm_moo or '-'}}
@@ -37,11 +37,11 @@
     </div>
 
     <div class="line-report">
-        <label class="header"> พิกัด: </label>{{$farmOwner->farm_lat or '-'}},{{$farmOwner->farm_long or '-'}}
+        <label class="header">1.4 พิกัด: </label>{{$farmOwner->farm_lat or '-'}},{{$farmOwner->farm_long or '-'}}
     </div>
 
     <div class="line-report">
-        <label class="header"> เพศ: </label>{{$farmOwner->sex? $farmOwner->sex->choice : '-'}}
+        <label class="header">1.5 เพศ: </label>{{$farmOwner->sex? $farmOwner->sex->choice : '-'}}
     </div>
 
     <div class="line-report">
@@ -57,17 +57,17 @@
     </div>
 
     <div class="line-report">
-        <label class="header"> การศึกษา : </label>{{$farmOwner->education->choice or '-'}}
+        <label class="header">1.6 การศึกษา : </label>{{$farmOwner->education->choice or '-'}}
     </div>
     <div class="line-report">
-        <label class="header"> สถานภาพทางสังคม : </label>{{$farmOwner->social_status->choice or '-'}}
+        <label class="header">1.7 สถานภาพทางสังคม : </label>{{$farmOwner->social_status->choice or '-'}}
     </div>
 
     <div class="line-report">
-        <label class="header"> สถานะการเลี้ยงโคเนื้อ : </label>{{$farmOwner->cattle_job->choice or '-'}}
+        <label class="header">1.8 สถานะการเลี้ยงโคเนื้อ : </label>{{$farmOwner->cattle_job->choice or '-'}}
     </div>
     <div class="line-report">
-        <label class="header"> รายได้จากการประกอบอาชีพ : </label>
+        <label class="header">1.9 รายได้จากการประกอบอาชีพ : </label>
         <ol style="margin-top: 0px;">
             @foreach($farmOwner->jobtypes as $j)
                 <li>
@@ -80,9 +80,9 @@
         </ol>
     </div>
     <div class="line-report">
-        <label class="header"> รายได้รวมเฉลี่ยของครัวเรือน : </label>{{$farmOwner->income_range->choice or '-'}}
+        <label class="header">1.10 รายได้รวมเฉลี่ยของครัวเรือน : </label>{{$farmOwner->income_range->choice or '-'}}
     </div>
     <div class="line-report">
-        <label class="header"> รายได้เฉลี่ยต่อปีของการขายโคเนื้อ : </label>{{$farmOwner->avg_cattle_income  or '-'}} บาท
+        <label class="header">1.11 รายได้เฉลี่ยต่อปีของการขายโคเนื้อ : </label>{{$farmOwner->avg_cattle_income  or '-'}} บาท
     </div>
 </div>

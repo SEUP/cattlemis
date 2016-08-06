@@ -37,8 +37,119 @@
     </div>
     <div class="line-report">
         <label class="header">3.4 พื้นที่ถือครองทางการเกษตร(ไร่/ครัวเรือน)</label>
-        <br>{{$farmOwner->own_land->choice or '-'}}
+        <br>{{$farmOwner->own_land->choice or '-'}} รวมพื้นที่ถือครองทางการเกษตร {{$farmOwner->total_own_lands or '-'}}
+    </div>
+    <div class="line-report">
+        <label class="header"></label>
+        <ol style="margin-top: 0px;">
+            @foreach($farmOwner->sub_own_lands as $j)
+                <li>
+                    {{$j->choice}}
+                    @if($j->has_text)
+                        <b>ระบุ : </b>{{$j->pivot->remark}} ไร่
+                    @endif
+                </li>
+            @endforeach
+        </ol>
+    </div>
+    <div class="line-report">
+        <label class="header">3.5 การเช่าที่ดินเพื่อใช้ในการเลี้ยง(ไร่/ครัวเรือน)</label>
+        <br>{{$farmOwner->rent_land->choice or '-'}}
+        @if($farmOwner->rent_land->has_text)
+        จำนวน {{$farmOwner->rent_land->choice->pivot->area or '-'}}
+        <br>ค่าเช่าที่ดิน {{$farmOwner->rent_land->choice->pivot->area or '-'}} บาท/ไร่
+        @endif
+    </div>
 
+    <div class="line-report">
+        <label class="header">3.6 พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ (ไร่/ครัวเรือน)</label>
+        <br>{{$farmOwner->use_land->choice or '-'}} {{$farmOwner->total_use_lands or '-'}} ไร่
+    </div>
+    <div class="line-report">
+        <label class="header"></label>
+        <ol style="margin-top: 0px;">
+            @foreach($farmOwner->sub_use_lands as $j)
+                <li>
+                    {{$j->choice}}
+                    @if($j->has_text)
+                        <b>ระบุ : </b>{{$j->pivot->area}} ไร่
+                    @endif
+                    @if($j->choice=="พื้นที่ปลูกหญ้า")
+                        <b>ระบุ : </b>{{$j->pivot->remark}}
+                    @endif
+                </li>
+            @endforeach
+        </ol>
+    </div>
+    <div class="line-report">
+        <label class="header">3.7 อาหารที่ท่านใช้เลี้ยงโคเนื้อเป็นอาหารประเภทใด</label>
+        <ol style="margin-top: 0px;">
+        @foreach($farmOwner->feed_types as $j)
+            <li>
+                {{$j->choice or '-'}}
+            </li>
+        @endforeach
+        </ol>
+    </div>
+    <div class="line-report">
+        <label class="header">3.8 แหล่งที่มาของอาหารข้นหรืออาหารผสมครบส่วน</label>
+        <ol style="margin-top: 0px;">
+        @foreach($farmOwner->feed_sources as $j)
+            <li>
+                {{$j->choice or '-'}}
+                 @if($j->has_text)
+                    <b>ระบุ : </b>{{$j->pivot->remark}}
+                @endif
+            </li>
+        @endforeach
+        </ol>
+    </div>
+    <div class="line-report">
+        <label class="header">3.10 ท่านมีการสำรองฟางข้าว หรือเปลือกข้าวโพดไว้ใช้เลี้ยงโคหรือไม่</label>
+        <br>{{$farmOwner->feedstock->choice or '-'}}
+        @if($farmOwner->feedstock->choice == "สำรอง")
+            <ol style="margin-top: 0px;">
+                @foreach($farmOwner->feedstock_types as $j)
+                    <li>
+                        {{$j->choice or '-'}}
+
+                        @if($j->choice == "ฟางข้าวหรือเปลือกข้าวโพดหมักหรือปรุงแต่ง")
+                            @if($j->pivot->amount)
+                                ถังหมักจำนวน {{$j->pivot->amount}} ถัง
+                            @else
+                                <br>เก็บไว้ในโรงเรือนขนาดกว้าง {{$j->pivot->width or '-'}} เมตร ยาว {{$j->pivot->height or '-'}} เมตร
+                            @endif
+                        @else
+                            <br>เก็บไว้ในโรงเรือนขนาดกว้าง {{$j->pivot->width or '-'}} เมตร ยาว {{$j->pivot->height or '-'}} เมตร
+                        @endif
+                    </li>
+                @endforeach
+            </ol>
+
+        @endif
+    </div>
+
+    <div class="line-report">
+        <label class="header">3.11 ท่านใช้แหล่งอาหารหยาบในฤดูแล้งจาก</label>
+        <ol style="margin-top: 0px;">
+            @foreach($farmOwner->feed_summer_sources as $j)
+                <li>
+                    {{$j->choice or '-'}}
+                </li>
+            @endforeach
+        </ol>
+    </div>
+
+
+    <div class="line-report">
+        <label class="header">3.11 ท่านใช้แหล่งอาหารหยาบในฤดูแล้งจาก</label>
+        <ol style="margin-top: 0px;">
+            @foreach($farmOwner->feed_summer_sources as $j)
+                <li>
+                    {{$j->choice or '-'}}
+                </li>
+            @endforeach
+        </ol>
     </div>
 
 
