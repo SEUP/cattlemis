@@ -206,6 +206,7 @@ class FarmOwnerController extends Controller
     {
         $query = DB::table('farm_owners');
 
+        $query->join('thailand_provinces','farm_owners.house_province','=','thailand_provinces.province_id');
 
         if ($request->has('keyword')) {
             $keyword = $request->get('keyword');
@@ -213,7 +214,10 @@ class FarmOwnerController extends Controller
             $query->orWhere('first_name', 'like', "%$keyword%");
             $query->orWhere('last_name', 'like', "%$keyword%");
         }
-        $query->select(['id', 'first_name', 'last_name', 'person_id', 'updated_at']);
+        $query->select([
+            'farm_owners.id', 'farm_owners.first_name', 'farm_owners.last_name',
+            'farm_owners.person_id', 'updated_at','thailand_provinces.province_name'
+        ]);
         $query->orderBy('updated_at', 'desc');
         $farmOwners = $query->paginate(12);
 

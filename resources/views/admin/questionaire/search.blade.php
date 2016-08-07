@@ -28,6 +28,7 @@
                 <tr>
                     <th class="col-md-3">รหัสประจำตัวประชาชน</th>
                     <th>ชื่อ - นามสกุล</th>
+                    <th>จังหวัด</th>
                     <th>เวลา</th>
                     <th class="col-md-3">การจัดการ</th>
                 </tr>
@@ -37,6 +38,7 @@
                 <tr v-for="owner in farmOwners">
                     <td>@{{ owner.person_id }}</td>
                     <td>@{{ owner.first_name }} @{{ owner.last_name }}</td>
+                    <td>@{{ owner.province_name}}</td>
                     <td>@{{ owner.updated_at }}</td>
                     <td>
                         <a href="/admin/questionaire/@{{owner.id}}/export" target="_blank"
@@ -52,7 +54,8 @@
                 <tr>
                     <td colspan="4">
                         <ul class="pagination">
-                            <li v-bind:class="{ 'active' : (farmOwnerPage.current_page == n+1) }" v-for="n in farmOwnerPage.last_page ">
+                            <li v-bind:class="{ 'active' : (farmOwnerPage.current_page == n+1) }"
+                                v-for="n in farmOwnerPage.last_page ">
                                 <a v-on:click="gotoPage(n+1)">@{{ n+1 }}</a>
                             </li>
 
