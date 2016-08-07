@@ -14,7 +14,8 @@
                 <label for="search">ค้นหา</label>
 
                 <div class="input-group">
-                    <input type="text" v-on:keyup.13="search()" class="form-control" placeholder="ค้นหา"
+                    <input type="text" v-on:keyup.13="search()" class="form-control"
+                           placeholder="ค้นหา : ชื่อ นามสกุล รหัสประจำตัวประชาชน หรือ จังหวัด"
                            v-model="form.keyword">
                     <span class="input-group-btn">
                     <button class="btn btn-primary" type="button" v-on:click="search()">ค้นหา</button>
