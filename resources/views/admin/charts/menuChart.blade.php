@@ -214,8 +214,7 @@
                     series: [
                         {
                             cursor: 'pointer',
-                            name: "จำนวนโครงการ",
-                            text: "Test",
+                            name: "จำนวนเกษตรกร",
                             type: "map",
                             data : response,
                             mapData: Highcharts.maps["countries/th/th-north/mapdata"],
@@ -224,6 +223,10 @@
                                 enabled: true,
                                 color: '#FFFFFF',
                                 format: '{point.province_name}<br/>{point.value} คน'
+                            },
+                            tooltip: {
+                                headerFormat: '<span style="font-size:10px">{series.name}</span><br/>',
+                                pointFormat: '{point.province_name}: <b>{point.value} คน</b><br/>',
                             },
 
                         }
