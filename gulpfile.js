@@ -30,6 +30,7 @@ elixir(function (mix) {
         .copy('resources/assets/vendor/vue-resource/dist/vue-resource.min.js', 'resources/assets/js/vendor')
         .copy('resources/assets/vendor/vue-strap/dist/vue-strap.min.js', 'resources/assets/js/vendor')
         .copy('resources/assets/vendor/highcharts/highcharts.js', 'resources/assets/js/vendor')
+        .copy('resources/assets/vendor/highcharts/modules/map.src.js', 'resources/assets/js/vendor')
         .copy('resources/assets/vendor/highcharts/modules/drilldown.js', 'resources/assets/js/vendor')
 
         //font
@@ -66,6 +67,7 @@ elixir(function (mix) {
         'vendor/vue-resource.min.js',
         'vendor/vue-strap.min.js',
         'vendor/highcharts.js',
+        'vendor/map.src.js',
         'vendor/drilldown.js',
 
     ], 'public/js/vendor.js')

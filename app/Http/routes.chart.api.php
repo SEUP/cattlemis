@@ -9,7 +9,23 @@ use Illuminate\Support\Facades\DB;
 Route::get('test2/{choices}', function ($choices) {
 });
 
-Route::get('test', function () {
+Route::get('map-data/{id?}', function ($provinceId = null) {
+
+    if($provinceId){
+
+    }else {
+        $query = DB::table('thailand_provinces');
+        $query->leftJoin('farm_owners','farm_owners.house_province','=','thailand_provinces.province_id');
+
+        $query->select(["thailand_provinces.province_id","thailand_provinces.province_name"]);
+        $query->addSelect(DB::raw('count(farm_owners.id) as value'));
+
+        $query->groupBy('thailand_provinces.province_id');
+
+        return $query->get();
+
+    }
+
 
 });
 
