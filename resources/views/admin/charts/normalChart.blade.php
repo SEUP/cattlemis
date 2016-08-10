@@ -56,6 +56,11 @@
                         },
                         xAxis: {
                             categories: self.chartData.xAxis.categories,
+                            labels: {
+                                style: {
+                                    fontSize:'20px'
+                                }
+                            }
                         },
                         yAxis: {
                             min: 0,
@@ -64,14 +69,20 @@
                                 align: 'high'
                             },
                             labels: {
-                                overflow: 'justify'
+                                overflow: 'justify',
+                                style: {
+                                    fontSize:'20px'
+                                }
                             }
                         },
                         tooltip: self.chartData.tooltip,
                         plotOptions: {
                             column: {
                                 dataLabels: {
-                                    enabled: true
+                                    enabled: true,
+                                    style: {
+                                        fontSize:'20px'
+                                    }
                                 }
                             }
                         },
