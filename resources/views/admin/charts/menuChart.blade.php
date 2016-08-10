@@ -125,7 +125,7 @@
                             <div id="collapse6" class="panel-collapse collapse in">
                                 <div class="panel-body">
                                     <li><a href="normal/การจำหน่ายโค/seller_types">การจำหน่ายโคเนื้อให้กับใคร</a></li>
-                                    <li><a href="normal/อายุของโคเนื้อที่จำหน่าย(ปี)/age_breeding_sale">อายุของโคเนื้อที่จำหน่าย(ปี)</a>
+                                    <li><a href="normal/อายุของโคเนื้อที่จำหน่าย(ปี)/age_sale">อายุของโคเนื้อที่จำหน่าย(ปี)</a>
                                     </li>
                                     <li>
                                         <a href="normal/ลักษณะการจำหน่าย/cattle_sale_methods">ลักษณะการจำหน่ายโคเนื้อ</a>
