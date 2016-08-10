@@ -231,6 +231,7 @@ Route::get('pie/{type}/{province?}', function ($type, $province = null) {
 
     $data = [];
 
+
     foreach ($results as $result) {
         $each = new stdClass();
         $each->name = $result->choice;
@@ -244,6 +245,7 @@ Route::get('pie/{type}/{province?}', function ($type, $province = null) {
     $chart['tooltip'] = [];
     $chart['tooltip']['pointFormat'] = "จำนวน: <b>{point.y} คน</b>";
 
+
     $chart['series'] = [];
 
     $chart['series'][] =
@@ -252,6 +254,89 @@ Route::get('pie/{type}/{province?}', function ($type, $province = null) {
             "colorByPoint" => true,
             "data" => $data
         ];
+
+    return $chart;
+});
+
+Route::get('cattle/{type}/{province?}', function ($type, $province = null) {
+
+
+    $query = DB::table('choices');
+    $query->leftJoin('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
+    $query->leftJoin('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
+
+    $query->where('choices.type', '=', $type);
+
+    if ($province) {
+        $query->where('farm_owners.house_province', '=', $province);
+    }
+
+    $query->groupBy('choices.choice');
+    $query->orderBy('choices.id', 'asc');
+    $query->select(DB::raw('count(choice_farm_owner.amount) as cattle_count, choices.choice, choices.id'));
+
+    $results = $query->get();
+
+    $data = [];
+    $xAxis = [];
+    foreach ($results as $r) {
+        $each = new stdClass();
+        $each->name = $r->choice;
+        $each->y = $r->cattle_count;
+        $each->drilldown = $r->choice;
+        $xAxis[] = $r->choice;
+        $data[] = $each;
+    }
+
+    $data_drill = [];
+    foreach ($results as $r) {
+        $each_drill = new stdClass();
+        $each_drill ->name = $r->choice;
+        $each_drill ->id = $r->choice;
+
+        $query = DB::table('choices');
+        $query->leftJoin('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
+        $query->leftJoin('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
+
+        $query->where('choices.parent_id', '=', $r->id);
+        $query->select(DB::raw('count(choice_farm_owner.amount) as cattle_count, choices.choice, choices.id'));
+
+        $sub_results = $query->get();
+        //return $sub_results;
+
+            $each_drill->data = [];
+            foreach ($sub_results as $sub_r) {
+                if($sub_r->choice!=null) {
+                    //$each_drill->data[] = $sub_r->choice;
+                   //$each_drill->data[] = $sub_r->cattle_count;
+                    $each_drill->data[] = array($sub_r->choice,$sub_r->cattle_count);
+                    $data_drill[] = $each_drill;
+                }
+        }
+    }
+
+    $show_drill = new stdClass();
+    $show_drill->series = $data_drill;
+
+
+    $chart = [];
+    $chart['tooltip'] = [];
+    $chart['tooltip']['pointFormat'] = "จำนวน: <b>{point.y} ตัว</b>";
+    $chart['xAxis'] = [];
+    $chart['xAxis']['categories'] = $xAxis;
+
+    $chart['series'] = [];
+
+    $chart['series'][] =
+        [
+            "name" => $type,
+            "colorByPoint" => true,
+            "data" => $data
+        ];
+
+
+
+    $chart['drilldown'] = $show_drill;
 
     return $chart;
 });

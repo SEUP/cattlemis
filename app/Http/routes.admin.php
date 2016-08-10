@@ -75,3 +75,10 @@ Route::get('charts/range-farmowner/{title}/{type}/{min}/{max}/{step}',
             ->with('max', $max)
             ->with('step', $step);
     });
+
+Route::get('charts/cattle/{title}/{type}', function ($title, $type) {
+
+    return view("admin.charts.cattleChart")
+        ->with('title', $title)
+        ->with('type', $type);
+});
