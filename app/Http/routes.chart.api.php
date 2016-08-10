@@ -103,7 +103,7 @@ Route::get('multi/choices/{type}/{province?}', function ($type, $provinceId = nu
 
 });
 
-Route::get('range/farm-owner/{type}/{min}/{max}/{numberGroup}', function ($type, $min, $max, $numberGroup) {
+Route::get('range/farm-owner/{type}/{min}/{max}/{numberGroup}/{province?}', function ($type, $min, $max, $numberGroup, $province = null) {
 
 //    SELECT SUM(CASE WHEN age_c < 18 THEN 1 ELSE 0 END) AS [Under 18],
 //        SUM(CASE WHEN age_c BETWEEN 18 AND 24 THEN 1 ELSE 0 END) AS [18-24],
@@ -115,6 +115,11 @@ Route::get('range/farm-owner/{type}/{min}/{max}/{numberGroup}', function ($type,
 
 
     $query = DB::table('farm_owners');
+
+    if ($province) {
+        $query->where('farm_owners.house_province', '=', $province);
+    }
+
 
     $query->addSelect(DB::raw("SUM(IF($type < $min,1,0)) as 'ต่ำกว่า $min'"));
 
