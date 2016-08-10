@@ -57,6 +57,9 @@
                     <tfoot>
                     <tr>
                         <td colspan="5">
+                            <div>
+                                จำนวนทั้งหมด @{{ farmOwnerPage.total }} รายการ
+                            </div>
                             <ul class="pagination">
                                 <li v-bind:class="{ 'active' : (farmOwnerPage.current_page == n+1) }"
                                     v-for="n in farmOwnerPage.last_page ">
