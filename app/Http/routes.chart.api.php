@@ -11,13 +11,13 @@ Route::get('test2/{choices}', function ($choices) {
 
 Route::get('map-data/{id?}', function ($provinceId = null) {
 
-    if($provinceId){
+    if ($provinceId) {
 
-    }else {
+    } else {
         $query = DB::table('thailand_provinces');
-        $query->leftJoin('farm_owners','farm_owners.house_province','=','thailand_provinces.province_id');
+        $query->leftJoin('farm_owners', 'farm_owners.house_province', '=', 'thailand_provinces.province_id');
 
-        $query->select(["thailand_provinces.province_id","thailand_provinces.province_name"]);
+        $query->select(["thailand_provinces.province_id", "thailand_provinces.province_name"]);
         $query->addSelect(DB::raw('count(farm_owners.id) as value'));
 
         $query->groupBy('thailand_provinces.province_id');
@@ -30,7 +30,7 @@ Route::get('map-data/{id?}', function ($provinceId = null) {
 });
 
 
-Route::get('multi/choices/{type}', function ($type) {
+Route::get('multi/choices/{type}/{province?}', function ($type, $provinceId = null) {
 
     //fix data tables
     $translate = [
@@ -44,10 +44,18 @@ Route::get('multi/choices/{type}', function ($type) {
 
     $query = DB::table('choices');
     $query->leftJoin('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
-    $query->leftJoin('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
+
+    $query->leftJoin('farm_owners', function ($join) use ($provinceId) {
+        $join->on('choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
+        if ($provinceId) {
+            $join->on('farm_owners.house_province', '=', DB::raw($provinceId));
+        }
+    });
     foreach ($choices as $choice) {
         $query->orWhere('choices.type', '=', $choice);
     }
+
+
     $query->groupBy('choices.id');
     $query->orderBy('choices.id');
     $query->select(DB::raw('count(farm_owners.id) as user_count, choices.choice'));
