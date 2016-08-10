@@ -209,21 +209,19 @@ Route::get('normal/{type}/{province?}', function ($type, $province = null) {
     return $chart;
 });
 
-Route::get('pie/{type}', function ($type) {
+Route::get('pie/{type}/{province?}', function ($type, $province = null) {
 
-//    $query = DB::table('farm_owners');
-//    $query->join('choice_farm_owner', 'farm_owners.id', '=', 'choice_farm_owner.farm_owner_id');
-//    $query->join('choices', 'choice_farm_owner.choice_id', '=', 'choices.id');
-//    //$results = $query->get(['farm_owners.id', 'choices.id as choices_id', 'choices.type', 'choices.choice']);
-//    $query->groupBy('choices.choice');
-//    $query->select(DB::raw('count(*) as user_count, choices.choice'));
-//    $results = $query->get();
 
     $query = DB::table('choices');
     $query->leftJoin('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
     $query->leftJoin('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
 
     $query->where('choices.type', '=', $type);
+
+    if ($province) {
+        $query->where('farm_owners.house_province', '=', $province);
+    }
+
     $query->groupBy('choices.choice');
     $query->orderBy('choices.id', 'asc');
     $query->select(DB::raw('count(farm_owners.id) as user_count, choices.choice'));
@@ -244,7 +242,7 @@ Route::get('pie/{type}', function ($type) {
 
     $chart = [];
     $chart['tooltip'] = [];
-    $chart['tooltip']['pointFormat'] = "{series.name}: <b>{point.percentage:.1f}%</b>";
+    $chart['tooltip']['pointFormat'] = "จำนวน: <b>{point.y} คน</b>";
 
     $chart['series'] = [];
 

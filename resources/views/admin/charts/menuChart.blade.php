@@ -15,7 +15,7 @@
                             </div>
                             <div id="collapse1" class="panel-collapse collapse in">
                                 <div class="panel-body">
-                                    <li><a href="normal/เพศ/sex">เพศ</a></li>
+                                    <li><a href="pie/เพศ/sex">เพศ</a></li>
                                     <li><a href="range-farmowner/อายุ/age/15/70/8">อายุ</a></li>
                                     <li><a href="normal/การศึกษา/education">การศึกษา</a></li>
                                     <li><a href="normal/อาชีพการเลี้ยงโคเนื้อ(อาชีพหลัก-เสริม)/cattle_job">อาชีพการเลี้ยงโคเนื้อ(อาชีพหลัก-เสริม)</a>
