@@ -13,6 +13,20 @@ Route::get('map-data/{id?}', function ($provinceId = null) {
 
     if ($provinceId) {
 
+        $query = DB::table('thailand_amphures');
+
+        $query->leftJoin('farm_owners', 'farm_owners.house_amphur', '=', 'thailand_amphures.amphur_id');
+
+        $query->select(["thailand_amphures.amphur_id", "thailand_amphures.amphur_name"]);
+        $query->addSelect(DB::raw('count(farm_owners.id) as value'));
+
+        $query->where('farm_owners.house_province','=',$provinceId);
+
+        $query->groupBy('thailand_amphures.amphur_id');
+
+        return $query->get();
+
+
     } else {
         $query = DB::table('thailand_provinces');
         $query->leftJoin('farm_owners', 'farm_owners.house_province', '=', 'thailand_provinces.province_id');
@@ -291,8 +305,8 @@ Route::get('cattle/{type}/{province?}', function ($type, $province = null) {
     $data_drill = [];
     foreach ($results as $r) {
         $each_drill = new stdClass();
-        $each_drill ->name = $r->choice;
-        $each_drill ->id = $r->choice;
+        $each_drill->name = $r->choice;
+        $each_drill->id = $r->choice;
 
         $query = DB::table('choices');
         $query->leftJoin('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
@@ -304,14 +318,14 @@ Route::get('cattle/{type}/{province?}', function ($type, $province = null) {
         $sub_results = $query->get();
         //return $sub_results;
 
-            $each_drill->data = [];
-            foreach ($sub_results as $sub_r) {
-                if($sub_r->choice!=null) {
-                    //$each_drill->data[] = $sub_r->choice;
-                   //$each_drill->data[] = $sub_r->cattle_count;
-                    $each_drill->data[] = array($sub_r->choice,$sub_r->cattle_count);
-                    $data_drill[] = $each_drill;
-                }
+        $each_drill->data = [];
+        foreach ($sub_results as $sub_r) {
+            if ($sub_r->choice != null) {
+                //$each_drill->data[] = $sub_r->choice;
+                //$each_drill->data[] = $sub_r->cattle_count;
+                $each_drill->data[] = array($sub_r->choice, $sub_r->cattle_count);
+                $data_drill[] = $each_drill;
+            }
         }
     }
 
@@ -333,7 +347,6 @@ Route::get('cattle/{type}/{province?}', function ($type, $province = null) {
             "colorByPoint" => true,
             "data" => $data
         ];
-
 
 
     $chart['drilldown'] = $show_drill;
