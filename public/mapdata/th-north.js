@@ -105,12 +105,12 @@ Highcharts.maps['countries/th/th-nan/mapdata'] = {
         {
             "type": "Feature",
             "properties": {
-                AMPHUR_CODE: "5508",
+                amphur_code: "5508",
                 amphur_id: 640,
                 amphur_name: "ทุ่งช้าง",
                 amphur_name_eng: "Thung Chang",
-                GEO_ID: 1,
-                PROVINCE_ID: 43,
+                geo_id: 1,
+                province_id: 43,
             },
             "geometry": {
                 "type": "Polygon",
@@ -120,12 +120,12 @@ Highcharts.maps['countries/th/th-nan/mapdata'] = {
         {
             "type": "Feature",
             "properties": {
-                AMPHUR_CODE: "5515",
+                amphur_code: "5515",
                 amphur_id: 647,
                 amphur_name: "เฉลิมพระเกียรติ",
                 amphur_name_eng: "Chaloem Phra Kiat",
-                GEO_ID: 1,
-                PROVINCE_ID: 43,
+                geo_id: 1,
+                province_id: 43,
             },
             "geometry": {
                 "type": "Polygon",
@@ -135,12 +135,12 @@ Highcharts.maps['countries/th/th-nan/mapdata'] = {
         {
             "type": "Feature",
             "properties": {
-                AMPHUR_CODE: "5513",
+                amphur_code: "5513",
                 amphur_id: 645,
                 amphur_name: "สองแคว",
                 amphur_name_eng: "Song Khwae",
-                GEO_ID: 1,
-                PROVINCE_ID: 43
+                geo_id: 1,
+                province_id: 43
             },
             "geometry": {
                 "type": "Polygon",
@@ -150,12 +150,12 @@ Highcharts.maps['countries/th/th-nan/mapdata'] = {
         {
             "type": "Feature",
             "properties": {
-                AMPHUR_CODE: "5505",
+                amphur_code: "5505",
                 amphur_id: 637,
                 amphur_name: "ปัว",
                 amphur_name_eng: "Pua",
-                GEO_ID: 1,
-                PROVINCE_ID: 43,
+                geo_id: 1,
+                province_id: 43,
 
             },
             "geometry": {
@@ -166,12 +166,12 @@ Highcharts.maps['countries/th/th-nan/mapdata'] = {
         {
             "type": "Feature",
             "properties": {
-                AMPHUR_CODE: "5509",
+                amphur_code: "5509",
                 amphur_id: 641,
                 amphur_name: "เชียงกลาง",
                 amphur_name_eng: "Chiang Klang",
-                GEO_ID: 1,
-                PROVINCE_ID: 43,
+                geo_id: 1,
+                province_id: 43,
 
             },
             "geometry": {
@@ -182,12 +182,12 @@ Highcharts.maps['countries/th/th-nan/mapdata'] = {
         {
             "type": "Feature",
             "properties": {
-                AMPHUR_CODE: "5512",
+                amphur_code: "5512",
                 amphur_id: 644,
                 amphur_name: "บ่อเกลือ",
                 amphur_name_eng: "Bo Kluea",
-                GEO_ID: 1,
-                PROVINCE_ID: 43,
+                geo_id: 1,
+                province_id: 43,
             },
             "geometry": {
                 "type": "Polygon",
@@ -197,12 +197,12 @@ Highcharts.maps['countries/th/th-nan/mapdata'] = {
         {
             "type": "Feature",
             "properties": {
-                AMPHUR_CODE: "5506",
+                amphur_code: "5506",
                 amphur_id: 638,
                 amphur_name: "ท่าวังผา",
                 amphur_name_eng: "Tha Wang Pha",
-                GEO_ID: 1,
-                PROVINCE_ID: 43
+                geo_id: 1,
+                province_id: 43
 
             },
             "geometry": {
@@ -213,12 +213,12 @@ Highcharts.maps['countries/th/th-nan/mapdata'] = {
         {
             "type": "Feature",
             "properties": {
-                AMPHUR_CODE: "5501",
+                amphur_code: "5501",
                 amphur_id: 633,
                 amphur_name: "เมืองน่าน",
                 amphur_name_eng: "Mueang Nan",
-                GEO_ID: 1,
-                PROVINCE_ID: 43
+                geo_id: 1,
+                province_id: 43
 
             },
             "geometry": {
@@ -229,12 +229,12 @@ Highcharts.maps['countries/th/th-nan/mapdata'] = {
         {
             "type": "Feature",
             "properties": {
-                AMPHUR_CODE: "5511",
+                amphur_code: "5511",
                 amphur_id: 643,
                 amphur_name: "สันติสุข",
                 amphur_name_eng: "Santi Suk",
-                GEO_ID: 1,
-                PROVINCE_ID: 43,
+                geo_id: 1,
+                province_id: 43,
             },
             "geometry": {
                 "type": "Polygon",
@@ -244,12 +244,12 @@ Highcharts.maps['countries/th/th-nan/mapdata'] = {
         {
             "type": "Feature",
             "properties": {
-                AMPHUR_CODE: "5503",
+                amphur_code: "5503",
                 amphur_id: 635,
                 amphur_name: "บ้านหลวง",
                 amphur_name_eng: "Ban Luang",
-                GEO_ID: 1,
-                PROVINCE_ID: 43
+                geo_id: 1,
+                province_id: 43
 
             },
             "geometry": {
@@ -260,12 +260,12 @@ Highcharts.maps['countries/th/th-nan/mapdata'] = {
         {
             "type": "Feature",
             "properties": {
-                AMPHUR_CODE: "5514",
+                amphur_code: "5514",
                 amphur_id: 646,
                 amphur_name: "ภูเพียง",
                 amphur_name_eng: "Phu Phiang",
-                GEO_ID: 1,
-                PROVINCE_ID: 43
+                geo_id: 1,
+                province_id: 43
 
             },
             "geometry": {
@@ -276,12 +276,12 @@ Highcharts.maps['countries/th/th-nan/mapdata'] = {
         {
             "type": "Feature",
             "properties": {
-                AMPHUR_CODE: "5502",
+                amphur_code: "5502",
                 amphur_id: 634,
                 amphur_name: "แม่จริม",
                 amphur_name_eng: "Mae Charim",
-                GEO_ID: 1,
-                PROVINCE_ID: 43,
+                geo_id: 1,
+                province_id: 43,
 
             },
             "geometry": {
@@ -292,12 +292,12 @@ Highcharts.maps['countries/th/th-nan/mapdata'] = {
         {
             "type": "Feature",
             "properties": {
-                AMPHUR_CODE: "5507",
+                amphur_code: "5507",
                 amphur_id: 639,
                 amphur_name: "เวียงสา",
                 amphur_name_eng: "Wiang Sa",
-                GEO_ID: 1,
-                PROVINCE_ID: 43
+                geo_id: 1,
+                province_id: 43
 
             },
             "geometry": {
@@ -308,12 +308,12 @@ Highcharts.maps['countries/th/th-nan/mapdata'] = {
         {
             "type": "Feature",
             "properties": {
-                AMPHUR_CODE: "5504",
+                amphur_code: "5504",
                 amphur_id: 636,
                 amphur_name: "นาน้อย",
                 amphur_name_eng: "Na Noi",
-                GEO_ID: 1,
-                PROVINCE_ID: 43,
+                geo_id: 1,
+                province_id: 43,
 
             },
             "geometry": {
@@ -324,12 +324,12 @@ Highcharts.maps['countries/th/th-nan/mapdata'] = {
         {
             "type": "Feature",
             "properties": {
-                AMPHUR_CODE: "5510",
+                amphur_code: "5510",
                 amphur_id: 642,
                 amphur_name: "นาหมื่น",
                 amphur_name_eng: "Na Muen",
-                GEO_ID: 1,
-                PROVINCE_ID: 43,
+                geo_id: 1,
+                province_id: 43,
             },
             "geometry": {
                 "type": "Polygon",
