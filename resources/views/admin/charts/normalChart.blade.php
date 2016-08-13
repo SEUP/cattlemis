@@ -78,6 +78,7 @@
                         tooltip: self.chartData.tooltip,
                         plotOptions: {
                             column: {
+                               // animation: false,
                                 dataLabels: {
                                     enabled: true,
                                     style: {
