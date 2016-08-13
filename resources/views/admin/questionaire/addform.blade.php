@@ -132,8 +132,67 @@
                     sum = (parseInt(newFarmer.family_workers_amount)? parseInt(newFarmer.family_workers_amount) : 0)
                             + (parseInt(newFarmer.external_workers_amount)? parseInt(newFarmer.external_workers_amount) : 0);
                     return sum;
-                },
+                }
+                    ,
+                    sumOwnLand: function () {
+                        var newFarmer = this.newFarmer;
+                        if (newFarmer.own_land.children.length == 0) {
+                            return 0;
+                        } else {
+                            var sum = 0;
+                            for (var i = 0; i < newFarmer.sub_own_lands.length; i++) {
+                                var subOwnLand = newFarmer.sub_own_lands[i];
+                                sum += parseFloat(subOwnLand.pivot.remark, 0);
+                            }
+                            return sum;
+                        }
+                    },
+                    sumUseLand: function () {
+                        var newFarmer = this.newFarmer;
+                        if (newFarmer.use_land.children.length == 0) {
+                            return 0;
+                        } else {
+                            var sum = 0;
+                            for (var i = 0; i < newFarmer.sub_use_lands.length; i++) {
+                                var subUseLand = newFarmer.sub_use_lands[i];
+                                sum += parseFloat(subUseLand.pivot.area, 0);
+                            }
+                            return sum;
+                        }
+                    },
+                    sumBudget: function () {
+                        var budgetSourcePrice = 0;
+                        if (this.newFarmer['budget_source']['has_text']) {
+                            budgetSourcePrice = parseFloat(this.newFarmer['budget_source']['pivot']['amount']);
+                        }
 
+                        var loneTypesSum = 0;
+                        try {
+
+
+                            for (var i = 0; i < this.newFarmer.loan_types.length; i++) {
+                                var loneType = this.newFarmer.loan_types[i];
+                                var amount = 0;
+                                if (loneType.hasOwnProperty('pivot')) {
+                                    amount = parseFloat(loneType.pivot.amount)
+                                } else {
+                                    Vue.set(loneType, 'pivot', {
+                                        amount: 0
+                                    })
+                                }
+                                if (amount) {
+                                    loneTypesSum += amount;
+                                }
+
+                            }
+                        } catch (e) {
+                            console.log(e);
+                        }
+                        var sum = 0;
+                        sum += budgetSourcePrice;
+                        sum += loneTypesSum;
+                        return sum;
+                    },
                 sumCattle: function (option) {
                     var sum = 0;
                     //console.log('option', option);
