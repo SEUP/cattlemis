@@ -272,14 +272,13 @@ Route::get('pie/{type}/{province?}', function ($type, $province = null) {
     return $chart;
 });
 
-Route::get('cattle/{type}/{province?}', function ($type,$province = null) {
+Route::get('cattle/{title}/{type}/{province?}', function ($title,$type,$province = null) {
 
     //$type="male_breeding_types";
 
     $query = DB::table('choices');
     $query->leftJoin('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
     $query->leftJoin('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
-
     $query->where('choices.type', '=', $type);
 
     if ($province) {
@@ -305,15 +304,25 @@ Route::get('cattle/{type}/{province?}', function ($type,$province = null) {
 
     $data_drill = [];
     foreach ($results as $r) {
+
         $each_drill = new stdClass();
         $each_drill->name = $r->choice;
         $each_drill->id = $r->choice;
 
         $query = DB::table('choices');
-        $query->leftJoin('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
-        $query->leftJoin('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
+        $query->Join('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
+        $query->Join('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
 
         $query->where('choices.parent_id', '=', $r->id);
+
+        $query->whereIn('choice_farm_owner.farm_owner_id', function($query) use ($r) {
+            $query->select('choice_farm_owner.farm_owner_id')
+                ->from('choice_farm_owner')
+                ->where('choice_farm_owner.choice_id', $r->id);
+        });
+        $query->groupBy('choices.id');
+
+
         $query->select(DB::raw('sum(choice_farm_owner.amount) as cattle_count, choices.choice, choices.id'));
 
         $sub_results = $query->get();
@@ -344,7 +353,7 @@ Route::get('cattle/{type}/{province?}', function ($type,$province = null) {
 
     $chart['series'][] =
         [
-            "name" => $type,
+            "name" => $title,
             "colorByPoint" => true,
             "data" => $data
         ];
@@ -354,6 +363,3 @@ Route::get('cattle/{type}/{province?}', function ($type,$province = null) {
 
     return $chart;
 });
-
-
-
