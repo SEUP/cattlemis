@@ -80,3 +80,19 @@ Route::get('charts/cattle/', function () {
 
     return view("admin.charts.cattleChart");
 });
+
+Route::get('charts/cattle/', function () {
+    return view("admin.charts.cattleChart");
+});
+
+Route::get('charts/double/{title}/{type}/{action}/{element}', function ($title, $type, $action, $element) {
+    return view("admin.charts.doubleChart")
+        ->with('title', $title)
+        ->with('type', $type)
+        ->with('action', $action)
+        ->with('element', $element);
+});
+
+Route::get('charts/budget/', function () {
+    return view("admin.charts.budgetChart");
+});

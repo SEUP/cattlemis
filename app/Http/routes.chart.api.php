@@ -20,7 +20,7 @@ Route::get('map-data/{id?}', function ($provinceId = null) {
         $query->select(["thailand_amphures.amphur_id", "thailand_amphures.amphur_name"]);
         $query->addSelect(DB::raw('count(farm_owners.id) as value'));
 
-        $query->where('thailand_amphures.province_id','=',$provinceId);
+        $query->where('thailand_amphures.province_id', '=', $provinceId);
 
         $query->groupBy('thailand_amphures.amphur_id');
 
@@ -135,13 +135,13 @@ Route::get('range/farm-owner/{type}/{min}/{max}/{numberGroup}/{province?}', func
     }
 
 
-    $query->addSelect(DB::raw("SUM(IF($type < $min,1,0)) as 'ต่ำกว่า $min'"));
+    $query->addSelect(DB::raw("SUM(IF($type <= $min,1,0)) as 'น้อยกว่าเท่ากับ $min'"));
 
     for ($i = 0; $i < sizeof($arr) - 1; $i++) {
         $low = $arr[$i];
         $high = $arr[$i + 1];
 
-        $query->addSelect(DB::raw("SUM(IF($type BETWEEN $low and $high,1,0)) as '$low - $high'"));
+        $query->addSelect(DB::raw("SUM(IF($type > $low and $type <= $high,1,0)) as '$low - $high'"));
     }
 
     $max = $arr[sizeof($arr) - 1];
@@ -272,7 +272,7 @@ Route::get('pie/{type}/{province?}', function ($type, $province = null) {
     return $chart;
 });
 
-Route::get('cattle/{title}/{type}/{province?}', function ($title,$type,$province = null) {
+Route::get('cattle/{title}/{type}/{province?}', function ($title, $type, $province = null) {
 
     //$type="male_breeding_types";
 
@@ -291,12 +291,13 @@ Route::get('cattle/{title}/{type}/{province?}', function ($title,$type,$province
 
     $results = $query->get();
 
+
     $data = [];
     $xAxis = [];
     foreach ($results as $r) {
         $each = new stdClass();
         $each->name = $r->choice;
-        $each->y = intval( $r->cattle_count );
+        $each->y = intval($r->cattle_count);
         $each->drilldown = $r->choice;
         $xAxis[] = $r->choice;
         $data[] = $each;
@@ -315,7 +316,7 @@ Route::get('cattle/{title}/{type}/{province?}', function ($title,$type,$province
 
         $query->where('choices.parent_id', '=', $r->id);
 
-        $query->whereIn('choice_farm_owner.farm_owner_id', function($query) use ($r) {
+        $query->whereIn('choice_farm_owner.farm_owner_id', function ($query) use ($r) {
             $query->select('choice_farm_owner.farm_owner_id')
                 ->from('choice_farm_owner')
                 ->where('choice_farm_owner.choice_id', $r->id);
@@ -360,6 +361,172 @@ Route::get('cattle/{title}/{type}/{province?}', function ($title,$type,$province
 
 
     $chart['drilldown'] = $show_drill;
+
+    return $chart;
+});
+
+
+Route::get('double/{title}/{type}/{action?}/{element?}/{province?}', function ($title, $type,$action,$element, $province = null) {
+
+    //get top
+
+    $query = DB::table('choices');
+    $query->leftJoin('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
+    $query->leftJoin('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
+    $query->where('choices.type', '=', $type);
+
+    if ($province) {
+        $query->where('farm_owners.house_province', '=', $province);
+    }
+
+    $query->groupBy('choices.choice');
+    $query->orderBy('choices.id', 'asc');
+    $query->select(DB::raw('count(farm_owners.id) as regis_count, choices.choice, choices.id'));
+
+    $results = $query->get();
+   // return $results;
+
+    foreach ($results as $result) {
+        $each = new stdClass();
+        $each->name = $result->choice;
+        $each->y = $result->regis_count;
+
+        $data[] = $each;
+    }
+
+
+//get down
+    $data_drill = [];
+    $xAxis = [];
+    foreach ($results as $r) {
+
+        $query = DB::table('choices');
+        $query->Join('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
+        $query->Join('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
+
+        $query->where('choices.parent_id', '=', $r->id);
+
+        $query->whereIn('choice_farm_owner.farm_owner_id', function ($query) use ($r) {
+            $query->select('choice_farm_owner.farm_owner_id')
+                ->from('choice_farm_owner')
+                ->where('choice_farm_owner.choice_id', $r->id);
+        });
+        $query->groupBy('choices.id');
+
+
+        $query->select(DB::raw("$action($element) as type_count, choices.choice, choices.id"));
+        $sub_results = $query->get();
+        //return $sub_results;
+
+            foreach ($sub_results as $result) {
+                $data_drill[] = intval($result->type_count);
+                $xAxis[] = $result->choice;
+            }
+    }
+
+    $chart = [];
+    $chart['tooltip'] = [];
+    $chart['tooltip']['pointFormat'] = "จำนวน: <b>{point.y}</b>";
+    $chart['series'] = [];
+    $chart['series'][] =
+        [
+            "name" => $title,
+            "colorByPoint" => true,
+            "data" => $data
+        ];
+
+
+    $chart['xAxis'] = [];
+
+    $chart['xAxis']['categories'] = $xAxis;
+    $chart['xAxis']['crosshair'] = true;
+
+    $chart['drilldown'] = [];
+    $chart['drilldown'][] =
+        [
+            'name' => 'จำนวน',
+            'data' => $data_drill,
+            'colorByPoint' => true,
+        ];
+
+    return $chart;
+});
+
+Route::get('budget/{province?}', function ($province = null) {
+
+    //get top
+    $query = DB::table('choices');
+    $query->leftJoin('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
+    $query->leftJoin('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
+    $query->where('choices.type', '=', "budget_source");
+
+    if ($province) {
+        $query->where('farm_owners.house_province', '=', $province);
+    }
+
+    $query->groupBy('choices.choice');
+    $query->orderBy('choices.id', 'asc');
+    $query->select(DB::raw('count(farm_owners.id) as user_count, choices.choice, choices.id'));
+
+    $results = $query->get();
+
+
+    foreach ($results as $result) {
+        $each = new stdClass();
+        $each->name = $result->choice;
+        $each->y = $result->user_count;
+        $data[] = $each;
+    }
+
+
+//get down
+    $query = DB::table('choices');
+    $query->leftJoin('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
+    $query->leftJoin('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
+    $query->where('choices.type', '=', "loan_types");
+
+    if ($province) {
+        $query->where('farm_owners.house_province', '=', $province);
+    }
+
+    $query->groupBy('choices.choice');
+    $query->orderBy('choices.id', 'asc');
+    $query->select(DB::raw('sum(choice_farm_owner.amount) as loan_amount, choices.choice, choices.id'));
+
+    $sub_results = $query->get();
+    // return $results;
+
+    $data_drill = [];
+    $xAxis = [];
+    foreach ($sub_results as $result) {
+        $data_drill[] = intval($result->loan_amount);
+        $xAxis[] = $result->choice;
+    }
+
+    $chart = [];
+    $chart['tooltip'] = [];
+    $chart['tooltip']['pointFormat'] = "จำนวน: <b>{point.y}</b>";
+    $chart['series'] = [];
+    $chart['series'][] =
+        [
+            "name" => "เงินทุนในการเลี้ยงโคเนื้อ",
+            "colorByPoint" => true,
+            "data" => $data
+        ];
+
+
+    $chart['xAxis'] = [];
+
+    $chart['xAxis']['categories'] = $xAxis;
+    $chart['xAxis']['crosshair'] = true;
+
+    $chart['drilldown'] = [];
+    $chart['drilldown'][] =
+        [
+            'name' => 'จำนวน',
+            'data' => $data_drill,
+            'colorByPoint' => true,
+        ];
 
     return $chart;
 });

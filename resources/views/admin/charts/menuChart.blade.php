@@ -48,7 +48,7 @@
                                     <li>
                                         <a href="normal/เป้าหมายการเลี้ยงในอนาคต/farm_future">เป้าหมายการเลี้ยงในอนาคต</a>
                                     </li>
-                                    <li><a href="#collaps1">การขึ้นทะเบียนฟาร์มกับภาครัฐ</a></li>
+                                    <li><a href="double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status/count/farm_owners.id">การขึ้นทะเบียนฟาร์มกับภาครัฐ</a></li>
                                     <li>
                                         <a href="multi-choice/สถานภาพการระบาดของโรคในฟาร์ม/abortion,tuberculosis,foot_mouth_disease">สถานภาพการระบาดของโรคในฟาร์ม</a>
                                     </li>
@@ -65,15 +65,15 @@
                             </div>
                             <div id="collapse3" class="panel-collapse collapse in">
                                 <div class="panel-body">
-                                    <li><a href="#collaps1">จำนวนแรงงานที่เลี้ยงโคเนื้อ</a></li>
+                                    <li><a href="range-farmowner/จำนวนแรงงานที่เลี้ยงโคเนื้อ/family_workers_amount/1/10/5">จำนวนแรงงานที่เลี้ยงโคเนื้อ</a></li>
                                     <li>
                                         <a href="normal/ลักษณะการเลี้ยงโคเนื้อ/take_care_types">ลักษณะการเลี้ยงโคเนื้อ</a>
                                     </li>
-                                    <li><a href="#collaps1">พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ (ไร่/ครัวเรือน)</a></li>
+                                    <li><a href="double/พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ (ไร่ต่อครัวเรือน)/use_land/sum/choice_farm_owner.area">พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ (ไร่/ครัวเรือน)</a></li>
                                     <li><a href="pie/อาหารที่ท่านใช้เลี้ยงโคเนื้อ/feed_types">อาหารที่ท่านใช้เลี้ยงโคเนื้อ</a>
                                     </li>
                                     <li><a href="pie/การให้แร่ธาตุก้อน/minerals_feed">การให้แร่ธาตุก้อน</a></li>
-                                    <li><a href="#collaps1">การสำรองฟางข้าว หรือเปลือกข้าวโพด</a></li>
+                                    <li><a href="***">การสำรองฟางข้าว หรือเปลือกข้าวโพด</a></li>
                                     <li>
                                         <a href="normal/แหล่งอาหารหยาบในฤดูแล้ง/feed_summer_sources">แหล่งอาหารหยาบในฤดูแล้ง</a>
                                     </li>
@@ -97,8 +97,8 @@
                                     <li><a href="normal/ผู้ให้บริการผสมเทียท/breeders">ผู้ให้บริการผสมเทียม</a></li>
                                     <li><a href="range-farmowner/อัตราส่วนพ่อพันธ์คุมฝูง/breeding_rate/5/10/3">อัตราส่วนพ่อพันธ์คุมฝูง</a>
                                     </li>
-                                    <li><a href="#collaps1">วัคซีนป้องกันโรค</a></li>
-                                    <li><a href="#collaps1">การจัดการมูลโคในฟาร์ม</a></li>
+                                    <li><a href="double/วัคซีนป้องกันโรค/vaccine_ever/count/farm_owners.id">วัคซีนป้องกันโรค</a></li>
+                                    <li><a href="double/การจัดการมูลโคในฟาร์ม/cattle_dung_uses">การจัดการมูลโคในฟาร์ม</a></li>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                             </div>
                             <div id="collapse5" class="panel-collapse collapse in">
                                 <div class="panel-body">
-                                    <li><a href="#collaps1">เงินทุนการเลี้ยงโคเนื้อ</a></li>
+                                    <li><a href="budget/">เงินทุนการเลี้ยงโคเนื้อ</a></li>
                                 </div>
                             </div>
                         </div>
