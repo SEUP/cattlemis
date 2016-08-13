@@ -274,7 +274,7 @@
             });
 
 
-            $.getJSON("/chart/map-data/45", function (response) {
+            $.getJSON("/chart/map-data/44", function (response) {
                 console.log(response);
                 $('#map-container-phayao').highcharts('Map', {
                     title: {
@@ -296,8 +296,10 @@
                                 enabled: true,
                                 color: '#FFFFFF',
                                 formatter: function () {
-                                    console.log("hello",this.point);
-                                    return this.point.amphur_name + "<br/>" + this.point.value + " คน";
+
+                                    var value = this.point.value  ? this.point.value : 0;
+
+                                    return this.point.amphur_name + "<br/>" + value + " คน";
                                 }
                             },
                             tooltip: {
