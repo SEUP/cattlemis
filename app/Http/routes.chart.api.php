@@ -272,8 +272,9 @@ Route::get('pie/{type}/{province?}', function ($type, $province = null) {
     return $chart;
 });
 
-Route::get('cattle/{type}/{province?}', function ($type, $province = null) {
+Route::get('cattle/{type}/{province?}', function ($type,$province = null) {
 
+    //$type="male_breeding_types";
 
     $query = DB::table('choices');
     $query->leftJoin('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
@@ -323,7 +324,7 @@ Route::get('cattle/{type}/{province?}', function ($type, $province = null) {
             if ($sub_r->choice != null) {
                 //$each_drill->data[] = $sub_r->choice;
                 //$each_drill->data[] = $sub_r->cattle_count;
-                $each_drill->data[] = array($sub_r->choice, $sub_r->cattle_count);
+                $each_drill->data[] = array($sub_r->choice, intval($sub_r->cattle_count));
                 $data_drill[] = $each_drill;
             }
         }

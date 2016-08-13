@@ -1,11 +1,10 @@
 @extends('admin.layout')
 
 @section('page-wrapper')
-    <input type="hidden" id="chartType" value="{{$type}}"/>
-    <input type="hidden" id="chartTitle" value="{{$title}}"/>
+
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">{{$title}}</h1>
+            <h1 class="page-header">จำนวนโคเนื้อที่เลี้ยง</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -21,6 +20,20 @@
             <div id="container"></div>
         </div>
     </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                พ่อพันธุ์โคเนื้อ
+            </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <div id="map-male-breeding"></div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 
@@ -32,14 +45,13 @@
 
             data: {
                 chartData: {},
-                chartType: "",
-                chartTitle: "",
                 provinces: [],
                 selProvince: 0,
             },
             methods: {
                 provinceChange: function () {
-                    this.$http.get('/chart/cattle/' + this.chartType+'/'+this.selProvince).then(function (r) {
+                   // this.$http.get('/chart/cattle/' + this.chartType+'/'+this.selProvince).then(function (r) {
+                    this.$http.get('/chart/cattle/male_breeding_types/'+this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData = data;
                         this.displayChart();
@@ -47,12 +59,12 @@
                 },
                 displayChart: function () {
                     var self = this;
-                    $('#container').highcharts({
+                    $('#map-male-breeding').highcharts({
                         chart: {
                             type: 'column'
                         },
                         title: {
-                            text: self.chartTitle,
+                            text: 'พ่อพันธุ์โคเนื้อ',
                         },
                         xAxis: {
                             type: 'category',
@@ -78,7 +90,7 @@
                         },
                         legend: {
                             enabled: false
-                    },
+                        },
                         tooltip: self.chartData.tooltip,
                         plotOptions: {
                             series: {
@@ -91,7 +103,7 @@
                         },
 
                         series: self.chartData.series,
-                        drilldown: self.chartData.drilldown
+                        drilldown:self.chartData.drilldown,
                     });
 
                 }
@@ -100,7 +112,8 @@
                     this.$http.get("/api/thailand/province").then(function (response) {
                         this.provinces = response.data;
                     });
-                    this.$http.get('/chart/cattle/' + this.chartType).then(function (r) {
+                   // this.$http.get('/chart/cattle/' + this.chartType).then(function (r) {
+                    this.$http.get('/chart/cattle/male_breeding_types').then(function (r) {
                         data = r.data;
                         this.chartData = data;
                         this.displayChart();
@@ -108,8 +121,8 @@
                 }
             },
             ready: function () {
-                this.chartType = $("#chartType").val();
-                this.chartTitle = $("#chartTitle").val();
+               // this.chartType = $("#chartType").val();
+               // this.chartTitle = $("#chartTitle").val();
                 this.loadData();
             }
         })
