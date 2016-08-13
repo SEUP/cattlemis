@@ -208,6 +208,20 @@
                             </div>
                         </div>
                     </div>
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                จำนวนเกษตรกรผู้เลี้ยงโคเนื้อจังหวัดแพร่
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div id="map-container-phrae"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -326,6 +340,41 @@
                     ]
                 });
             });
+
+            $.getJSON("/chart/map-data/44", function (response) {
+                console.log(response);
+                $('#map-container-phrae').highcharts('Map', {
+                    title: {
+                        text: 'จำนวนเกษตรกรผู้เลี้ยงโคเนื้อจังหวัดแพร่'
+                    },
+                    chart: {
+                        height: 500
+                    },
+                    colorAxis: {},
+                    series: [
+
+                        {
+                            cursor: 'pointer',
+                            name: "จำนวนเกษตรกร",
+                            type: "map",
+                            data : response,
+                            mapData: Highcharts.maps["countries/th/th-phrae/mapdata"],
+                            joinBy: ['id', 'amphur_id'],
+                            dataLabels: {
+                                enabled: true,
+                                color: '#FFFFFF',
+                                format: '{point.amphur_name}<br/>{point.value} คน'
+                            },
+                            tooltip: {
+                                headerFormat: '<span style="font-size:10px">{series.name}</span><br/>',
+                                pointFormat: '{point.province_name}: <b>{point.value} คน</b><br/>',
+                            },
+
+                        }
+                    ]
+                });
+            });
+
 
 
         })
