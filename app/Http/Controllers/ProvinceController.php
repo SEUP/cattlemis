@@ -16,7 +16,7 @@ class ProvinceController extends Controller
 
     public function index()
     {
-        $provinces = Province::with([])->get();
+        $provinces = Province::with([])->orderBy('province_name', 'asc')->where("geo_id",'=','1')->get();
         return $provinces;
     }
 

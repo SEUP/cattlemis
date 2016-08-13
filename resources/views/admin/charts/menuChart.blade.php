@@ -296,6 +296,7 @@
                                 enabled: true,
                                 color: '#FFFFFF',
                                 formatter: function () {
+                                    console.log("hello",this.point);
                                     return this.point.amphur_name + "<br/>" + this.point.value + " คน";
                                 }
                             },
@@ -332,7 +333,6 @@
                                 enabled: true,
                                 color: '#FFFFFF',
                                 formatter: function () {
-                                    console.log("HELLO", this.point);
                                     var amphurName = this.point.amphur_name ? this.point.amphur_name : this.point.properties.amphur_name;
                                     var value = this.point.value  ? this.point.value : 0;
                                     return amphurName + "<br/>" + value + " คน";
@@ -348,7 +348,7 @@
                 });
             });
 
-            $.getJSON("/chart/map-data/44", function (response) {
+            $.getJSON("/chart/map-data/42", function (response) {
                 console.log(response);
                 $('#map-container-phrae').highcharts('Map', {
                     title: {
@@ -364,13 +364,17 @@
                             cursor: 'pointer',
                             name: "จำนวนเกษตรกร",
                             type: "map",
-                            data : response,
+                            data: response,
                             mapData: Highcharts.maps["countries/th/th-phrae/mapdata"],
-                            joinBy: ['id', 'amphur_id'],
+                            joinBy: ['amphur_id', 'amphur_id'],
                             dataLabels: {
                                 enabled: true,
                                 color: '#FFFFFF',
-                                format: '{point.amphur_name}<br/>{point.value} คน'
+                                formatter: function () {
+                                    var amphurName = this.point.amphur_name ? this.point.amphur_name : this.point.properties.amphur_name;
+                                    var value = this.point.value  ? this.point.value : 0;
+                                    return amphurName + "<br/>" + value + " คน";
+                                }
                             },
                             tooltip: {
                                 headerFormat: '<span style="font-size:10px">{series.name}</span><br/>',
