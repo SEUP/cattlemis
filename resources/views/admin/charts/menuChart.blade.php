@@ -241,7 +241,7 @@
                             cursor: 'pointer',
                             name: "จำนวนเกษตรกร",
                             type: "map",
-                            data : response,
+                            data: response,
                             mapData: Highcharts.maps["countries/th/th-north/mapdata"],
                             joinBy: ['id', 'province_id'],
                             dataLabels: {
@@ -275,13 +275,15 @@
                             cursor: 'pointer',
                             name: "จำนวนเกษตรกร",
                             type: "map",
-                            data : response,
+                            data: response,
                             mapData: Highcharts.maps["countries/th/th-phayao/mapdata"],
                             joinBy: ['id', 'amphur_id'],
                             dataLabels: {
                                 enabled: true,
                                 color: '#FFFFFF',
-                                format: '{point.amphur_name}<br/>{point.value} คน'
+                                formatter: function () {
+                                    return this.point.amphur_name + "<br/>" + this.point.value + " คน";
+                                }
                             },
                             tooltip: {
                                 headerFormat: '<span style="font-size:10px">{series.name}</span><br/>',
@@ -293,7 +295,7 @@
                 });
             });
 
-            $.getJSON("/chart/map-data/44", function (response) {
+            $.getJSON("/chart/map-data/43", function (response) {
                 console.log(response);
                 $('#map-container-nan').highcharts('Map', {
                     title: {
@@ -309,13 +311,18 @@
                             cursor: 'pointer',
                             name: "จำนวนเกษตรกร",
                             type: "map",
-                            data : response,
+                            data: response,
                             mapData: Highcharts.maps["countries/th/th-nan/mapdata"],
-                            joinBy: ['id', 'amphur_id'],
+                            joinBy: ['amphur_id', 'amphur_id'],
                             dataLabels: {
                                 enabled: true,
                                 color: '#FFFFFF',
-                                format: '{point.amphur_name}<br/>{point.value} คน'
+                                formatter: function () {
+                                    console.log("HELLO", this.point);
+                                    var amphurName = this.point.amphur_name ? this.point.amphur_name : this.point.properties.amphur_name;
+                                    var value = this.point.value  ? this.point.value : 0;
+                                    return amphurName + "<br/>" + value + " คน";
+                                }
                             },
                             tooltip: {
                                 headerFormat: '<span style="font-size:10px">{series.name}</span><br/>',
