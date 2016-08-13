@@ -273,7 +273,7 @@ Route::get('cattle/{type}/{province?}', function ($type, $province = null) {
 
     $query->groupBy('choices.choice');
     $query->orderBy('choices.id', 'asc');
-    $query->select(DB::raw('count(choice_farm_owner.amount) as cattle_count, choices.choice, choices.id'));
+    $query->select(DB::raw('sum(choice_farm_owner.amount) as cattle_count, choices.choice, choices.id'));
 
     $results = $query->get();
 
@@ -282,7 +282,7 @@ Route::get('cattle/{type}/{province?}', function ($type, $province = null) {
     foreach ($results as $r) {
         $each = new stdClass();
         $each->name = $r->choice;
-        $each->y = $r->cattle_count;
+        $each->y = intval( $r->cattle_count );
         $each->drilldown = $r->choice;
         $xAxis[] = $r->choice;
         $data[] = $each;
@@ -299,7 +299,7 @@ Route::get('cattle/{type}/{province?}', function ($type, $province = null) {
         $query->leftJoin('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
 
         $query->where('choices.parent_id', '=', $r->id);
-        $query->select(DB::raw('count(choice_farm_owner.amount) as cattle_count, choices.choice, choices.id'));
+        $query->select(DB::raw('sum(choice_farm_owner.amount) as cattle_count, choices.choice, choices.id'));
 
         $sub_results = $query->get();
         //return $sub_results;
@@ -309,7 +309,7 @@ Route::get('cattle/{type}/{province?}', function ($type, $province = null) {
                 if($sub_r->choice!=null) {
                     //$each_drill->data[] = $sub_r->choice;
                    //$each_drill->data[] = $sub_r->cattle_count;
-                    $each_drill->data[] = array($sub_r->choice,$sub_r->cattle_count);
+                    $each_drill->data[] = array($sub_r->choice, intval($sub_r->cattle_count));
                     $data_drill[] = $each_drill;
                 }
         }
