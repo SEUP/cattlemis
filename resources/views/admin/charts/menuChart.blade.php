@@ -274,7 +274,7 @@
             });
 
 
-            $.getJSON("/chart/map-data/44", function (response) {
+            $.getJSON("/chart/map-data/45", function (response) {
                 console.log(response);
                 $('#map-container-phayao').highcharts('Map', {
                     title: {
