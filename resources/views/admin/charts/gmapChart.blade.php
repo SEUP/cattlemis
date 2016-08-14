@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="row" style="padding-bottom: 1em;">
-                <div class="col-xs-12" style="display: none;">
+                <div class="col-xs-12" style="">
                     <select class="form-control" v-on:change="provinceChange" v-model="selProvince">
                         <option value="0">กรุณาเลือกจังหวัด</option>
                         <option v-for="option in provinces"
@@ -26,9 +26,12 @@
                                 :zoom="8"
                     >
 
-                        <marker v-for="m in chartData" :position.sync="m.position" :clickable="true"
+                        <marker v-for="m in chartData" :position.sync="m.position"
+                                :title="m.title"
+                                :clickable="true"
                                 :draggable="true" @g-click="center=m.position">
 
+                        <info-window :content="m.title" :opened="false"></info-window>
 
                         </marker>
 
@@ -63,7 +66,8 @@
             el: 'body',
             components: {
                 'google-map': VueGoogleMap.Map,
-                'marker': VueGoogleMap.Marker
+                'marker': VueGoogleMap.Marker,
+                'info-window': VueGoogleMap.InfoWindow
             },
             data: {
                 chartData: {},
