@@ -5,52 +5,62 @@
     <input type="hidden" id="chartTitle" value="{{$title}}"/>
     <input type="hidden" id="chartAction" value="{{$action}}"/>
     <input type="hidden" id="chartElement" value="{{$element}}"/>
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">{{$title}}</h1>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <div class="row">
-        <div class="col-xs-12" style="padding-bottom: 1em;">
-            <select class="form-control" v-on:change="provinceChange" v-model="selProvince">
-                <option value="0">กรุณาเลือก</option>
-                <option v-for="option in provinces"
-                        v-bind:value="option.PROVINCE_ID">@{{ option.PROVINCE_NAME }}</option>
-            </select>
-        </div>
 
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        {{$title}}
-                    </h4>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">{{$title}}</h1>
                 </div>
-                <div id="collapse1" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <div id="farm_regis"></div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <div class="row">
+                <div class="col-xs-12" style="padding-bottom: 1em;">
+                    <select class="form-control" v-on:change="provinceChange" v-model="selProvince">
+                        <option value="0">กรุณาเลือกจังหวัด</option>
+                        <option v-for="option in provinces"
+                                v-bind:value="option.PROVINCE_ID">@{{ option.PROVINCE_NAME }}</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                {{$title}}
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div id="farm_regis"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        {{$title}}
-                    </h4>
-                </div>
-                <div id="collapse1" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <div id="sub_farm_regis"></div>
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                {{$title}}
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div id="sub_farm_regis"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
+            </div>
+
+        </div>
+        <div class="col-lg-4" style="margin-top:2em;">
+            @include('admin.charts.chart_menu')
+        </div>
     </div>
+
 
 @endsection
 
@@ -68,7 +78,7 @@
             },
             methods: {
                 provinceChange: function () {
-                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/'+ 'count/' + 'farm_owners.id/' + this.selProvince).then(function (r) {
+                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/' + 'count/' + 'farm_owners.id/' + this.selProvince).then(function (r) {
                         //this.$http.get('/chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status/'+this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData = data;
@@ -117,7 +127,7 @@
                         this.provinces = response.data;
                     });
 
-                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/'+ 'count/' + 'farm_owners.id/' + this.selProvince).then(function (r) {
+                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/' + 'count/' + 'farm_owners.id/' + this.selProvince).then(function (r) {
                         //this.$http.get('/chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status').then(function (r) {
                         data = r.data;
                         this.chartData = data;
@@ -152,7 +162,7 @@
                 provinceChange: function () {
                     // this.$http.get('/chart/cattle/' + this.chartType+'/'+this.selProvince).then(function (r) {
                     // this.$http.get('/chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status/'+this.selProvince).then(function (r) {
-                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/'+ this.chartAction + '/' + this.chartElement + '/' + this.selProvince).then(function (r) {
+                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/' + this.chartAction + '/' + this.chartElement + '/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData = data;
                         this.displayChart();
@@ -178,7 +188,7 @@
                             labels: {
                                 overflow: 'justify',
                                 style: {
-                                    fontSize:'10px'
+                                    fontSize: '10px'
                                 }
                             }
                         },
@@ -193,7 +203,7 @@
                                 dataLabels: {
                                     enabled: true,
                                     style: {
-                                        fontSize:'20px'
+                                        fontSize: '20px'
                                     }
                                 }
                             }
@@ -209,7 +219,7 @@
                         this.provinces = response.data;
                     });
                     // this.$http.get('/chart/cattle/' + this.chartType).then(function (r) {
-                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/'+ this.chartAction + '/' + this.chartElement + '/' + this.selProvince).then(function (r) {
+                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/' + this.chartAction + '/' + this.chartElement + '/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData = data;
                         this.displayChart();
