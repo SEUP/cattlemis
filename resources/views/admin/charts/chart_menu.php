@@ -10,6 +10,7 @@
                 <li><a href="/admin/charts/pie/เพศ/sex">เพศ</a></li>
                 <li><a href="/admin/charts/range-farmowner/อายุ/age/15/70/8">อายุ</a></li>
                 <li><a href="/admin/charts/normal/การศึกษา/education">การศึกษา</a></li>
+                <li><a href="/admin/charts/gmap/ที่ตั้งฟาร์มของเกษตรกร">ที่ตั้งฟาร์มของเกษตรกร</a></li>
                 <li><a href="/admin/charts/pie/อาชีพการเลี้ยงโคเนื้อ(อาชีพหลัก-เสริม)/cattle_job">อาชีพการเลี้ยงโคเนื้อ(อาชีพหลัก-เสริม)</a>
                 </li>
                 <li>
