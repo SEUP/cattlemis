@@ -26,8 +26,10 @@ elixir(function (mix) {
         .copy('resources/assets/vendor/startbootstrap-sb-admin-2-sass/dist/js/sb-admin-2.js', 'resources/assets/js/vendor')
         .copy('resources/assets/vendor/moment/moment.js', 'resources/assets/js/vendor')
         .copy('resources/assets/vendor/bootstrap-sass/assets/fonts', 'public/fonts')
+
         .copy('resources/assets/vendor/vue/dist/vue.min.js', 'resources/assets/js/vendor')
         .copy('resources/assets/vendor/vue-resource/dist/vue-resource.min.js', 'resources/assets/js/vendor')
+
         .copy('resources/assets/vendor/vue-strap/dist/vue-strap.min.js', 'resources/assets/js/vendor')
         .copy('resources/assets/vendor/highcharts/highcharts.js', 'resources/assets/js/vendor')
         .copy('resources/assets/vendor/highcharts/modules/map.src.js', 'resources/assets/js/vendor')

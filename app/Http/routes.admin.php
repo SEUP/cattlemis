@@ -50,6 +50,13 @@ Route::get('charts/normal/{title}/{type}', function ($title, $type) {
         ->with('type', $type);
 });
 
+Route::get('charts/gmap/{title}', function ($title) {
+
+    return view("admin.charts.gmapChart")
+        ->with('title', $title);
+});
+
+
 Route::get('charts/pie/{title}/{type}', function ($title, $type) {
 
     return view("admin.charts.pieChart")
