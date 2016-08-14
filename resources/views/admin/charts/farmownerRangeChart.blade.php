@@ -7,24 +7,33 @@
     <input type="hidden" id="max" value="{{$max}}"/>
     <input type="hidden" id="step" value="{{$step}}"/>
     <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">{{$title}}</h1>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <select class="form-control" v-on:change="provinceChange" v-model="selProvince">
-                <option value="0">กรุณาเลือกจังหวัด</option>
-                <option v-for="option in provinces"
-                        v-bind:value="option.PROVINCE_ID">@{{ option.PROVINCE_NAME }}</option>
-            </select>
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">{{$title}}</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <select class="form-control" v-on:change="provinceChange" v-model="selProvince">
+                        <option value="0">กรุณาเลือกจังหวัด</option>
+                        <option v-for="option in provinces"
+                                v-bind:value="option.PROVINCE_ID">@{{ option.PROVINCE_NAME }}</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-12">
+                    <div id="container"></div>
+                </div>
+            </div>
         </div>
 
-        <div class="col-lg-12">
-            <div id="container"></div>
+        <div class="col-lg-4" style="margin-top:2em;">
+            @include('admin.charts.chart_menu')
         </div>
     </div>
+
 @endsection
 
 @section('javascript')
@@ -46,7 +55,7 @@
                 provinceChange: function () {
 
                     var api = "/chart/range/farm-owner/" +
-                            this.chartType + "/" + this.min + "/" + this.max + "/" + this.step+"/"+this.selProvince;
+                            this.chartType + "/" + this.min + "/" + this.max + "/" + this.step + "/" + this.selProvince;
 
                     this.$http.get(api).then(function (r) {
                         data = r.data;

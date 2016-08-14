@@ -3,64 +3,73 @@
 @section('page-wrapper')
 
     <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">เงินทุนที่ท่านใช้เลี้ยงโคเนื้อ</h1>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <div class="row">
-        <div class="col-xs-12" style="padding-bottom: 1em;">
-            <select class="form-control" v-on:change="provinceChange" v-model="selProvince">
-                <option value="0">กรุณาเลือกจังหวัด</option>
-                <option v-for="option in provinces"
-                        v-bind:value="option.PROVINCE_ID">@{{ option.PROVINCE_NAME }}</option>
-            </select>
-        </div>
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">เงินทุนที่ท่านใช้เลี้ยงโคเนื้อ</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <div class="row">
+                <div class="col-xs-12" style="padding-bottom: 1em;">
+                    <select class="form-control" v-on:change="provinceChange" v-model="selProvince">
+                        <option value="0">กรุณาเลือกจังหวัด</option>
+                        <option v-for="option in provinces"
+                                v-bind:value="option.PROVINCE_ID">@{{ option.PROVINCE_NAME }}</option>
+                    </select>
+                </div>
 
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        เงินทุนที่ท่านใช้เลี้ยงโคเนื้อ
-                    </h4>
-                </div>
-                <div id="collapse1" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <div id="ิbudget_source"></div>
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                เงินทุนที่ท่านใช้เลี้ยงโคเนื้อ
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div id="ิbudget_source"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        แหล่งเงินทุนกู้ยืม
-                    </h4>
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                แหล่งเงินทุนกู้ยืม
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div id="loan_types"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div id="collapse1" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <div id="loan_types"></div>
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                ยอดรวมเงินกู้ทั้งหมด
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div id="total_budget"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        ยอดรวมเงินกู้ทั้งหมด
-                    </h4>
-                </div>
-                <div id="collapse1" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <div id="total_budget"></div>
-                    </div>
-                </div>
-            </div>
+        <div class="col-lg-4" style="margin-top: 2em;">
+            @include('admin.charts.chart_menu')
         </div>
     </div>
+
+
 
 @endsection
 
@@ -187,7 +196,7 @@
                             labels: {
                                 overflow: 'justify',
                                 style: {
-                                    fontSize:'10px'
+                                    fontSize: '10px'
                                 }
                             }
                         },
@@ -202,7 +211,7 @@
                                 dataLabels: {
                                     enabled: true,
                                     style: {
-                                        fontSize:'20px'
+                                        fontSize: '20px'
                                     }
                                 }
                             }
@@ -252,7 +261,7 @@
                 provinceChange: function () {
 
                     var api = "/chart/range/farm-owner/" +
-                            this.chartType + "/" + this.min + "/" + this.max + "/" + this.step+"/"+this.selProvince;
+                            this.chartType + "/" + this.min + "/" + this.max + "/" + this.step + "/" + this.selProvince;
 
                     this.$http.get(api).then(function (r) {
                         data = r.data;
@@ -324,8 +333,8 @@
                 }
             },
             ready: function () {
-               // this.chartType = $("#chartType").val();
-              //  this.chartTitle = $("#chartTitle").val();
+                // this.chartType = $("#chartType").val();
+                //  this.chartTitle = $("#chartTitle").val();
                 //this.min = $("#min").val();
                 //this.max = $("#max").val();
                 //this.step = $("#step").val();
