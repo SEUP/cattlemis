@@ -64,6 +64,19 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                จำนวนเกษตรกรผู้เลี้ยงโคเนื้อจังหวัดเชียงราย
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div id="map-container-chiangrai"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -242,22 +255,67 @@
                             },
 
                         },
+//                        {
+//                            type: 'pie',
+//                            name: 'จำนวนเกษตรกร',
+//                            data: response,
+//                            center: [120, 100],
+//                            size: 100,
+//                            showInLegend: false,
+//                            dataLabels: {
+//                                enabled: true,
+//                                formatter: function () {
+//                                    var amphurName = this.point.amphur_name ? this.point.amphur_name : this.point.properties.amphur_name;
+//                                    var value = this.point.value ? this.point.value : 0;
+//
+//                                    return amphurName + " : " + value + " คน";
+//                                }
+//                            }
+//                        }
+                    ]
+                });
+            });
+
+
+            $.getJSON("/chart/map-data/45", function (response) {
+                $('#map-container-chiangrai').highcharts('Map', {
+                    title: {
+                        text: 'จำนวนเกษตรกรผู้เลี้ยงโคเนื้อจังหวัดเชียงราย'
+                    },
+                    chart: {
+                        height: 500
+                    },
+                    colorAxis: {},
+                    series: [
+
                         {
-                            type: 'pie',
-                            name: 'จำนวนเกษตรกร',
+                            cursor: 'pointer',
+                            name: "จำนวนเกษตรกร",
+                            type: "map",
                             data: response,
-                            center: [120, 100],
-                            size: 100,
-                            showInLegend: false,
+                            mapData: Highcharts.maps["countries/th/th-chiangrai/mapdata"],
+                            joinBy: ['amphur_id', 'amphur_id'],
                             dataLabels: {
                                 enabled: true,
+                                color: '#FFFFFF',
                                 formatter: function () {
                                     var amphurName = this.point.amphur_name ? this.point.amphur_name : this.point.properties.amphur_name;
                                     var value = this.point.value ? this.point.value : 0;
 
                                     return amphurName + " : " + value + " คน";
                                 }
-                            }
+                            },
+                            tooltip: {
+                                headerFormat: '<span style="font-size:10px">{series.name}</span><br/>',
+                                pointFormatter: function () {
+
+                                    var amphurName = this.amphur_name ? this.amphur_name : this.properties.amphur_name;
+                                    var value = this.value ? this.value : 0;
+
+                                    return amphurName + " : " + value + " คน";
+                                }
+                            },
+
                         }
                     ]
                 });
