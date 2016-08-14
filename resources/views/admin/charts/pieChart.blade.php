@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-xs-12">
             <select class="form-control" v-on:change="provinceChange" v-model="selProvince">
-                <option value="0">กรุณาเลือก</option>
+                <option value="0">กรุณาเลือกจังหวัด</option>
                 <option v-for="option in provinces"
                         v-bind:value="option.PROVINCE_ID">@{{ option.PROVINCE_NAME }}</option>
             </select>
