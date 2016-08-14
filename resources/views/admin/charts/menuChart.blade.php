@@ -48,7 +48,9 @@
                                     <li>
                                         <a href="normal/เป้าหมายการเลี้ยงในอนาคต/farm_future">เป้าหมายการเลี้ยงในอนาคต</a>
                                     </li>
-                                    <li><a href="double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status/count/farm_owners.id">การขึ้นทะเบียนฟาร์มกับภาครัฐ</a></li>
+                                    <li>
+                                        <a href="double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status/count/farm_owners.id">การขึ้นทะเบียนฟาร์มกับภาครัฐ</a>
+                                    </li>
                                     <li>
                                         <a href="multi-choice/สถานภาพการระบาดของโรคในฟาร์ม/abortion,tuberculosis,foot_mouth_disease">สถานภาพการระบาดของโรคในฟาร์ม</a>
                                     </li>
@@ -65,11 +67,15 @@
                             </div>
                             <div id="collapse3" class="panel-collapse collapse in">
                                 <div class="panel-body">
-                                    <li><a href="range-farmowner/จำนวนแรงงานที่เลี้ยงโคเนื้อ/family_workers_amount/1/10/5">จำนวนแรงงานที่เลี้ยงโคเนื้อ</a></li>
+                                    <li>
+                                        <a href="range-farmowner/จำนวนแรงงานที่เลี้ยงโคเนื้อ/family_workers_amount/1/10/5">จำนวนแรงงานที่เลี้ยงโคเนื้อ</a>
+                                    </li>
                                     <li>
                                         <a href="normal/ลักษณะการเลี้ยงโคเนื้อ/take_care_types">ลักษณะการเลี้ยงโคเนื้อ</a>
                                     </li>
-                                    <li><a href="double/พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ (ไร่ต่อครัวเรือน)/use_land/sum/choice_farm_owner.area">พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ (ไร่/ครัวเรือน)</a></li>
+                                    <li>
+                                        <a href="double/พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ (ไร่ต่อครัวเรือน)/use_land/sum/choice_farm_owner.area">พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ
+                                            (ไร่/ครัวเรือน)</a></li>
                                     <li><a href="pie/อาหารที่ท่านใช้เลี้ยงโคเนื้อ/feed_types">อาหารที่ท่านใช้เลี้ยงโคเนื้อ</a>
                                     </li>
                                     <li><a href="pie/การให้แร่ธาตุก้อน/minerals_feed">การให้แร่ธาตุก้อน</a></li>
@@ -97,8 +103,11 @@
                                     <li><a href="normal/ผู้ให้บริการผสมเทียท/breeders">ผู้ให้บริการผสมเทียม</a></li>
                                     <li><a href="range-farmowner/อัตราส่วนพ่อพันธ์คุมฝูง/breeding_rate/5/10/3">อัตราส่วนพ่อพันธ์คุมฝูง</a>
                                     </li>
-                                    <li><a href="double/วัคซีนป้องกันโรค/vaccine_ever/count/farm_owners.id">วัคซีนป้องกันโรค</a></li>
-                                    <li><a href="double/การจัดการมูลโคในฟาร์ม/cattle_dung_uses">การจัดการมูลโคในฟาร์ม</a></li>
+                                    <li><a href="double/วัคซีนป้องกันโรค/vaccine_ever/count/farm_owners.id">วัคซีนป้องกันโรค</a>
+                                    </li>
+                                    <li>
+                                        <a href="double/การจัดการมูลโคในฟาร์ม/cattle_dung_uses">การจัดการมูลโคในฟาร์ม</a>
+                                    </li>
                                 </div>
                             </div>
                         </div>
@@ -241,7 +250,6 @@
     <script>
         $(function () {
             $.getJSON("/chart/map-data", function (response) {
-                console.log(response);
                 $('#map-container').highcharts('Map', {
                     title: {
                         text: 'จำนวนเกษตรกรผู้เลี้ยงโคเนื้อ 4 จังหวัดภาคเหนือ'
@@ -275,7 +283,6 @@
 
 
             $.getJSON("/chart/map-data/44", function (response) {
-                console.log(response);
                 $('#map-container-phayao').highcharts('Map', {
                     title: {
                         text: 'จำนวนเกษตรกรผู้เลี้ยงโคเนื้อจังหวัดพะเยา'
@@ -296,16 +303,21 @@
                                 enabled: true,
                                 color: '#FFFFFF',
                                 formatter: function () {
+                                    var amphurName = this.point.amphur_name ? this.point.amphur_name : this.point.properties.amphur_name;
+                                    var value = this.point.value ? this.point.value : 0;
 
-                                    var value = this.point.value  ? this.point.value : 0;
-
-                                    return this.point.amphur_name + "<br/>" + value + " คน";
+                                    return amphurName + " : " + value + " คน";
                                 }
                             },
                             tooltip: {
                                 headerFormat: '<span style="font-size:10px">{series.name}</span><br/>',
-                                pointFormat: '{point.province_name}: <b>{point.value} คน</b><br/>',
-                            },
+                                pointFormatter: function () {
+
+                                    var amphurName = this.amphur_name ? this.amphur_name : this.properties.amphur_name;
+                                    var value = this.value ? this.value : 0;
+
+                                    return amphurName + " : " + value + " คน";
+                                }                            },
 
                         }
                     ]
@@ -313,7 +325,6 @@
             });
 
             $.getJSON("/chart/map-data/43", function (response) {
-                console.log(response);
                 $('#map-container-nan').highcharts('Map', {
                     title: {
                         text: 'จำนวนเกษตรกรผู้เลี้ยงโคเนื้อจังหวัดน่าน'
@@ -336,14 +347,20 @@
                                 color: '#FFFFFF',
                                 formatter: function () {
                                     var amphurName = this.point.amphur_name ? this.point.amphur_name : this.point.properties.amphur_name;
-                                    var value = this.point.value  ? this.point.value : 0;
-                                    return amphurName + "<br/>" + value + " คน";
+                                    var value = this.point.value ? this.point.value : 0;
+
+                                    return amphurName + " : " + value + " คน";
                                 }
                             },
                             tooltip: {
                                 headerFormat: '<span style="font-size:10px">{series.name}</span><br/>',
-                                pointFormat: '{point.province_name}: <b>{point.value} คน</b><br/>',
-                            },
+                                pointFormatter: function () {
+
+                                    var amphurName = this.amphur_name ? this.amphur_name : this.properties.amphur_name;
+                                    var value = this.value ? this.value : 0;
+
+                                    return amphurName + " : " + value + " คน";
+                                }                            },
 
                         }
                     ]
@@ -351,7 +368,6 @@
             });
 
             $.getJSON("/chart/map-data/42", function (response) {
-                console.log(response);
                 $('#map-container-phrae').highcharts('Map', {
                     title: {
                         text: 'จำนวนเกษตรกรผู้เลี้ยงโคเนื้อจังหวัดแพร่'
@@ -374,20 +390,43 @@
                                 color: '#FFFFFF',
                                 formatter: function () {
                                     var amphurName = this.point.amphur_name ? this.point.amphur_name : this.point.properties.amphur_name;
-                                    var value = this.point.value  ? this.point.value : 0;
-                                    return amphurName + "<br/>" + value + " คน";
+                                    var value = this.point.value ? this.point.value : 0;
+
+                                    return amphurName + " : " + value + " คน";
                                 }
                             },
                             tooltip: {
                                 headerFormat: '<span style="font-size:10px">{series.name}</span><br/>',
-                                pointFormat: '{point.province_name}: <b>{point.value} คน</b><br/>',
+                                pointFormatter: function () {
+
+                                    var amphurName = this.amphur_name ? this.amphur_name : this.properties.amphur_name;
+                                    var value = this.value ? this.value : 0;
+
+                                    return amphurName + " : " + value + " คน";
+                                }
                             },
 
+                        },
+                        {
+                            type: 'pie',
+                            name: 'จำนวนเกษตรกร',
+                            data: response,
+                            center: [120, 100],
+                            size: 100,
+                            showInLegend: false,
+                            dataLabels: {
+                                enabled: true,
+                                formatter: function () {
+                                    var amphurName = this.point.amphur_name ? this.point.amphur_name : this.point.properties.amphur_name;
+                                    var value = this.point.value ? this.point.value : 0;
+
+                                    return amphurName + " : " + value + " คน";
+                                }
+                            }
                         }
                     ]
                 });
             });
-
 
 
         })

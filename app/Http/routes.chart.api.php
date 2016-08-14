@@ -19,6 +19,7 @@ Route::get('map-data/{id?}', function ($provinceId = null) {
 
         $query->select(["thailand_amphures.amphur_id", "thailand_amphures.amphur_name"]);
         $query->addSelect(DB::raw('count(farm_owners.id) as value'));
+        $query->addSelect(DB::raw('count(farm_owners.id) as y'));
 
         $query->where('thailand_amphures.province_id', '=', $provinceId);
 
@@ -33,6 +34,7 @@ Route::get('map-data/{id?}', function ($provinceId = null) {
 
         $query->select(["thailand_provinces.province_id", "thailand_provinces.province_name"]);
         $query->addSelect(DB::raw('count(farm_owners.id) as value'));
+        $query->addSelect(DB::raw('count(farm_owners.id) as y'));
 
         $query->groupBy('thailand_provinces.province_id');
 
