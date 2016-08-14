@@ -26,6 +26,13 @@
                                 :zoom="8"
                     >
 
+                        <marker v-for="m in chartData" :position.sync="m.position" :clickable="true"
+                                :draggable="true" @g-click="center=m.position">
+
+
+                        </marker>
+
+
                     </google-map>
 
 
@@ -55,7 +62,8 @@
         var app = new AdminApp({
             el: 'body',
             components: {
-                'google-map': VueGoogleMap.Map
+                'google-map': VueGoogleMap.Map,
+                'marker': VueGoogleMap.Marker
             },
             data: {
                 chartData: {},
@@ -66,20 +74,21 @@
             },
             methods: {
                 provinceChange: function () {
-//                            this.$http.get('/chart/normal/' + this.chartType + '/' + this.selProvince).then(function (r) {
-//                                data = r.data;
-//                                this.chartData = data;
-//                                this.displayChart();
-//                            });
+
+                    this.$http.get('/chart/gmap/' + this.selProvince).then(function (r) {
+                        data = r.data;
+                        this.chartData = data;
+                    });
                 },
-                displayChart: function () {
 
-
-                }
-                ,
                 loadData: function () {
                     this.$http.get("/api/thailand/province").then(function (response) {
                         this.provinces = response.data;
+                    });
+
+                    this.$http.get('/chart/gmap').then(function (r) {
+                        data = r.data;
+                        this.chartData = data;
                     });
 
                 }

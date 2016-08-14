@@ -9,6 +9,39 @@ use Illuminate\Support\Facades\DB;
 Route::get('test2/{choices}', function ($choices) {
 });
 
+Route::get('gmap/{province?}', function ($province = null) {
+//select farm_owners.first_name ,farm_owners.last_name, farm_owners.farm_lat,farm_owners.farm_long
+//from farm_owners
+//where farm_owners.farm_lat is not null and farm_owners.farm_long is not null
+
+    $query = DB::table('farm_owners');
+    $query->select(["farm_owners.first_name", "farm_owners.last_name", "farm_owners.farm_lat", "farm_owners.farm_long"]);
+
+    $query->whereNotNull('farm_owners.farm_lat');
+    $query->whereNotNull('farm_owners.farm_long');
+
+    if ($province) {
+        $query->where('farm_owners.house_province', '=', DB::raw($province));
+    }
+
+    $result = $query->get();
+
+    $output = [];
+    foreach ($result as $r) {
+        $marker = new stdClass();
+        $marker->title = "$r->first_name $r->last_name";
+        $marker->position = [
+            "lat" => $r->farm_lat,
+            "lng" => $r->farm_long
+        ];
+
+        $output[] = $marker;
+    }
+
+    return $output;
+
+});
+
 Route::get('map-data/{id?}', function ($provinceId = null) {
 
     if ($provinceId) {
@@ -368,7 +401,7 @@ Route::get('cattle/{title}/{type}/{province?}', function ($title, $type, $provin
 });
 
 
-Route::get('double/{title}/{type}/{action?}/{element?}/{province?}', function ($title, $type,$action,$element, $province = null) {
+Route::get('double/{title}/{type}/{action?}/{element?}/{province?}', function ($title, $type, $action, $element, $province = null) {
 
     //get top
 
@@ -386,7 +419,7 @@ Route::get('double/{title}/{type}/{action?}/{element?}/{province?}', function ($
     $query->select(DB::raw('count(farm_owners.id) as regis_count, choices.choice, choices.id'));
 
     $results = $query->get();
-   // return $results;
+    // return $results;
 
     foreach ($results as $result) {
         $each = new stdClass();
@@ -420,10 +453,10 @@ Route::get('double/{title}/{type}/{action?}/{element?}/{province?}', function ($
         $sub_results = $query->get();
         //return $sub_results;
 
-            foreach ($sub_results as $result) {
-                $data_drill[] = intval($result->type_count);
-                $xAxis[] = $result->choice;
-            }
+        foreach ($sub_results as $result) {
+            $data_drill[] = intval($result->type_count);
+            $xAxis[] = $result->choice;
+        }
     }
 
     $chart = [];
