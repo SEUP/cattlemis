@@ -69,6 +69,9 @@ Route::get('map-data/{id?}', function ($provinceId = null) {
         $query->addSelect(DB::raw('count(farm_owners.id) as value'));
         $query->addSelect(DB::raw('count(farm_owners.id) as y'));
 
+
+        $query->where('thailand_provinces.geo_id','=','1');
+
         $query->groupBy('thailand_provinces.province_id');
 
         return $query->get();
