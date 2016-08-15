@@ -70,7 +70,7 @@ Route::get('map-data/{id?}', function ($provinceId = null) {
         $query->addSelect(DB::raw('count(farm_owners.id) as y'));
 
 
-        $query->where('thailand_provinces.geo_id','=','1');
+        $query->where('thailand_provinces.geo_id', '=', '1');
 
         $query->groupBy('thailand_provinces.province_id');
 
@@ -424,6 +424,7 @@ Route::get('double/{title}/{type}/{action?}/{element?}/{province?}', function ($
     $results = $query->get();
     // return $results;
 
+    $data = [];
     foreach ($results as $result) {
         $each = new stdClass();
         $each->name = $result->choice;
@@ -443,6 +444,9 @@ Route::get('double/{title}/{type}/{action?}/{element?}/{province?}', function ($
         $query->Join('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
 
         $query->where('choices.parent_id', '=', $r->id);
+        if ($province) {
+            $query->where('farm_owners.house_province', '=', $province);
+        }
 
         $query->whereIn('choice_farm_owner.farm_owner_id', function ($query) use ($r) {
             $query->select('choice_farm_owner.farm_owner_id')

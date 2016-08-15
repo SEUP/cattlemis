@@ -66,85 +66,7 @@
 
 
 @section('javascript')
-    <script type="text/javascript">
-        var app = new AdminApp({
-            el: 'body',
-            data: {
-                chartData: {},
-                chartType: "",
-                chartTitle: "",
-                provinces: [],
-                selProvince: 0,
-            },
-            methods: {
-                provinceChange: function () {
-                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/' + 'count/' + 'farm_owners.id/' + this.selProvince).then(function (r) {
-                        //this.$http.get('/chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status/'+this.selProvince).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                },
-                displayChart: function () {
-                    var self = this;
 
-                    $('#farm_regis').highcharts({
-                        chart: {
-                            plotBackgroundColor: null,
-                            plotBorderWidth: null,
-                            plotShadow: false,
-                            type: 'pie'
-                        },
-                        title: {
-                            text: self.chartTitle,
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-
-                            pie: {
-                                allowPointSelect: true,
-                                cursor: 'pointer',
-                                dataLabels: {
-                                    enabled: true,
-                                    formatter: function () {
-                                        // display only if larger than 1
-                                        return this.y > 1 ? '<b>' + this.point.name + ': </b> ' + this.y + ' คน' : null;
-                                    }
-
-
-                                },
-
-                            }
-                        }
-                        ,
-                        series: self.chartData.series,
-                    });
-
-                }
-                ,
-                loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
-                        this.provinces = response.data;
-                    });
-
-                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/' + 'count/' + 'farm_owners.id/' + this.selProvince).then(function (r) {
-                        //this.$http.get('/chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status').then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                }
-            },
-            ready: function () {
-                this.chartType = $("#chartType").val();
-                this.chartTitle = $("#chartTitle").val();
-
-                this.loadData();
-            }
-        })
-
-
-    </script>
     <script type="text/javascript">
         var app = new AdminApp({
             el: 'body',
@@ -160,9 +82,16 @@
             },
             methods: {
                 provinceChange: function () {
-                    // this.$http.get('/chart/cattle/' + this.chartType+'/'+this.selProvince).then(function (r) {
-                    // this.$http.get('/chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status/'+this.selProvince).then(function (r) {
+
                     this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/' + this.chartAction + '/' + this.chartElement + '/' + this.selProvince).then(function (r) {
+                        data = r.data;
+                        this.chartData = data;
+                        this.displayChart();
+                    });
+
+
+                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/' + 'count/' + 'farm_owners.id/' + this.selProvince).then(function (r) {
+                        //this.$http.get('/chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status/'+this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData = data;
                         this.displayChart();
@@ -212,6 +141,38 @@
                         series: self.chartData.drilldown,
                     });
 
+                    $('#farm_regis').highcharts({
+                        chart: {
+                            plotBackgroundColor: null,
+                            plotBorderWidth: null,
+                            plotShadow: false,
+                            type: 'pie'
+                        },
+                        title: {
+                            text: self.chartTitle,
+                        },
+                        tooltip: self.chartData.tooltip,
+                        plotOptions: {
+
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                dataLabels: {
+                                    enabled: true,
+                                    formatter: function () {
+                                        // display only if larger than 1
+                                        return this.y > 1 ? '<b>' + this.point.name + ': </b> ' + this.y + ' คน' : null;
+                                    }
+
+
+                                },
+
+                            }
+                        }
+                        ,
+                        series: self.chartData.series,
+                    });
+
                 }
                 ,
                 loadData: function () {
@@ -220,6 +181,14 @@
                     });
                     // this.$http.get('/chart/cattle/' + this.chartType).then(function (r) {
                     this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/' + this.chartAction + '/' + this.chartElement + '/' + this.selProvince).then(function (r) {
+                        data = r.data;
+                        this.chartData = data;
+                        this.displayChart();
+                    });
+
+
+                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/' + 'count/' + 'farm_owners.id/' + this.selProvince).then(function (r) {
+                        //this.$http.get('/chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status').then(function (r) {
                         data = r.data;
                         this.chartData = data;
                         this.displayChart();
