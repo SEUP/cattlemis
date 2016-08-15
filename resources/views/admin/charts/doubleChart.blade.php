@@ -72,7 +72,9 @@
             el: 'body',
 
             data: {
-                chartData: {},
+                chartData: [
+                    {},{}
+                ],
                 chartType: "",
                 chartTitle: "",
                 chartAction: "",
@@ -85,93 +87,100 @@
 
                     this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/' + this.chartAction + '/' + this.chartElement + '/' + this.selProvince).then(function (r) {
                         data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
+                        this.chartData[0] = data;
+                        this.displayChart(0);
                     });
 
 
                     this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/' + 'count/' + 'farm_owners.id/' + this.selProvince).then(function (r) {
                         //this.$http.get('/chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status/'+this.selProvince).then(function (r) {
                         data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
+                        this.chartData[1] = data;
+                        this.displayChart(1);
                     });
                 },
-                displayChart: function () {
+                displayChart: function (number) {
                     var self = this;
-                    $('#sub_farm_regis').highcharts({
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: self.chartTitle,
-                        },
-                        xAxis: self.chartData.xAxis,
 
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: '',
-                                align: 'high'
+                    if(number ==0){
+                        $('#farm_regis').highcharts({
+                            chart: {
+                                plotBackgroundColor: null,
+                                plotBorderWidth: null,
+                                plotShadow: false,
+                                type: 'pie'
                             },
-                            labels: {
-                                overflow: 'justify',
-                                style: {
-                                    fontSize: '10px'
+                            title: {
+                                text: self.chartTitle,
+                            },
+                            tooltip: self.chartData[0].tooltip,
+                            plotOptions: {
+
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    dataLabels: {
+                                        enabled: true,
+                                        formatter: function () {
+                                            // display only if larger than 1
+                                            return this.y > 1 ? '<b>' + this.point.name + ': </b> ' + this.y + ' คน' : null;
+                                        }
+
+
+                                    },
+
                                 }
                             }
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-                            column: {
-                                pointPadding: 0.2,
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    style: {
-                                        fontSize: '20px'
-                                    }
-                                }
-                            }
-                        },
+                            ,
+                            series: self.chartData[0].series,
+                        });
 
-                        series: self.chartData.drilldown,
-                    });
+                    }else if(number == 1){
+                        $('#sub_farm_regis').highcharts({
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: self.chartTitle,
+                            },
+                            xAxis: self.chartData[1].xAxis,
 
-                    $('#farm_regis').highcharts({
-                        chart: {
-                            plotBackgroundColor: null,
-                            plotBorderWidth: null,
-                            plotShadow: false,
-                            type: 'pie'
-                        },
-                        title: {
-                            text: self.chartTitle,
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-
-                            pie: {
-                                allowPointSelect: true,
-                                cursor: 'pointer',
-                                dataLabels: {
-                                    enabled: true,
-                                    formatter: function () {
-                                        // display only if larger than 1
-                                        return this.y > 1 ? '<b>' + this.point.name + ': </b> ' + this.y + ' คน' : null;
-                                    }
-
-
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: '',
+                                    align: 'high'
                                 },
+                                labels: {
+                                    overflow: 'justify',
+                                    style: {
+                                        fontSize: '10px'
+                                    }
+                                }
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            tooltip: self.chartData[1].tooltip,
+                            plotOptions: {
+                                column: {
+                                    pointPadding: 0.2,
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        style: {
+                                            fontSize: '20px'
+                                        }
+                                    }
+                                }
+                            },
 
-                            }
-                        }
-                        ,
-                        series: self.chartData.series,
-                    });
+                            series: self.chartData[1].drilldown,
+                        });
+                    }
+
+
+
 
                 }
                 ,
@@ -182,16 +191,16 @@
                     // this.$http.get('/chart/cattle/' + this.chartType).then(function (r) {
                     this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/' + this.chartAction + '/' + this.chartElement + '/' + this.selProvince).then(function (r) {
                         data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
+                        this.chartData[0] = data;
+                        this.displayChart(0);
                     });
 
 
                     this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/' + 'count/' + 'farm_owners.id/' + this.selProvince).then(function (r) {
                         //this.$http.get('/chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status').then(function (r) {
                         data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
+                        this.chartData[1] = data;
+                        this.displayChart(1);
                     });
                 }
             },
