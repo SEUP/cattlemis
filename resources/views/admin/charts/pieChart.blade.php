@@ -76,6 +76,11 @@
                                     formatter: function () {
                                         // display only if larger than 1
                                         return this.y > 1 ? '<b>' + this.point.name + ': </b> ' + this.y + ' คน' : null;
+                                    },
+
+                                    style: {
+                                        fontWeight: 'bold',
+                                        fontSize : '16px',
                                     }
 
 
