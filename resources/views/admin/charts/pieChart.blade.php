@@ -81,7 +81,7 @@
                                     style: {
                                         fontWeight: 'bold',
                                         fontSize: '16px',
-                                        width: '40em'
+                                        width: '100px'
                                     }
 
 
