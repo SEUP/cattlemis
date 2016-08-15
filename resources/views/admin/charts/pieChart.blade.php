@@ -80,7 +80,8 @@
 
                                     style: {
                                         fontWeight: 'bold',
-                                        fontSize : '16px',
+                                        fontSize: '16px',
+                                        width: '10em'
                                     }
 
 
