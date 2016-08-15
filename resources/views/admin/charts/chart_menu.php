@@ -98,7 +98,7 @@
                 </li>
                 <li><a href="/admin/charts/double/วัคซีนป้องกันโรค/vaccine_ever/count/farm_owners.id">วัคซีนป้องกันโรค</a>
                 </li>
-                <li><a href="/admin/charts/double/การจัดการมูลโคในฟาร์ม/cattle_dung_uses">การจัดการมูลโคในฟาร์ม</a></li>
+                <li><a href="/admin/charts/normal/การจัดการมูลโคในฟาร์ม/cattle_dung_uses">การจัดการมูลโคในฟาร์ม</a></li>
             </div>
         </div>
     </div>
