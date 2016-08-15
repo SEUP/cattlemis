@@ -67,7 +67,8 @@
                     var self = this;
                     $('#container').highcharts({
                         chart: {
-                            type: 'column'
+                            type: 'column',
+                            height: "600",
                         },
 
                         title: {
@@ -109,7 +110,7 @@
                             borderWidth: 1,
                             backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
                             shadow: true,
-                            enabled : false,
+                            enabled: false,
                         },
                         credits: {
                             enabled: false
