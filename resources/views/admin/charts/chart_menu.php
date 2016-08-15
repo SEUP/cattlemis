@@ -44,7 +44,7 @@
                 <li><a href="/admin/charts/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status/count/farm_owners.id">การขึ้นทะเบียนฟาร์มกับภาครัฐ</a>
                 </li>
                 <li>
-                    <a href="/admin/charts/multi-choice/สถานภาพการระบาดของโรคในฟาร์ม/abortion,tuberculosis,foot_mouth_disease">สถานภาพการระบาดของโรคในฟาร์ม</a>
+                    <a href="/admin/charts/multi-choice/การเกิดโรคในฟาร์ม/abortion,tuberculosis,foot_mouth_disease">การเกิดโรคในฟาร์ม</a>
                 </li>
             </div>
         </div>
