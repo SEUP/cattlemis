@@ -62,6 +62,12 @@
                         },
                         xAxis: {
                             categories: self.chartData.xAxis.categories,
+
+                            labels: {
+                                style: {
+                                    fontSize: '16px',
+                                }
+                            },
                         },
                         yAxis: {
                             min: 0,
@@ -85,7 +91,7 @@
                             align: 'right',
                             verticalAlign: 'top',
                             x: -40,
-                            y: 80,
+                            y: 0,
                             floating: true,
                             borderWidth: 1,
                             backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
