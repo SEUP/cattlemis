@@ -130,6 +130,7 @@
                 chartData: {},
                 provinces: [],
                 selProvince: 0,
+                fontSize: "16px",
             },
             methods: {
                 provinceChange: function () {
@@ -139,6 +140,37 @@
                         this.chartData = data;
                         this.displayChart();
                     });
+
+                    this.$http.get('/chart/cattle/แม่พันธุ์โคเนื้อที่เลี้ยง/female_breeding_types/' + this.selProvince).then(function (r) {
+                        data = r.data;
+                        this.chartData = data;
+                        this.displayChart();
+                    });
+
+                    this.$http.get('/chart/cattle/โคเพศผู้อายุมากกว่า 6 เดือนขึ้นไปแต่ไม่ใช่พ่อพันธุ์คุมฝูง/male_over_six_breeding_types/' + this.selProvince).then(function (r) {
+                        data = r.data;
+                        this.chartData = data;
+                        this.displayChart();
+                    });
+
+                    this.$http.get('/chart/cattle/โคเพศเมียอายุมากกว่า 6 เดือนขึ้นไปแต่ไม่ใช่พ่อพันธุ์คุมฝูง/female_over_six_breeding_types/' + this.selProvince).then(function (r) {
+                        data = r.data;
+                        this.chartData = data;
+                        this.displayChart();
+                    });
+
+                    this.$http.get('/chart/cattle/ลูกโคเพศผู้อายุน้อยกว่า 6 เดือน/male_under_six_breeding_types/' + this.selProvince).then(function (r) {
+                        data = r.data;
+                        this.chartData = data;
+                        this.displayChart();
+                    });
+
+                    this.$http.get('/chart/cattle/ลูกโคเพศเมียอายุน้อยกว่า 6 เดือน/female_under_six_breeding_types/' + this.selProvince).then(function (r) {
+                        data = r.data;
+                        this.chartData = data;
+                        this.displayChart();
+                    });
+
                 },
                 displayChart: function () {
                     var self = this;
@@ -154,7 +186,59 @@
 
                             labels: {
                                 style: {
-                                    fontSize: '10px'
+                                    fontSize: self.fontSize
+                                }
+                            }
+                        },
+                        yAxis: {
+                            min: 0,
+                            title: {
+                                text: '',
+                                align: 'high'
+                            }
+                            ,
+                            labels: {
+                                overflow: 'justify',
+                                style: {
+                                    fontSize: self.fontSize
+                                }
+                            }
+                        }
+                        ,
+                        legend: {
+                            enabled: false
+                        }
+                        ,
+                        tooltip: self.chartData.tooltip,
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y}'
+                                }
+                            }
+                        }
+                        ,
+
+                        series: self.chartData.series,
+                        drilldown: self.chartData.drilldown,
+                    })
+                    ;
+
+                    $('#map-female-breeding').highcharts({
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: 'แม่พันธุ์โคเนื้อที่เลี้ยง',
+                        },
+                        xAxis: {
+                            type: 'category',
+
+                            labels: {
+                                style: {
+                                    fontSize: self.fontSzie
                                 }
                             }
                         },
@@ -167,7 +251,7 @@
                             labels: {
                                 overflow: 'justify',
                                 style: {
-                                    fontSize: '10px'
+                                    fontSize: self.fontSzie
                                 }
                             }
                         },
@@ -188,6 +272,195 @@
                         series: self.chartData.series,
                         drilldown: self.chartData.drilldown,
                     });
+
+                    $('#map-male-over-six-breeding').highcharts({
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: 'โคเพศผู้อายุมากกว่า 6 เดือนขึ้นไปแต่ไม่ใช่พ่อพันธุ์คุมฝูง',
+                        },
+                        xAxis: {
+                            type: 'category',
+
+                            labels: {
+                                style: {
+                                    fontSize: self.fontSzie
+                                }
+                            }
+                        },
+                        yAxis: {
+                            min: 0,
+                            title: {
+                                text: '',
+                                align: 'high'
+                            },
+                            labels: {
+                                overflow: 'justify',
+                                style: {
+                                    fontSize: self.fontSzie
+                                }
+                            }
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        tooltip: self.chartData.tooltip,
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y}'
+                                }
+                            }
+                        },
+
+                        series: self.chartData.series,
+                        drilldown: self.chartData.drilldown,
+                    });
+
+                    $('#map-female-over-six-breeding').highcharts({
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: 'โคเพศเมียอายุมากกว่า 6 เดือนขึ้นไปแต่ไม่ใช่พ่อพันธุ์คุมฝูง',
+                        },
+                        xAxis: {
+                            type: 'category',
+
+                            labels: {
+                                style: {
+                                    fontSize: self.fontSzie
+                                }
+                            }
+                        },
+                        yAxis: {
+                            min: 0,
+                            title: {
+                                text: '',
+                                align: 'high'
+                            },
+                            labels: {
+                                overflow: 'justify',
+                                style: {
+                                    fontSize: self.fontSzie
+                                }
+                            }
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        tooltip: self.chartData.tooltip,
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y}'
+                                }
+                            }
+                        },
+
+                        series: self.chartData.series,
+                        drilldown: self.chartData.drilldown,
+                    });
+
+                    $('#map-male-under-six-breeding').highcharts({
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: 'ลูกโคเพศผู้อายุน้อยกว่า 6 เดือน',
+                        },
+                        xAxis: {
+                            type: 'category',
+
+                            labels: {
+                                style: {
+                                    fontSize: self.fontSzie
+                                }
+                            }
+                        },
+                        yAxis: {
+                            min: 0,
+                            title: {
+                                text: '',
+                                align: 'high'
+                            },
+                            labels: {
+                                overflow: 'justify',
+                                style: {
+                                    fontSize: self.fontSzie
+                                }
+                            }
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        tooltip: self.chartData.tooltip,
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y}'
+                                }
+                            }
+                        },
+
+                        series: self.chartData.series,
+                        drilldown: self.chartData.drilldown,
+                    });
+
+                    $('#map-female-under-six-breeding').highcharts({
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: 'ลูกโคเพศเมียอายุน้อยกว่า 6 เดือน',
+                        },
+                        xAxis: {
+                            type: 'category',
+
+                            labels: {
+                                style: {
+                                    fontSize: self.fontSzie
+                                }
+                            }
+                        },
+                        yAxis: {
+                            min: 0,
+                            title: {
+                                text: '',
+                                align: 'high'
+                            },
+                            labels: {
+                                overflow: 'justify',
+                                style: {
+                                    fontSize: self.fontSzie
+                                }
+                            }
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        tooltip: self.chartData.tooltip,
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y}'
+                                }
+                            }
+                        },
+
+                        series: self.chartData.series,
+                        drilldown: self.chartData.drilldown,
+                    });
+
 
                 }
                 ,
@@ -201,449 +474,32 @@
                         this.chartData = data;
                         this.displayChart();
                     });
-                }
-            },
-            ready: function () {
-                // this.chartType = $("#chartType").val();
-                // this.chartTitle = $("#chartTitle").val();
-                this.loadData();
-            }
-        })
 
-
-    </script>
-    <script type="text/javascript">
-        var app = new AdminApp({
-            el: 'body',
-
-            data: {
-                chartData: {},
-                provinces: [],
-                selProvince: 0,
-            },
-            methods: {
-                provinceChange: function () {
-                    // this.$http.get('/chart/cattle/' + this.chartType+'/'+this.selProvince).then(function (r) {
-                    this.$http.get('/chart/cattle/แม่พันธุ์โคเนื้อที่เลี้ยง/female_breeding_types/' + this.selProvince).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                },
-                displayChart: function () {
-                    var self = this;
-                    $('#map-female-breeding').highcharts({
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: 'แม่พันธุ์โคเนื้อที่เลี้ยง',
-                        },
-                        xAxis: {
-                            type: 'category',
-
-                            labels: {
-                                style: {
-                                    fontSize: '10px'
-                                }
-                            }
-                        },
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: '',
-                                align: 'high'
-                            },
-                            labels: {
-                                overflow: 'justify',
-                                style: {
-                                    fontSize: '10px'
-                                }
-                            }
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y}'
-                                }
-                            }
-                        },
-
-                        series: self.chartData.series,
-                        drilldown: self.chartData.drilldown,
-                    });
-
-                }
-                ,
-                loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
-                        this.provinces = response.data;
-                    });
-                    // this.$http.get('/chart/cattle/' + this.chartType).then(function (r) {
                     this.$http.get('/chart/cattle/แม่พันธุ์โคเนื้อที่เลี้ยง/female_breeding_types').then(function (r) {
                         data = r.data;
                         this.chartData = data;
                         this.displayChart();
                     });
-                }
-            },
-            ready: function () {
-                // this.chartType = $("#chartType").val();
-                // this.chartTitle = $("#chartTitle").val();
-                this.loadData();
-            }
-        })
 
-
-    </script>
-    <script type="text/javascript">
-        var app = new AdminApp({
-            el: 'body',
-
-            data: {
-                chartData: {},
-                provinces: [],
-                selProvince: 0,
-            },
-            methods: {
-                provinceChange: function () {
-                    // this.$http.get('/chart/cattle/' + this.chartType+'/'+this.selProvince).then(function (r) {
-                    this.$http.get('/chart/cattle/โคเพศผู้อายุมากกว่า 6 เดือนขึ้นไปแต่ไม่ใช่พ่อพันธุ์คุมฝูง/male_over_six_breeding_types/' + this.selProvince).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                },
-                displayChart: function () {
-                    var self = this;
-                    $('#map-male-over-six-breeding').highcharts({
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: 'โคเพศผู้อายุมากกว่า 6 เดือนขึ้นไปแต่ไม่ใช่พ่อพันธุ์คุมฝูง',
-                        },
-                        xAxis: {
-                            type: 'category',
-
-                            labels: {
-                                style: {
-                                    fontSize: '10px'
-                                }
-                            }
-                        },
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: '',
-                                align: 'high'
-                            },
-                            labels: {
-                                overflow: 'justify',
-                                style: {
-                                    fontSize: '10px'
-                                }
-                            }
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y}'
-                                }
-                            }
-                        },
-
-                        series: self.chartData.series,
-                        drilldown: self.chartData.drilldown,
-                    });
-
-                }
-                ,
-                loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
-                        this.provinces = response.data;
-                    });
-                    // this.$http.get('/chart/cattle/' + this.chartType).then(function (r) {
                     this.$http.get('/chart/cattle/โคเพศผู้อายุมากกว่า 6 เดือนขึ้นไปแต่ไม่ใช่พ่อพันธุ์คุมฝูง/male_over_six_breeding_types').then(function (r) {
                         data = r.data;
                         this.chartData = data;
                         this.displayChart();
                     });
-                }
-            },
-            ready: function () {
-                // this.chartType = $("#chartType").val();
-                // this.chartTitle = $("#chartTitle").val();
-                this.loadData();
-            }
-        })
 
-
-    </script>
-    <script type="text/javascript">
-        var app = new AdminApp({
-            el: 'body',
-
-            data: {
-                chartData: {},
-                provinces: [],
-                selProvince: 0,
-            },
-            methods: {
-                provinceChange: function () {
-                    // this.$http.get('/chart/cattle/' + this.chartType+'/'+this.selProvince).then(function (r) {
-                    this.$http.get('/chart/cattle/โคเพศเมียอายุมากกว่า 6 เดือนขึ้นไปแต่ไม่ใช่พ่อพันธุ์คุมฝูง/female_over_six_breeding_types/' + this.selProvince).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                },
-                displayChart: function () {
-                    var self = this;
-                    $('#map-female-over-six-breeding').highcharts({
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: 'โคเพศเมียอายุมากกว่า 6 เดือนขึ้นไปแต่ไม่ใช่พ่อพันธุ์คุมฝูง',
-                        },
-                        xAxis: {
-                            type: 'category',
-
-                            labels: {
-                                style: {
-                                    fontSize: '10px'
-                                }
-                            }
-                        },
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: '',
-                                align: 'high'
-                            },
-                            labels: {
-                                overflow: 'justify',
-                                style: {
-                                    fontSize: '10px'
-                                }
-                            }
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y}'
-                                }
-                            }
-                        },
-
-                        series: self.chartData.series,
-                        drilldown: self.chartData.drilldown,
-                    });
-
-                }
-                ,
-                loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
-                        this.provinces = response.data;
-                    });
-                    // this.$http.get('/chart/cattle/' + this.chartType).then(function (r) {
                     this.$http.get('/chart/cattle/โคเพศเมียอายุมากกว่า 6 เดือนขึ้นไปแต่ไม่ใช่พ่อพันธุ์คุมฝูง/female_over_six_breeding_types').then(function (r) {
                         data = r.data;
                         this.chartData = data;
                         this.displayChart();
                     });
-                }
-            },
-            ready: function () {
-                // this.chartType = $("#chartType").val();
-                // this.chartTitle = $("#chartTitle").val();
-                this.loadData();
-            }
-        })
-    </script>
-    <script type="text/javascript">
-        var app = new AdminApp({
-            el: 'body',
 
-            data: {
-                chartData: {},
-                provinces: [],
-                selProvince: 0,
-            },
-            methods: {
-                provinceChange: function () {
-                    // this.$http.get('/chart/cattle/' + this.chartType+'/'+this.selProvince).then(function (r) {
-                    this.$http.get('/chart/cattle/ลูกโคเพศผู้อายุน้อยกว่า 6 เดือน/male_under_six_breeding_types/' + this.selProvince).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                },
-                displayChart: function () {
-                    var self = this;
-                    $('#map-male-under-six-breeding').highcharts({
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: 'ลูกโคเพศผู้อายุน้อยกว่า 6 เดือน',
-                        },
-                        xAxis: {
-                            type: 'category',
 
-                            labels: {
-                                style: {
-                                    fontSize: '10px'
-                                }
-                            }
-                        },
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: '',
-                                align: 'high'
-                            },
-                            labels: {
-                                overflow: 'justify',
-                                style: {
-                                    fontSize: '10px'
-                                }
-                            }
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y}'
-                                }
-                            }
-                        },
-
-                        series: self.chartData.series,
-                        drilldown: self.chartData.drilldown,
-                    });
-
-                }
-                ,
-                loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
-                        this.provinces = response.data;
-                    });
-                    // this.$http.get('/chart/cattle/' + this.chartType).then(function (r) {
                     this.$http.get('/chart/cattle/ลูกโคเพศผู้อายุน้อยกว่า 6 เดือน/male_under_six_breeding_types').then(function (r) {
                         data = r.data;
                         this.chartData = data;
                         this.displayChart();
                     });
-                }
-            },
-            ready: function () {
-                // this.chartType = $("#chartType").val();
-                // this.chartTitle = $("#chartTitle").val();
-                this.loadData();
-            }
-        })
 
-
-    </script>
-    <script type="text/javascript">
-        var app = new AdminApp({
-            el: 'body',
-
-            data: {
-                chartData: {},
-                provinces: [],
-                selProvince: 0,
-            },
-            methods: {
-                provinceChange: function () {
-                    // this.$http.get('/chart/cattle/' + this.chartType+'/'+this.selProvince).then(function (r) {
-                    this.$http.get('/chart/cattle/ลูกโคเพศเมียอายุน้อยกว่า 6 เดือน/female_under_six_breeding_types/' + this.selProvince).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                },
-                displayChart: function () {
-                    var self = this;
-                    $('#map-female-under-six-breeding').highcharts({
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: 'ลูกโคเพศเมียอายุน้อยกว่า 6 เดือน',
-                        },
-                        xAxis: {
-                            type: 'category',
-
-                            labels: {
-                                style: {
-                                    fontSize: '10px'
-                                }
-                            }
-                        },
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: '',
-                                align: 'high'
-                            },
-                            labels: {
-                                overflow: 'justify',
-                                style: {
-                                    fontSize: '10px'
-                                }
-                            }
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y}'
-                                }
-                            }
-                        },
-
-                        series: self.chartData.series,
-                        drilldown: self.chartData.drilldown,
-                    });
-
-                }
-                ,
-                loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
-                        this.provinces = response.data;
-                    });
-                    // this.$http.get('/chart/cattle/' + this.chartType).then(function (r) {
                     this.$http.get('/chart/cattle/ลูกโคเพศเมียอายุน้อยกว่า 6 เดือน/female_under_six_breeding_types').then(function (r) {
                         data = r.data;
                         this.chartData = data;
@@ -652,8 +508,6 @@
                 }
             },
             ready: function () {
-                // this.chartType = $("#chartType").val();
-                // this.chartTitle = $("#chartTitle").val();
                 this.loadData();
             }
         })
