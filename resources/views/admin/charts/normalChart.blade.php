@@ -59,7 +59,8 @@
                     var self = this;
                     $('#container').highcharts({
                         chart: {
-                            type: 'column'
+                            type: 'column',
+                            height: 600,
                         },
                         title: {
                             text: self.chartTitle,
@@ -67,7 +68,8 @@
                         xAxis: {
                             categories: self.chartData.xAxis.categories,
                             labels: {
-                                staggerLines: 2,
+                                rotation: -45, align: 'right',
+                                staggerLines: 1,
                                 style: {
                                     fontSize: '14px',
                                     "fontWeight": "bold",
@@ -111,7 +113,8 @@
                             floating: true,
                             borderWidth: 1,
                             backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                            shadow: true
+                            shadow: true,
+                            enabled : false,
                         },
                         credits: {
                             enabled: false
