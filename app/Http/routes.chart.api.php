@@ -179,7 +179,7 @@ Route::get('range/farm-owner/{type}/{min}/{max}/{numberGroup}/{province?}', func
         $low = $arr[$i];
         $high = $arr[$i + 1];
 
-        $query->addSelect(DB::raw("SUM(IF($type > $low and $type <= $high,1,0)) as '$low - $high'"));
+        $query->addSelect(DB::raw("SUM(IF($type > $low and $type <= $high,1,0)) as 'มากกว่า $low ถึง $high'"));
     }
 
     $max = $arr[sizeof($arr) - 1];

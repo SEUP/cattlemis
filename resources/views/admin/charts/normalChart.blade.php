@@ -7,7 +7,7 @@
         <div class="col-lg-8">
             <div class="row">
                 <div class="col-lg-12">
-                <h1 class="page-header">{{$title}}</h1>
+                    <h1 class="page-header">{{$title}}</h1>
                 </div>
             </div>
             <div class="row" style="padding-bottom: 1em;">
@@ -31,109 +31,114 @@
         </div>
     </div>
 
-        @endsection
+@endsection
 
 
-        @section('javascript')
+@section('javascript')
 
-            <script type="text/javascript">
-                var app = new AdminApp({
-                    el: 'body',
+    <script type="text/javascript">
+        var app = new AdminApp({
+            el: 'body',
 
-                    data: {
-                        chartData: {},
-                        chartType: "",
-                        chartTitle: "",
-                        provinces: [],
-                        selProvince: 0,
-                    },
-                    methods: {
-                        provinceChange: function () {
-                            this.$http.get('/chart/normal/' + this.chartType + '/' + this.selProvince).then(function (r) {
-                                data = r.data;
-                                this.chartData = data;
-                                this.displayChart();
-                            });
+            data: {
+                chartData: {},
+                chartType: "",
+                chartTitle: "",
+                provinces: [],
+                selProvince: 0,
+            },
+            methods: {
+                provinceChange: function () {
+                    this.$http.get('/chart/normal/' + this.chartType + '/' + this.selProvince).then(function (r) {
+                        data = r.data;
+                        this.chartData = data;
+                        this.displayChart();
+                    });
+                },
+                displayChart: function () {
+                    var self = this;
+                    $('#container').highcharts({
+                        chart: {
+                            type: 'column'
                         },
-                        displayChart: function () {
-                            var self = this;
-                            $('#container').highcharts({
-                                chart: {
-                                    type: 'column'
-                                },
-                                title: {
-                                    text: self.chartTitle,
-                                },
-                                xAxis: {
-                                    categories: self.chartData.xAxis.categories,
-                                    labels: {
-                                        style: {
-                                            fontSize: '20px'
-                                        }
+                        title: {
+                            text: self.chartTitle,
+                        },
+                        xAxis: {
+                            categories: self.chartData.xAxis.categories,
+                            labels: {
+                                staggerLines: 2,
+                                style: {
+                                    fontSize: '14px',
+                                    "fontWeight": "bold",
+                                    autoRotationLimit: 40,
+                                    textOverflow: 'none',
+                                    whiteSpace: 'initial',
+                                }
+                            }
+                        },
+                        yAxis: {
+                            min: 0,
+                            title: {
+                                text: '',
+                                align: 'high'
+                            },
+                            labels: {
+                                overflow: 'justify',
+                                style: {
+                                    fontSize: '20px'
+                                }
+                            }
+                        },
+                        tooltip: self.chartData.tooltip,
+                        plotOptions: {
+                            column: {
+                                // animation: false,
+                                dataLabels: {
+                                    enabled: true,
+                                    style: {
+                                        fontSize: '20px'
                                     }
-                                },
-                                yAxis: {
-                                    min: 0,
-                                    title: {
-                                        text: '',
-                                        align: 'high'
-                                    },
-                                    labels: {
-                                        overflow: 'justify',
-                                        style: {
-                                            fontSize: '20px'
-                                        }
-                                    }
-                                },
-                                tooltip: self.chartData.tooltip,
-                                plotOptions: {
-                                    column: {
-                                        // animation: false,
-                                        dataLabels: {
-                                            enabled: true,
-                                            style: {
-                                                fontSize: '20px'
-                                            }
-                                        }
-                                    }
-                                },
-                                legend: {
-                                    layout: 'vertical',
-                                    align: 'right',
-                                    verticalAlign: 'top',
-                                    x: -40,
-                                    y: 80,
-                                    floating: true,
-                                    borderWidth: 1,
-                                    backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                                    shadow: true
-                                },
-                                credits: {
-                                    enabled: false
-                                },
-                                series: self.chartData.series,
-                            });
+                                }
+                            }
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'right',
+                            verticalAlign: 'top',
+                            x: -40,
+                            y: 80,
+                            floating: true,
+                            borderWidth: 1,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: self.chartData.series,
+                    });
 
-                        }
-                        ,
-                        loadData: function () {
-                            this.$http.get("/api/thailand/province").then(function (response) {
-                                this.provinces = response.data;
-                            });
-                            this.$http.get('/chart/normal/' + this.chartType).then(function (r) {
-                                data = r.data;
-                                this.chartData = data;
-                                this.displayChart();
-                            });
-                        }
-                    },
-                    ready: function () {
-                        this.chartType = $("#chartType").val();
-                        this.chartTitle = $("#chartTitle").val();
-                        this.loadData();
-                    }
-                })
+                }
+                ,
+                loadData: function () {
+                    this.$http.get("/api/thailand/province").then(function (response) {
+                        this.provinces = response.data;
+                    });
+                    this.$http.get('/chart/normal/' + this.chartType).then(function (r) {
+                        data = r.data;
+                        this.chartData = data;
+                        this.displayChart();
+                    });
+                }
+            },
+            ready: function () {
+                this.chartType = $("#chartType").val();
+                this.chartTitle = $("#chartTitle").val();
+                this.loadData();
+            }
+        })
 
 
-            </script>
+    </script>
 @endsection

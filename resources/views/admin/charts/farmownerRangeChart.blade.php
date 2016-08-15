@@ -69,11 +69,18 @@
                         chart: {
                             type: 'column'
                         },
+
                         title: {
                             text: self.chartTitle,
                         },
                         xAxis: {
                             categories: self.chartData.xAxis.categories,
+                            labels: {
+                                style: {
+                                    fontSize: '14px',
+                                    "fontWeight": "bold",
+                                }
+                            }
                         },
                         yAxis: {
                             min: 0,
@@ -101,7 +108,8 @@
                             floating: true,
                             borderWidth: 1,
                             backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                            shadow: true
+                            shadow: true,
+                            enabled : false,
                         },
                         credits: {
                             enabled: false
