@@ -73,7 +73,7 @@
 
             data: {
                 chartData: [
-                    {},{}
+                    {}, {}
                 ],
                 chartType: "",
                 chartTitle: "",
@@ -102,7 +102,7 @@
                 displayChart: function (number) {
                     var self = this;
 
-                    if(number ==0){
+                    if (number == 0) {
                         $('#farm_regis').highcharts({
                             chart: {
                                 plotBackgroundColor: null,
@@ -124,6 +124,9 @@
                                         formatter: function () {
                                             // display only if larger than 1
                                             return this.y > 1 ? '<b>' + this.point.name + ': </b> ' + this.y + ' คน' : null;
+                                        },
+                                        style: {
+                                            fontSize: 16
                                         }
 
 
@@ -135,7 +138,7 @@
                             series: self.chartData[0].series,
                         });
 
-                    }else if(number == 1){
+                    } else if (number == 1) {
                         $('#sub_farm_regis').highcharts({
                             chart: {
                                 type: 'column'
@@ -143,8 +146,15 @@
                             title: {
                                 text: self.chartTitle,
                             },
-                            xAxis: self.chartData[1].xAxis,
-
+                            xAxis: {
+                                categories: self.chartData[1].xAxis.categories,
+                                labels: {
+                                    style: {
+                                        fontSize: '16px',
+                                        "fontWeight": "bold",
+                                    }
+                                }
+                            },
                             yAxis: {
                                 min: 0,
                                 title: {
@@ -178,8 +188,6 @@
                             series: self.chartData[1].drilldown,
                         });
                     }
-
-
 
 
                 }
