@@ -172,23 +172,36 @@ Route::get('range/farm-owner/{type}/{min}/{max}/{numberGroup}/{province?}', func
         $query->where('farm_owners.house_province', '=', $province);
     }
 
-    if ($type == 'age') {
-        $query->where('farm_owners.age', '>', 0);
+    if ($type == 'age' or $type =='avg_cattle_income') {
+        $query->where($type, '>', 0);
     }
 
+    if ($min == 0) {
+        $query->addSelect(DB::raw("SUM(IF($type = 0,1,0)) as '0'"));
+    } elseif ($min == 1) {
+        $query->addSelect(DB::raw("SUM(IF($type = 0,1,0)) as '0'"));
+        $query->addSelect(DB::raw("SUM(IF($type = $min,1,0)) as '$min'"));
+    } else {
+        $query->addSelect(DB::raw("SUM(IF($type <= $min,1,0)) as '0 ถึง $min'"));
+    }
 
-    $query->addSelect(DB::raw("SUM(IF($type <= $min,1,0)) as '<= $min'"));
 
     for ($i = 0; $i < sizeof($arr) - 1; $i++) {
         $low = $arr[$i];
         $high = $arr[$i + 1];
+        $labelLow = $low + 1;
+        if ($high - $labelLow == 0) {
+            $query->addSelect(DB::raw("SUM(IF( $type = $high,1,0)) as '$high'"));
+        } else {
+            $query->addSelect(DB::raw("SUM(IF($type > $low and $type <= $high,1,0)) as '$labelLow ถึง $high'"));
+        }
 
-        $query->addSelect(DB::raw("SUM(IF($type > $low and $type <= $high,1,0)) as 'มากกว่า $low ถึง $high'"));
     }
 
     $max = $arr[sizeof($arr) - 1];
+    $maxLabel = $max + 1;
 
-    $query->addSelect(DB::raw("SUM(IF($type > $max,1,0)) as '> $max'"));
+    $query->addSelect(DB::raw("SUM(IF($type > $max,1,0)) as '$maxLabel ขึ้นไป'"));
 
 
     $results = $query->get()[0];
