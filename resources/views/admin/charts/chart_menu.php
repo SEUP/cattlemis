@@ -41,7 +41,7 @@
                 <li>
                     <a href="/admin/charts/normal/เป้าหมายการเลี้ยงในอนาคต/farm_future">เป้าหมายการเลี้ยงในอนาคต</a>
                 </li>
-                <li><a href="/admin/charts/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status/count/farm_owners.id">การขึ้นทะเบียนฟาร์มกับภาครัฐ</a>
+                <li><a href="/admin/charts/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status">การขึ้นทะเบียนฟาร์มกับภาครัฐ</a>
                 </li>
                 <li>
                     <a href="/admin/charts/multi-choice/การเกิดโรคในฟาร์ม/abortion,tuberculosis,foot_mouth_disease">การเกิดโรคในฟาร์ม</a>
@@ -65,12 +65,11 @@
                     <a href="/admin/charts/normal/ลักษณะการเลี้ยงโคเนื้อ/take_care_types">ลักษณะการเลี้ยงโคเนื้อ</a>
                 </li>
                 <li>
-                    <a href="/admin/charts/double/พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ (ไร่ต่อครัวเรือน)/use_land/count/farm_owners.id">พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ
-                        (ไร่/ครัวเรือน)</a></li>
-                <li><a href="/admin/charts/pie/อาหารที่ท่านใช้เลี้ยงโคเนื้อ/feed_types">อาหารที่ท่านใช้เลี้ยงโคเนื้อ</a>
+                    <a href="/admin/charts/double/พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ/use_land/">พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ</a></li>
+                <li><a href="/admin/charts/pie/อาหารที่ใช้เลี้ยงโคเนื้อ/feed_types">อาหารที่ใช้เลี้ยงโคเนื้อ</a>
                 </li>
                 <li><a href="/admin/charts/pie/การให้แร่ธาตุก้อน/minerals_feed">การให้แร่ธาตุก้อน</a></li>
-                <li><a href="/admin/charts/double/การสำรองฟางข้าว หรือเปลือกข้าวโพด/feedstock/count/farm_owners.id">การสำรองฟางข้าว หรือเปลือกข้าวโพด</a></li>
+                <li><a href="/admin/charts/double/การสำรองฟางข้าว หรือเปลือกข้าวโพด/feedstock">การสำรองฟางข้าว หรือเปลือกข้าวโพด</a></li>
                 <li>
                     <a href="/admin/charts/normal/แหล่งอาหารหยาบในฤดูแล้ง/feed_summer_sources">แหล่งอาหารหยาบในฤดูแล้ง</a>
                 </li>
@@ -96,7 +95,7 @@
                 <li><a href="/admin/charts/normal/ผู้ให้บริการผสมเทียม/breeders">ผู้ให้บริการผสมเทียม</a></li>
                 <li><a href="/admin/charts/range-farmowner/อัตราส่วนพ่อพันธ์คุมฝูง/breeding_rate/1/20/3">อัตราส่วนพ่อพันธ์คุมฝูง</a>
                 </li>
-                <li><a href="/admin/charts/double/วัคซีนป้องกันโรค/vaccine_ever/count/farm_owners.id">วัคซีนป้องกันโรค</a>
+                <li><a href="/admin/charts/double/วัคซีนป้องกันโรค/vaccine_ever">วัคซีนป้องกันโรค</a>
                 </li>
                 <li><a href="/admin/charts/normal/การจัดการมูลโคในฟาร์ม/cattle_dung_uses">การจัดการมูลโคในฟาร์ม</a></li>
             </div>
@@ -125,7 +124,7 @@
         <div id="collapse6" class="panel-collapse collapse in">
             <div class="panel-body">
                 <li><a href="/admin/charts/normal/การจำหน่ายโค/seller_types">การจำหน่ายโคเนื้อให้กับใคร</a></li>
-                <li><a href="/admin/charts/normal/อายุของโคเนื้อที่จำหน่าย(ปี)/age_sale">อายุของโคเนื้อที่จำหน่าย(ปี)</a>
+                <li><a href="/admin/charts/normal/อายุของโคเนื้อที่จำหน่าย/age_sale">อายุของโคเนื้อที่จำหน่าย</a>
                 </li>
                 <li>
                     <a href="/admin/charts/pie/ลักษณะการจำหน่าย/cattle_sale_methods">ลักษณะการจำหน่ายโคเนื้อ</a>

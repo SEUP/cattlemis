@@ -425,7 +425,7 @@ Route::get('cattle/{title}/{type}/{province?}', function ($title, $type, $provin
 });
 
 
-Route::get('double/{title}/{type}/{action?}/{element?}/{province?}', function ($title, $type, $action, $element, $province = null) {
+Route::get('double/{title}/{type}/{province?}', function ($title, $type,$province = null) {
 
     //get top
 
@@ -457,6 +457,7 @@ Route::get('double/{title}/{type}/{action?}/{element?}/{province?}', function ($
 
 //get down
     $data_drill = [];
+    $data_area = [];
     $xAxis = [];
     foreach ($results as $r) {
 
@@ -477,12 +478,13 @@ Route::get('double/{title}/{type}/{action?}/{element?}/{province?}', function ($
         $query->groupBy('choices.id');
 
 
-        $query->select(DB::raw("$action($element) as type_count, choices.choice, choices.id"));
+        $query->select(DB::raw("count(farm_owners.id) as user_count, choices.choice, choices.id, sum(choice_farm_owner.area) as area_sum"));
         $sub_results = $query->get();
         //return $sub_results;
 
         foreach ($sub_results as $result) {
-            $data_drill[] = intval($result->type_count);
+            $data_drill[] = intval($result->user_count);
+            $data_area[]= intval($result->area_sum);
             $xAxis[] = $result->choice;
         }
     }
@@ -509,6 +511,14 @@ Route::get('double/{title}/{type}/{action?}/{element?}/{province?}', function ($
         [
             'name' => 'จำนวน',
             'data' => $data_drill,
+            'colorByPoint' => true,
+        ];
+
+    $chart['area'] = [];
+    $chart['area'][] =
+        [
+            'name' => 'จำนวน',
+            'data' => $data_area,
             'colorByPoint' => true,
         ];
 

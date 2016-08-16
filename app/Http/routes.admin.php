@@ -88,16 +88,10 @@ Route::get('charts/cattle/', function () {
     return view("admin.charts.cattleChart");
 });
 
-Route::get('charts/cattle/', function () {
-    return view("admin.charts.cattleChart");
-});
-
-Route::get('charts/double/{title}/{type}/{action}/{element}', function ($title, $type, $action, $element) {
+Route::get('charts/double/{title}/{type}', function ($title, $type) {
     return view("admin.charts.doubleChart")
         ->with('title', $title)
-        ->with('type', $type)
-        ->with('action', $action)
-        ->with('element', $element);
+        ->with('type', $type);
 });
 
 Route::get('charts/budget/', function () {

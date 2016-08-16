@@ -82,7 +82,11 @@
                         plotOptions: {
                             column: {
                                 dataLabels: {
-                                    enabled: true
+                                    enabled: true,
+                                formatter: function () {
+                                    // display only if larger than 1
+                                    return this.y >= 1 ? '<b>' + this.y + ' คน' : null;
+                                }
                                 }
                             }
                         },

@@ -37,7 +37,7 @@
         </question-multi-checkbox>
     </fieldset>
     <fieldset id="3.4">
-        <legend>3.4 พื้นที่ถือครองทางการเกษตร(ไร่/ครัวเรือน)
+        <legend>3.4 พื้นที่ถือครองทางการเกษตร
 
         </legend>
 
@@ -69,7 +69,7 @@
 
     </fieldset>
     <fieldset id="3.5">
-        <legend>3.5 การเช่าที่ดินเพื่อใช้ในการเลี้ยง (ไร่/ครัวเรือน)
+        <legend>3.5 การเช่าที่ดินเพื่อใช้ในการเลี้ยง
         </legend>
         <question-select :model.sync="newFarmer.rent_land"
                          :options.sync="options.rent_land">
@@ -85,7 +85,7 @@
         </div>
     </fieldset>
     <fieldset id="3.6">
-        <legend>3.6 พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ (ไร่/ครัวเรือน)</legend>
+        <legend>3.6 พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ</legend>
 
         <div class="form-group">
             <label class="col-sm-2 control-label"></label>
