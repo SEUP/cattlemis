@@ -172,7 +172,7 @@ Route::get('range/farm-owner/{type}/{min}/{max}/{numberGroup}/{province?}', func
         $query->where('farm_owners.house_province', '=', $province);
     }
 
-    if ($type == 'age' or $type =='avg_cattle_income') {
+    if ($type == 'age' or $type == 'avg_cattle_income') {
         $query->where($type, '>', 0);
     }
 
@@ -370,6 +370,10 @@ Route::get('cattle/{title}/{type}/{province?}', function ($title, $type, $provin
         $query->Join('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
 
         $query->where('choices.parent_id', '=', $r->id);
+
+        if ($province) {
+            $query->where('farm_owners.house_province', '=', $province);
+        }
 
         $query->whereIn('choice_farm_owner.farm_owner_id', function ($query) use ($r) {
             $query->select('choice_farm_owner.farm_owner_id')
