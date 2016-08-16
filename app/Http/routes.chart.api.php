@@ -593,3 +593,99 @@ Route::get('budget/{province?}', function ($province = null) {
 
     return $chart;
 });
+
+Route::get('price_range_sale/{type}/{province?}', function ($type, $province = null) {
+
+    $query = DB::table('choices');
+    $query->Join('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
+    $query->Join('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
+
+    $query->where('choice_farm_owner.choice_id', '=', $type);
+
+    if ($province) {
+        $query->where('farm_owners.house_province', '=', $province);
+    }
+
+    $query->groupBy('choice_farm_owner.remark');
+    $query->orderBy('choice_farm_owner.remark', 'asc');
+    $query->select(DB::raw('count(farm_owners.id) as user_count, choice_farm_owner.remark as choice'))
+    ->where('choice_farm_owner.remark','<>',null);
+
+    $results = $query->get();
+
+    //return $results;
+
+
+    $data = [];
+    $xAxis = [];
+    foreach ($results as $result) {
+        $data[] = $result->user_count;
+        $xAxis[] = $result->choice;
+    }
+
+
+    $chart = [];
+    $chart['tooltip'] = [];
+    $chart['tooltip']['valueSuffix'] = " คน";
+    $chart['xAxis'] = [];
+    $chart['xAxis']['categories'] = $xAxis;
+
+    $chart['series'] = [];
+
+    $chart['series'][] =
+        [
+            'name' => 'จำนวน',
+            'data' => $data,
+            'colorByPoint' => true,
+        ];
+
+    return $chart;
+});
+
+Route::get('age_range_sale/{type}/{province?}', function ($type, $province = null) {
+
+    $query = DB::table('choices');
+    $query->Join('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
+    $query->Join('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
+
+    $query->where('choice_farm_owner.choice_id', '=', $type);
+
+    if ($province) {
+        $query->where('farm_owners.house_province', '=', $province);
+    }
+
+    $query->groupBy('choice_farm_owner.age_range_sale');
+    $query->orderBy('choice_farm_owner.age_range_sale', 'asc');
+    $query->select(DB::raw('count(farm_owners.id) as user_count, choice_farm_owner.age_range_sale as choice'))
+    ->where('choice_farm_owner.age_range_sale','<>',null);
+
+    $results = $query->get();
+
+    //return $results;
+
+
+    $data = [];
+    $xAxis = [];
+    foreach ($results as $result) {
+        $data[] = $result->user_count;
+        $xAxis[] = $result->choice;
+    }
+
+
+    $chart = [];
+    $chart['tooltip'] = [];
+    $chart['tooltip']['valueSuffix'] = " คน";
+    $chart['xAxis'] = [];
+    $chart['xAxis']['categories'] = $xAxis;
+
+    $chart['series'] = [];
+
+    $chart['series'][] =
+        [
+            'name' => 'จำนวน',
+            'data' => $data,
+            'colorByPoint' => true,
+        ];
+
+    return $chart;
+});

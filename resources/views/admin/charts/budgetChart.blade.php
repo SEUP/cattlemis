@@ -212,6 +212,10 @@
                                     enabled: true,
                                     style: {
                                         fontSize: '20px'
+                                    },
+                                    formatter: function () {
+                                        // display only if larger than 1
+                                        return this.y >= 1 ? '<b>' + this.y + ' บาท' : null;
                                     }
                                 }
                             }
@@ -295,6 +299,10 @@
                             column: {
                                 dataLabels: {
                                     enabled: true
+                                },
+                                formatter: function () {
+                                    // display only if larger than 1
+                                    return this.y >= 1 ? '<b>' + this.y + ' คน' : null;
                                 }
                             }
                         },

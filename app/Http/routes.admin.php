@@ -103,3 +103,8 @@ Route::get('charts/double/{title}/{type}/{action}/{element}', function ($title, 
 Route::get('charts/budget/', function () {
     return view("admin.charts.budgetChart");
 });
+
+
+Route::get('charts/sold/', function () {
+    return view("admin.charts.soldChart");
+});
