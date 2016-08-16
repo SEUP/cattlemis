@@ -143,9 +143,6 @@
             }
         })
 
-
-    </script>
-    <script type="text/javascript">
         var app = new AdminApp({
             el: 'body',
 
@@ -160,8 +157,6 @@
             },
             methods: {
                 provinceChange: function () {
-                    // this.$http.get('/chart/cattle/' + this.chartType+'/'+this.selProvince).then(function (r) {
-                    // this.$http.get('/chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status/'+this.selProvince).then(function (r) {
                     this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/' + this.chartAction + '/' + this.chartElement + '/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData = data;

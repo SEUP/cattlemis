@@ -70,7 +70,7 @@
                 <li><a href="/admin/charts/pie/อาหารที่ท่านใช้เลี้ยงโคเนื้อ/feed_types">อาหารที่ท่านใช้เลี้ยงโคเนื้อ</a>
                 </li>
                 <li><a href="/admin/charts/pie/การให้แร่ธาตุก้อน/minerals_feed">การให้แร่ธาตุก้อน</a></li>
-                <li><a href="***">การสำรองฟางข้าว หรือเปลือกข้าวโพด</a></li>
+                <li><a href="/admin/charts/double/การสำรองฟางข้าว หรือเปลือกข้าวโพด/feedstock/count/farm_owners.id">การสำรองฟางข้าว หรือเปลือกข้าวโพด</a></li>
                 <li>
                     <a href="/admin/charts/normal/แหล่งอาหารหยาบในฤดูแล้ง/feed_summer_sources">แหล่งอาหารหยาบในฤดูแล้ง</a>
                 </li>
