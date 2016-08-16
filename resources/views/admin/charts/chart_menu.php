@@ -17,7 +17,7 @@
                     <a href="/admin/charts/normal/เฉลี่ยรายได้รวมของครอบครัว/income_range">เฉลี่ยรายได้รวมของครอบครัว</a>
                 </li>
                 <li>
-                    <a href="/admin/charts/range-farmowner/รายได้เฉลี่ยต่อปีของการขายโคเนื้อ/avg_cattle_income/50000/200000/6">รายได้เฉลี่ยต่อปีของการขายโคเนื้อ</a>
+                    <a href="/admin/charts/range-farmowner/รายได้เฉลี่ยต่อปีของการขายโคเนื้อ/avg_cattle_income/50000/200000/3">รายได้เฉลี่ยต่อปีของการขายโคเนื้อ</a>
                 </li>
             </div>
         </div>
@@ -44,7 +44,7 @@
                 <li><a href="/admin/charts/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status/count/farm_owners.id">การขึ้นทะเบียนฟาร์มกับภาครัฐ</a>
                 </li>
                 <li>
-                    <a href="/admin/charts/multi-choice/สถานภาพการระบาดของโรคในฟาร์ม/abortion,tuberculosis,foot_mouth_disease">สถานภาพการระบาดของโรคในฟาร์ม</a>
+                    <a href="/admin/charts/multi-choice/การเกิดโรคในฟาร์ม/abortion,tuberculosis,foot_mouth_disease">การเกิดโรคในฟาร์ม</a>
                 </li>
             </div>
         </div>
@@ -59,7 +59,7 @@
         </div>
         <div id="collapse3" class="panel-collapse collapse in">
             <div class="panel-body">
-                <li><a href="/admin/charts/range-farmowner/จำนวนแรงงานที่เลี้ยงโคเนื้อ/family_workers_amount/1/10/5">จำนวนแรงงานที่เลี้ยงโคเนื้อ</a>
+                <li><a href="/admin/charts/range-farmowner/จำนวนแรงงานที่เลี้ยงโคเนื้อ/family_workers_amount/1/5/4">จำนวนแรงงานที่เลี้ยงโคเนื้อ</a>
                 </li>
                 <li>
                     <a href="/admin/charts/normal/ลักษณะการเลี้ยงโคเนื้อ/take_care_types">ลักษณะการเลี้ยงโคเนื้อ</a>
@@ -91,14 +91,14 @@
                     <a href="/admin/charts/pie/การผสมพันธุ์โคเนื้อในฟาร์ม/farm_breeding_type">การผสมพันธุ์โคเนื้อในฟาร์ม</a>
                 </li>
                 <li>
-                    <a href="/admin/charts/normal/แหล่งน้ำเชื้อการผสมเทียท/inseminate_sources">แหล่งน้ำเชื้อการผสมเทียม</a>
+                    <a href="/admin/charts/normal/แหล่งน้ำเชื้อการผสมเทียม/inseminate_sources">แหล่งน้ำเชื้อการผสมเทียม</a>
                 </li>
-                <li><a href="/admin/charts/normal/ผู้ให้บริการผสมเทียท/breeders">ผู้ให้บริการผสมเทียม</a></li>
-                <li><a href="/admin/charts/range-farmowner/อัตราส่วนพ่อพันธ์คุมฝูง/breeding_rate/5/10/3">อัตราส่วนพ่อพันธ์คุมฝูง</a>
+                <li><a href="/admin/charts/normal/ผู้ให้บริการผสมเทียม/breeders">ผู้ให้บริการผสมเทียม</a></li>
+                <li><a href="/admin/charts/range-farmowner/อัตราส่วนพ่อพันธ์คุมฝูง/breeding_rate/1/20/3">อัตราส่วนพ่อพันธ์คุมฝูง</a>
                 </li>
                 <li><a href="/admin/charts/double/วัคซีนป้องกันโรค/vaccine_ever/count/farm_owners.id">วัคซีนป้องกันโรค</a>
                 </li>
-                <li><a href="/admin/charts/double/การจัดการมูลโคในฟาร์ม/cattle_dung_uses">การจัดการมูลโคในฟาร์ม</a></li>
+                <li><a href="/admin/charts/normal/การจัดการมูลโคในฟาร์ม/cattle_dung_uses">การจัดการมูลโคในฟาร์ม</a></li>
             </div>
         </div>
     </div>

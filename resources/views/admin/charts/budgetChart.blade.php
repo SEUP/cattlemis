@@ -250,8 +250,8 @@
                 chartData: {},
                 chartType: "total_budget",
                 chartTitle: "",
-                min: 10000,
-                max: 1000000,
+                min: 50000,
+                max: 500000,
                 step: 5,
 
                 provinces: [],

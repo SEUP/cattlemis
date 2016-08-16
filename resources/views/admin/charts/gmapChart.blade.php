@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="row" style="padding-bottom: 1em;">
-                <div class="col-xs-12" style="display: none;">
+                <div class="col-xs-12" style="">
                     <select class="form-control" v-on:change="provinceChange" v-model="selProvince">
                         <option value="0">กรุณาเลือกจังหวัด</option>
                         <option v-for="option in provinces"
@@ -25,6 +25,16 @@
                                 :center="{lat: 19.1378449, lng: 99.9138361}"
                                 :zoom="8"
                     >
+
+                        <marker v-for="m in chartData" :position.sync="m.position"
+                                :title="m.title"
+                                :clickable="true"
+                                :draggable="true" @g-click="center=m.position">
+
+                        <info-window :content="m.title" :opened="false"></info-window>
+
+                        </marker>
+
 
                     </google-map>
 
@@ -55,7 +65,9 @@
         var app = new AdminApp({
             el: 'body',
             components: {
-                'google-map': VueGoogleMap.Map
+                'google-map': VueGoogleMap.Map,
+                'marker': VueGoogleMap.Marker,
+                'info-window': VueGoogleMap.InfoWindow
             },
             data: {
                 chartData: {},
@@ -66,20 +78,21 @@
             },
             methods: {
                 provinceChange: function () {
-//                            this.$http.get('/chart/normal/' + this.chartType + '/' + this.selProvince).then(function (r) {
-//                                data = r.data;
-//                                this.chartData = data;
-//                                this.displayChart();
-//                            });
+
+                    this.$http.get('/chart/gmap/' + this.selProvince).then(function (r) {
+                        data = r.data;
+                        this.chartData = data;
+                    });
                 },
-                displayChart: function () {
 
-
-                }
-                ,
                 loadData: function () {
                     this.$http.get("/api/thailand/province").then(function (response) {
                         this.provinces = response.data;
+                    });
+
+                    this.$http.get('/chart/gmap').then(function (r) {
+                        data = r.data;
+                        this.chartData = data;
                     });
 
                 }

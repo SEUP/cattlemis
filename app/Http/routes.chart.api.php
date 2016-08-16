@@ -9,6 +9,39 @@ use Illuminate\Support\Facades\DB;
 Route::get('test2/{choices}', function ($choices) {
 });
 
+Route::get('gmap/{province?}', function ($province = null) {
+//select farm_owners.first_name ,farm_owners.last_name, farm_owners.farm_lat,farm_owners.farm_long
+//from farm_owners
+//where farm_owners.farm_lat is not null and farm_owners.farm_long is not null
+
+    $query = DB::table('farm_owners');
+    $query->select(["farm_owners.first_name", "farm_owners.last_name", "farm_owners.farm_lat", "farm_owners.farm_long"]);
+
+    $query->whereNotNull('farm_owners.farm_lat');
+    $query->whereNotNull('farm_owners.farm_long');
+
+    if ($province) {
+        $query->where('farm_owners.house_province', '=', DB::raw($province));
+    }
+
+    $result = $query->get();
+
+    $output = [];
+    foreach ($result as $r) {
+        $marker = new stdClass();
+        $marker->title = "$r->first_name $r->last_name";
+        $marker->position = [
+            "lat" => $r->farm_lat,
+            "lng" => $r->farm_long
+        ];
+
+        $output[] = $marker;
+    }
+
+    return $output;
+
+});
+
 Route::get('map-data/{id?}', function ($provinceId = null) {
 
     if ($provinceId) {
@@ -19,6 +52,7 @@ Route::get('map-data/{id?}', function ($provinceId = null) {
 
         $query->select(["thailand_amphures.amphur_id", "thailand_amphures.amphur_name"]);
         $query->addSelect(DB::raw('count(farm_owners.id) as value'));
+        $query->addSelect(DB::raw('count(farm_owners.id) as y'));
 
         $query->where('thailand_amphures.province_id', '=', $provinceId);
 
@@ -33,6 +67,10 @@ Route::get('map-data/{id?}', function ($provinceId = null) {
 
         $query->select(["thailand_provinces.province_id", "thailand_provinces.province_name"]);
         $query->addSelect(DB::raw('count(farm_owners.id) as value'));
+        $query->addSelect(DB::raw('count(farm_owners.id) as y'));
+
+
+        $query->where('thailand_provinces.geo_id', '=', '1');
 
         $query->groupBy('thailand_provinces.province_id');
 
@@ -134,19 +172,36 @@ Route::get('range/farm-owner/{type}/{min}/{max}/{numberGroup}/{province?}', func
         $query->where('farm_owners.house_province', '=', $province);
     }
 
+    if ($type == 'age' or $type == 'avg_cattle_income') {
+        $query->where($type, '>', 0);
+    }
 
-    $query->addSelect(DB::raw("SUM(IF($type <= $min,1,0)) as 'น้อยกว่าเท่ากับ $min'"));
+    if ($min == 0) {
+        $query->addSelect(DB::raw("SUM(IF($type = 0,1,0)) as '0'"));
+    } elseif ($min == 1) {
+        $query->addSelect(DB::raw("SUM(IF($type = 0,1,0)) as '0'"));
+        $query->addSelect(DB::raw("SUM(IF($type = $min,1,0)) as '$min'"));
+    } else {
+        $query->addSelect(DB::raw("SUM(IF($type <= $min,1,0)) as '0 ถึง $min'"));
+    }
+
 
     for ($i = 0; $i < sizeof($arr) - 1; $i++) {
         $low = $arr[$i];
         $high = $arr[$i + 1];
+        $labelLow = $low + 1;
+        if ($high - $labelLow == 0) {
+            $query->addSelect(DB::raw("SUM(IF( $type = $high,1,0)) as '$high'"));
+        } else {
+            $query->addSelect(DB::raw("SUM(IF($type > $low and $type <= $high,1,0)) as '$labelLow ถึง $high'"));
+        }
 
-        $query->addSelect(DB::raw("SUM(IF($type > $low and $type <= $high,1,0)) as '$low - $high'"));
     }
 
     $max = $arr[sizeof($arr) - 1];
+    $maxLabel = $max + 1;
 
-    $query->addSelect(DB::raw("SUM(IF($type > $max,1,0)) as 'สูงกว่า $max'"));
+    $query->addSelect(DB::raw("SUM(IF($type > $max,1,0)) as '$maxLabel ขึ้นไป'"));
 
 
     $results = $query->get()[0];
@@ -316,6 +371,10 @@ Route::get('cattle/{title}/{type}/{province?}', function ($title, $type, $provin
 
         $query->where('choices.parent_id', '=', $r->id);
 
+        if ($province) {
+            $query->where('farm_owners.house_province', '=', $province);
+        }
+
         $query->whereIn('choice_farm_owner.farm_owner_id', function ($query) use ($r) {
             $query->select('choice_farm_owner.farm_owner_id')
                 ->from('choice_farm_owner')
@@ -366,7 +425,7 @@ Route::get('cattle/{title}/{type}/{province?}', function ($title, $type, $provin
 });
 
 
-Route::get('double/{title}/{type}/{action?}/{element?}/{province?}', function ($title, $type,$action,$element, $province = null) {
+Route::get('double/{title}/{type}/{action?}/{element?}/{province?}', function ($title, $type, $action, $element, $province = null) {
 
     //get top
 
@@ -384,8 +443,9 @@ Route::get('double/{title}/{type}/{action?}/{element?}/{province?}', function ($
     $query->select(DB::raw('count(farm_owners.id) as regis_count, choices.choice, choices.id'));
 
     $results = $query->get();
-   // return $results;
+    // return $results;
 
+    $data = [];
     foreach ($results as $result) {
         $each = new stdClass();
         $each->name = $result->choice;
@@ -405,6 +465,9 @@ Route::get('double/{title}/{type}/{action?}/{element?}/{province?}', function ($
         $query->Join('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
 
         $query->where('choices.parent_id', '=', $r->id);
+        if ($province) {
+            $query->where('farm_owners.house_province', '=', $province);
+        }
 
         $query->whereIn('choice_farm_owner.farm_owner_id', function ($query) use ($r) {
             $query->select('choice_farm_owner.farm_owner_id')
@@ -418,10 +481,10 @@ Route::get('double/{title}/{type}/{action?}/{element?}/{province?}', function ($
         $sub_results = $query->get();
         //return $sub_results;
 
-            foreach ($sub_results as $result) {
-                $data_drill[] = intval($result->type_count);
-                $xAxis[] = $result->choice;
-            }
+        foreach ($sub_results as $result) {
+            $data_drill[] = intval($result->type_count);
+            $xAxis[] = $result->choice;
+        }
     }
 
     $chart = [];
