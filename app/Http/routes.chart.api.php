@@ -542,7 +542,7 @@ Route::get('budget/{province?}', function ($province = null) {
     $query->select(DB::raw('count(farm_owners.id) as user_count, choices.choice, choices.id'));
 
     $results = $query->get();
-
+    $data=[];
 
     foreach ($results as $result) {
         $each = new stdClass();

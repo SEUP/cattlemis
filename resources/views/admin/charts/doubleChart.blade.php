@@ -86,7 +86,9 @@
         var app = new AdminApp({
             el: 'body',
             data: {
-                chartData: {},
+                chartData: [
+                    {}, {},{}
+                ],
                 chartType: "",
                 chartTitle: "",
                 provinces: [],
@@ -94,47 +96,144 @@
             },
             methods: {
                 provinceChange: function () {
-                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + this.selProvince).then(function (r) {
+
+                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/'+ this.selProvince).then(function (r) {
                         //this.$http.get('/chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status/'+this.selProvince).then(function (r) {
                         data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
+                        this.chartData[0] = data;
+                        this.displayChart(0);
+                        this.displayChart(1);
+                        this.displayChart(2);
                     });
                 },
-                displayChart: function () {
+                displayChart: function (chartnumber) {
                     var self = this;
+                    if(chartnumber==0) {
+                        $('#master').highcharts({
+                            chart: {
+                                plotBackgroundColor: null,
+                                plotBorderWidth: null,
+                                plotShadow: false,
+                                type: 'pie'
+                            },
+                            title: {
+                                text: self.chartTitle,
+                            },
+                            tooltip: self.chartData[0].tooltip,
+                            plotOptions: {
 
-                    $('#master').highcharts({
-                        chart: {
-                            plotBackgroundColor: null,
-                            plotBorderWidth: null,
-                            plotShadow: false,
-                            type: 'pie'
-                        },
-                        title: {
-                            text: self.chartTitle,
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-
-                            pie: {
-                                allowPointSelect: true,
-                                cursor: 'pointer',
-                                dataLabels: {
-                                    enabled: true,
-                                    formatter: function () {
-                                        // display only if larger than 1
-                                        return this.y >= 1 ? '<b>' + this.point.name + ': </b> ' + this.y + ' คน' : null;
-                                    }
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    dataLabels: {
+                                        enabled: true,
+                                        formatter: function () {
+                                            // display only if larger than 1
+                                            return this.y >= 1 ? '<b>' + this.point.name + ': </b> ' + this.y + ' คน' : null;
+                                        }
 
 
-                                },
+                                    },
 
+                                }
                             }
-                        }
-                        ,
-                        series: self.chartData.series,
-                    });
+                            ,
+                            series: self.chartData[0].series,
+                        });
+                    }else if(chartnumber==1){
+                        $('#sub').highcharts({
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: self.chartTitle,
+                            },
+                            xAxis: self.chartData[0].xAxis,
+
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: '',
+                                    align: 'high'
+                                },
+                                labels: {
+                                    overflow: 'justify',
+                                    style: {
+                                        fontSize: '10px'
+                                    }
+                                }
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            tooltip: self.chartData[0].tooltip,
+                            plotOptions: {
+                                column: {
+                                    pointPadding: 0.2,
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        style: {
+                                            fontSize: '20px'
+                                        },
+                                        formatter: function () {
+                                            // display only if larger than 1
+                                            return this.y >= 1 ? '<b>' + this.y + ' คน' : null ;
+                                        }
+                                    }
+                                }
+                            },
+
+                            series: self.chartData[0].drilldown,
+                        });
+                    }else if(chartnumber==2){
+                        $('#sum_use_land').highcharts({
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: "รวมขนาดพื้นที่(ไร่) แยกตามพื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ",
+                            },
+                            xAxis: self.chartData[0].xAxis,
+
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: '',
+                                    align: 'high'
+                                },
+                                labels: {
+                                    overflow: 'justify',
+                                    style: {
+                                        fontSize: '10px'
+                                    }
+                                }
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            tooltip: self.chartData[0].tooltip,
+                            plotOptions: {
+                                column: {
+                                    pointPadding: 0.2,
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        style: {
+                                            fontSize: '20px'
+                                        },
+                                        formatter: function () {
+                                            // display only if larger than 1
+                                            return this.y >= 1 ? '<b>' + this.y + ' ไร่' : null ;
+                                        }
+                                    }
+                                }
+                            },
+
+                            series: self.chartData[0].area,
+                        });
+
+                    }
 
                 }
                 ,
@@ -143,11 +242,14 @@
                         this.provinces = response.data;
                     });
 
-                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/' + this.selProvince).then(function (r) {
+                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType).then(function (r) {
                         //this.$http.get('/chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status').then(function (r) {
                         data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
+                        this.chartData[0] = data;
+                        this.displayChart(0);
+                        this.displayChart(1);
+                        this.displayChart(2);
+
                     });
                 }
             },
@@ -160,179 +262,7 @@
         })
 
 
-        var app = new AdminApp({
-            el: 'body',
 
-            data: {
-                chartData: {},
-                chartType: "",
-                chartTitle: "",
-                provinces: [],
-                selProvince: 0,
-            },
-            methods: {
-                provinceChange: function () {
-                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/' + this.selProvince).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                },
-                displayChart: function () {
-                    var self = this;
-                    $('#sub').highcharts({
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: self.chartTitle,
-                        },
-                        xAxis: self.chartData.xAxis,
-
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: '',
-                                align: 'high'
-                            },
-                            labels: {
-                                overflow: 'justify',
-                                style: {
-                                    fontSize: '10px'
-                                }
-                            }
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-                            column: {
-                                pointPadding: 0.2,
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    style: {
-                                        fontSize: '20px'
-                                    },
-                                    formatter: function () {
-                                        // display only if larger than 1
-                                        return this.y >= 1 ? '<b>' + this.y + ' คน' : null ;
-                                    }
-                                }
-                            }
-                        },
-
-                        series: self.chartData.drilldown,
-                    });
-
-                }
-                ,
-                loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
-                        this.provinces = response.data;
-                    });
-                    // this.$http.get('/chart/cattle/' + this.chartType).then(function (r) {
-                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/' + this.selProvince).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                }
-            },
-            ready: function () {
-                this.chartType = $("#chartType").val();
-                this.chartTitle = $("#chartTitle").val();
-                this.loadData();
-            }
-        })
-
-        var app = new AdminApp({
-            el: 'body',
-
-            data: {
-                chartData: {},
-                chartType: "",
-                chartTitle: "",
-                provinces: [],
-                selProvince: 0,
-            },
-            methods: {
-                provinceChange: function () {
-                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/' + this.selProvince).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                },
-                displayChart: function () {
-                    var self = this;
-                    $('#sum_use_land').highcharts({
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: self.chartTitle,
-                        },
-                        xAxis: self.chartData.xAxis,
-
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: '',
-                                align: 'high'
-                            },
-                            labels: {
-                                overflow: 'justify',
-                                style: {
-                                    fontSize: '10px'
-                                }
-                            }
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-                            column: {
-                                pointPadding: 0.2,
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    style: {
-                                        fontSize: '20px'
-                                    },
-                                    formatter: function () {
-                                        // display only if larger than 1
-                                        return this.y >= 1 ? '<b>' + this.y + ' ไร่' : null ;
-                                    }
-                                }
-                            }
-                        },
-
-                        series: self.chartData.area,
-                    });
-
-                }
-                ,
-                loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
-                        this.provinces = response.data;
-                    });
-                    // this.$http.get('/chart/cattle/' + this.chartType).then(function (r) {
-                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/' + this.selProvince).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                }
-            },
-            ready: function () {
-                this.chartType = $("#chartType").val();
-                this.chartTitle = $("#chartTitle").val();
-                this.loadData();
-            }
-        })
 
     </script>
 

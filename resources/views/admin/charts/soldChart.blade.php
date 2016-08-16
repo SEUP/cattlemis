@@ -128,1089 +128,566 @@
             el: 'body',
 
             data: {
-                chartData: {},
-                chartType: "239",
-                chartTitle: "ราคาของโคเนื้อที่ขาย",
+                chartData: [
+                    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+                ],
+              //  chartType: "239",
+              //  chartTitle: "ราคาของโคเนื้อที่ขาย",
                 provinces: [],
                 selProvince: 0,
             },
             methods: {
                 provinceChange: function () {
-                    this.$http.get('/chart/price_range_sale/' + this.chartType + '/' + this.selProvince).then(function (r) {
+
+                    this.$http.get('/chart/price_range_sale/239/' + this.selProvince).then(function (r) {
                         data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
+                        this.chartData[0] = data;
+                        this.displayChart(0);
                     });
+                    this.$http.get('/chart/age_range_sale/239/' + this.selProvince).then(function (r) {
+                        data = r.data;
+                        this.chartData[1] = data;
+                        this.displayChart(1);
+                    });
+                    this.$http.get('/chart/price_range_sale/240/' + this.selProvince).then(function (r) {
+                        data = r.data;
+                        this.chartData[2] = data;
+                        this.displayChart(2);
+                    });
+                    this.$http.get('/chart/age_range_sale/240/' + this.selProvince).then(function (r) {
+                        data = r.data;
+                        this.chartData[3] = data;
+                        this.displayChart(3);
+                    });
+                    this.$http.get('/chart/price_range_sale/241/' + this.selProvince).then(function (r) {
+                        data = r.data;
+                        this.chartData[4] = data;
+                        this.displayChart(4);
+                    });
+                    this.$http.get('/chart/age_range_sale/241/' + this.selProvince).then(function (r) {
+                        data = r.data;
+                        this.chartData[5] = data;
+                        this.displayChart(5);
+                    });
+                    this.$http.get('/chart/price_range_sale/242/' + this.selProvince).then(function (r) {
+                        data = r.data;
+                        this.chartData[6] = data;
+                        this.displayChart(6);
+                    });
+                    this.$http.get('/chart/age_range_sale/242/' + this.selProvince).then(function (r) {
+                        data = r.data;
+                        this.chartData[7] = data;
+                        this.displayChart(7);
+                    });
+                    this.$http.get('/chart/price_range_sale/243/' + this.selProvince).then(function (r) {
+                        data = r.data;
+                        this.chartData[8] = data;
+                        this.displayChart(8);
+                    });
+                    this.$http.get('/chart/age_range_sale/243/' + this.selProvince).then(function (r) {
+                        data = r.data;
+                        this.chartData[9] = data;
+                        this.displayChart(9);
+                    });
+
+
                 },
-                displayChart: function () {
+                displayChart: function (chartnumber) {
                     var self = this;
-                    $('#male_cattle_price_range_sale').highcharts({
-                        chart: {
-                            type: 'column',
-                            height: 600,
-                        },
-                        title: {
-                            text: self.chartTitle,
-                        },
-                        xAxis: {
-                            categories: self.chartData.xAxis.categories,
-                            labels: {
-                                rotation: -45, align: 'right',
-                                staggerLines: 1,
-                                style: {
-                                    fontSize: '14px',
-                                    "fontWeight": "bold",
-                                    autoRotationLimit: 40,
-                                    textOverflow: 'none',
-                                    whiteSpace: 'initial',
-                                }
-                            }
-                        },
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: '',
-                                align: 'high'
+                    if (chartnumber == 0) {
+                        $('#male_cattle_price_range_sale').highcharts({
+                            chart: {
+                                type: 'column'
                             },
-                            labels: {
-                                overflow: 'justify',
-                                style: {
-                                    fontSize: '20px'
+                            title: {
+                                text: 'ราคาของโคเนื้อที่ขาย',
+                            },
+                            xAxis: self.chartData[0].xAxis,
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: '',
+                                    align: 'high'
                                 }
-                            }
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-                            column: {
-                                // animation: false,
-                                dataLabels: {
-                                    enabled: true,
+                                ,
+                                labels: {
+                                    overflow: 'justify',
                                     style: {
-                                        fontSize: '20px'
-                                    },
-                                    formatter: function () {
-                                        // display only if larger than 1
-                                        return this.y >= 1 ? '<b>' + this.y + ' คน' : null;
+                                        fontSize: self.fontSize
                                     }
                                 }
                             }
-                        },
-                        legend: {
-                            layout: 'vertical',
-                            align: 'right',
-                            verticalAlign: 'top',
-                            x: -40,
-                            y: 80,
-                            floating: true,
-                            borderWidth: 1,
-                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                            shadow: true,
-                            enabled : false,
-                        },
-                        credits: {
-                            enabled: false
-                        },
-                        series: self.chartData.series,
-                    });
+                            ,
+                            legend: {
+                                enabled: false
+                            }
+                            ,
+                            tooltip: self.chartData[0].tooltip,
+                            plotOptions: {
+                                series: {
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    }
+                                }
+                            }
+                            ,
 
-                }
-                ,
+                            series: self.chartData[0].series
+                        })
+
+                    }else   if (chartnumber == 1) {
+                        $('#male_cattle_age_range_sale').highcharts({
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: 'ระยะเวลาการเลี้ยง',
+                            },
+                            xAxis: self.chartData[1].xAxis,
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: '',
+                                    align: 'high'
+                                }
+                                ,
+                                labels: {
+                                    overflow: 'justify',
+                                    style: {
+                                        fontSize: self.fontSize
+                                    }
+                                }
+                            }
+                            ,
+                            legend: {
+                                enabled: false
+                            }
+                            ,
+                            tooltip: self.chartData[1].tooltip,
+                            plotOptions: {
+                                series: {
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    }
+                                }
+                            }
+                            ,
+
+                            series: self.chartData[1].series
+                        })
+
+                    }else if (chartnumber == 2) {
+                        $('#female_cattle_price_range_sale').highcharts({
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: 'ราคาของโคเนื้อที่ขาย',
+                            },
+                            xAxis: self.chartData[2].xAxis,
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: '',
+                                    align: 'high'
+                                }
+                                ,
+                                labels: {
+                                    overflow: 'justify',
+                                    style: {
+                                        fontSize: self.fontSize
+                                    }
+                                }
+                            }
+                            ,
+                            legend: {
+                                enabled: false
+                            }
+                            ,
+                            tooltip: self.chartData[2].tooltip,
+                            plotOptions: {
+                                series: {
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    }
+                                }
+                            }
+                            ,
+
+                            series: self.chartData[2].series
+                        })
+
+                    }else   if (chartnumber == 3) {
+                        $('#female_cattle_age_range_sale').highcharts({
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: 'ระยะเวลาการเลี้ยง',
+                            },
+                            xAxis: self.chartData[3].xAxis,
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: '',
+                                    align: 'high'
+                                }
+                                ,
+                                labels: {
+                                    overflow: 'justify',
+                                    style: {
+                                        fontSize: self.fontSize
+                                    }
+                                }
+                            }
+                            ,
+                            legend: {
+                                enabled: false
+                            }
+                            ,
+                            tooltip: self.chartData[3].tooltip,
+                            plotOptions: {
+                                series: {
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    }
+                                }
+                            }
+                            ,
+
+                            series: self.chartData[3].series
+                        })
+
+                    }else if (chartnumber == 4) {
+                        $('#khoon_cattle_price_range_sale').highcharts({
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: 'ราคาของโคเนื้อที่ขาย',
+                            },
+                            xAxis: self.chartData[4].xAxis,
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: '',
+                                    align: 'high'
+                                }
+                                ,
+                                labels: {
+                                    overflow: 'justify',
+                                    style: {
+                                        fontSize: self.fontSize
+                                    }
+                                }
+                            }
+                            ,
+                            legend: {
+                                enabled: false
+                            }
+                            ,
+                            tooltip: self.chartData[4].tooltip,
+                            plotOptions: {
+                                series: {
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    }
+                                }
+                            }
+                            ,
+
+                            series: self.chartData[4].series
+                        })
+
+                    }else   if (chartnumber == 5) {
+                        $('#khoon_cattle_age_range_sale').highcharts({
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: 'ระยะเวลาการเลี้ยง',
+                            },
+                            xAxis: self.chartData[5].xAxis,
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: '',
+                                    align: 'high'
+                                }
+                                ,
+                                labels: {
+                                    overflow: 'justify',
+                                    style: {
+                                        fontSize: self.fontSize
+                                    }
+                                }
+                            }
+                            ,
+                            legend: {
+                                enabled: false
+                            }
+                            ,
+                            tooltip: self.chartData[5].tooltip,
+                            plotOptions: {
+                                series: {
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    }
+                                }
+                            }
+                            ,
+
+                            series: self.chartData[5].series
+                        })
+
+                    }else if (chartnumber == 6) {
+                        $('#teen_cattle_price_range_sale').highcharts({
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: 'ราคาของโคเนื้อที่ขาย',
+                            },
+                            xAxis: self.chartData[6].xAxis,
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: '',
+                                    align: 'high'
+                                }
+                                ,
+                                labels: {
+                                    overflow: 'justify',
+                                    style: {
+                                        fontSize: self.fontSize
+                                    }
+                                }
+                            }
+                            ,
+                            legend: {
+                                enabled: false
+                            }
+                            ,
+                            tooltip: self.chartData[6].tooltip,
+                            plotOptions: {
+                                series: {
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    }
+                                }
+                            }
+                            ,
+
+                            series: self.chartData[6].series
+                        })
+
+                    }else   if (chartnumber == 7) {
+                        $('#teen_cattle_age_range_sale').highcharts({
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: 'ระยะเวลาการเลี้ยง',
+                            },
+                            xAxis: self.chartData[7].xAxis,
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: '',
+                                    align: 'high'
+                                }
+                                ,
+                                labels: {
+                                    overflow: 'justify',
+                                    style: {
+                                        fontSize: self.fontSize
+                                    }
+                                }
+                            }
+                            ,
+                            legend: {
+                                enabled: false
+                            }
+                            ,
+                            tooltip: self.chartData[7].tooltip,
+                            plotOptions: {
+                                series: {
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    }
+                                }
+                            }
+                            ,
+
+                            series: self.chartData[7].series
+                        })
+
+                    }else if (chartnumber == 8) {
+                        $('#other_cattle_price_range_sale').highcharts({
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: 'ราคาของโคเนื้อที่ขาย',
+                            },
+                            xAxis: self.chartData[8].xAxis,
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: '',
+                                    align: 'high'
+                                }
+                                ,
+                                labels: {
+                                    overflow: 'justify',
+                                    style: {
+                                        fontSize: self.fontSize
+                                    }
+                                }
+                            }
+                            ,
+                            legend: {
+                                enabled: false
+                            }
+                            ,
+                            tooltip: self.chartData[8].tooltip,
+                            plotOptions: {
+                                series: {
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    }
+                                }
+                            }
+                            ,
+
+                            series: self.chartData[8].series
+                        })
+
+                    }else   if (chartnumber == 9) {
+                        $('#other_cattle_age_range_sale').highcharts({
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: 'ระยะเวลาการเลี้ยง',
+                            },
+                            xAxis: self.chartData[9].xAxis,
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: '',
+                                    align: 'high'
+                                }
+                                ,
+                                labels: {
+                                    overflow: 'justify',
+                                    style: {
+                                        fontSize: self.fontSize
+                                    }
+                                }
+                            }
+                            ,
+                            legend: {
+                                enabled: false
+                            }
+                            ,
+                            tooltip: self.chartData[9].tooltip,
+                            plotOptions: {
+                                series: {
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    }
+                                }
+                            }
+                            ,
+
+                            series: self.chartData[9].series
+                        })
+
+                    }
+
+
+                },
                 loadData: function () {
                     this.$http.get("/api/thailand/province").then(function (response) {
                         this.provinces = response.data;
                     });
-                    this.$http.get('/chart/price_range_sale/' + this.chartType).then(function (r) {
+                    // this.$http.get('/chart/cattle/' + this.chartType).then(function (r) {
+                    this.$http.get('/chart/price_range_sale/239').then(function (r) {
                         data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
+                        this.chartData[0] = data;
+                        this.displayChart(0);
                     });
+                    this.$http.get('/chart/age_range_sale/239').then(function (r) {
+                        data = r.data;
+                        this.chartData[1] = data;
+                        this.displayChart(1);
+                    });
+                    this.$http.get('/chart/price_range_sale/240').then(function (r) {
+                        data = r.data;
+                        this.chartData[2] = data;
+                        this.displayChart(2);
+                    });
+                    this.$http.get('/chart/age_range_sale/240').then(function (r) {
+                        data = r.data;
+                        this.chartData[3] = data;
+                        this.displayChart(3);
+                    });
+                    this.$http.get('/chart/price_range_sale/241').then(function (r) {
+                        data = r.data;
+                        this.chartData[4] = data;
+                        this.displayChart(4);
+                    });
+                    this.$http.get('/chart/age_range_sale/241').then(function (r) {
+                        data = r.data;
+                        this.chartData[5] = data;
+                        this.displayChart(5);
+                    });
+                    this.$http.get('/chart/price_range_sale/242').then(function (r) {
+                        data = r.data;
+                        this.chartData[6] = data;
+                        this.displayChart(6);
+                    });
+                    this.$http.get('/chart/age_range_sale/242').then(function (r) {
+                        data = r.data;
+                        this.chartData[7] = data;
+                        this.displayChart(7);
+                    });
+                    this.$http.get('/chart/price_range_sale/243').then(function (r) {
+                        data = r.data;
+                        this.chartData[8] = data;
+                        this.displayChart(8);
+                    });
+                    this.$http.get('/chart/age_range_sale/243').then(function (r) {
+                        data = r.data;
+                        this.chartData[9] = data;
+                        this.displayChart(9);
+                    });
+
+
                 }
-            },
-            ready: function () {
-                //this.chartType = $("#chartType").val();
-               // this.chartTitle = $("#chartTitle").val();
-                this.loadData();
-            }
-        })
-
-        var app = new AdminApp({
-            el: 'body',
-
-            data: {
-                chartData: {},
-                chartType: "239",
-                chartTitle: "ระยะเวลาในการเลี้ยง",
-                provinces: [],
-                selProvince: 0,
-            },
-            methods: {
-                provinceChange: function () {
-                    this.$http.get('/chart/age_range_sale/' + this.chartType + '/' + this.selProvince).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
                 },
-                displayChart: function () {
-                    var self = this;
-                    $('#male_cattle_age_range_sale').highcharts({
-                        chart: {
-                            type: 'column',
-                            height: 600,
-                        },
-                        title: {
-                            text: self.chartTitle,
-                        },
-                        xAxis: {
-                            categories: self.chartData.xAxis.categories,
-                            labels: {
-                                rotation: -45, align: 'right',
-                                staggerLines: 1,
-                                style: {
-                                    fontSize: '14px',
-                                    "fontWeight": "bold",
-                                    autoRotationLimit: 40,
-                                    textOverflow: 'none',
-                                    whiteSpace: 'initial',
-                                }
-                            }
-                        },
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: '',
-                                align: 'high'
-                            },
-                            labels: {
-                                overflow: 'justify',
-                                style: {
-                                    fontSize: '20px'
-                                }
-                            }
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-                            column: {
-                                // animation: false,
-                                dataLabels: {
-                                    enabled: true,
-                                    style: {
-                                        fontSize: '20px'
-                                    },
-                                    formatter: function () {
-                                        // display only if larger than 1
-                                        return this.y >= 1 ? '<b>' + this.y + ' คน' : null;
-                                    }
-                                }
-                            }
-                        },
-                        legend: {
-                            layout: 'vertical',
-                            align: 'right',
-                            verticalAlign: 'top',
-                            x: -40,
-                            y: 80,
-                            floating: true,
-                            borderWidth: 1,
-                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                            shadow: true,
-                            enabled : false,
-                        },
-                        credits: {
-                            enabled: false
-                        },
-                        series: self.chartData.series,
-                    });
-
-                }
-                ,
-                loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
-                        this.provinces = response.data;
-                    });
-                    this.$http.get('/chart/age_range_sale/' + this.chartType).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                }
-            },
             ready: function () {
-                //this.chartType = $("#chartType").val();
-                // this.chartTitle = $("#chartTitle").val();
-                this.loadData();
-            }
-        })
-
-        var app = new AdminApp({
-            el: 'body',
-
-            data: {
-                chartData: {},
-                chartType: "240",
-                chartTitle: "ราคาของโคเนื้อที่ขาย",
-                provinces: [],
-                selProvince: 0,
-            },
-            methods: {
-                provinceChange: function () {
-                    this.$http.get('/chart/price_range_sale/' + this.chartType + '/' + this.selProvince).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                },
-                displayChart: function () {
-                    var self = this;
-                    $('#female_cattle_price_range_sale').highcharts({
-                        chart: {
-                            type: 'column',
-                            height: 600,
-                        },
-                        title: {
-                            text: self.chartTitle,
-                        },
-                        xAxis: {
-                            categories: self.chartData.xAxis.categories,
-                            labels: {
-                                rotation: -45, align: 'right',
-                                staggerLines: 1,
-                                style: {
-                                    fontSize: '14px',
-                                    "fontWeight": "bold",
-                                    autoRotationLimit: 40,
-                                    textOverflow: 'none',
-                                    whiteSpace: 'initial',
-                                }
-                            }
-                        },
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: '',
-                                align: 'high'
-                            },
-                            labels: {
-                                overflow: 'justify',
-                                style: {
-                                    fontSize: '20px'
-                                }
-                            }
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-                            column: {
-                                // animation: false,
-                                dataLabels: {
-                                    enabled: true,
-                                    style: {
-                                        fontSize: '20px'
-                                    },
-                                    formatter: function () {
-                                        // display only if larger than 1
-                                        return this.y >= 1 ? '<b>' + this.y + ' คน' : null;
-                                    }
-                                }
-                            }
-                        },
-                        legend: {
-                            layout: 'vertical',
-                            align: 'right',
-                            verticalAlign: 'top',
-                            x: -40,
-                            y: 80,
-                            floating: true,
-                            borderWidth: 1,
-                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                            shadow: true,
-                            enabled : false,
-                        },
-                        credits: {
-                            enabled: false
-                        },
-                        series: self.chartData.series,
-                    });
-
-                }
-                ,
-                loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
-                        this.provinces = response.data;
-                    });
-                    this.$http.get('/chart/price_range_sale/' + this.chartType).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                }
-            },
-            ready: function () {
-                //this.chartType = $("#chartType").val();
-                // this.chartTitle = $("#chartTitle").val();
-                this.loadData();
-            }
-        })
-
-        var app = new AdminApp({
-            el: 'body',
-
-            data: {
-                chartData: {},
-                chartType: "240",
-                chartTitle: "ระยะเวลาในการเลี้ยง",
-                provinces: [],
-                selProvince: 0,
-            },
-            methods: {
-                provinceChange: function () {
-                    this.$http.get('/chart/age_range_sale/' + this.chartType + '/' + this.selProvince).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                },
-                displayChart: function () {
-                    var self = this;
-                    $('#female_cattle_age_range_sale').highcharts({
-                        chart: {
-                            type: 'column',
-                            height: 600,
-                        },
-                        title: {
-                            text: self.chartTitle,
-                        },
-                        xAxis: {
-                            categories: self.chartData.xAxis.categories,
-                            labels: {
-                                rotation: -45, align: 'right',
-                                staggerLines: 1,
-                                style: {
-                                    fontSize: '14px',
-                                    "fontWeight": "bold",
-                                    autoRotationLimit: 40,
-                                    textOverflow: 'none',
-                                    whiteSpace: 'initial',
-                                }
-                            }
-                        },
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: '',
-                                align: 'high'
-                            },
-                            labels: {
-                                overflow: 'justify',
-                                style: {
-                                    fontSize: '20px'
-                                }
-                            }
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-                            column: {
-                                // animation: false,
-                                dataLabels: {
-                                    enabled: true,
-                                    style: {
-                                        fontSize: '20px'
-                                    },
-                                    formatter: function () {
-                                        // display only if larger than 1
-                                        return this.y >= 1 ? '<b>' + this.y + ' คน' : null;
-                                    }
-                                }
-                            }
-                        },
-                        legend: {
-                            layout: 'vertical',
-                            align: 'right',
-                            verticalAlign: 'top',
-                            x: -40,
-                            y: 80,
-                            floating: true,
-                            borderWidth: 1,
-                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                            shadow: true,
-                            enabled : false,
-                        },
-                        credits: {
-                            enabled: false
-                        },
-                        series: self.chartData.series,
-                    });
-
-                }
-                ,
-                loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
-                        this.provinces = response.data;
-                    });
-                    this.$http.get('/chart/age_range_sale/' + this.chartType).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                }
-            },
-            ready: function () {
-                //this.chartType = $("#chartType").val();
-                // this.chartTitle = $("#chartTitle").val();
-                this.loadData();
-            }
-        })
-
-
-        var app = new AdminApp({
-            el: 'body',
-
-            data: {
-                chartData: {},
-                chartType: "241",
-                chartTitle: "ราคาของโคเนื้อที่ขาย",
-                provinces: [],
-                selProvince: 0,
-            },
-            methods: {
-                provinceChange: function () {
-                    this.$http.get('/chart/price_range_sale/' + this.chartType + '/' + this.selProvince).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                },
-                displayChart: function () {
-                    var self = this;
-                    $('#khoon_cattle_price_range_sale').highcharts({
-                        chart: {
-                            type: 'column',
-                            height: 600,
-                        },
-                        title: {
-                            text: self.chartTitle,
-                        },
-                        xAxis: {
-                            categories: self.chartData.xAxis.categories,
-                            labels: {
-                                rotation: -45, align: 'right',
-                                staggerLines: 1,
-                                style: {
-                                    fontSize: '14px',
-                                    "fontWeight": "bold",
-                                    autoRotationLimit: 40,
-                                    textOverflow: 'none',
-                                    whiteSpace: 'initial',
-                                }
-                            }
-                        },
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: '',
-                                align: 'high'
-                            },
-                            labels: {
-                                overflow: 'justify',
-                                style: {
-                                    fontSize: '20px'
-                                }
-                            }
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-                            column: {
-                                // animation: false,
-                                dataLabels: {
-                                    enabled: true,
-                                    style: {
-                                        fontSize: '20px'
-                                    },
-                                    formatter: function () {
-                                        // display only if larger than 1
-                                        return this.y >= 1 ? '<b>' + this.y + ' คน' : null;
-                                    }
-                                }
-                            }
-                        },
-                        legend: {
-                            layout: 'vertical',
-                            align: 'right',
-                            verticalAlign: 'top',
-                            x: -40,
-                            y: 80,
-                            floating: true,
-                            borderWidth: 1,
-                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                            shadow: true,
-                            enabled : false,
-                        },
-                        credits: {
-                            enabled: false
-                        },
-                        series: self.chartData.series,
-                    });
-
-                }
-                ,
-                loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
-                        this.provinces = response.data;
-                    });
-                    this.$http.get('/chart/price_range_sale/' + this.chartType).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                }
-            },
-            ready: function () {
-                //this.chartType = $("#chartType").val();
-                // this.chartTitle = $("#chartTitle").val();
-                this.loadData();
-            }
-        })
-
-        var app = new AdminApp({
-            el: 'body',
-
-            data: {
-                chartData: {},
-                chartType: "241",
-                chartTitle: "ระยะเวลาในการเลี้ยง",
-                provinces: [],
-                selProvince: 0,
-            },
-            methods: {
-                provinceChange: function () {
-                    this.$http.get('/chart/age_range_sale/' + this.chartType + '/' + this.selProvince).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                },
-                displayChart: function () {
-                    var self = this;
-                    $('#khoon_cattle_age_range_sale').highcharts({
-                        chart: {
-                            type: 'column',
-                            height: 600,
-                        },
-                        title: {
-                            text: self.chartTitle,
-                        },
-                        xAxis: {
-                            categories: self.chartData.xAxis.categories,
-                            labels: {
-                                rotation: -45, align: 'right',
-                                staggerLines: 1,
-                                style: {
-                                    fontSize: '14px',
-                                    "fontWeight": "bold",
-                                    autoRotationLimit: 40,
-                                    textOverflow: 'none',
-                                    whiteSpace: 'initial',
-                                }
-                            }
-                        },
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: '',
-                                align: 'high'
-                            },
-                            labels: {
-                                overflow: 'justify',
-                                style: {
-                                    fontSize: '20px'
-                                }
-                            }
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-                            column: {
-                                // animation: false,
-                                dataLabels: {
-                                    enabled: true,
-                                    style: {
-                                        fontSize: '20px'
-                                    },
-                                    formatter: function () {
-                                        // display only if larger than 1
-                                        return this.y >= 1 ? '<b>' + this.y + ' คน' : null;
-                                    }
-                                }
-                            }
-                        },
-                        legend: {
-                            layout: 'vertical',
-                            align: 'right',
-                            verticalAlign: 'top',
-                            x: -40,
-                            y: 80,
-                            floating: true,
-                            borderWidth: 1,
-                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                            shadow: true,
-                            enabled : false,
-                        },
-                        credits: {
-                            enabled: false
-                        },
-                        series: self.chartData.series,
-                    });
-
-                }
-                ,
-                loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
-                        this.provinces = response.data;
-                    });
-                    this.$http.get('/chart/age_range_sale/' + this.chartType).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                }
-            },
-            ready: function () {
-                //this.chartType = $("#chartType").val();
-                // this.chartTitle = $("#chartTitle").val();
-                this.loadData();
-            }
-        })
-
-        var app = new AdminApp({
-            el: 'body',
-
-            data: {
-                chartData: {},
-                chartType: "242",
-                chartTitle: "ราคาของโคเนื้อที่ขาย",
-                provinces: [],
-                selProvince: 0,
-            },
-            methods: {
-                provinceChange: function () {
-                    this.$http.get('/chart/price_range_sale/' + this.chartType + '/' + this.selProvince).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                },
-                displayChart: function () {
-                    var self = this;
-                    $('#teen_cattle_price_range_sale').highcharts({
-                        chart: {
-                            type: 'column',
-                            height: 600,
-                        },
-                        title: {
-                            text: self.chartTitle,
-                        },
-                        xAxis: {
-                            categories: self.chartData.xAxis.categories,
-                            labels: {
-                                rotation: -45, align: 'right',
-                                staggerLines: 1,
-                                style: {
-                                    fontSize: '14px',
-                                    "fontWeight": "bold",
-                                    autoRotationLimit: 40,
-                                    textOverflow: 'none',
-                                    whiteSpace: 'initial',
-                                }
-                            }
-                        },
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: '',
-                                align: 'high'
-                            },
-                            labels: {
-                                overflow: 'justify',
-                                style: {
-                                    fontSize: '20px'
-                                }
-                            }
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-                            column: {
-                                // animation: false,
-                                dataLabels: {
-                                    enabled: true,
-                                    style: {
-                                        fontSize: '20px'
-                                    },
-                                    formatter: function () {
-                                        // display only if larger than 1
-                                        return this.y >= 1 ? '<b>' + this.y + ' คน' : null;
-                                    }
-                                }
-                            }
-                        },
-                        legend: {
-                            layout: 'vertical',
-                            align: 'right',
-                            verticalAlign: 'top',
-                            x: -40,
-                            y: 80,
-                            floating: true,
-                            borderWidth: 1,
-                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                            shadow: true,
-                            enabled : false,
-                        },
-                        credits: {
-                            enabled: false
-                        },
-                        series: self.chartData.series,
-                    });
-
-                }
-                ,
-                loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
-                        this.provinces = response.data;
-                    });
-                    this.$http.get('/chart/price_range_sale/' + this.chartType).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                }
-            },
-            ready: function () {
-                //this.chartType = $("#chartType").val();
-                // this.chartTitle = $("#chartTitle").val();
-                this.loadData();
-            }
-        })
-
-        var app = new AdminApp({
-            el: 'body',
-
-            data: {
-                chartData: {},
-                chartType: "242",
-                chartTitle: "ระยะเวลาในการเลี้ยง",
-                provinces: [],
-                selProvince: 0,
-            },
-            methods: {
-                provinceChange: function () {
-                    this.$http.get('/chart/age_range_sale/' + this.chartType + '/' + this.selProvince).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                },
-                displayChart: function () {
-                    var self = this;
-                    $('#teen_cattle_age_range_sale').highcharts({
-                        chart: {
-                            type: 'column',
-                            height: 600,
-                        },
-                        title: {
-                            text: self.chartTitle,
-                        },
-                        xAxis: {
-                            categories: self.chartData.xAxis.categories,
-                            labels: {
-                                rotation: -45, align: 'right',
-                                staggerLines: 1,
-                                style: {
-                                    fontSize: '14px',
-                                    "fontWeight": "bold",
-                                    autoRotationLimit: 40,
-                                    textOverflow: 'none',
-                                    whiteSpace: 'initial',
-                                }
-                            }
-                        },
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: '',
-                                align: 'high'
-                            },
-                            labels: {
-                                overflow: 'justify',
-                                style: {
-                                    fontSize: '20px'
-                                }
-                            }
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-                            column: {
-                                // animation: false,
-                                dataLabels: {
-                                    enabled: true,
-                                    style: {
-                                        fontSize: '20px'
-                                    },
-                                    formatter: function () {
-                                        // display only if larger than 1
-                                        return this.y >= 1 ? '<b>' + this.y + ' คน' : null;
-                                    }
-                                }
-                            }
-                        },
-                        legend: {
-                            layout: 'vertical',
-                            align: 'right',
-                            verticalAlign: 'top',
-                            x: -40,
-                            y: 80,
-                            floating: true,
-                            borderWidth: 1,
-                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                            shadow: true,
-                            enabled : false,
-                        },
-                        credits: {
-                            enabled: false
-                        },
-                        series: self.chartData.series,
-                    });
-
-                }
-                ,
-                loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
-                        this.provinces = response.data;
-                    });
-                    this.$http.get('/chart/age_range_sale/' + this.chartType).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                }
-            },
-            ready: function () {
-                //this.chartType = $("#chartType").val();
-                // this.chartTitle = $("#chartTitle").val();
-                this.loadData();
-            }
-        })
-
-        var app = new AdminApp({
-            el: 'body',
-
-            data: {
-                chartData: {},
-                chartType: "243",
-                chartTitle: "ราคาของโคเนื้อที่ขาย",
-                provinces: [],
-                selProvince: 0,
-            },
-            methods: {
-                provinceChange: function () {
-                    this.$http.get('/chart/price_range_sale/' + this.chartType + '/' + this.selProvince).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                },
-                displayChart: function () {
-                    var self = this;
-                    $('#other_cattle_price_range_sale').highcharts({
-                        chart: {
-                            type: 'column',
-                            height: 600,
-                        },
-                        title: {
-                            text: self.chartTitle,
-                        },
-                        xAxis: {
-                            categories: self.chartData.xAxis.categories,
-                            labels: {
-                                rotation: -45, align: 'right',
-                                staggerLines: 1,
-                                style: {
-                                    fontSize: '14px',
-                                    "fontWeight": "bold",
-                                    autoRotationLimit: 40,
-                                    textOverflow: 'none',
-                                    whiteSpace: 'initial',
-                                }
-                            }
-                        },
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: '',
-                                align: 'high'
-                            },
-                            labels: {
-                                overflow: 'justify',
-                                style: {
-                                    fontSize: '20px'
-                                }
-                            }
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-                            column: {
-                                // animation: false,
-                                dataLabels: {
-                                    enabled: true,
-                                    style: {
-                                        fontSize: '20px'
-                                    },
-                                    formatter: function () {
-                                        // display only if larger than 1
-                                        return this.y >= 1 ? '<b>' + this.y + ' คน' : null;
-                                    }
-                                }
-                            }
-                        },
-                        legend: {
-                            layout: 'vertical',
-                            align: 'right',
-                            verticalAlign: 'top',
-                            x: -40,
-                            y: 80,
-                            floating: true,
-                            borderWidth: 1,
-                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                            shadow: true,
-                            enabled : false,
-                        },
-                        credits: {
-                            enabled: false
-                        },
-                        series: self.chartData.series,
-                    });
-
-                }
-                ,
-                loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
-                        this.provinces = response.data;
-                    });
-                    this.$http.get('/chart/price_range_sale/' + this.chartType).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                }
-            },
-            ready: function () {
-                //this.chartType = $("#chartType").val();
-                // this.chartTitle = $("#chartTitle").val();
-                this.loadData();
-            }
-        })
-
-        var app = new AdminApp({
-            el: 'body',
-
-            data: {
-                chartData: {},
-                chartType: "243",
-                chartTitle: "ระยะเวลาในการเลี้ยง",
-                provinces: [],
-                selProvince: 0,
-            },
-            methods: {
-                provinceChange: function () {
-                    this.$http.get('/chart/age_range_sale/' + this.chartType + '/' + this.selProvince).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                },
-                displayChart: function () {
-                    var self = this;
-                    $('#other_cattle_age_range_sale').highcharts({
-                        chart: {
-                            type: 'column',
-                            height: 600,
-                        },
-                        title: {
-                            text: self.chartTitle,
-                        },
-                        xAxis: {
-                            categories: self.chartData.xAxis.categories,
-                            labels: {
-                                rotation: -45, align: 'right',
-                                staggerLines: 1,
-                                style: {
-                                    fontSize: '14px',
-                                    "fontWeight": "bold",
-                                    autoRotationLimit: 40,
-                                    textOverflow: 'none',
-                                    whiteSpace: 'initial',
-                                }
-                            }
-                        },
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: '',
-                                align: 'high'
-                            },
-                            labels: {
-                                overflow: 'justify',
-                                style: {
-                                    fontSize: '20px'
-                                }
-                            }
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-                            column: {
-                                // animation: false,
-                                dataLabels: {
-                                    enabled: true,
-                                    style: {
-                                        fontSize: '20px'
-                                    },
-                                    formatter: function () {
-                                        // display only if larger than 1
-                                        return this.y >= 1 ? '<b>' + this.y + ' คน' : null;
-                                    }
-                                }
-                            }
-                        },
-                        legend: {
-                            layout: 'vertical',
-                            align: 'right',
-                            verticalAlign: 'top',
-                            x: -40,
-                            y: 80,
-                            floating: true,
-                            borderWidth: 1,
-                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                            shadow: true,
-                            enabled : false,
-                        },
-                        credits: {
-                            enabled: false
-                        },
-                        series: self.chartData.series,
-                    });
-
-                }
-                ,
-                loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
-                        this.provinces = response.data;
-                    });
-                    this.$http.get('/chart/age_range_sale/' + this.chartType).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                }
-            },
-            ready: function () {
-                //this.chartType = $("#chartType").val();
-                // this.chartTitle = $("#chartTitle").val();
                 this.loadData();
             }
         })

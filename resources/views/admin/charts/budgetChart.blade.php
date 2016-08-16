@@ -38,7 +38,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                แหล่งเงินทุนกู้ยืม
+                                ยอดรวมเงินกู้ แยกตามแหล่งเงินกู้
                             </h4>
                         </div>
                         <div id="collapse1" class="panel-collapse collapse in">
@@ -52,7 +52,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                ยอดรวมเงินกู้ทั้งหมด
+                                จำนวนคนตามยอดกู้ แยกตามแหล่งเงินกู้
                             </h4>
                         </div>
                         <div id="collapse1" class="panel-collapse collapse in">
@@ -79,56 +79,164 @@
         var app = new AdminApp({
             el: 'body',
             data: {
-                chartData: {},
-                chartType: "",
-                chartTitle: "เงินทุนที่ท่านใช้เลี้ยงโคเนื้อ",
+                chartData: [
+                    {}, {}
+                ],
                 provinces: [],
                 selProvince: 0,
+                min: 50000,
+                max: 500000,
+                step: 5,
             },
             methods: {
                 provinceChange: function () {
                     this.$http.get('/chart/budget/' + this.selProvince).then(function (r) {
-                        //this.$http.get('/chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status/'+this.selProvince).then(function (r) {
                         data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
+                        this.chartData[0] = data;
+                        this.displayChart(0);
+                        this.displayChart(1);
                     });
+
+                    var api = "/chart/range/farm-owner/total_budget/" + this.min + "/" + this.max + "/" + this.step + "/" + this.selProvince;
+
+                    this.$http.get(api).then(function (r) {
+                        data = r.data;
+                        this.chartData[1] = data;
+                        this.displayChart(2);
+                    });
+
                 },
-                displayChart: function () {
+                displayChart: function (chartnumber) {
                     var self = this;
+                    if (chartnumber == 0) {
+                        $('#ิbudget_source').highcharts({
+                            chart: {
+                                plotBackgroundColor: null,
+                                plotBorderWidth: null,
+                                plotShadow: false,
+                                type: 'pie'
+                            },
+                            title: {
+                                text: self.chartTitle,
+                            },
+                            tooltip: self.chartData[0].tooltip,
+                            plotOptions: {
 
-                    $('#ิbudget_source').highcharts({
-                        chart: {
-                            plotBackgroundColor: null,
-                            plotBorderWidth: null,
-                            plotShadow: false,
-                            type: 'pie'
-                        },
-                        title: {
-                            text: self.chartTitle,
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-
-                            pie: {
-                                allowPointSelect: true,
-                                cursor: 'pointer',
-                                dataLabels: {
-                                    enabled: true,
-                                    formatter: function () {
-                                        // display only if larger than 1
-                                        return this.y > 1 ? '<b>' + this.point.name + ': </b> ' + this.y + ' คน' : null;
-                                    }
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    dataLabels: {
+                                        enabled: true,
+                                        formatter: function () {
+                                            // display only if larger than 1
+                                            return this.y > 1 ? '<b>' + this.point.name + ': </b> ' + this.y + ' คน' : null;
+                                        }
 
 
-                                },
+                                    },
 
+                                }
                             }
-                        }
-                        ,
-                        series: self.chartData.series,
-                    });
+                            ,
+                            series: self.chartData[0].series,
+                        });
+                    } else if (chartnumber == 1) {
+                        $('#loan_types').highcharts({
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: "ยอดรวมเงินกู้ แยกตามแหล่งเงินกู้",
+                            },
+                            xAxis: self.chartData[0].xAxis,
 
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: '',
+                                    align: 'high'
+                                },
+                                labels: {
+                                    overflow: 'justify',
+                                    style: {
+                                        fontSize: '10px'
+                                    }
+                                }
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            tooltip: self.chartData[0].tooltip,
+                            plotOptions: {
+                                column: {
+                                    pointPadding: 0.2,
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        style: {
+                                            fontSize: '20px'
+                                        },
+                                        formatter: function () {
+                                            // display only if larger than 1
+                                            return this.y >= 1 ? '<b>' + this.y + ' บาท' : null;
+                                        }
+                                    }
+                                }
+                            },
+
+                            series: self.chartData[0].drilldown,
+                        });
+                    } else if (chartnumber==2){
+                                    $('#total_budget').highcharts({
+                                        chart: {
+                                            type: 'column'
+                                        },
+                                        title: {
+                                            text: "จำนวนคนตามยอดกู้ แยกตามแหล่งเงินกู้",
+                                        },
+                                        xAxis: {
+                                            categories: self.chartData[1].xAxis.categories,
+                                        },
+                                        yAxis: {
+                                            min: 0,
+                                            title: {
+                                                text: self.chartTitle,
+                                            },
+                                            labels: {
+                                                overflow: 'justify'
+                                            }
+                                        },
+                                        tooltip: self.chartData[1].tooltip,
+                                        plotOptions: {
+                                            column: {
+                                                dataLabels: {
+                                                    enabled: true
+                                                },
+
+                                                formatter: function () {
+                                                    // display only if larger than 1
+                                                    return this.y >= 1 ? '<b>' + this.y + ' คน' : null;
+                                                }
+                                            }
+                                        },
+                                        legend: {
+                                            layout: 'vertical',
+                                            align: 'right',
+                                            verticalAlign: 'top',
+                                            x: -40,
+                                            y: 80,
+                                            floating: true,
+                                            borderWidth: 1,
+                                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                                            shadow: true
+                                        },
+                                        credits: {
+                                            enabled: false
+                                        },
+                                        series: self.chartData[1].series,
+                                    });
+
+                    }
                 }
                 ,
                 loadData: function () {
@@ -136,11 +244,21 @@
                         this.provinces = response.data;
                     });
 
-                    this.$http.get('/chart/budget/' + this.selProvince).then(function (r) {
+                    this.$http.get('/chart/budget').then(function (r) {
                         //this.$http.get('/chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status').then(function (r) {
                         data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
+                        this.chartData[0] = data;
+                        this.displayChart(0);
+                        this.displayChart(1);
+
+                    });
+
+                    var api = "/chart/range/farm-owner/total_budget/" + this.min + "/" + this.max + "/" + this.step;
+
+                    this.$http.get(api).then(function (r) {
+                        data = r.data;
+                        this.chartData[1] = data;
+                        this.displayChart(2);
                     });
                 }
             },
@@ -154,203 +272,6 @@
 
 
     </script>
-    <script type="text/javascript">
-        var app = new AdminApp({
-            el: 'body',
 
-            data: {
-                chartData: {},
-                chartType: "",
-                chartTitle: "แหล่งเงินทุนกู้ยืม",
-
-                provinces: [],
-                selProvince: 0,
-            },
-            methods: {
-                provinceChange: function () {
-                    // this.$http.get('/chart/cattle/' + this.chartType+'/'+this.selProvince).then(function (r) {
-                    // this.$http.get('/chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status/'+this.selProvince).then(function (r) {
-                    this.$http.get('/chart/budget/' + this.selProvince).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                },
-                displayChart: function () {
-                    var self = this;
-                    $('#loan_types').highcharts({
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: self.chartTitle,
-                        },
-                        xAxis: self.chartData.xAxis,
-
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: '',
-                                align: 'high'
-                            },
-                            labels: {
-                                overflow: 'justify',
-                                style: {
-                                    fontSize: '10px'
-                                }
-                            }
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-                            column: {
-                                pointPadding: 0.2,
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    style: {
-                                        fontSize: '20px'
-                                    },
-                                    formatter: function () {
-                                        // display only if larger than 1
-                                        return this.y >= 1 ? '<b>' + this.y + ' บาท' : null;
-                                    }
-                                }
-                            }
-                        },
-
-                        series: self.chartData.drilldown,
-                    });
-
-                }
-                ,
-                loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
-                        this.provinces = response.data;
-                    });
-                    // this.$http.get('/chart/cattle/' + this.chartType).then(function (r) {
-                    this.$http.get('/chart/budget/' + this.selProvince).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                }
-            },
-            ready: function () {
-                this.loadData();
-            }
-        })
-
-
-    </script>
-
-
-    <script type="text/javascript">
-        var app = new AdminApp({
-            el: 'body',
-            data: {
-                chartData: {},
-                chartType: "total_budget",
-                chartTitle: "",
-                min: 50000,
-                max: 500000,
-                step: 5,
-
-                provinces: [],
-                selProvince: 0,
-            },
-            methods: {
-                provinceChange: function () {
-
-                    var api = "/chart/range/farm-owner/" +
-                            this.chartType + "/" + this.min + "/" + this.max + "/" + this.step + "/" + this.selProvince;
-
-                    this.$http.get(api).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                },
-                displayChart: function () {
-                    var self = this;
-                    $('#total_budget').highcharts({
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: self.chartTitle,
-                        },
-                        xAxis: {
-                            categories: self.chartData.xAxis.categories,
-                        },
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: self.chartTitle,
-                            },
-                            labels: {
-                                overflow: 'justify'
-                            }
-                        },
-                        tooltip: self.chartData.tooltip,
-                        plotOptions: {
-                            column: {
-                                dataLabels: {
-                                    enabled: true
-                                },
-                                formatter: function () {
-                                    // display only if larger than 1
-                                    return this.y >= 1 ? '<b>' + this.y + ' คน' : null;
-                                }
-                            }
-                        },
-                        legend: {
-                            layout: 'vertical',
-                            align: 'right',
-                            verticalAlign: 'top',
-                            x: -40,
-                            y: 80,
-                            floating: true,
-                            borderWidth: 1,
-                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                            shadow: true
-                        },
-                        credits: {
-                            enabled: false
-                        },
-                        series: self.chartData.series,
-                    });
-
-                }
-                ,
-                loadData: function () {
-
-                    this.$http.get("/api/thailand/province").then(function (response) {
-                        this.provinces = response.data;
-                    });
-
-                    var api = "/chart/range/farm-owner/" +
-                            this.chartType + "/" + this.min + "/" + this.max + "/" + this.step;
-                    this.$http.get(api).then(function (r) {
-                        data = r.data;
-                        this.chartData = data;
-                        this.displayChart();
-                    });
-                }
-            },
-            ready: function () {
-                // this.chartType = $("#chartType").val();
-                //  this.chartTitle = $("#chartTitle").val();
-                //this.min = $("#min").val();
-                //this.max = $("#max").val();
-                //this.step = $("#step").val();
-                this.loadData();
-            }
-        })
-
-
-    </script>
 
 @endsection
