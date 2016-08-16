@@ -172,6 +172,10 @@ Route::get('range/farm-owner/{type}/{min}/{max}/{numberGroup}/{province?}', func
         $query->where('farm_owners.house_province', '=', $province);
     }
 
+    if ($type == 'age') {
+        $query->where('farm_owners.age', '>', 0);
+    }
+
 
     $query->addSelect(DB::raw("SUM(IF($type <= $min,1,0)) as '<= $min'"));
 
