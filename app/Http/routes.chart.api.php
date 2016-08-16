@@ -440,7 +440,7 @@ Route::get('double/{title}/{type}/{province?}', function ($title, $type,$provinc
 
     $query->groupBy('choices.choice');
     $query->orderBy('choices.id', 'asc');
-    $query->select(DB::raw('count(farm_owners.id) as regis_count, choices.choice, choices.id'));
+    $query->select(DB::raw('count(farm_owners.id) as user_count, choices.choice, choices.id'));
 
     $results = $query->get();
     // return $results;
@@ -449,7 +449,7 @@ Route::get('double/{title}/{type}/{province?}', function ($title, $type,$provinc
     foreach ($results as $result) {
         $each = new stdClass();
         $each->name = $result->choice;
-        $each->y = $result->regis_count;
+        $each->y = $result->user_count;
 
         $data[] = $each;
     }
