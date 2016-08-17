@@ -173,7 +173,7 @@ Route::get('range/farm-owner/{type}/{min}/{max}/{numberGroup}/{province?}', func
     }
 
     if ($type == 'age' or $type == 'avg_cattle_income' or $type == 'total_budget' or $type == 'breeding_rate'
-    or $type="family_workers_amount" or $type = "external_workers_amount"
+    or $type=="family_workers_amount" or $type == "external_workers_amount"
     ) {
         $query->where($type, '>', 0);
     }
