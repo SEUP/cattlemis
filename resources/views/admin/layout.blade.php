@@ -65,14 +65,7 @@
 
                     <li class="sidebar-search">
 
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <span class="fa fa-search"></span>
-                                </button>
-                            </span>
-                        </div>
+                       
                         <!-- /input-group -->
                     </li>
                     <li class="sidebar-search">
