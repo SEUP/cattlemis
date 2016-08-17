@@ -59,7 +59,9 @@
         </div>
         <div id="collapse3" class="panel-collapse collapse in">
             <div class="panel-body">
-                <li><a href="/admin/charts/range-farmowner/จำนวนแรงงานที่เลี้ยงโคเนื้อ/family_workers_amount/1/5/4">จำนวนแรงงานที่เลี้ยงโคเนื้อ</a>
+                <li><a href="/admin/charts/range-farmowner/จำนวนแรงงานภายในครอบครัว/family_workers_amount/1/5/4">จำนวนแรงงานภายในครอบครัว</a>
+                </li>
+                <li><a href="/admin/charts/range-farmowner/จำนวนแรงงานภายนอก/external_workers_amount/1/5/4">จำนวนแรงงานภายนอก</a>
                 </li>
                 <li>
                     <a href="/admin/charts/pie/ลักษณะการเลี้ยงโคเนื้อ/take_care_types">ลักษณะการเลี้ยงโคเนื้อ</a>
@@ -93,7 +95,7 @@
                     <a href="/admin/charts/normal/แหล่งน้ำเชื้อการผสมเทียม/inseminate_sources">แหล่งน้ำเชื้อการผสมเทียม</a>
                 </li>
                 <li><a href="/admin/charts/normal/ผู้ให้บริการผสมเทียม/breeders">ผู้ให้บริการผสมเทียม</a></li>
-                <li><a href="/admin/charts/range-farmowner/อัตราส่วนพ่อพันธ์คุมฝูง/breeding_rate/1/20/3">อัตราส่วนพ่อพันธ์คุมฝูง</a>
+                <li><a href="/admin/charts/range-farmowner/อัตราส่วนพ่อพันธุ์คุมฝูง/breeding_rate/1/20/3">อัตราส่วนพ่อพันธุ์คุมฝูง</a>
                 </li>
                 <li><a href="/admin/charts/double/วัคซีนป้องกันโรค/vaccine_ever">วัคซีนป้องกันโรค</a>
                 </li>
