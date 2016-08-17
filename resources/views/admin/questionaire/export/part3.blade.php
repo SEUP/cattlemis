@@ -36,8 +36,8 @@
         </ol>
     </div>
     <div class="line-report">
-        <label class="header">3.4 พื้นที่ถือครองทางการเกษตร(ไร่/ครัวเรือน)</label>
-        <br>{{$farmOwner->own_land->choice or '-'}} รวมพื้นที่ถือครองทางการเกษตร {{$farmOwner->total_own_lands or '-'}}
+        <label class="header">3.4 พื้นที่ถือครองทางการเกษตร</label>
+        <br>{{$farmOwner->own_land->choice or '-'}} รวมพื้นที่ถือครองทางการเกษตร {{$farmOwner->total_own_lands or '-'}} (ไร่/ครัวเรือน)
     </div>
     <div class="line-report">
         <label class="header"></label>
@@ -53,17 +53,17 @@
         </ol>
     </div>
     <div class="line-report">
-        <label class="header">3.5 การเช่าที่ดินเพื่อใช้ในการเลี้ยง(ไร่/ครัวเรือน)</label>
+        <label class="header">3.5 การเช่าที่ดินเพื่อใช้ในการเลี้ยง</label>
         <br>{{$farmOwner->rent_land->choice or '-'}}
         @if($farmOwner->rent_land->has_text)
-        จำนวน {{$farmOwner->rent_land->choice->pivot->area or '-'}}
+        จำนวน {{$farmOwner->rent_land->choice->pivot->area or '-'}} (ไร่/ครัวเรือน)
         <br>ค่าเช่าที่ดิน {{$farmOwner->rent_land->choice->pivot->area or '-'}} บาท/ไร่
         @endif
     </div>
 
     <div class="line-report">
-        <label class="header">3.6 พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ (ไร่/ครัวเรือน)</label>
-        <br>{{$farmOwner->use_land->choice or '-'}} {{$farmOwner->total_use_lands or '-'}} ไร่
+        <label class="header">3.6 พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ </label>
+        <br>{{$farmOwner->use_land->choice or '-'}} {{$farmOwner->total_use_lands or '-'}} (ไร่/ครัวเรือน)
     </div>
     <div class="line-report">
         <label class="header"></label>

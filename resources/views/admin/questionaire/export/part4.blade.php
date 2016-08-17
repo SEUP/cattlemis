@@ -9,7 +9,7 @@
         <ol style="margin-top: 0px;">
             @foreach($farmOwner->inseminate_sources as $j)
                 <li>
-                    {{$j->choice}}
+                    {{$j->choice or '-'}}
                     @if($j->pivot->remark)
                         <b>ชื่อหน่วยงาน : </b>{{$j->pivot->remark}}
                     @endif
