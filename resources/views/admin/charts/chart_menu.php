@@ -62,7 +62,7 @@
                 <li><a href="/admin/charts/range-farmowner/จำนวนแรงงานที่เลี้ยงโคเนื้อ/family_workers_amount/1/5/4">จำนวนแรงงานที่เลี้ยงโคเนื้อ</a>
                 </li>
                 <li>
-                    <a href="/admin/charts/normal/ลักษณะการเลี้ยงโคเนื้อ/take_care_types">ลักษณะการเลี้ยงโคเนื้อ</a>
+                    <a href="/admin/charts/pie/ลักษณะการเลี้ยงโคเนื้อ/take_care_types">ลักษณะการเลี้ยงโคเนื้อ</a>
                 </li>
                 <li>
                     <a href="/admin/charts/double/พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ/use_land/">พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ</a></li>
