@@ -13,6 +13,9 @@
             @foreach($farmOwner->loan_types as $j)
                 <li>
                     {{$j->choice or '-'}}
+                    @if($j->pivot->remark)
+                        <b>ชื่อธนาคาร : </b>{{$j->pivot->remark}}
+                    @endif
                     @if($j->pivot->amount)
                         <b>จำนวนเงิน : </b>{{$j->pivot->amount}} <b>บาท</b>
                     @endif
