@@ -18,7 +18,7 @@
                 <label class="checkbox" v-for="option in options.loan_types">
                     <input type="checkbox" v-model="newFarmer.loan_types" v-bind:value="option">
                     @{{ option.choice }}:
-                    <input v-show="option.choice=='เงินกู้จากธนาคารพาณิชย์(ระบุธนาคาร)'" placeholder="ชื่อธนาคาร"
+                    <input v-show="option.choice=='เงินกู้จากธนาคารพาณิชย์'" placeholder="ชื่อธนาคาร"
                            type="text" class="form-control"
                            v-model="option['pivot']['remark']">
                     <input class="col-lg-6 form-control" placeholder="จำนวนเงิน(บาท)" type="text"
