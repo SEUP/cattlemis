@@ -104,13 +104,13 @@
                         height: 500
                     },
                     colorAxis: {},
-                    plotOptions:{
-                        series:{
-                            point:{
-                                events:{
-                                    click: function(){
+                    plotOptions: {
+                        series: {
+                            point: {
+                                events: {
+                                    click: function () {
                                         console.log(this);
-                                        window.location = "/admin/charts/menuchart/"+this.province_id
+                                        window.location = "/admin/charts/menuchart/" + this.province_id
                                     }
                                 }
                             }
@@ -149,6 +149,19 @@
                         height: 500
                     },
                     colorAxis: {},
+                    plotOptions: {
+                        series: {
+                            point: {
+                                events: {
+                                    click: function () {
+                                        console.log(this);
+                                        var province = this.province_id ? this.province_id : this.properties.province_id;
+                                        window.location = "/admin/charts/menuchart/" + province + "/" + this.amphur_id
+                                    }
+                                }
+                            }
+                        }
+                    },
                     series: [
                         {
                             cursor: 'pointer',
@@ -192,6 +205,19 @@
                         height: 500
                     },
                     colorAxis: {},
+                    plotOptions: {
+                        series: {
+                            point: {
+                                events: {
+                                    click: function () {
+                                        console.log(this);
+                                        var province = this.province_id ? this.province_id : this.properties.province_id;
+                                        window.location = "/admin/charts/menuchart/" + province + "/" + this.amphur_id
+                                    }
+                                }
+                            }
+                        }
+                    },
                     series: [
 
                         {
@@ -236,6 +262,19 @@
                         height: 500
                     },
                     colorAxis: {},
+                    plotOptions: {
+                        series: {
+                            point: {
+                                events: {
+                                    click: function () {
+                                        console.log(this);
+                                        var province = this.province_id ? this.province_id : this.properties.province_id;
+                                        window.location = "/admin/charts/menuchart/" + province + "/" + this.amphur_id
+                                    }
+                                }
+                            }
+                        }
+                    },
                     series: [
 
                         {
@@ -298,6 +337,19 @@
                         height: 500
                     },
                     colorAxis: {},
+                    plotOptions: {
+                        series: {
+                            point: {
+                                events: {
+                                    click: function () {
+                                        console.log(this);
+                                        var province = this.province_id ? this.province_id : this.properties.province_id;
+                                        window.location = "/admin/charts/menuchart/" + province + "/" + this.amphur_id
+                                    }
+                                }
+                            }
+                        }
+                    },
                     series: [
 
                         {
