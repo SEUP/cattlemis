@@ -50,7 +50,9 @@ Route::get('logout', function () {
 Route::resource('/api/farm-owner', "FarmOwnerController");
 
 Route::resource('/api/thailand/province', "ProvinceController");
+Route::resource('/api/thailand/province.farm_owners', "ProvinceFarmOwnerController");
 Route::resource('/api/thailand/province.amphure', "ProvinceAmphureController");
+Route::resource('/api/thailand/province.amphure.farm_owners', "ProvinceAmphureFarmOwnerController");
 Route::resource('/api/thailand/province.amphure.district', "ProvinceAmphurDistrictController");
 
 Route::get('/api/choice', function () {

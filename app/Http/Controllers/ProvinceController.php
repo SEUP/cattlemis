@@ -17,8 +17,8 @@ class ProvinceController extends Controller
     public function index()
     {
         $provinces = Province::with([])->orderBy('province_name', 'asc')
-            ->whereIn("province_id",[42,43,44,45])
-            ->where("geo_id",'=','1')->get();
+            ->whereIn("province_id", [42, 43, 44, 45])
+            ->where("geo_id", '=', '1')->get();
         return $provinces;
     }
 
@@ -34,7 +34,9 @@ class ProvinceController extends Controller
 
     public function show($id)
     {
-
+        $provinces = Province::with([])->orderBy('province_name', 'asc')
+            ->where("province_id", '=', $id)->first();
+        return $provinces;
     }
 
     public function edit($id)

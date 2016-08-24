@@ -104,6 +104,18 @@
                         height: 500
                     },
                     colorAxis: {},
+                    plotOptions:{
+                        series:{
+                            point:{
+                                events:{
+                                    click: function(){
+                                        console.log(this);
+                                        window.location = "/admin/charts/menuchart/"+this.province_id
+                                    }
+                                }
+                            }
+                        }
+                    },
                     series: [
                         {
                             cursor: 'pointer',
@@ -143,7 +155,7 @@
                             name: "จำนวนเกษตรกร",
                             type: "map",
                             data: response,
-                            mapData: Highcharts.maps["countries/th/th-phayao/mapdata"],
+                            mapData: Highcharts.maps["countries/th/th-44/mapdata"],
                             joinBy: ['id', 'amphur_id'],
                             dataLabels: {
                                 enabled: true,
@@ -187,7 +199,7 @@
                             name: "จำนวนเกษตรกร",
                             type: "map",
                             data: response,
-                            mapData: Highcharts.maps["countries/th/th-nan/mapdata"],
+                            mapData: Highcharts.maps["countries/th/th-43/mapdata"],
                             joinBy: ['amphur_id', 'amphur_id'],
                             dataLabels: {
                                 enabled: true,
@@ -231,7 +243,7 @@
                             name: "จำนวนเกษตรกร",
                             type: "map",
                             data: response,
-                            mapData: Highcharts.maps["countries/th/th-phrae/mapdata"],
+                            mapData: Highcharts.maps["countries/th/th-42/mapdata"],
                             joinBy: ['amphur_id', 'amphur_id'],
                             dataLabels: {
                                 enabled: true,
@@ -293,7 +305,7 @@
                             name: "จำนวนเกษตรกร",
                             type: "map",
                             data: response,
-                            mapData: Highcharts.maps["countries/th/th-chiangrai/mapdata"],
+                            mapData: Highcharts.maps["countries/th/th-45/mapdata"],
                             joinBy: ['amphur_id', 'amphur_id'],
                             dataLabels: {
                                 enabled: true,

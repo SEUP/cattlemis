@@ -49,7 +49,7 @@ Highcharts.maps["countries/th/th-north/mapdata"] = [
     }
 ]
 
-Highcharts.maps["countries/th/th-phayao/mapdata"] = [
+Highcharts.maps["countries/th/th-44/mapdata"] = [
     {
         id: 651,
         "amphur_id": 651,
@@ -143,7 +143,7 @@ Highcharts.maps["countries/th/th-phayao/mapdata"] = [
     }
 ]
 
-Highcharts.maps['countries/th/th-nan/mapdata'] = {
+Highcharts.maps['countries/th/th-43/mapdata'] = {
     "type": "FeatureCollection",
     "crs": {"type": "name", "properties": {"name": "urn:ogc:def:crs:EPSG::32647"}},
 
@@ -385,7 +385,7 @@ Highcharts.maps['countries/th/th-nan/mapdata'] = {
     ]
 }
 
-Highcharts.maps['countries/th/th-phrae/mapdata'] = {
+Highcharts.maps['countries/th/th-42/mapdata'] = {
     "type": "FeatureCollection",
     "crs": {"type": "name", "properties": {"name": "urn:ogc:def:crs:EPSG::32647"}},
     "features": [
@@ -512,7 +512,7 @@ Highcharts.maps['countries/th/th-phrae/mapdata'] = {
     ]
 }
 
-Highcharts.maps['countries/th/th-chiangrai/mapdata'] = {
+Highcharts.maps['countries/th/th-45/mapdata'] = {
     "type": "FeatureCollection",
     "crs": {"type": "name", "properties": {"name": "urn:ogc:def:crs:EPSG::32647"}},
 

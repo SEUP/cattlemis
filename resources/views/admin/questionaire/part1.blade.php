@@ -26,8 +26,8 @@
         <question-text-field label="โทรศัพท์บ้าน" :model.sync="newFarmer.house_phone"></question-text-field>
         <question-text-field label="โทรศัพท์มือถือ" :model.sync="newFarmer.mobile_no"></question-text-field>
 
-        <question-text-checkbox-field label="Email" placeholder="Email" type="email"
-                                      :model.sync="newFarmer.email"></question-text-checkbox-field>
+        <question-text-field label="Email" placeholder="Email" type="email"
+                                      :model.sync="newFarmer.email"></question-text-field>
 
     </fieldset>
 

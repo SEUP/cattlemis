@@ -43,6 +43,14 @@ Route::get('choice', 'ChoiceController@index');
 Route::get('charts/menuchart', function () {
     return view("admin.charts.menuChart");
 });
+
+Route::get('charts/menuchart/{province}/{amphur?}', function ($province, $amphur=null) {
+    return view("admin.charts.mapdashboard")
+        ->with('province', $province)
+        ->with('amphur', $amphur);
+});
+
+
 Route::get('charts/normal/{title}/{type}', function ($title, $type) {
 
     return view("admin.charts.normalChart")
