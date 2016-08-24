@@ -83,7 +83,8 @@ var QuestionTextCheckboxField = Vue.extend({
     },
     watch: {
         model: function () {
-            if (this.model != "" || this.model != null) {
+            console.log(this.model);
+            if (this.model != "" && this.model != null) {
                 this.checked = true;
             }
         }
