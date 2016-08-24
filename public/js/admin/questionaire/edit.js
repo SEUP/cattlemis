@@ -6,6 +6,7 @@ var app = new AdminApp({
     el: 'body',
     components: {
         'question-text-field': QuestionTextField,
+        'question-text-checkbox-field': QuestionTextCheckboxField,
         'question-textarea-field': QuestionTextAreaField,
         'question-select': QuestionSelect,
         'question-radio': QuestionRadio,

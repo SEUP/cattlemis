@@ -8,6 +8,7 @@
         <question-text-field label="รหัสประจำตัวประชาชน" placeholder="กรุณากรอกรหัสประจำตัวประชาชน"
                              :model.sync="newFarmer.person_id"></question-text-field>
 
+
     </fieldset>
 
     <fieldset id="1.2">
@@ -24,7 +25,9 @@
         <question-text-field label="รหัสไปรษณีย์" :model.sync="newFarmer.house_postcode"></question-text-field>
         <question-text-field label="โทรศัพท์บ้าน" :model.sync="newFarmer.house_phone"></question-text-field>
         <question-text-field label="โทรศัพท์มือถือ" :model.sync="newFarmer.mobile_no"></question-text-field>
-        <question-text-field label="E-mail" :model.sync="newFarmer.email"></question-text-field>
+
+        <question-text-checkbox-field label="Email" placeholder="Email" type="email"
+                                      :model.sync="newFarmer.email"></question-text-checkbox-field>
 
     </fieldset>
 

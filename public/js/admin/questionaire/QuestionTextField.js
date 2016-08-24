@@ -34,6 +34,64 @@ var QuestionTextField = Vue.extend({
     }
 });
 
+var QuestionTextCheckboxField = Vue.extend({
+    template: `
+    <div class="form-group">
+            <label class="col-sm-2 control-label">{{label}}</label>
+            <div class="col-sm-10">
+            
+                <div class="input-group">
+                    <span class="input-group-addon">
+                    <input type="checkbox" v-model="checked" v-on:change="removeData"/>
+                    </span>
+                    <input type="{{type}}" v-model="model" v-bind:disabled="!checked" class="form-control" placeholder="{{placeholder}}"/>
+                </div>
+            
+        </div>
+    `,
+    props: {
+        checked: {
+            required: false,
+            twoWay: false
+        },
+        label: {
+            required: true,
+        },
+        model: {
+            required: true,
+            twoWay: true
+        },
+        placeholder: {
+            required: false,
+            default: function () {
+                return this.label
+            }
+        },
+        type: {
+            required: false,
+            default: function () {
+                return "text"
+            }
+        }
+    },
+    methods: {
+        removeData: function () {
+            if (!this.checked) {
+                this.model = ""
+            }
+        }
+    },
+    watch: {
+        model: function () {
+            console.log(this.model);
+            if (this.model != "") {
+                this.checked = true;
+            }
+        }
+    }
+
+});
+
 var QuestionTextAreaField = Vue.extend({
     template: `
     <div class="form-group">
