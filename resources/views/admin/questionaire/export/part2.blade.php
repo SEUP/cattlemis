@@ -1,18 +1,22 @@
 <div style="page-break-before: always">
     <h2>ส่วนที่ 2 ข้อมูลการเลี้ยงและสถานภาพฟาร์ม</h2>
-            <div class="line-report">
-                <label class="header">2.1 การเลี้ยงโคเนื้อของท่านมีวัตถุประสงค์เพื่ออะไร</label>
-                <ol style="margin-top: 0px;">
-                    @foreach($farmOwner->farm_purposes as $j)
-                        <li>
-                            {{$j->choice}}
-                            @if($j->has_text)
-                                <b>ระบุ : </b>{{$j->pivot->remark}}
-                            @endif
-                        </li>
-                    @endforeach
-                </ol>
-            </div>
+    <div class="line-report">
+        <label class="header">2.1 การเลี้ยงโคเนื้อของท่านมีวัตถุประสงค์เพื่ออะไร</label>
+        <ol style="margin-top: 0px;">
+            @if(sizeof($farmOwner->farm_purposes)>0)
+                @foreach($farmOwner->farm_purposes as $j)
+                    <li>
+                        {{$j->choice or '-'}}
+                        @if($j->has_text)
+                            <b>ระบุ : </b>{{$j->pivot->remark or '-'}}
+                        @endif
+                    </li>
+                @endforeach
+            @else
+                {{'-'}}
+            @endif
+        </ol>
+    </div>
     <div class="line-report">
         <label class="header">2.2 ท่านมีการจดบันทึกข้อมูลหรือทำประวัติโคเนื้อหรือไม่</label>
         : {{$farmOwner->farm_record->choice or '-'}}
@@ -24,94 +28,110 @@
     </div>
 
     @if($farmOwner->total_male_breeding_types > 0)
-    <div class="line-report">
-        <label class="header">2.4 พ่อพันธุ์โคเนื้อที่เลี้ยง</label> จำนวน {{$farmOwner->total_male_breeding_types}} ตัว
-        @foreach($farmOwner->male_breeding_types as $j)
-            <div class="line-report" style="padding-left: 20px">
-                @if($j->has_text)
-                    {{$j->choice}} | ระบุ:  {{$j->pivot->remark}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
-                @endif
-            </div>
-        @endforeach
-        @foreach($farmOwner->male_int_breeding_types as $j)
-            <div class="line-report" style="padding-left: 20px">
-                {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
-            </div>
-        @endforeach
+        <div class="line-report">
+            <label class="header">2.4 พ่อพันธุ์โคเนื้อที่เลี้ยง</label> จำนวน {{$farmOwner->total_male_breeding_types}}
+            ตัว
+            @foreach($farmOwner->male_breeding_types as $j)
+                <div class="line-report" style="padding-left: 20px">
+                    @if($j->has_text)
+                        {{$j->choice}} | ระบุ:  {{$j->pivot->remark}} | จำนวน {{$j->pivot->amount}} ตัว |
+                        ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
+                    @endif
+                </div>
+            @endforeach
+            @foreach($farmOwner->male_int_breeding_types as $j)
+                <div class="line-report" style="padding-left: 20px">
+                    {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท |
+                    แหล่งที่มา {{$j->pivot->source or '-'}}
+                </div>
+            @endforeach
             @foreach($farmOwner->male_mixed_breeding_types as $j)
-            <div class="line-report" style="padding-left: 20px">
-                    {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
+                <div class="line-report" style="padding-left: 20px">
+                    {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท |
+                    แหล่งที่มา {{$j->pivot->source or '-'}}
                 </div>
             @endforeach
 
-    </div>
+        </div>
     @endif
 
     @if($farmOwner->total_female_breeding_types > 0)
-    <div class="line-report">
-        <label class="header">2.5 แม่พันธุ์โคเนื้อที่เลี้ยง</label> จำนวน {{$farmOwner->total_female_breeding_types}} ตัว
-        @foreach($farmOwner->female_breeding_types as $j)
-            <div class="line-report" style="padding-left: 20px">
-                @if($j->has_text)
-                    {{$j->choice}} | ระบุ:  {{$j->pivot->remark}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
-                @endif
-            </div>
-        @endforeach
-        @foreach($farmOwner->female_int_breeding_types as $j)
-            <div class="line-report" style="padding-left: 20px">
-                {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
-            </div>
-        @endforeach
-        @foreach($farmOwner->female_mixed_breeding_types as $j)
-            <div class="line-report" style="padding-left: 20px">
-                {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
-            </div>
-        @endforeach
+        <div class="line-report">
+            <label class="header">2.5 แม่พันธุ์โคเนื้อที่เลี้ยง</label>
+            จำนวน {{$farmOwner->total_female_breeding_types}} ตัว
+            @foreach($farmOwner->female_breeding_types as $j)
+                <div class="line-report" style="padding-left: 20px">
+                    @if($j->has_text)
+                        {{$j->choice}} | ระบุ:  {{$j->pivot->remark}} | จำนวน {{$j->pivot->amount}} ตัว |
+                        ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
+                    @endif
+                </div>
+            @endforeach
+            @foreach($farmOwner->female_int_breeding_types as $j)
+                <div class="line-report" style="padding-left: 20px">
+                    {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท |
+                    แหล่งที่มา {{$j->pivot->source or '-'}}
+                </div>
+            @endforeach
+            @foreach($farmOwner->female_mixed_breeding_types as $j)
+                <div class="line-report" style="padding-left: 20px">
+                    {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท |
+                    แหล่งที่มา {{$j->pivot->source or '-'}}
+                </div>
+            @endforeach
 
-    </div>
+        </div>
     @endif
 
     @if($farmOwner->total_male_over_six_breeding_types > 0)
-    <div class="line-report">
-        <label class="header">2.6 โคเพศผู้อายุมากกว่า 6 เดือนขึ้นไปแต่ไม่ใช่พ่อพันธุ์คุมฝูง</label> จำนวน {{$farmOwner->total_male_over_six_breeding_types}} ตัว
-        @foreach($farmOwner->male_over_six_breeding_types as $j)
-            <div class="line-report" style="padding-left: 20px">
-                @if($j->has_text)
-                    {{$j->choice}} | ระบุ:  {{$j->pivot->remark}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
-                @endif
-            </div>
-        @endforeach
-        @foreach($farmOwner->male_over_six_int_breeding_types as $j)
-            <div class="line-report" style="padding-left: 20px">
-                {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
-            </div>
-        @endforeach
-        @foreach($farmOwner->male_over_six_mixed_breeding_types as $j)
-            <div class="line-report" style="padding-left: 20px">
-                {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
-            </div>
-        @endforeach
-    </div>
+        <div class="line-report">
+            <label class="header">2.6 โคเพศผู้อายุมากกว่า 6 เดือนขึ้นไปแต่ไม่ใช่พ่อพันธุ์คุมฝูง</label>
+            จำนวน {{$farmOwner->total_male_over_six_breeding_types}} ตัว
+            @foreach($farmOwner->male_over_six_breeding_types as $j)
+                <div class="line-report" style="padding-left: 20px">
+                    @if($j->has_text)
+                        {{$j->choice}} | ระบุ:  {{$j->pivot->remark}} | จำนวน {{$j->pivot->amount}} ตัว |
+                        ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
+                    @endif
+                </div>
+            @endforeach
+            @foreach($farmOwner->male_over_six_int_breeding_types as $j)
+                <div class="line-report" style="padding-left: 20px">
+                    {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท |
+                    แหล่งที่มา {{$j->pivot->source or '-'}}
+                </div>
+            @endforeach
+            @foreach($farmOwner->male_over_six_mixed_breeding_types as $j)
+                <div class="line-report" style="padding-left: 20px">
+                    {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท |
+                    แหล่งที่มา {{$j->pivot->source or '-'}}
+                </div>
+            @endforeach
+        </div>
     @endif
 
     @if($farmOwner->total_female_over_six_breeding_types > 0)
         <div class="line-report">
-            <label class="header">2.7 โคเพศเมียอายุมากกว่า 6 เดือนขึ้นไปแต่ไม่ใช่พ่อพันธุ์คุมฝูง</label> จำนวน {{$farmOwner->total_female_over_six_breeding_types}} ตัว
+            <label class="header">2.7 โคเพศเมียอายุมากกว่า 6 เดือนขึ้นไปแต่ไม่ใช่พ่อพันธุ์คุมฝูง</label>
+            จำนวน {{$farmOwner->total_female_over_six_breeding_types}} ตัว
             @foreach($farmOwner->female_over_six_breeding_types as $j)
                 <div class="line-report" style="padding-left: 20px">
                     @if($j->has_text)
-                        {{$j->choice}} | ระบุ:  {{$j->pivot->remark}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
+                        {{$j->choice}} | ระบุ:  {{$j->pivot->remark}} | จำนวน {{$j->pivot->amount}} ตัว |
+                        ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
                     @endif
                 </div>
             @endforeach
             @foreach($farmOwner->female_over_six_int_breeding_types as $j)
                 <div class="line-report" style="padding-left: 20px">
-                    {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
+                    {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท |
+                    แหล่งที่มา {{$j->pivot->source or '-'}}
                 </div>
             @endforeach
             @foreach($farmOwner->female_over_six_mixed_breeding_types as $j)
                 <div class="line-report" style="padding-left: 20px">
-                    {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
+                    {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท |
+                    แหล่งที่มา {{$j->pivot->source or '-'}}
                 </div>
             @endforeach
         </div>
@@ -119,22 +139,26 @@
 
     @if($farmOwner->total_male_under_six_breeding_types > 0)
         <div class="line-report">
-            <label class="header">2.8 ลูกโคเพศผู้อายุน้อยกว่า 6 เดือน</label> จำนวน {{$farmOwner->total_male_under_six_breeding_types}} ตัว
+            <label class="header">2.8 ลูกโคเพศผู้อายุน้อยกว่า 6 เดือน</label>
+            จำนวน {{$farmOwner->total_male_under_six_breeding_types}} ตัว
             @foreach($farmOwner->male_under_six_breeding_types as $j)
                 <div class="line-report" style="padding-left: 20px">
                     @if($j->has_text)
-                        {{$j->choice}} | ระบุ:  {{$j->pivot->remark}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
+                        {{$j->choice}} | ระบุ:  {{$j->pivot->remark}} | จำนวน {{$j->pivot->amount}} ตัว |
+                        ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
                     @endif
                 </div>
             @endforeach
             @foreach($farmOwner->male_under_six_int_breeding_types as $j)
                 <div class="line-report" style="padding-left: 20px">
-                    {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
+                    {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท |
+                    แหล่งที่มา {{$j->pivot->source or '-'}}
                 </div>
             @endforeach
             @foreach($farmOwner->male_under_six_mixed_breeding_types as $j)
                 <div class="line-report" style="padding-left: 20px">
-                    {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
+                    {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท |
+                    แหล่งที่มา {{$j->pivot->source or '-'}}
                 </div>
             @endforeach
         </div>
@@ -142,22 +166,26 @@
 
     @if($farmOwner->total_female_under_six_breeding_types > 0)
         <div class="line-report">
-            <label class="header">2.9 ลูกโคเพศเมียอายุน้อยกว่า 6 เดือน</label> จำนวน {{$farmOwner->total_female_under_six_breeding_types}} ตัว
+            <label class="header">2.9 ลูกโคเพศเมียอายุน้อยกว่า 6 เดือน</label>
+            จำนวน {{$farmOwner->total_female_under_six_breeding_types}} ตัว
             @foreach($farmOwner->female_under_six_breeding_types as $j)
                 <div class="line-report" style="padding-left: 20px">
                     @if($j->has_text)
-                        {{$j->choice}} | ระบุ:  {{$j->pivot->remark}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
+                        {{$j->choice}} | ระบุ:  {{$j->pivot->remark}} | จำนวน {{$j->pivot->amount}} ตัว |
+                        ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
                     @endif
                 </div>
             @endforeach
             @foreach($farmOwner->female_under_six_int_breeding_types as $j)
                 <div class="line-report" style="padding-left: 20px">
-                    {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
+                    {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท |
+                    แหล่งที่มา {{$j->pivot->source or '-'}}
                 </div>
             @endforeach
             @foreach($farmOwner->female_under_six_mixed_breeding_types as $j)
                 <div class="line-report" style="padding-left: 20px">
-                    {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท | แหล่งที่มา {{$j->pivot->source or '-'}}
+                    {{$j->choice}} | จำนวน {{$j->pivot->amount}} ตัว | ราคา {{$j->pivot->price or '-'}} บาท |
+                    แหล่งที่มา {{$j->pivot->source or '-'}}
                 </div>
             @endforeach
         </div>
@@ -189,9 +217,13 @@
     </div>
     <div class="line-report">
         <label class="header">2.13 การขึ้นทะเบียนฟาร์มกับภาครัฐ </label>
-        : {{$farmOwner->farm_register_status->choice or '-'}}
-        @if($farmOwner->farm_register_status->choice=="ขึ้นทะเบียนแล้ว")
-            <b> ระบุ : </b>{{$farmOwner->farm_register->choice or '-'}}
+        @if($farmOwner->farm_register_status)
+            : {{$farmOwner->farm_register_status->choice or '-'}}
+            @if($farmOwner->farm_register_status->choice=="ขึ้นทะเบียนแล้ว")
+                <b> ระบุ : </b>{{$farmOwner->farm_register->choice or '-'}}
+            @endif
+        @else
+            {{'-'}}
         @endif
     </div>
     <div class="line-report">
