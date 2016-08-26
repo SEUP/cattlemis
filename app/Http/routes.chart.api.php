@@ -53,6 +53,8 @@ Route::get('map-data/{id?}', function ($provinceId = null) {
         $query->select(["thailand_amphures.amphur_id", "thailand_amphures.amphur_name"]);
         $query->addSelect(DB::raw('count(farm_owners.id) as value'));
         $query->addSelect(DB::raw('count(farm_owners.id) as y'));
+        $query->addSelect(DB::raw('sum(farm_owners.total_master_breeding_types) as totcattle'));
+
 
         $query->where('thailand_amphures.province_id', '=', $provinceId);
 

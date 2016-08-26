@@ -38,12 +38,14 @@
                                     <tr>
                                         <td>อำเภอ</td>
                                         <td>จำนวนเกษตกร</td>
+                                        <td>จำนวนวัว</td>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr v-for="map in mapResponse">
                                         <td>@{{ map.amphur_name }}</td>
                                         <td>@{{ map.value }}</td>
+                                        <td>@{{ map.totcattle }}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -80,7 +82,7 @@
                                     <th>จังหวัด</th>
                                     <th>อำเภอ</th>
                                     <th>ตำบล</th>
-                                    <th class="hidden-md">เวลา</th>
+                                    <th>จำนวนวัวที่เลี้ยง</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -91,7 +93,7 @@
                                     <td>@{{ owner.province_name}}</td>
                                     <td>@{{ owner.amphur_name}}</td>
                                     <td>@{{ owner.district_name}}</td>
-                                    <td class="hidden-md">@{{ owner.updated_at }}</td>
+                                    <td class="hidden-md">@{{ owner.total_master_breeding_types }}</td>
                                 </tr>
                                 </tbody>
                                 <tfoot>

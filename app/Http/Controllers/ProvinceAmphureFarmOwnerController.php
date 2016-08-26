@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 class ProvinceAmphureFarmOwnerController extends Controller
 {
 
-    public function index($province,$amphur)
+    public function index($province, $amphur)
     {
         $query = DB::table('farm_owners');
 
@@ -26,6 +26,7 @@ class ProvinceAmphureFarmOwnerController extends Controller
         $query->select([
             'farm_owners.id', 'farm_owners.first_name', 'farm_owners.last_name',
             'farm_owners.person_id', 'updated_at'
+            , 'total_master_breeding_types'
             , 'thailand_provinces.province_name'
             , 'thailand_amphures.amphur_name'
             , 'thailand_districts.district_name'
