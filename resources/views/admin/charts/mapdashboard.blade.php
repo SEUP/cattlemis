@@ -5,14 +5,18 @@
     <input type="hidden" id="amphur" value="{{$amphur}}"/>
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">แผนภูมิรายงานเกษตรกรผู้เลี้ยงโคเนื้อ จังหวัด@{{provinceData.PROVINCE_NAME}}</h1>
+            <h1 class="page-header">รายงานเกษตรกรผู้เลี้ยงโคเนื้อ
+                <span v-show="provinceData.PROVINCE_NAME">จังหวัด@{{provinceData.PROVINCE_NAME}}</span>
+            </h1>
             <div class="row">
                 <div class="col-lg-6">
 
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                จำนวนเกษตรกรผู้เลี้ยงโคเนื้อ จังหวัด@{{ provinceData.PROVINCE_NAME }}
+                                จำนวนเกษตรกรผู้เลี้ยงโคเนื้อ
+                                <span v-show="provinceData.PROVINCE_NAME">จังหวัด@{{provinceData.PROVINCE_NAME}}</span>
+
                             </h4>
                         </div>
                         <div id="collapse1" class="panel-collapse collapse in">
@@ -28,7 +32,9 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                จำนวนเกษตรกรผู้เลี้ยงโคเนื้อ @{{ provinceData.PROVINCE_NAME }}
+                                จำนวนเกษตรกรผู้เลี้ยงโคเนื้อ
+                                <span v-show="provinceData.PROVINCE_NAME">จังหวัด@{{provinceData.PROVINCE_NAME}}</span>
+
                             </h4>
                         </div>
                         <div id="collapse1" class="panel-collapse collapse in">
@@ -68,7 +74,12 @@
                         <button @click="reset()" class="btn btn-xs btn-default">รีเซ็ตผลค้นหา</button>
                     </div>
                     <h4 class="panel-title">
-                        รายชื่อเกษตรกรผู้เลี้ยงโคเนื้อ จังหวัด@{{ provinceData.PROVINCE_NAME }}
+
+                        รายชื่อเกษตรกรผู้เลี้ยงโคเนื้อ
+                        <span v-show="amphurData.AMPHUR_NAME">อำเภอ@{{amphurData.AMPHUR_NAME}}</span>
+                        <span v-show="provinceData.PROVINCE_NAME">จังหวัด@{{provinceData.PROVINCE_NAME}}</span>
+
+
                     </h4>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse in">
@@ -136,9 +147,8 @@
                 provinceId: $("#province").val(),
                 amphurId: $("#amphur").val(),
                 mapResponse: [],
-                provinceData: {
-                    PROVINCE_NAME: ''
-                },
+                provinceData: {},
+                amphurData: {},
                 farmOwners: [],
                 farmOwnerPage: {},
                 form: {
@@ -148,6 +158,30 @@
 
             },
             methods: {
+                reloadProvinceAmphure: function () {
+                    this.$http.get('/api/thailand/province/' + this.provinceId).then(
+                            function (response) {
+                                this.provinceData = response.data;
+                            },
+                            function (error) {
+
+                            }
+                    );
+
+                    if(this.amphurId){
+                        this.$http.get("/api/thailand/province/" + this.provinceId + "/amphure/" + this.amphurId).then(
+                                function (response) {
+                                    this.amphurData = response.data;
+                                },
+                                function (error) {
+
+                                }
+                        );
+                    }
+
+
+
+                },
                 reloadData: function () {
                     var query = "/chart/map-data/";
                     var mapData = Highcharts.maps["countries/th/th-north/mapdata"];
@@ -157,67 +191,63 @@
                         mapData = Highcharts.maps["countries/th/th-" + this.provinceId + "/mapdata"]
                     }
 
-                    $.getJSON("/api/thailand/province/" + this.provinceId, function (r) {
-                        self.provinceData = r;
-
-                        $.getJSON(query, function (response) {
-                            self.mapResponse = response;
-                            $('#map-container').highcharts('Map', {
-                                title: {
-                                    text: 'จำนวนเกษตรกรผู้เลี้ยงโคเนื้อ จังหวัด' + self.provinceData.PROVINCE_NAME
-                                },
-                                chart: {
-                                    height: 500
-                                },
-                                colorAxis: {},
-                                plotOptions: {
-                                    series: {
-                                        point: {
-                                            events: {
-                                                click: function () {
-                                                    console.log(this);
-                                                    self.amphurId = this.amphur_id;
-                                                    self.search();
-                                                }
+                    this.reloadProvinceAmphure();
+                    $.getJSON(query, function (response) {
+                        self.mapResponse = response;
+                        $('#map-container').highcharts('Map', {
+                            title: {
+                                text: 'จำนวนเกษตรกรผู้เลี้ยงโคเนื้อ จังหวัด' + self.provinceData.PROVINCE_NAME
+                            },
+                            chart: {
+                                height: 500
+                            },
+                            colorAxis: {},
+                            plotOptions: {
+                                series: {
+                                    point: {
+                                        events: {
+                                            click: function () {
+                                                self.amphurId = this.amphur_id;
+                                                self.search();
                                             }
                                         }
                                     }
-                                },
-                                series: [
-                                    {
-                                        cursor: 'pointer',
-                                        name: "จำนวนเกษตรกร",
-                                        type: "map",
-                                        data: response,
-                                        mapData: mapData,
-                                        joinBy: ['amphur_id', 'amphur_id'],
-                                        dataLabels: {
-                                            enabled: true,
-                                            color: '#FFFFFF',
-                                            formatter: function () {
-                                                var amphurName = this.point.amphur_name ? this.point.amphur_name : this.point.properties.amphur_name;
-                                                var value = this.point.value ? this.point.value : 0;
+                                }
+                            },
+                            series: [
+                                {
+                                    cursor: 'pointer',
+                                    name: "จำนวนเกษตรกร",
+                                    type: "map",
+                                    data: response,
+                                    mapData: mapData,
+                                    joinBy: ['amphur_id', 'amphur_id'],
+                                    dataLabels: {
+                                        enabled: true,
+                                        color: '#FFFFFF',
+                                        formatter: function () {
+                                            var amphurName = this.point.amphur_name ? this.point.amphur_name : this.point.properties.amphur_name;
+                                            var value = this.point.value ? this.point.value : 0;
 
-                                                return amphurName + " : " + value + " คน";
-                                            }
-                                        },
-                                        tooltip: {
-                                            headerFormat: '<span style="font-size:10px">{series.name}</span><br/>',
-                                            pointFormatter: function () {
+                                            return amphurName + " : " + value + " คน";
+                                        }
+                                    },
+                                    tooltip: {
+                                        headerFormat: '<span style="font-size:10px">{series.name}</span><br/>',
+                                        pointFormatter: function () {
 
-                                                var amphurName = this.amphur_name ? this.amphur_name : this.properties.amphur_name;
-                                                var value = this.value ? this.value : 0;
+                                            var amphurName = this.amphur_name ? this.amphur_name : this.properties.amphur_name;
+                                            var value = this.value ? this.value : 0;
 
-                                                return amphurName + " : " + value + " คน";
-                                            }
-                                        },
+                                            return amphurName + " : " + value + " คน";
+                                        }
+                                    },
 
-                                    }
-                                ]
-                            });
+                                }
+                            ]
                         });
-                        self.search();
                     });
+                    self.search();
 
                 },
                 reset: function () {
@@ -225,6 +255,9 @@
                     this.search();
                 },
                 search: function () {
+
+                    this.reloadProvinceAmphure();
+
                     var query = "/api/thailand/province/" + this.provinceId + "/farm_owners";
                     if (this.amphurId) {
                         query = "/api/thailand/province/" + this.provinceId + "/amphure/" + this.amphurId + "/farm_owners";

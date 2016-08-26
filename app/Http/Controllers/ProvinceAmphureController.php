@@ -32,9 +32,11 @@ class ProvinceAmphureController extends Controller
 
     }
 
-    public function show($id)
+    public function show($provinceId,$id)
     {
-
+        $province = Province::find($provinceId);
+        $amphur = $province->amphurs()->where('AMPHUR_ID','=',$id)->first();
+        return $amphur;
     }
 
     public function edit($id)
