@@ -13,14 +13,14 @@
             @foreach($farmOwner->loan_types as $j)
                 <li>
                     {{$j->choice or '-'}}
-                    @if($j->pivot->remark)
-                        <b>ชื่อธนาคาร : </b>{{$j->pivot->remark}}
+                    @if($j->choice=="เงินกู้จากธนาคารพาณิชย์")
+                        <b>ชื่อธนาคาร : </b>{{$j->pivot->remark or '-'}}
                     @endif
                     @if($j->pivot->amount)
-                        <b>จำนวนเงิน : </b>{{$j->pivot->amount}} <b>บาท</b>
+                        <b>จำนวนเงิน : </b>{{$j->pivot->amount or '-'}} <b>บาท</b>
                     @endif
                     @if($j->pivot->rate)
-                        <b>อัตราดอกเบี้ย : </b>{{$j->pivot->rate}} <b>%</b>
+                        <b>อัตราดอกเบี้ย : </b>{{$j->pivot->rate or '-'}} <b>%</b>
                     @endif
                 </li>
             @endforeach

@@ -37,7 +37,8 @@
     </div>
     <div class="line-report">
         <label class="header">3.4 พื้นที่ถือครองทางการเกษตร</label>
-        <br>{{$farmOwner->own_land->choice or '-'}} รวมพื้นที่ถือครองทางการเกษตร {{$farmOwner->total_own_lands or '-'}} (ไร่/ครัวเรือน)
+        <br>{{$farmOwner->own_land->choice or '-'}} รวมพื้นที่ถือครองทางการเกษตร {{$farmOwner->total_own_lands or '-'}}
+        (ไร่/ครัวเรือน)
     </div>
     <div class="line-report">
         <label class="header"></label>
@@ -55,9 +56,11 @@
     <div class="line-report">
         <label class="header">3.5 การเช่าที่ดินเพื่อใช้ในการเลี้ยง</label>
         <br>{{$farmOwner->rent_land->choice or '-'}}
-        @if($farmOwner->rent_land->has_text)
-        จำนวน {{$farmOwner->rent_land->choice->pivot->area or '-'}} (ไร่/ครัวเรือน)
-        <br>ค่าเช่าที่ดิน {{$farmOwner->rent_land->choice->pivot->area or '-'}} บาท/ไร่
+        @if($farmOwner->rent_land)
+            @if($farmOwner->rent_land->has_text)
+                จำนวน {{$farmOwner->rent_land->choice->pivot->area or '-'}} (ไร่/ครัวเรือน)
+                <br>ค่าเช่าที่ดิน {{$farmOwner->rent_land->choice->pivot->area or '-'}} บาท/ไร่
+            @endif
         @endif
     </div>
 
@@ -70,7 +73,7 @@
         <ol style="margin-top: 0px;">
             @foreach($farmOwner->sub_use_lands as $j)
                 <li>
-                    {{$j->choice}}
+                    {{$j->choice or '-'}}
                     @if($j->has_text)
                         <b>ระบุ : </b>{{$j->pivot->area}} ไร่
                     @endif
@@ -84,24 +87,24 @@
     <div class="line-report">
         <label class="header">3.7 อาหารที่ท่านใช้เลี้ยงโคเนื้อเป็นอาหารประเภทใด</label>
         <ol style="margin-top: 0px;">
-        @foreach($farmOwner->feed_types as $j)
-            <li>
-                {{$j->choice or '-'}}
-            </li>
-        @endforeach
+            @foreach($farmOwner->feed_types as $j)
+                <li>
+                    {{$j->choice or '-'}}
+                </li>
+            @endforeach
         </ol>
     </div>
     <div class="line-report">
         <label class="header">3.8 แหล่งที่มาของอาหารข้นหรืออาหารผสมครบส่วน</label>
         <ol style="margin-top: 0px;">
-        @foreach($farmOwner->feed_sources as $j)
-            <li>
-                {{$j->choice or '-'}}
-                 @if($j->has_text)
-                    <b>ระบุ : </b>{{$j->pivot->remark}}
-                @endif
-            </li>
-        @endforeach
+            @foreach($farmOwner->feed_sources as $j)
+                <li>
+                    {{$j->choice or '-'}}
+                    @if($j->has_text)
+                        <b>ระบุ : </b>{{$j->pivot->remark}}
+                    @endif
+                </li>
+            @endforeach
         </ol>
     </div>
     <div class="line-report">
@@ -117,10 +120,12 @@
                             @if($j->pivot->amount)
                                 ถังหมักจำนวน {{$j->pivot->amount}} ถัง
                             @else
-                                <br>เก็บไว้ในโรงเรือนขนาดกว้าง {{$j->pivot->width or '-'}} เมตร ยาว {{$j->pivot->height or '-'}} เมตร
+                                <br>เก็บไว้ในโรงเรือนขนาดกว้าง {{$j->pivot->width or '-'}} เมตร
+                                ยาว {{$j->pivot->height or '-'}} เมตร
                             @endif
                         @else
-                            <br>เก็บไว้ในโรงเรือนขนาดกว้าง {{$j->pivot->width or '-'}} เมตร ยาว {{$j->pivot->height or '-'}} เมตร
+                            <br>เก็บไว้ในโรงเรือนขนาดกว้าง {{$j->pivot->width or '-'}} เมตร
+                            ยาว {{$j->pivot->height or '-'}} เมตร
                         @endif
                     </li>
                 @endforeach

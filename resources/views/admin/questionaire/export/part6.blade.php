@@ -72,13 +72,10 @@
         <ol style="margin-top: 0px;">
             @foreach($farmOwner->cattle_sales as $j)
                 <li>
-                    {{$j->choice}}
-                    @if($j->pivot->remark)
-                        {{$j->pivot->remark}} :
-                    @endif
-                    @if($j->pivot->age_range_sale)
-                        <b>ระยะเวลาที่เลี้ยง : </b>{{$j->pivot->age_range_sale}}
-                    @endif
+                    {{$j->choice or '-'}}
+                        <b>ราคาขายโคเนื้อ : </b>{{$j->pivot->remark or '-'}} :
+                        <b>ระยะเวลาที่เลี้ยง : </b>{{$j->pivot->age_range_sale or '-'}}
+
                 </li>
             @endforeach
         </ol>

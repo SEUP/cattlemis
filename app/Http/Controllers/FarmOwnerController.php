@@ -206,7 +206,7 @@ class FarmOwnerController extends Controller
     {
         $query = DB::table('farm_owners');
 
-        $query->join('thailand_provinces', 'farm_owners.house_province', '=', 'thailand_provinces.province_id');
+        $query->leftJoin('thailand_provinces', 'farm_owners.house_province', '=', 'thailand_provinces.province_id');
 
         $query->select([
             'farm_owners.id', 'farm_owners.first_name', 'farm_owners.last_name',

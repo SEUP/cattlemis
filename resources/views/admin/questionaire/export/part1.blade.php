@@ -20,6 +20,7 @@
             <b>รหัสไปรษณีย์ </b>{{$farmOwner->house_postcode or '-'}}
             <b>โทรศัพท์บ้าน </b>{{$farmOwner->house_phone or '-'}}
             <b>โทรศัพท์มือถือ </b>{{$farmOwner->mobile_no or '-'}}
+            <b>email: </b>{{$farmOwner->email or '-'}}
         </div>
 
 
