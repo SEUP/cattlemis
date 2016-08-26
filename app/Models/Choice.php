@@ -16,6 +16,11 @@ class Choice extends Model
 
     protected $appends = ['children'];
 
+    protected $hidden = [
+        'updated_at', 'created_at'
+
+    ];
+
     public function children()
     {
         return $this->hasMany(Choice::class, 'parent_id')->orderBy('order','asc');
