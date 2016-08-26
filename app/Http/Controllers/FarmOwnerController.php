@@ -136,7 +136,7 @@ class FarmOwnerController extends Controller
                     $pivot = $item['pivot'];
                     $choices[$item['id']] = $pivot;
                 } else {
-                    $choices[] = $item['id'];
+                    $choices[$item['id']] = [];
                 }
             }
         }
