@@ -46,7 +46,7 @@
     </div>
 
     <div class="line-report">
-        <label class="header"> อายุ: </label>{{$farmOwner->age}} ปี
+        <label class="header"> อายุ: </label>{{$farmOwner->age or '-'}} ปี
     </div>
 
     <div class="line-report">
@@ -70,20 +70,25 @@
     <div class="line-report">
         <label class="header">1.9 รายได้จากการประกอบอาชีพ : </label>
         <ol style="margin-top: 0px;">
-            @foreach($farmOwner->jobtypes as $j)
-                <li>
-                    {{$j->choice}}
-                    @if($j->has_text)
-                        <b>ระบุ : </b>{{$j->pivot->remark}}
-                    @endif
-                </li>
-            @endforeach
+            @if(sizeof($farmOwner->jobtypes)>0)
+                @foreach($farmOwner->jobtypes as $j)
+                    <li>
+                        {{$j->choice or '-'}}
+                        @if($j->has_text)
+                            <b>ระบุ : </b>{{$j->pivot->remark or '-'}}
+                        @endif
+                    </li>
+                @endforeach
+            @else
+                {{'-'}}
+            @endif
         </ol>
     </div>
     <div class="line-report">
         <label class="header">1.10 รายได้รวมเฉลี่ยของครัวเรือน : </label>{{$farmOwner->income_range->choice or '-'}}
     </div>
     <div class="line-report">
-        <label class="header">1.11 รายได้เฉลี่ยต่อปีของการขายโคเนื้อ : </label>{{$farmOwner->avg_cattle_income  or '-'}} บาท
+        <label class="header">1.11 รายได้เฉลี่ยต่อปีของการขายโคเนื้อ : </label>{{$farmOwner->avg_cattle_income  or '-'}}
+        บาท
     </div>
 </div>

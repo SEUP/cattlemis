@@ -3,13 +3,17 @@
     <div class="line-report">
         <label class="header">5.1 เงินทุนที่ท่านใช้เลี้ยงโคเนื้อ</label>
         <br>{{$farmOwner->budget_source->choice or '-'}}
-        @if($farmOwner->budget_source->has_text)
-            <b>จำนวนเงิน : </b>{{$farmOwner->budget_source->pivot->amount}} <b>บาท</b>
+        @if($farmOwner->budget_source)
+            @if($farmOwner->budget_source->has_text)
+                <b>จำนวนเงิน : </b>{{$farmOwner->budget_source->pivot->amount}} <b>บาท</b>
+            @endif
         @endif
     </div>
     <div class="line-report">
         <label class="header">5.2 แหล่งเงินทุนกู้ยืม</label>
+        @if(sizeof($farmOwner->loan_types)>0)
         <ol style="margin-top: 0px;">
+
             @foreach($farmOwner->loan_types as $j)
                 <li>
                     {{$j->choice or '-'}}
@@ -24,7 +28,11 @@
                     @endif
                 </li>
             @endforeach
+
         </ol>
+        @else
+            {{'-'}}
+        @endif
     </div>
     <div class="line-report">
         <label class="header">เงินทุนในการเลี้ยงโคเนื้อรวมทั้งหมด (รวมจาก 5.1 และ 5.2)</label>
