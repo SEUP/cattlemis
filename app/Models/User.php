@@ -16,26 +16,27 @@ class User extends Authenticatable
 {
 
     protected $guarded = ['password'];
-    protected $fillable = ["firstname", "lastname", "email"];
+    protected $fillable = ["firstname", "lastname", "email", "user_province","user_amphur",'user_district'];
+
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'user_province');
+    }
+
+    public function amphur()
+    {
+        return $this->belongsTo(Amphur::class, 'user_amphur');
+    }
+
+    public function district()
+    {
+        return $this->belongsTo(District::class, 'user_district');
+    }
 
     public function roles()
     {
         return $this->belongsToMany(Role::class);
-    }
-
-    public function facebook()
-    {
-        return $this->hasOne(FacebookProfile::class);
-    }
-
-    public function calendars()
-    {
-        return $this->hasMany(Calendar::class);
-    }
-
-    public function courses()
-    {
-        return $this->hasMany(Course::class);
     }
 
     public function isAdmin()

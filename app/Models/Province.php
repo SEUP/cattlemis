@@ -14,7 +14,7 @@ class Province extends Model
 {
     protected $table = "thailand_provinces";
 
-    protected $primaryKey = 'province_id';
+    protected $primaryKey = 'PROVINCE_ID';
 
 
     public function amphurs()

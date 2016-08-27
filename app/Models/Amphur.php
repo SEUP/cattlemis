@@ -15,7 +15,7 @@ class Amphur extends Model
     protected $table = "thailand_amphures";
 
 
-    protected $primaryKey = 'amphur_id';
+    protected $primaryKey = 'AMPHUR_ID';
 
     public function districts()
     {

@@ -38,22 +38,25 @@
                     <table class="table table-condensed">
                         <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
+                            <th>จังหวัด อำเภอ ตำบล</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="user in users">
-                            <td>@{{user.id}}</td>
                             <td>@{{user.firstname }} @{{user.lastname }}</td>
                             <td>@{{user.email }}</td>
                             <td>
                                 <ul class="list-unstyled">
                                     <li v-for="role in user.roles">@{{ role.role }}</li>
                                 </ul>
+                            </td>
+                            <td>
+                                @{{ user.province.PROVINCE_NAME }} @{{ user.amphur.AMPHUR_NAME}}
+                                 @{{ user.district.DISTRICT_NAME}}
                             </td>
                             <td>
                                 <div v-if="user_is_admin" class="btn-group" role="group" aria-label="...">
@@ -65,6 +68,7 @@
                                     </button>
                                 </div>
                             </td>
+
                         </tr>
                         </tbody>
                         <tfoot>

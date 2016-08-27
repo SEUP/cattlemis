@@ -11,7 +11,7 @@ class UserResourceController extends Controller
 {
     public function index(Request $request)
     {
-        $query = User::with(['roles']);
+        $query = User::with(['roles', 'province', 'amphur', 'district']);
 
         if ($request->has('keyword')) {
             $keyword = $request->get('keyword');
@@ -37,7 +37,7 @@ class UserResourceController extends Controller
 
     public function show($id)
     {
-        $user = User::find($id);
+        $user = User::with('roles', 'province', 'amphur', 'district')->where('id', '=', $id)->first();
         return $user;
     }
 

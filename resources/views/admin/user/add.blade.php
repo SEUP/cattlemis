@@ -55,14 +55,14 @@
                             @endforeach
                         </div>
 
-                        <input type="hidden" id="selProvince" value="{{old("user.province_id",0) }}"/>
-                        <input type="hidden" id="selAmphur" value="{{old("user.amphur_id",0)}}"/>
-                        <input type="hidden" id="selDistrict" value="{{old("user.district_id",0)}}"/>
+                        <input type="hidden" id="selProvince" value="{{old("user.user_province",0) }}"/>
+                        <input type="hidden" id="selAmphur" value="{{old("user.user_amphur",0)}}"/>
+                        <input type="hidden" id="selDistrict" value="{{old("user.user_district",0)}}"/>
 
                         <div class="form-group">
                             <label class="control-label">จังหวัด</label>
                             <select class="form-control" v-on:change="provinceChange" v-model="selProvince"
-                                    name="user[province_id]">
+                                    name="user[user_province]">
                                 <option value="0">กรุณาเลือก</option>
                                 <option v-for="option in provinces"
                                         v-bind:value="option.PROVINCE_ID">@{{ option.PROVINCE_NAME }}</option>
@@ -71,7 +71,7 @@
                         <div class="form-group">
                             <label class="control-label">อำเภอ</label>
                             <select class="form-control" v-on:change="amphurChange" v-model="selAmphur"
-                                    name="user[amphur_id]">
+                                    name="user[user_amphur]">
                                 <option value="0">กรุณาเลือก</option>
                                 <option v-for="option in amphurs"
                                         v-bind:value="option.AMPHUR_ID">@{{ option.AMPHUR_NAME }}</option>
@@ -80,7 +80,7 @@
 
                         <div class="form-group">
                             <label class="control-label">ตำบล</label>
-                            <select class="form-control" name="user[district_id]" v-model="selDistrict">
+                            <select class="form-control" name="user[user_district]" v-model="selDistrict">
                                 <option value="0">กรุณาเลือก</option>
                                 <option v-for="option in districts"
                                         v-bind:value="option.DISTRICT_ID">@{{ option.DISTRICT_NAME }}</option>
@@ -132,7 +132,7 @@
             methods: {
                 provinceChange: function () {
                     this.selAmphur = 0
-                    this.selDestrict = 0;
+                    this.selDistrict = 0;
                     if (this.selProvince != 0) {
                         this.$http.get('/api/thailand/province/' + this.selProvince + "/amphure").then(function (r) {
                             this.amphurs = r.data;

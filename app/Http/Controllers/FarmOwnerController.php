@@ -275,8 +275,7 @@ class FarmOwnerController extends Controller
 
     public function show($id)
     {
-        $user = User::find($id);
-        return $user;
+
     }
 
     public function edit($id)
