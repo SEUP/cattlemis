@@ -16,7 +16,7 @@ Route::get('/', function () {
     if (Auth::user()) {
         return redirect("/admin");
     } else {
-        return redirect('/login');
+        return redirect('/admin');
     }
 
 });
@@ -33,7 +33,7 @@ Route::post('login', function (\Illuminate\Http\Request $request) {
         if ($user->isAdmin()) {
             return redirect('/admin');
         } else {
-            return redirect('/student');
+            return redirect('/admin');
         }
 
     } else {

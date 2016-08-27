@@ -9,10 +9,18 @@ use App\Http\Requests;
 
 class UserResourceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::with(['roles'])->get();
-        return $users;
+        $query = User::with(['roles']);
+
+        if ($request->has('keyword')) {
+            $keyword = $request->get('keyword');
+            $query->where('firstname', 'like', "%$keyword%");
+            $query->orWhere('lastname', 'like', "%$keyword%");
+            $query->orWhere('email', 'like', "%$keyword%");
+        }
+
+        return $query->paginate(12);
     }
 
     public function create()

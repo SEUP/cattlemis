@@ -10,7 +10,7 @@
     <div class="row">
 
         <div class="col-lg-12">
-            <div clas="form-group" style="padding-bottom: 1em;">
+            <div class="form-group" style="padding-bottom: 1em;">
                 <label for="search">ค้นหา</label>
 
                 <div class="input-group">

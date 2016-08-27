@@ -2,7 +2,10 @@
 <html>
 <head>
     <meta id="token" name="token" content="{{ csrf_token() }}">
-
+    @if(Auth::user())
+        <meta id="user_id" name="user[id]" value="{{Auth::user()->id}}">
+        <meta id="user_is_admin" name="user[isAdmin]" value="{{Auth::user()->isAdmin()}}">
+    @endif
     <title>Cattle MIS</title>
 
     <link rel="stylesheet" href="/css/vendor.sass.css">
@@ -65,7 +68,7 @@
 
                     <li class="sidebar-search">
 
-                       
+
                         <!-- /input-group -->
                     </li>
                     <li class="sidebar-search">
@@ -86,9 +89,11 @@
                         <a href="/admin/charts/menuchart"><i class="fa fa-bar-chart-o fa-fw"></i> แผนภูมิรายงาน</a>
 
                     </li>
-                    <li>
-                        <a href="/admin/user"><i class="fa fa-user fa-fw"></i> จัดการข้อมูลผู้ใช้</a>
-                    </li>
+                    @if(Auth::user() && Auth::user()->isAdmin())
+                        <li>
+                            <a href="/admin/user"><i class="fa fa-user fa-fw"></i> จัดการข้อมูลผู้ใช้</a>
+                        </li>
+                    @endif
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->
@@ -126,12 +131,12 @@
 
     Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('content');
 
+
     var AdminApp = Vue.extend({
         el: "body",
         data: function () {
             return {
                 currentUser: {},
-                user_id: {},
                 ajaxCount: 0,
                 spinnerFixed: true,
                 formError: {},
@@ -151,7 +156,6 @@
         },
         methods: {},
         ready: function () {
-            this.user_id = $("#user_id").attr('value');
             this.show = true;
 
         },

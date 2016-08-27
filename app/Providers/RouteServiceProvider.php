@@ -69,7 +69,7 @@ class RouteServiceProvider extends ServiceProvider
             'namespace' => "$this->namespace\\Admin",
             'middleware' => ['web', 'roles'],
             'middlewareGroups' => 'web',
-            'roles' => ['admin'],
+            'roles' => ['admin', 'user_province', 'user_amphur', 'user_district'],
             'prefix' => 'admin'
         ], function ($router) {
             require app_path('Http/routes.admin.php');

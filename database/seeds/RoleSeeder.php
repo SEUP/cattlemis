@@ -13,12 +13,23 @@ class RoleSeeder extends Seeder
     {
         $admin = new \App\Models\Role();
         $admin->key = "admin";
-        $admin->role = "Administrator";
+        $admin->role = "ผู้ดูแลระบบ";
         $admin->save();
 
         $user = new \App\Models\Role();
-        $user->key = "user";
-        $user->role = "User";
+        $user->key = "user_province";
+        $user->role = "ผู้ใช้งานระดับจังหวัด";
         $user->save();
+
+        $user = new \App\Models\Role();
+        $user->key = "user_amphur";
+        $user->role = "ผู้ใช้งานระดับอำเภอ";
+        $user->save();
+
+        $user = new \App\Models\Role();
+        $user->key = "user_district";
+        $user->role = "ผู้ใช้งานระดับตำบล";
+        $user->save();
+
     }
 }
