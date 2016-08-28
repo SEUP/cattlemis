@@ -306,10 +306,32 @@ class FarmOwnerController extends Controller
         return $farmOwner;
     }
 
+    private function cannotEdit($owner)
+    {
+
+        $user = \Auth::user();
+        if ($user->isAdmin()) return false;
+        if ($user->hasRole('user_province') && $user->user_province == $owner->house_province) return false;
+        if ($user->hasRole('user_amphur') && $user->user_amphur == $owner->house_amphur) return false;
+        if ($user->hasRole('user_district') && $user->user_district == $owner->house_district) return false;
+
+
+        return true;
+    }
+
     public function update(FarmOwnerRequest $request, $id)
     {
         $form = $request->all();
         $farmOwner = FarmOwner::find($id);
+
+        if ($this->cannotEdit($farmOwner)) {
+            $returnData = array(
+                'message' => "You don't have permission to update this FarmOwner!!!"
+            );
+
+            return response()->json($returnData, 500);
+        }
+
         $farmOwner->fill($form);
 
         $farmOwner->total_master_breeding_types = $farmOwner->total_male_breeding_types +
@@ -337,6 +359,14 @@ class FarmOwnerController extends Controller
     {
         /* @var FarmOwner $farmOwner */
         $farmOwner = FarmOwner::find($id);
+
+        if ($this->cannotEdit($farmOwner)) {
+            $returnData = array(
+                'message' => "You don't have permission to delete this FarmOwner!!!"
+            );
+
+            return response()->json($returnData, 500);
+        }
 
         $farmOwner->choices()->detach();
         // $farmOwner->choices2()->detach();

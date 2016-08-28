@@ -67,6 +67,3 @@ Route::get('/api/choice/{type}', function ($type) {
 
 
 Route::resource('/api/user', "UserResourceController");
-Route::resource('/api/user.calendar', "UserCalendarResourceController");
-Route::resource('/api/user.calendar.event', "UserCalendarEventResourceController");
-

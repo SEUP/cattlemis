@@ -18,6 +18,9 @@ class AdminSeeder extends Seeder
         $admin->password = \Illuminate\Support\Facades\Hash::make("admin");
         $admin->firstname = "Admin";
         $admin->lastname = "Cattle MIS";
+        $admin->user_province = 0;
+        $admin->user_amphur = 0;
+        $admin->user_district = 0;
         $admin->save();
 
         $admin->roles()->save($adminRole);

@@ -41,6 +41,7 @@ class FarmOwnerRequest extends Request
                     'first_name' => 'required',
                     'last_name' => 'required',
                     'person_id' => "required|unique:farm_owners,person_id,$farmOwner",
+
                 ];
             }
             default:break;
