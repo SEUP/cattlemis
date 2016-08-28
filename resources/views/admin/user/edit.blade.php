@@ -137,7 +137,6 @@
                             this.amphurs = r.data;
                         })
                     }
-
                 },
 
                 amphurChange: function () {
@@ -148,7 +147,6 @@
                                     this.districts = r.data;
                                 })
                     }
-
                 }
 
             },

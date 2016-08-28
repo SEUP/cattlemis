@@ -216,6 +216,9 @@ class FarmOwnerController extends Controller
             , 'thailand_provinces.province_name'
             , 'thailand_amphures.amphur_name'
             , 'thailand_districts.district_name'
+            , 'farm_owners.house_province'
+            , 'farm_owners.house_amphur'
+            , 'farm_owners.house_district'
 
         ]);
 

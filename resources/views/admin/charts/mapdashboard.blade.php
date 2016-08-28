@@ -1,8 +1,8 @@
 @extends('admin.layout')
 
 @section('page-wrapper')
-    <input type="hidden" id="province" value="{{$province}}"/>
-    <input type="hidden" id="amphur" value="{{$amphur}}"/>
+    <input type="hidden" id="sel_province" value="{{$province}}"/>
+    <input type="hidden" id="sel_amphur" value="{{$amphur}}"/>
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">รายงานเกษตรกรผู้เลี้ยงโคเนื้อ
@@ -144,8 +144,8 @@
         var app = new AdminApp({
             el: 'body',
             data: {
-                provinceId: $("#province").val(),
-                amphurId: $("#amphur").val(),
+                provinceId: $("#sel_province").val(),
+                amphurId: $("#sel_amphur").val(),
                 mapResponse: [],
                 provinceData: {},
                 amphurData: {},

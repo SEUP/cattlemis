@@ -95,10 +95,15 @@
                             <div class="btn-group">
                                 <a href="/admin/questionaire/@{{owner.id}}/export" target="_blank"
                                    class="btn btn-success">ส่งออก</a>
-                                <a href="/admin/questionaire/@{{owner.id}}/edit" class="btn btn-info">แก้ไข</a>
-                                <button v-on:click="deleteFarmOwner(owner.id)"
+
+                                <a v-bind:class="{'disabled' : cannotEdit(owner) }"
+                                   href="/admin/questionaire/@{{owner.id}}/edit" class="btn btn-info">แก้ไข</a>
+
+                                <a
+                                        v-bind:class="{'disabled' : cannotEdit(owner) }"
+                                        v-on:click="deleteFarmOwner(owner)"
                                         class="btn btn-danger">ลบ
-                                </button>
+                                </a>
                             </div>
 
                         </td>
@@ -137,6 +142,10 @@
                 amphurs: {},
                 districts: {},
 
+                user_id: 0,
+                user_is_admin: 0,
+                admin_level: 0,
+
                 farmOwners: [],
                 farmOwnerPage: {},
                 form: {
@@ -148,6 +157,20 @@
                 }
             },
             methods: {
+                cannotEdit: function (owner) {
+
+                    var p = $("#province").attr('value')
+                    var a = $("#amphur").attr('value')
+                    var d = $("#district").attr('value')
+
+
+                    if (this.admin_level == 'admin') return false;
+                    if (this.admin_level == 'user_province' && p == owner.house_province) return false;
+                    if (this.admin_level == 'user_amphur' && a == owner.house_amphur) return false;
+                    if (this.admin_level == 'user_district' && d == owner.house_district) return false;
+
+                    return true;
+                },
                 provinceChange: function () {
                     this.form.amphur = 0
                     this.form.district = 0;
@@ -169,13 +192,16 @@
                     }
 
                 },
-                deleteFarmOwner: function (id) {
-                    console.log(id)
-                    if (confirm("คุณต้องการลบข้อมูลเกษตกรรายนี้หรือไม่?")) {
-                        this.$http.delete('/api/farm-owner/' + id).then(function (response) {
-                            this.search();
-                        })
+                deleteFarmOwner: function (owner) {
+                    if(!this.cannotEdit(owner)){
+                        var id = owner.id
+                        if (confirm("คุณต้องการลบข้อมูลเกษตกรรายนี้หรือไม่?")) {
+                            this.$http.delete('/api/farm-owner/' + id).then(function (response) {
+                                this.search();
+                            })
+                        }
                     }
+
                 },
                 resetSearch: function () {
 
@@ -208,6 +234,15 @@
             },
             ready: function () {
                 var self = this;
+
+                this.user_id = $("#user_id").attr('value')
+                this.user_is_admin = $("#user_is_admin").attr('value')
+
+                this.form.province = $("#province").attr('value')
+                this.form.amphur = $("#amphur").attr('value')
+                this.form.district = $("#district").attr('value')
+
+                this.admin_level = $("#admin_level").attr('value')
 
 
                 self.$http.get("/api/thailand/province").then(function (response) {

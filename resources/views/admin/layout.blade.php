@@ -5,6 +5,27 @@
     @if(Auth::user())
         <meta id="user_id" name="user[id]" value="{{Auth::user()->id}}">
         <meta id="user_is_admin" name="user[isAdmin]" value="{{Auth::user()->isAdmin()}}">
+        @if(Auth::user()->isAdmin())
+            <meta id="admin_level" value="admin">
+            <meta id="province" value="0">
+            <meta id="amphur" value="0">
+            <meta id="district" value="0">
+        @elseif(Auth::user()->hasRole('user_province'))
+            <meta id="admin_level" value="user_province">
+            <meta id="province" value="{{Auth::user()->user_province}}">
+            <meta id="amphur" value="0">
+            <meta id="district" value="0">
+        @elseif(Auth::user()->hasRole('user_amphur'))
+            <meta id="admin_level" value="user_amphur">
+            <meta id="province" value="{{Auth::user()->user_province}}">
+            <meta id="amphur" value="{{Auth::user()->user_amphur}}">
+            <meta id="district" value="0">
+        @elseif(Auth::user()->hasRole('user_district'))
+            <meta id="admin_level" value="user_district">
+            <meta id="province" value="{{Auth::user()->user_province}}">
+            <meta id="amphur" value="{{Auth::user()->user_amphur}}">
+            <meta id="district" value="{{Auth::user()->user_district}}">
+        @endif
     @endif
     <title>Cattle MIS</title>
 
