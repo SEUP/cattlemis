@@ -207,10 +207,16 @@ class FarmOwnerController extends Controller
         $query = DB::table('farm_owners');
 
         $query->leftJoin('thailand_provinces', 'farm_owners.house_province', '=', 'thailand_provinces.province_id');
+        $query->leftJoin('thailand_amphures', 'farm_owners.house_amphur', '=', 'thailand_amphures.amphur_id');
+        $query->leftJoin('thailand_districts', 'farm_owners.house_district', '=', 'thailand_districts.district_id');
 
         $query->select([
             'farm_owners.id', 'farm_owners.first_name', 'farm_owners.last_name',
-            'farm_owners.person_id', 'updated_at', 'thailand_provinces.province_name'
+            'farm_owners.person_id', 'updated_at'
+            , 'thailand_provinces.province_name'
+            , 'thailand_amphures.amphur_name'
+            , 'thailand_districts.district_name'
+
         ]);
 
         if ($request->has('keyword')) {
@@ -218,7 +224,18 @@ class FarmOwnerController extends Controller
             $query->where('farm_owners.person_id', 'like', "%$keyword%");
             $query->orWhere('farm_owners.first_name', 'like', "%$keyword%");
             $query->orWhere('farm_owners.last_name', 'like', "%$keyword%");
-            $query->orWhere('thailand_provinces.province_name', 'like', "%$keyword%");
+        }
+
+        if ($request->has('province') && $request->get('province') != 0) {
+            $query->where('farm_owners.house_province', '=', $request->get('province'));
+        }
+
+        if ($request->has('amphur') && $request->get('amphur') != 0) {
+            $query->where('farm_owners.house_amphur', '=', $request->get('amphur'));
+        }
+
+        if ($request->has('district') && $request->get('district') != 0) {
+            $query->where('farm_owners.house_district', '=', $request->get('district'));
         }
 
         $query->orderBy('updated_at', 'desc');
