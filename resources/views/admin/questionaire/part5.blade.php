@@ -1,4 +1,4 @@
-ผป<form class="form-horizontal">
+<form class="form-horizontal">
     <fieldset id="5.1">
         <legend>5.1 เงินทุนที่ท่านใช้เลี้ยงโคเนื้อ</legend>
 
