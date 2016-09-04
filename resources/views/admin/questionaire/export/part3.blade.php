@@ -66,8 +66,8 @@
         <br>{{$farmOwner->rent_land->choice or '-'}}
         @if($farmOwner->rent_land)
             @if($farmOwner->rent_land->has_text)
-                จำนวน {{$farmOwner->rent_land->choice->pivot->area or '-'}} (ไร่/ครัวเรือน)
-                <br>ค่าเช่าที่ดิน {{$farmOwner->rent_land->choice->pivot->area or '-'}} บาท/ไร่
+                จำนวน {{$farmOwner->rent_land->pivot->area or '-'}} (ไร่/ครัวเรือน)
+                <br>ค่าเช่าที่ดิน {{$farmOwner->rent_land->pivot->price or '-'}} บาท/ไร่
             @endif
 
         @endif
