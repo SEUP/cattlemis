@@ -18,10 +18,10 @@
         @endif
     </div>
     <div class="line-report">
-        <label class="header">6.2 อายุของโคเนื้อที่ท่านจำหน่าย </label><br>{{$farmOwner->cattle_sold_age->choice or '-'}} บาท
+        <label class="header">6.2 อายุของโคเนื้อที่ท่านจำหน่าย </label><br>{{$farmOwner->age_sale->choice or '-'}}
     </div>
     <div class="line-report">
-        <label class="header">6.3 น้ำหนักของโคเนื้อที่ท่านจำหน่าย </label><br>{{$farmOwner->cattle_sold_weight->choice or '-'}} กิโลกรัม
+        <label class="header">6.3 น้ำหนักของโคเนื้อที่ท่านจำหน่าย </label><br>{{$farmOwner->weight_range_sale->choice or '-'}}
     </div>
     <div class="line-report">
         <label class="header">6.4 ลักษณะการจำหน่าย</label>
