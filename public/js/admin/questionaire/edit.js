@@ -46,27 +46,39 @@ var app = new AdminApp({
         sumOwnLand: function () {
             var newFarmer = this.newFarmer;
             if (newFarmer.own_land.children.length == 0) {
-                return 0;
+                return [0, 0];
             } else {
                 var sum = 0;
+                var sub_sum = 0;
                 for (var i = 0; i < newFarmer.sub_own_lands.length; i++) {
                     var subOwnLand = newFarmer.sub_own_lands[i];
-                    sum += parseFloat(subOwnLand.pivot.remark, 0);
+                    sum += parseFloat(subOwnLand.pivot.remark, 0)?parseFloat(subOwnLand.pivot.remark, 0):0;
+                    sub_sum += parseFloat(subOwnLand.pivot.subarea, 0)?parseFloat(subOwnLand.pivot.subarea, 0):0;
+
+
                 }
-                return sum;
+                sum = sum + Math.floor(sub_sum / 4);
+                sub_sum = sub_sum % 4;
+
+                return [sum, sub_sum];
             }
         },
         sumUseLand: function () {
             var newFarmer = this.newFarmer;
             if (newFarmer.use_land.children.length == 0) {
-                return 0;
+                return [0,0];
             } else {
                 var sum = 0;
+                var sub_sum = 0;
                 for (var i = 0; i < newFarmer.sub_use_lands.length; i++) {
                     var subUseLand = newFarmer.sub_use_lands[i];
-                    sum += parseFloat(subUseLand.pivot.area, 0);
+                    sum += parseFloat(subUseLand.pivot.area, 0)?parseFloat(subUseLand.pivot.area, 0):0;
+                    sub_sum += parseFloat(subUseLand.pivot.subarea, 0)?parseFloat(subUseLand.pivot.subarea, 0):0;
                 }
-                return sum;
+                sum = sum + Math.floor(sub_sum / 4);
+                sub_sum = sub_sum % 4;
+
+                return [sum, sub_sum];
             }
         },
         sumBudget: function () {

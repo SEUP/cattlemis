@@ -443,7 +443,7 @@ class FarmOwner extends Model
     public function own_land()
     {
         return $this->choices()
-            ->withPivot(['remark', 'area'])
+            ->withPivot(['remark', 'area','subarea'])
             ->where('type', '=', 'own_land');
 
     }
@@ -451,7 +451,7 @@ class FarmOwner extends Model
     public function rent_land()
     {
         return $this->choices()
-            ->withPivot(['remark', 'area','price'])
+            ->withPivot(['remark', 'area','price','subarea'])
             ->where('type', '=', 'rent_land');
 
     }
@@ -459,7 +459,7 @@ class FarmOwner extends Model
     public function use_land()
     {
         return $this->choices()
-            ->withPivot(['remark', 'area'])
+            ->withPivot(['remark', 'area','subarea'])
             ->where('type', '=', 'use_land');
 
     }
@@ -499,15 +499,14 @@ class FarmOwner extends Model
     public function sub_own_lands()
     {
         return $this->choices()
-            ->withPivot(['remark', 'area'])
+            ->withPivot(['remark', 'area','subarea'])
             ->where('type', '=', 'sub_own_lands');
     }
 
     public function sub_use_lands()
     {
         return $this->choices()
-            //->withPivot('area')
-            ->withPivot(['remark', 'area'])
+            ->withPivot(['remark', 'area','subarea'])
             ->where('type', '=', 'sub_use_lands');
     }
 
