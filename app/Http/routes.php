@@ -13,13 +13,91 @@
 
 
 Route::get('/', function () {
-    if (Auth::user()) {
-        return redirect("/admin");
-    } else {
-        return redirect('/admin');
-    }
 
+    $countFarmOwners = \App\Models\FarmOwner::with([])->count();
+
+    return view('public.dashboard')
+        ->with('countFarmOwners', $countFarmOwners);
 });
+
+Route::get('questionaire/search', function () {
+    return view('public.questionaire.search');
+});
+
+Route::get('charts/menuchart', function () {
+    return view("public.charts.menuChart");
+});
+
+Route::get('charts/menuchart/{province}/{amphur?}', function ($province, $amphur=null) {
+    return view("public.charts.mapdashboard")
+        ->with('province', $province)
+        ->with('amphur', $amphur);
+});
+
+Route::get('charts/groupJoin/{title?}', function ($title = "การรวมกลุ่มวิสาหกิจชุมชนและสหกรณ์โคเนื้อ", $type = "group_joins") {
+
+    return view("public.charts.groupJoinChart")
+        ->with('title', $title)
+        ->with('type', $type);
+});
+
+
+Route::get('charts/normal/{title}/{type}', function ($title, $type) {
+
+    return view("public.charts.normalChart")
+        ->with('title', $title)
+        ->with('type', $type);
+});
+
+Route::get('charts/gmap/{title}', function ($title) {
+
+    return view("public.charts.gmapChart")
+        ->with('title', $title);
+});
+
+Route::get('charts/pie/{title}/{type}', function ($title, $type) {
+
+    return view("public.charts.pieChart")
+        ->with('title', $title)
+        ->with('type', $type);
+});
+
+Route::get('charts/multi-choice/{title}/{type}', function ($title, $type) {
+
+    return view("public.charts.multiChoiceChart")
+        ->with('title', $title)
+        ->with('type', $type);
+});
+
+
+Route::get('charts/range-farmowner/{title}/{type}/{min}/{max}/{step}',
+    function ($title, $type, $min, $max, $step) {
+
+        return view("public.charts.farmownerRangeChart")
+            ->with('title', $title)
+            ->with('type', $type)
+            ->with('min', $min)
+            ->with('max', $max)
+            ->with('step', $step);
+    });
+
+Route::get('charts/cattle/', function () {
+
+    return view("public.charts.cattleChart");
+});
+
+Route::get('charts/double/{title}/{type}', function ($title, $type) {
+    return view("public.charts.doubleChart")
+        ->with('title', $title)
+        ->with('type', $type);
+});
+
+Route::get('charts/budget/', function () {
+    return view("public.charts.budgetChart");
+});
+
+
+
 
 Route::get('login', function (\Illuminate\Support\Facades\Request $request) {
     return view('login');
@@ -56,7 +134,7 @@ Route::resource('/api/thailand/province.amphure.farm_owners', "ProvinceAmphureFa
 Route::resource('/api/thailand/province.amphure.district', "ProvinceAmphurDistrictController");
 
 Route::get('/api/choice', function () {
-    $choices = \App\Models\Choice::with([])->orderBy('order','asc')->orderBy('id','asc')->get()->groupBy('type');
+    $choices = \App\Models\Choice::with([])->orderBy('order', 'asc')->orderBy('id', 'asc')->get()->groupBy('type');
     return $choices;
 });
 
