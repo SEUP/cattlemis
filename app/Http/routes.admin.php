@@ -54,6 +54,13 @@ Route::get('charts/menuchart/{province}/{amphur?}', function ($province, $amphur
         ->with('amphur', $amphur);
 });
 
+Route::get('charts/groupJoin/{title?}', function ($title = "การรวมกลุ่มวิสาหกิจชุมชนและสหกรณ์โคเนื้อ", $type = "group_joins") {
+
+    return view("admin.charts.groupJoinChart")
+        ->with('title', $title)
+        ->with('type', $type);
+});
+
 
 Route::get('charts/normal/{title}/{type}', function ($title, $type) {
 

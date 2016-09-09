@@ -10,9 +10,6 @@ Route::get('test2/{choices}', function ($choices) {
 });
 
 Route::get('gmap/{province?}', function ($province = null) {
-//select farm_owners.first_name ,farm_owners.last_name, farm_owners.farm_lat,farm_owners.farm_long
-//from farm_owners
-//where farm_owners.farm_lat is not null and farm_owners.farm_long is not null
 
     $query = DB::table('farm_owners');
     $query->select(["farm_owners.first_name", "farm_owners.last_name", "farm_owners.farm_lat", "farm_owners.farm_long"]);
@@ -175,7 +172,7 @@ Route::get('range/farm-owner/{type}/{min}/{max}/{numberGroup}/{province?}', func
     }
 
     if ($type == 'age' or $type == 'avg_cattle_income' or $type == 'total_budget' or $type == 'breeding_rate'
-    or $type=="family_workers_amount" or $type == "external_workers_amount"
+        or $type == "family_workers_amount" or $type == "external_workers_amount"
     ) {
         $query->where($type, '>', 0);
     }
@@ -237,6 +234,101 @@ Route::get('range/farm-owner/{type}/{min}/{max}/{numberGroup}/{province?}', func
     return $chart;
 
 });
+
+Route::get('groupJoin/{type}/{province?}', function ($type, $province = null) {
+
+    $query = DB::table('choices');
+
+    $query->where('choices.type', '=', $type);
+
+    $query->select('id', 'choice');
+
+    $choices = $query->get();
+
+    $query = DB::table('farm_owners');
+    $query->leftJoin('choice_farm_owner', 'farm_owners.id', '=', 'choice_farm_owner.farm_owner_id');
+    $query->leftJoin('choices', 'choices.id', '=', 'choice_farm_owner.choice_id');
+
+    $query->where('choices.type', '=', $type);
+    if ($province) {
+        $query->where('farm_owners.house_province', '=', $province);
+    }
+
+    //$query->addSelect('farm_owners.id as farm_owner_id');
+
+    //$query->addSelect('choices.id as choice_id');
+
+    $query->groupBy('farm_owners.id');
+
+    $query->addSelect(DB::raw("count(choices.id) as sum"));
+
+    foreach ($choices as $choice) {
+        $query->addSelect(DB::raw("
+        COUNT(
+        CASE 
+            WHEN choices.id = $choice->id 
+            THEN 1 
+            ELSE NULL 
+        END
+    ) AS `$choice->id`
+    "));
+    }
+
+    $results = $query->get();
+
+    $output = [];
+
+    foreach ($results as $result) {
+        foreach ($result as $key => $value) {
+            if (!isset($output[$key])) {
+                $output[$key] = 0;
+            }
+            if (strcmp($key, 'sum') == 0) {
+                if($value > 1){
+                    $output[$key] += 1;
+                }
+
+            } else {
+                $output[$key] += $value;
+            }
+
+        }
+
+    }
+
+//    return $output;
+//    return $results;
+
+    $data = [];
+    $xAxis = [];
+
+
+    $data[] = $output["225"] -$output["sum"];
+    $data[] = $output["226"] -$output["sum"];
+    $data[] = $output["sum"];
+
+    $xAxis[] = $choices[0]->choice;
+    $xAxis[] = $choices[1]->choice;
+    $xAxis[] = "เข้าร่วมทั้งสองกลุ่ม";
+
+    $chart = [];
+    $chart['tooltip'] = [];
+    $chart['tooltip']['valueSuffix'] = " คน";
+    $chart['xAxis'] = [];
+    $chart['xAxis']['categories'] = $xAxis;
+
+    $chart['series'] = [];
+
+    $chart['series'][] =
+        [
+            'name' => 'จำนวน',
+            'data' => $data,
+            'colorByPoint' => true,
+        ];
+
+    return $chart;
+});
+
 
 Route::get('normal/{type}/{province?}', function ($type, $province = null) {
 
@@ -429,7 +521,7 @@ Route::get('cattle/{title}/{type}/{province?}', function ($title, $type, $provin
 });
 
 
-Route::get('double/{title}/{type}/{province?}', function ($title, $type,$province = null) {
+Route::get('double/{title}/{type}/{province?}', function ($title, $type, $province = null) {
 
     //get top
 
@@ -488,7 +580,7 @@ Route::get('double/{title}/{type}/{province?}', function ($title, $type,$provinc
 
         foreach ($sub_results as $result) {
             $data_drill[] = intval($result->user_count);
-            $data_area[]= intval($result->area_sum);
+            $data_area[] = intval($result->area_sum);
             $xAxis[] = $result->choice;
         }
     }
@@ -546,7 +638,7 @@ Route::get('budget/{province?}', function ($province = null) {
     $query->select(DB::raw('count(farm_owners.id) as user_count, choices.choice, choices.id'));
 
     $results = $query->get();
-    $data=[];
+    $data = [];
 
     foreach ($results as $result) {
         $each = new stdClass();
@@ -623,7 +715,7 @@ Route::get('price_range_sale/{type}/{province?}', function ($type, $province = n
     $query->groupBy('choice_farm_owner.remark');
     $query->orderBy('choice_farm_owner.remark', 'asc');
     $query->select(DB::raw('count(farm_owners.id) as user_count, choice_farm_owner.remark as choice'))
-    ->where('choice_farm_owner.remark','<>',null);
+        ->where('choice_farm_owner.remark', '<>', null);
 
     $results = $query->get();
 
@@ -671,7 +763,7 @@ Route::get('age_range_sale/{type}/{province?}', function ($type, $province = nul
     $query->groupBy('choice_farm_owner.age_range_sale');
     $query->orderBy('choice_farm_owner.age_range_sale', 'asc');
     $query->select(DB::raw('count(farm_owners.id) as user_count, choice_farm_owner.age_range_sale as choice'))
-    ->where('choice_farm_owner.age_range_sale','<>',null);
+        ->where('choice_farm_owner.age_range_sale', '<>', null);
 
     $results = $query->get();
 
