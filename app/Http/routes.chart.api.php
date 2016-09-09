@@ -14,6 +14,9 @@ Route::get('gmap/{province?}', function ($province = null) {
     $query = DB::table('farm_owners');
     $query->select(["farm_owners.first_name", "farm_owners.last_name", "farm_owners.farm_lat", "farm_owners.farm_long"]);
 
+    $query->addSelect('total_master_breeding_types');
+
+
     $query->whereNotNull('farm_owners.farm_lat');
     $query->whereNotNull('farm_owners.farm_long');
 
@@ -26,7 +29,7 @@ Route::get('gmap/{province?}', function ($province = null) {
     $output = [];
     foreach ($result as $r) {
         $marker = new stdClass();
-        $marker->title = "$r->first_name $r->last_name";
+        $marker->title = "$r->first_name $r->last_name <br/>จำนวนวัว $r->total_master_breeding_types ตัว";
         $marker->position = [
             "lat" => $r->farm_lat,
             "lng" => $r->farm_long
