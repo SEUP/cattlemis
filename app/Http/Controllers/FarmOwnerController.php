@@ -267,6 +267,10 @@ class FarmOwnerController extends Controller
 
         $farmOwner->fill($form);
 
+        if (strcmp($farmOwner->avg_cattle_income, "") == 0) {
+            $farmOwner->avg_cattle_income = null;
+        }
+
         $farmOwner->total_master_breeding_types = $farmOwner->total_male_breeding_types +
             $farmOwner->total_female_breeding_types + $farmOwner->total_male_over_six_breeding_types
             + $farmOwner->total_female_over_six_breeding_types
@@ -333,6 +337,10 @@ class FarmOwnerController extends Controller
         }
 
         $farmOwner->fill($form);
+
+        if (strcmp($farmOwner->avg_cattle_income, "") == 0) {
+            $farmOwner->avg_cattle_income = null;
+        }
 
         $farmOwner->total_master_breeding_types = $farmOwner->total_male_breeding_types +
             $farmOwner->total_female_breeding_types + $farmOwner->total_male_over_six_breeding_types

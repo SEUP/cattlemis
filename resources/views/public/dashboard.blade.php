@@ -10,7 +10,7 @@
     <div class="row">
 
         <div class="col-lg-3 col-md-6">
-            <a href="/admin/questionaire/search">
+            <a href="/questionaire/search">
                 <div class="panel panel-green">
                     <div class="panel-heading">
                         <div class="row">
@@ -34,7 +34,7 @@
             </a>
         </div>
         <div class="col-lg-3 col-md-6">
-            <a href="/admin/charts/menuchart">
+            <a href="/charts/menuchart">
                 <div class="panel panel-yellow">
                     <div class="panel-heading">
                         <div class="row">
@@ -57,6 +57,6 @@
                 </div>
             </a>
         </div>
-      
+
     </div>
 @endsection
