@@ -211,8 +211,8 @@ class FarmOwnerController extends Controller
         $query->leftJoin('thailand_districts', 'farm_owners.house_district', '=', 'thailand_districts.district_id');
 
         $query->select([
-            'farm_owners.id', 'farm_owners.first_name', 'farm_owners.last_name',
-            'farm_owners.person_id', 'updated_at'
+            'farm_owners.id', 'farm_owners.first_name', 'farm_owners.last_name'
+            , 'updated_at'
             , 'thailand_provinces.province_name'
             , 'thailand_amphures.amphur_name'
             , 'thailand_districts.district_name'
