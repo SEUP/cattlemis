@@ -108,9 +108,11 @@
     </fieldset>
 
     <fieldset id="1.11">
-        <legend>1.11 รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)</legend>
-        <question-text-field type="number" label="รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)"
-                             :model.sync="newFarmer.avg_cattle_income"></question-text-field>
+        <legend>1.11 รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท) </legend>
+        <question-text-field comment="*หากยังไม่มีรายได้จากการขายโคเนื้อ ให้เว้นว่างช่องนี้ไว้" type="number" label="รายได้เฉลี่ยต่อปีของการขายโคเนื้อ (บาท)"
+                             :model.sync="newFarmer.avg_cattle_income">
+        </question-text-field>
+
 
     </fieldset>
 </form>

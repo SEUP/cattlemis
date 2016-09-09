@@ -8,10 +8,14 @@ var QuestionTextField = Vue.extend({
             <label class="col-sm-2 control-label">{{label}}</label>
             <div class="col-sm-10">
                 <input type="{{type}}" v-model="model" class="form-control" placeholder="{{placeholder}}"/>
+                <span v-show="comment">{{comment}}</span>
             </div>
         </div>
     `,
     props: {
+        comment : {
+            required: false,
+        },
         label: {
             required: true,
         },
