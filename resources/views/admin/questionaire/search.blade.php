@@ -73,7 +73,7 @@
                 <table class="table table-striped ">
                     <thead>
                     <tr>
-                        <th>รหัสประจำตัวประชาชน</th>
+
                         <th>ชื่อ - นามสกุล</th>
                         <th>จังหวัด</th>
                         <th>อำเภอ</th>
@@ -85,7 +85,7 @@
                     <tbody>
 
                     <tr v-for="owner in farmOwners">
-                        <td>@{{ owner.person_id }}</td>
+
                         <td>@{{ owner.first_name }} @{{ owner.last_name }}</td>
                         <td>@{{ owner.province_name}}</td>
                         <td>@{{ owner.amphur_name}}</td>
@@ -111,7 +111,7 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="7">
+                        <td colspan="6">
                             <div>
                                 จำนวนทั้งหมด @{{ farmOwnerPage.total }} รายการ
                             </div>
