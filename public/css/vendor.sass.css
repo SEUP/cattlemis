@@ -8926,39 +8926,40 @@ table.dataTable thead .sorting:after {
 
 .navbar-cattle {
   background-color: #336600;
-  border-color: #339900; }
+  border-color: #eeeeee; }
   .navbar-cattle .navbar-brand {
     color: #66ff00; }
     .navbar-cattle .navbar-brand:hover, .navbar-cattle .navbar-brand:focus {
-      color: #ecdbff; }
+      color: #23527c;
+      background-color: #eeeeee; }
   .navbar-cattle .navbar-text {
     color: #66ff00; }
   .navbar-cattle .navbar-nav > li > a {
     color: #66ff00; }
     .navbar-cattle .navbar-nav > li > a:hover, .navbar-cattle .navbar-nav > li > a:focus {
-      color: #ecdbff; }
+      color: #23527c; }
   .navbar-cattle .navbar-nav > li > .dropdown-menu {
     background-color: #336600; }
     .navbar-cattle .navbar-nav > li > .dropdown-menu > li > a {
       color: #66ff00; }
       .navbar-cattle .navbar-nav > li > .dropdown-menu > li > a:hover, .navbar-cattle .navbar-nav > li > .dropdown-menu > li > a:focus {
-        color: #ecdbff;
-        background-color: #339900; }
+        color: #23527c;
+        background-color: #eeeeee; }
     .navbar-cattle .navbar-nav > li > .dropdown-menu > li > .divider {
-      background-color: #339900; }
+      background-color: #eeeeee; }
   .navbar-cattle .navbar-nav .open .dropdown-menu > .active > a, .navbar-cattle .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-cattle .navbar-nav .open .dropdown-menu > .active > a:focus {
-    color: #ecdbff;
-    background-color: #339900; }
+    color: #23527c;
+    background-color: #eeeeee; }
   .navbar-cattle .navbar-nav > .active > a, .navbar-cattle .navbar-nav > .active > a:hover, .navbar-cattle .navbar-nav > .active > a:focus {
-    color: #ecdbff;
-    background-color: #339900; }
+    color: #23527c;
+    background-color: #eeeeee; }
   .navbar-cattle .navbar-nav > .open > a, .navbar-cattle .navbar-nav > .open > a:hover, .navbar-cattle .navbar-nav > .open > a:focus {
-    color: #ecdbff;
-    background-color: #339900; }
+    color: #23527c;
+    background-color: #eeeeee; }
   .navbar-cattle .navbar-toggle {
-    border-color: #339900; }
+    border-color: #eeeeee; }
     .navbar-cattle .navbar-toggle:hover, .navbar-cattle .navbar-toggle:focus {
-      background-color: #339900; }
+      background-color: #eeeeee; }
     .navbar-cattle .navbar-toggle .icon-bar {
       background-color: #66ff00; }
   .navbar-cattle .navbar-collapse,
@@ -8967,15 +8968,15 @@ table.dataTable thead .sorting:after {
   .navbar-cattle .navbar-link {
     color: #66ff00; }
     .navbar-cattle .navbar-link:hover {
-      color: #ecdbff; }
+      color: #23527c; }
 
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     color: #66ff00; }
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-      color: #ecdbff; }
+      color: #23527c; }
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
-    color: #ecdbff;
-    background-color: #339900; } }
+    color: #23527c;
+    background-color: #eeeeee; } }
 
 /*# sourceMappingURL=vendor.sass.css.map */

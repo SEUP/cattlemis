@@ -121,7 +121,7 @@ Route::post('login', function (\Illuminate\Http\Request $request) {
 
 Route::get('logout', function () {
     Auth::logout();
-    return redirect('/login');
+    return redirect('/');
 });
 
 

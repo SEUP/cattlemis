@@ -41,7 +41,9 @@
                                 <i class="fa fa-search fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <h3>ค้นหา</h3>
+                                <div class="huge">ค้นหา</div>
+                                <div>เกษตรกร</div>
+
                             </div>
                         </div>
                     </div>
@@ -63,7 +65,9 @@
                                 <i class="fa fa-bar-chart fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <h3>รายงาน</h3>
+                                <div class="huge">รายงาน</div>
+                                <div>กราฟ แผนภูมิ แผนที่</div>
+
                             </div>
                         </div>
                     </div>
@@ -86,7 +90,9 @@
                                 <i class="fa fa-user fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <h3>ผู้ใช้ระบบ</h3>
+                                <div class="huge">ผู้ใช้</div>
+                                <div>จัดการ กำหนดสิทธิ์</div>
+
                             </div>
                         </div>
                     </div>

@@ -8,30 +8,7 @@
         <!-- /.col-lg-12 -->
     </div>
     <div class="row">
-        <div class="col-lg-3 col-md-6">
-            <a href="/admin/questionaire/add">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-plus-square fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">{{$countFarmOwners}}</div>
-                                <div>จำนวนเกษตกรทั้งหมด</div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="panel-footer">
-                        <span class="pull-left">บันทึกข้อมูลเกษตรกรรายใหม่</span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                    </div>
-
-                </div>
-            </a>
-        </div>
         <div class="col-lg-3 col-md-6">
             <a href="/admin/questionaire/search">
                 <div class="panel panel-green">
@@ -41,7 +18,9 @@
                                 <i class="fa fa-search fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <h3>ค้นหา</h3>
+                                <div class="huge">ค้นหา</div>
+                                <div>เกษตรกร</div>
+
                             </div>
                         </div>
                     </div>
@@ -63,7 +42,9 @@
                                 <i class="fa fa-bar-chart fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <h3>รายงาน</h3>
+                                <div class="huge">รายงาน</div>
+                                <div>กราฟ แผนภูมิ แผนที่</div>
+
                             </div>
                         </div>
                     </div>
@@ -76,29 +57,6 @@
                 </div>
             </a>
         </div>
-        @if(Auth::user() && Auth::user()->isAdmin())
-        <div class="col-lg-3 col-md-6">
-            <a href="/admin/user">
-                <div class="panel panel-red">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-user fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <h3>ผู้ใช้ระบบ</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-footer">
-                        <span class="pull-left">จัดการผู้ใช้ระบบ</span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right" style="color: #f0ad4e;"></i></span>
-                        <div class="clearfix"></div>
-                    </div>
-
-                </div>
-            </a>
-        </div>
-        @endif
+      
     </div>
 @endsection

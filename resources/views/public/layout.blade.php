@@ -36,8 +36,7 @@
             <a class="navbar-brand" href="/admin">Cattle Management Information System</a>
         </div>
         <!-- /.navbar-header -->
-
-        <ul class="nav navbar-top-links navbar-right">
+        <ul class="nav navbar-top-links navbar-nav navbar-right">
             <!-- /.dropdown -->
             <li class="">
                 <a href="/login">เข้าสู่ระบบ</a>
