@@ -90,18 +90,28 @@
                                 </label>
                                 <div class="form-group">
                                     <div class="col-sm-12 col-md-6">
+                                            <label v-show="option.choice=='อื่นๆ'">ระบุ</label>
+                                            <input v-show="option.choice=='อื่นๆ'"
+                                                   placeholder="ชื่อวัคซีนป้องกันโรค" type="text"
+                                                   class="form-control"
+                                                   v-model="option['pivot']['source']">
+
+
                                         <label>จำนวนครั้ง/ปี</label>
                                         <input placeholder="" type="number"
                                                class="form-control"
                                                v-model="option['pivot']['amount']">
+
                                     </div>
                                     <div class="col-sm-12 col-md-6">
+
                                         <label>ผู้ทำ</label>
                                         <select class="form-control" v-model="option['pivot']['remark']">
                                             <option :value="null">กรุณาเลือกผู้ทำ</option>
                                             <option v-for="option in options.vaccined_by"
                                                     v-bind:value="option.choice">@{{ option.choice }}</option>
                                         </select>
+
                                     </div>
 
                                 </div>

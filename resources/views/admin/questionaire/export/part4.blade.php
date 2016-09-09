@@ -113,6 +113,9 @@
                         <li>
                             {{$j->choice or '-'}}
                             @if($j->has_text)
+                                @if($j->pivot->source)
+                                    <b>ระบุ : </b> {{$j->pivot->source or '-'}}
+                                @endif
                                 <b>จำนวน </b>{{$j->pivot->amount or '-'}}<b> ครั้ง/ปี</b>
                                 <b>ผู้ทำ : </b> {{$j->pivot->remark or '-'}}
 

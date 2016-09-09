@@ -235,7 +235,7 @@ var app = new AdminApp({
                 'female_over_six_mixed_breeding_types', 'male_under_six_breeding_types',
                 'male_under_six_int_breeding_types', 'male_under_six_mixed_breeding_types',
                 'female_under_six_breeding_types', 'female_under_six_int_breeding_types',
-                'female_under_six_mixed_breeding_types',
+                'female_under_six_mixed_breeding_types', 'disease_other',
 
                 //part3
                 'water_source_types', 'take_care_types', 'sub_own_lands', 'sub_use_lands',

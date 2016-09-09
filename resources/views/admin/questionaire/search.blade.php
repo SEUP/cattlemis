@@ -54,6 +54,7 @@
                                         v-bind:value="option.DISTRICT_ID">@{{ option.DISTRICT_NAME }}</option>
                             </select>
                         </div>
+
                         <div class="col-lg-12">
                             <button class="btn btn-primary" type="button" v-on:click="search()">
                                 ค้นหา
