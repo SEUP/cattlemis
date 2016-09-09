@@ -13,8 +13,12 @@
 
 
 Route::get('/', function () {
-//    return view('admin.dashboard');
-    return redirect()->action("Admin\\QuestionaireController@index");
+
+    $countFarmOwners = \App\Models\FarmOwner::with([])->count();
+
+    return view('admin.dashboard')
+        ->with('countFarmOwners',$countFarmOwners);
+
 });
 
 //user routes
