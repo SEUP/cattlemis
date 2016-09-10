@@ -1048,7 +1048,12 @@ class FarmOwner extends Model
 
     public function getDiseaseOtherAttribute()
     {
-        return $this->disease_other()->get();
+        $value = $this->disease_other()->first();
+        if ($value) {
+            return $value;
+        } else {
+            return [];
+        }
     }
 
 
