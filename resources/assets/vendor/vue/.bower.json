@@ -27,6 +27,6 @@
     "commit": "a04d2d8dc5c11201443f324e356d201622d8ee57"
   },
   "_source": "https://github.com/vuejs/vue.git",
-  "_target": "^1.0.*",
+  "_target": "^1.*.*",
   "_originalSource": "vue"
 }

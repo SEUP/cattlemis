@@ -77,12 +77,12 @@ There are 6 default themes: ``sky``, ``vine``, ``lava``, ``gray``, ``industrial`
 
 #### Customizing themes
 
-Themes have 5 properties: ``foreground``, ``background``, ``size``, ``font`` and ``fontweight``. The ``size`` property specifies the minimum font size for the theme. The ``fontweight`` default value is ``bold``. You can create a sample theme like this:
+Themes have 5 properties: ``fg``, ``bg``, ``size``, ``font`` and ``fontweight``. The ``size`` property specifies the minimum font size for the theme. The ``fontweight`` default value is ``bold``. You can create a sample theme like this:
 
 ```js
 Holder.addTheme("dark", {
-  background: "#000",
-  foreground: "#aaa",
+  bg: "#000",
+  fg: "#aaa",
   size: 11,
   font: "Monaco",
   fontweight: "normal"
@@ -92,7 +92,7 @@ Holder.addTheme("dark", {
 If you have a group of placeholders where you'd like to use particular text, you can do so by adding a ``text`` property to the theme:
 
 ```js
-Holder.addTheme("thumbnail", { background: "#fff", text: "Thumbnail" });
+Holder.addTheme("thumbnail", { bg: "#fff", text: "Thumbnail" });
 ```
 
 #### Using custom themes
@@ -108,7 +108,7 @@ The first approach is the easiest. After you include ``holder.js``, add a ``scri
 <script src="holder.js"></script>
 <script>
 Holder.addTheme("bright", {
-  background: "white", foreground: "gray", size: 12
+  bg: "white", fg: "gray", size: 12
 });
 </script>
 ```
@@ -116,7 +116,7 @@ Holder.addTheme("bright", {
 The second approach requires that you call ``run`` after you add the theme, like this:
 
 ```js
-Holder.addTheme("bright", {background: "white", foreground: "gray", size: 12}).run();
+Holder.addTheme("bright", {bg: "white", fg: "gray", size: 12}).run();
 ```
 
 #### Using custom themes and domain on specific images
@@ -132,8 +132,8 @@ Holder.run({
   domain: "example.com",
   themes: {
     "simple": {
-      background: "#fff",
-      foreground: "#000",
+      bg: "#fff",
+      fg: "#000",
       size: 12
     }
   },
@@ -147,8 +147,8 @@ You can add a placeholder programmatically by chaining Holder calls:
 
 ```js
 Holder.addTheme("new", {
-  foreground: "#ccc",
-  background: "#000",
+  fg: "#ccc",
+  bg: "#000",
   size: 10
 }).addImage("holder.js/200x100?theme=new", "body").run();
 ```
@@ -259,6 +259,8 @@ Holder provides several options at runtime that affect the process of image gene
 * `objects`: The CSS selector used for finding `object` placeholders. Default value: `object`.
 * `bgnodes`: The CSS selector used for finding elements that have background palceholders. Default value: `body .holderjs`.
 * `stylenodes`: The CSS selector used for finding stylesheets to import into SVG placeholders. Default value: `head link.holderjs`.
+* `noFontFallback`: Do not fall back to canvas if using custom fonts.
+* `noBackgroundSize`: Do not set `background-size` for background placeholders.
 
 ### Using custom settings on load
 
@@ -285,6 +287,11 @@ Because Meteor includes scripts at the top of the document by default, the DOM m
 * Internet Explorer 9+ (with partial support for 6-8)
 * Opera 12+
 * Android (with fallback)
+
+## Source
+
+* GitHub: <https://github.com/imsky/holder>
+* GitLab: <https://gitlab.com/imsky/holder>
 
 ## License
 

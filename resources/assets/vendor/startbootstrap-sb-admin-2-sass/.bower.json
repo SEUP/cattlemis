@@ -46,7 +46,6 @@
     "commit": "0ebc0b5f58dd72bc3e24002d5364c5aaba9f6fff"
   },
   "_source": "https://github.com/groupe-sii/startbootstrap-sb-admin-2-sass.git",
-  "_target": "^1.0.7",
-  "_originalSource": "startbootstrap-sb-admin-2-sass",
-  "_direct": true
+  "_target": "^1.0.*",
+  "_originalSource": "startbootstrap-sb-admin-2-sass"
 }

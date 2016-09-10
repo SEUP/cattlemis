@@ -3,38 +3,57 @@
  */
 
 import Url from '../../url/index';
-import { isString, isFormData, isPlainObject } from '../../util';
+import { when, isString, isArray, isObject, isFormData } from '../../util';
 
 export default function (request, next) {
 
-    if (request.emulateJSON && isPlainObject(request.body)) {
-        request.body = Url.params(request.body);
-        request.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-    }
-
     if (isFormData(request.body)) {
-        delete request.headers['Content-Type'];
-    }
 
-    if (isPlainObject(request.body)) {
-        request.body = JSON.stringify(request.body);
+        request.headers.delete('Content-Type');
+
+    } else if (isObject(request.body) || isArray(request.body)) {
+
+        if (request.emulateJSON) {
+            request.body = Url.params(request.body);
+            request.headers.set('Content-Type', 'application/x-www-form-urlencoded');
+        } else {
+            request.body = JSON.stringify(request.body);
+        }
     }
 
     next((response) => {
 
-        var contentType = response.headers['Content-Type'];
+        Object.defineProperty(response, 'data', {
 
-        if (isString(contentType) && contentType.indexOf('application/json') === 0) {
+            get() {
+                return this.body;
+            },
 
-            try {
-                response.data = response.json();
-            } catch (e) {
-                response.data = null;
+            set(body) {
+                this.body = body;
             }
 
-        } else {
-            response.data = response.text();
-        }
+        });
+
+        return response.bodyText ? when(response.text(), text => {
+
+            var type = response.headers.get('Content-Type');
+
+            if (isString(type) && type.indexOf('application/json') === 0) {
+
+                try {
+                    response.body = JSON.parse(text);
+                } catch (e) {
+                    response.body = null;
+                }
+
+            } else {
+                response.body = text;
+            }
+
+            return response;
+
+        }) : response;
 
     });
 }

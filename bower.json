@@ -28,8 +28,8 @@
     "metisMenu": "^2.5.*",
     "mocha": "^2.5.*",
     "startbootstrap-sb-admin-2-sass": "^1.0.*",
-    "vue": "^1.0.*",
-    "vue-resource": "0.9.*",
-    "vue-strap": "^1.0.*"
+    "vue": "^1.*.*",
+    "vue-resource": "1.*.*",
+    "vue-strap": "^1.*.*"
   }
 }

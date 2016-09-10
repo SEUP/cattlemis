@@ -38,6 +38,6 @@
     "commit": "79b0c9de6953f0aa4c3ed286ff1a9b69377221bf"
   },
   "_source": "https://github.com/yuche/vue-strap.git",
-  "_target": "^1.0.*",
+  "_target": "^1.*.*",
   "_originalSource": "vue-strap"
 }
