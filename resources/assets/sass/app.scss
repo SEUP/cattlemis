@@ -5,9 +5,9 @@
 @import "resources/assets/vendor/font-awesome/scss/font-awesome";
 
 $bgDefault-cattle: #336600;
-$bgHighlight-cattle: #339900;
+$bgHighlight-cattle: #eeeeee;
 $colDefault-cattle: #66ff00;
-$colHighlight-cattle: #ecdbff;
+$colHighlight-cattle: #23527c;
 $dropDown-cattle: true;
 
 .navbar-cattle {
@@ -17,6 +17,8 @@ $dropDown-cattle: true;
     color: $colDefault-cattle;
     &:hover, &:focus {
       color: $colHighlight-cattle;
+      background-color: $bgHighlight-cattle;
+
     }
   }
   .navbar-text {

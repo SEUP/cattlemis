@@ -107,7 +107,7 @@
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <td colspan="6">
+                                    <td colspan="5">
                                         <div>
                                             จำนวนทั้งหมด @{{ farmOwnerPage.total }} รายการ
                                         </div>

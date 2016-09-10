@@ -24,8 +24,8 @@ class ProvinceFarmOwnerController extends Controller
         $query->join('thailand_districts', 'farm_owners.house_district', '=', 'thailand_districts.district_id');
 
         $query->select([
-            'farm_owners.id', 'farm_owners.first_name', 'farm_owners.last_name',
-            'farm_owners.person_id', 'updated_at'
+            'farm_owners.id', 'farm_owners.first_name', 'farm_owners.last_name'
+            , 'updated_at'
             , 'total_master_breeding_types'
             , 'thailand_provinces.province_name'
             , 'thailand_amphures.amphur_name'

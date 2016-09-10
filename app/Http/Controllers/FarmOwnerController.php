@@ -72,6 +72,7 @@ class FarmOwnerController extends Controller
             'male_under_six_int_breeding_types', 'male_under_six_mixed_breeding_types',
             'female_under_six_breeding_types', 'female_under_six_int_breeding_types',
             'female_under_six_mixed_breeding_types',
+            'disease_other',
 
             //part3
             'water_source_types', 'take_care_types', 'sub_own_lands', 'sub_use_lands',
@@ -211,8 +212,8 @@ class FarmOwnerController extends Controller
         $query->leftJoin('thailand_districts', 'farm_owners.house_district', '=', 'thailand_districts.district_id');
 
         $query->select([
-            'farm_owners.id', 'farm_owners.first_name', 'farm_owners.last_name',
-            'farm_owners.person_id', 'updated_at'
+            'farm_owners.id', 'farm_owners.first_name', 'farm_owners.last_name'
+            , 'updated_at'
             , 'thailand_provinces.province_name'
             , 'thailand_amphures.amphur_name'
             , 'thailand_districts.district_name'
@@ -266,6 +267,10 @@ class FarmOwnerController extends Controller
         $farmOwner = new FarmOwner();
 
         $farmOwner->fill($form);
+
+        if (strcmp($farmOwner->avg_cattle_income, "") == 0) {
+            $farmOwner->avg_cattle_income = null;
+        }
 
         $farmOwner->total_master_breeding_types = $farmOwner->total_male_breeding_types +
             $farmOwner->total_female_breeding_types + $farmOwner->total_male_over_six_breeding_types
@@ -333,6 +338,10 @@ class FarmOwnerController extends Controller
         }
 
         $farmOwner->fill($form);
+
+        if (strcmp($farmOwner->avg_cattle_income, "") == 0) {
+            $farmOwner->avg_cattle_income = null;
+        }
 
         $farmOwner->total_master_breeding_types = $farmOwner->total_male_breeding_types +
             $farmOwner->total_female_breeding_types + $farmOwner->total_male_over_six_breeding_types

@@ -248,5 +248,18 @@
             โรคปากและเท้าเปื่อย : {{$farmOwner->foot_mouth_disease->choice or '-'}}
         </label>
     </div>
+    <div class="line-report">
+        <label style="padding-left: 22px">
+            อื่นๆ :
+
+            @if(sizeof($farmOwner->disease_other)>0)
+                @foreach($farmOwner->disease_other as $j)
+                    {{$j->pivot->remark or '-'}}
+                @endforeach
+            @else
+                {{'-'}}
+            @endif
+        </label>
+    </div>
 
 </div>

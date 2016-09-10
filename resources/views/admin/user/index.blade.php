@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">User Management</h1>
+            <h1 class="page-header">จัดการข้อมูลผู้ใช้ระบบ</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -17,7 +17,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <a href="{{action('Admin\\UserController@add')}}" class="btn btn-default">Create User</a>
+                    <a href="{{action('Admin\\UserController@add')}}" class="btn btn-default">เพิ่มผู้ใช้</a>
 
                 </div>
                 <div class="panel-body">

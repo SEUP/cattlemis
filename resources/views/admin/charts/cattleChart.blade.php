@@ -155,7 +155,7 @@
                         this.displayChart(2);
                     });
 
-                    this.$http.get('/chart/cattle/โคเพศเมียอายุมากกว่า 6 เดือนขึ้นไปแต่ไม่ใช่พ่อพันธุ์คุมฝูง/female_over_six_breeding_types/' + this.selProvince).then(function (r) {
+                    this.$http.get('/chart/cattle/โคเพศเมียอายุมากกว่า 6 เดือนขึ้นไปแต่ยังไม่ตั้งท้อง/female_over_six_breeding_types/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData[3] = data;
                         this.displayChart(3);

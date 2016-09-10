@@ -13,8 +13,12 @@
 
 
 Route::get('/', function () {
-//    return view('admin.dashboard');
-    return redirect()->action("Admin\\QuestionaireController@index");
+
+    $countFarmOwners = \App\Models\FarmOwner::with([])->count();
+
+    return view('admin.dashboard')
+        ->with('countFarmOwners',$countFarmOwners);
+
 });
 
 //user routes
@@ -48,6 +52,13 @@ Route::get('charts/menuchart/{province}/{amphur?}', function ($province, $amphur
     return view("admin.charts.mapdashboard")
         ->with('province', $province)
         ->with('amphur', $amphur);
+});
+
+Route::get('charts/groupJoin/{title?}', function ($title = "การรวมกลุ่มวิสาหกิจชุมชนและสหกรณ์โคเนื้อ", $type = "group_joins") {
+
+    return view("admin.charts.groupJoinChart")
+        ->with('title', $title)
+        ->with('type', $type);
 });
 
 

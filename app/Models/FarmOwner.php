@@ -77,7 +77,7 @@ class FarmOwner extends Model
         'farm_register_status',
         'farm_register',
         'farm_disease_check',
-        'abortion', 'tuberculosis', 'foot_mouth_disease',
+        'abortion', 'tuberculosis', 'foot_mouth_disease','disease_other',
 
         //part3
         'own_land', 'rent_land', 'use_land', 'minerals_feed', 'feedstock', 'sub_minerals_feed',
@@ -270,6 +270,13 @@ class FarmOwner extends Model
     {
         return $this->choices()->where('type', '=', 'foot_mouth_disease');
 
+    }
+
+    public function disease_other()
+    {
+        return $this->choices()
+            ->withPivot(['remark'])
+            ->where('type', '=', 'disease_other');
     }
 
     public function master_breeding_types()
@@ -605,9 +612,11 @@ class FarmOwner extends Model
     public function vaccine_types()
     {
         return $this->choices()
-            ->withPivot(['remark', 'amount'])
+            ->withPivot(['remark', 'amount','source'])
             ->where('type', '=', 'vaccine_types');
     }
+
+
 
     public function cattle_dung_uses()
     {
@@ -1037,6 +1046,13 @@ class FarmOwner extends Model
         }
     }
 
+    public function getDiseaseOtherAttribute()
+    {
+        return $this->disease_other()->get();
+    }
+
+
+
     //part 3
 
     public function getOwnLandAttribute()
@@ -1244,6 +1260,8 @@ class FarmOwner extends Model
             return [];
         }
     }
+
+
 
     //part5
     public function getBudgetSourceAttribute()
