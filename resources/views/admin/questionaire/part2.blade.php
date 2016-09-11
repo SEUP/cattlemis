@@ -165,21 +165,15 @@
                          :options.sync="options.tuberculosis"></question-radio>
         <question-radio label="โรคปากและเท้าเปื่อย" :model.sync="newFarmer.foot_mouth_disease"
                          :options.sync="options.foot_mouth_disease"></question-radio>
+        <question-radio label="อื่นๆ" :model.sync="newFarmer.disease_other"
+                        :options.sync="options.disease_other"></question-radio>
 
-        <div class="form-group">
-            <label class="col-sm-2 control-label"></label>
-            <div class="col-sm-10">
-                <label class="checkbox" v-for="option in options.disease_other">
-                    <input type="checkbox" v-model="newFarmer.disease_other" v-bind:value="option">
-                    @{{ option.choice }}
-                    <template v-if="option.has_text">:</template>
-                    <input v-if="option.has_text" placeholder="ชื่อโรคระบาด" type="text" class="form-control"
-                           v-model="option['pivot']['remark']">
-                </label>
-            </div>
+        <div class="col-sm-2" v-if="newFarmer.disease_other.has_text==1">
         </div>
-
-
+        <div class="col-sm-6" v-if="newFarmer.disease_other.has_text==1">
+            <input  type="text" v-model="newFarmer.disease_other.pivot['remark']"
+                    class="form-control col-sm-6" placeholder="ระบุ"/>
+        </div>
 
     </fieldset>
 

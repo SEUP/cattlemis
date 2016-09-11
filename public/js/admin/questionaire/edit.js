@@ -195,7 +195,7 @@ var app = new AdminApp({
                 'farm_register_status',
                 'farm_register',
                 'farm_disease_check', 'abortion',
-                'tuberculosis', 'foot_mouth_disease',
+                'tuberculosis', 'foot_mouth_disease', 'disease_other',
 
                 //part3
                 'own_land', 'rent_land', 'use_land', 'minerals_feed', 'feedstock', 'sub_minerals_feed',
@@ -235,7 +235,7 @@ var app = new AdminApp({
                 'female_over_six_mixed_breeding_types', 'male_under_six_breeding_types',
                 'male_under_six_int_breeding_types', 'male_under_six_mixed_breeding_types',
                 'female_under_six_breeding_types', 'female_under_six_int_breeding_types',
-                'female_under_six_mixed_breeding_types', 'disease_other',
+                'female_under_six_mixed_breeding_types',
 
                 //part3
                 'water_source_types', 'take_care_types', 'sub_own_lands', 'sub_use_lands',
