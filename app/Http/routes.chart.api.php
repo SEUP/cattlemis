@@ -91,7 +91,7 @@ Route::get('multi/choices/{type}/{province?}', function ($type, $provinceId = nu
         "abortion" => "โรคแท้งติดต่อ",
         "tuberculosis" => "โรควัณโรค",
         "foot_mouth_disease" => "โรคปากและเท้าเปื่อย",
-        "disease_other" => "อื่นๆ",
+        "disease_other" => "โรคอื่นๆ",
 
 
     ];

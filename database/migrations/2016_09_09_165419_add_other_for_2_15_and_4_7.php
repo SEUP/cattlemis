@@ -36,18 +36,6 @@ class AddOtherFor215And47 extends Migration
                 'order' => '0',
             )
         );
-        DB::table('choices')->insert(
-            array(
-                'id' => '298',
-                'choice' => 'ไม่มี',
-                'type' => 'disease_other',
-                'has_text' => '1',
-                'parent_id' => null,
-                'created_at' => '2016-06-24 04:36:33',
-                'updated_at' => '2016-06-24 04:36:33',
-                'order' => '0',
-            )
-        );
     }
 
     /**

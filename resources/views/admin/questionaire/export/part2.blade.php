@@ -250,11 +250,17 @@
     </div>
     <div class="line-report">
         <label style="padding-left: 22px">
-            อื่นๆ : {{$farmOwner->disease_other->choice or '-'}}
-            @if($farmOwner->disease_other->choice=="มี")
-                ระบุ:{{$farmOwner->disease_other->choice->remark or '-'}}
+            โรคอื่นๆ :
+            @if(sizeof($farmOwner->disease_other)>0)
+                @foreach($farmOwner->disease_other as $j)
+                    @if($j->pivot->remark=="")
+                        {{'มี แต่ไม่ได้ระบุชื่อโรค'}}
+                    @else
+                        {{$j->pivot->remark or 'มี แต่ไม่ได้ระบุชื่อโรค'}}
+                    @endif
+                @endforeach
             @else
-                {{'-'}}
+                {{'ไม่มี'}}
             @endif
         </label>
     </div>

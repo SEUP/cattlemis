@@ -23,7 +23,7 @@ class FarmOwnerController extends Controller
             //part2
             'farm_record', 'farm_exp', 'farm_future',
             'farm_register_status', 'farm_register', 'farm_disease_check', 'abortion',
-            'tuberculosis', 'foot_mouth_disease','disease_other',
+            'tuberculosis', 'foot_mouth_disease',
 
             //part3
             'own_land', 'rent_land', 'use_land', 'minerals_feed', 'feedstock', 'sub_minerals_feed',
@@ -72,6 +72,7 @@ class FarmOwnerController extends Controller
             'male_under_six_int_breeding_types', 'male_under_six_mixed_breeding_types',
             'female_under_six_breeding_types', 'female_under_six_int_breeding_types',
             'female_under_six_mixed_breeding_types',
+            'disease_other',
 
 
             //part3
