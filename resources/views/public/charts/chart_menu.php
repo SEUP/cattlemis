@@ -44,7 +44,7 @@
                 <li><a href="/charts/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status">การขึ้นทะเบียนฟาร์มกับภาครัฐ</a>
                 </li>
                 <li>
-                    <a href="/charts/multi-choice/การเกิดโรคในฟาร์ม/abortion,tuberculosis,foot_mouth_disease">การเกิดโรคในฟาร์ม</a>
+                    <a href="/charts/multi-choice/การเกิดโรคในฟาร์ม/abortion,tuberculosis,foot_mouth_disease,disease_other">การเกิดโรคในฟาร์ม</a>
                 </li>
             </div>
         </div>
