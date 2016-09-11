@@ -18,13 +18,39 @@
                 <div class="panel-body">
                     <div class="row">
 
-                        <div class="form-group col-lg-12" style="padding-bottom: 1em;">
+                        <div class="form-group col-lg-6" style="padding-bottom: 1em;">
 
                             <label for="search">ค้นหา</label>
 
                             <input type="text" v-on:keyup.13="search()" class="form-control"
                                    placeholder="ค้นหา : ชื่อ นามสกุล รหัสประจำตัวประชาชน"
                                    v-model="form.keyword">
+                        </div>
+
+                        <div class="form-group col-lg-6" style="padding-bottom: 1em;">
+
+                            <label for="search">ประเภทโคที่เลี้ยง</label>
+
+                            <select id="breeding" class="form-control" v-on:change="" v-model="form.breeding"
+                                    name="user[breeding]">
+                                <option value="0">กรุณาเลือก</option>
+                                <template v-for="option in breedings">
+                                    <option
+                                            v-bind:value="option.id">@{{ option.choice  }}</option>
+                                    <template v-for="opt2 in option.children">
+                                        <option
+                                                v-bind:value="opt2.id">
+                                            @{{ option.choice  }} - @{{ opt2.choice  }}
+                                        </option>
+
+                                        <option v-for="opt3 in opt2.children"
+                                                v-bind:value="opt3.id">
+                                            @{{option.choice}} - @{{opt2.choice}} - @{{ opt3.choice  }}
+                                        </option>
+                                    </template>
+
+                                </template>
+                            </select>
                         </div>
 
                         <div class="form-group col-lg-4">
@@ -75,6 +101,7 @@
                     <tr>
 
                         <th>ชื่อ - นามสกุล</th>
+                        <th class="col-md-2" v-show="form.breedChoice">จำนวน<br/>@{{ form.breedChoice }}</th>
                         <th>จังหวัด</th>
                         <th>อำเภอ</th>
                         <th>ตำบล</th>
@@ -86,6 +113,7 @@
                     <tr v-for="owner in farmOwners">
 
                         <td>@{{ owner.first_name }} @{{ owner.last_name }}</td>
+                        <td v-show="form.breedChoice">@{{ owner.amount }}</td>
                         <td>@{{ owner.province_name}}</td>
                         <td>@{{ owner.amphur_name}}</td>
                         <td>@{{ owner.district_name}}</td>
@@ -125,7 +153,7 @@
                 provinces: {},
                 amphurs: {},
                 districts: {},
-
+                breedings: {},
                 user_id: 0,
                 user_is_admin: 0,
                 admin_level: 0,
@@ -137,6 +165,8 @@
                     province: 0,
                     amphur: 0,
                     district: 0,
+                    breeding: 0,
+                    breedChoice: "",
                     page: "",
                 }
             },
@@ -164,7 +194,7 @@
 
                 },
                 deleteFarmOwner: function (owner) {
-                    if(!this.cannotEdit(owner)){
+                    if (!this.cannotEdit(owner)) {
                         var id = owner.id
                         if (confirm("คุณต้องการลบข้อมูลเกษตกรรายนี้หรือไม่?")) {
                             this.$http.delete('/api/farm-owner/' + id).then(function (response) {
@@ -181,22 +211,37 @@
                         province: 0,
                         amphur: 0,
                         district: 0,
+                        breeding: 0,
+                        breedChoice: "",
                         page: "",
                     }
                     this.search();
 
                 },
+                getBreedingText: function () {
+                    var breedingSel = $("#breeding")[0];
+                    if (breedingSel.selectedIndex != 0) {
+                        var opt = breedingSel.selectedOptions[0]
+                        var text = $(opt).html();
+                        return text.trim();
+                    }
+                    return null;
+                },
                 search: function () {
                     this.$http.get('/api/farm-owner', {params: this.form}).then(
                             function (response) {
-
                                 this.farmOwnerPage = response.data;
                                 this.farmOwners = this.farmOwnerPage.data;
+
+                                this.form.breedChoice = this.getBreedingText();
+
                             },
                             function (error) {
 
                             }
                     );
+
+
                 },
                 gotoPage: function (page) {
                     this.form.page = page;
@@ -212,6 +257,10 @@
 
                 this.admin_level = $("#admin_level").attr('value')
 
+
+                self.$http.get("/api/choice/master_breeding_types").then(function (response) {
+                    self.breedings = response.data;
+                })
 
                 self.$http.get("/api/thailand/province").then(function (response) {
                     self.provinces = response.data;

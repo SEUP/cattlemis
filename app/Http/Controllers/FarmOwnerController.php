@@ -213,7 +213,7 @@ class FarmOwnerController extends Controller
 
         $query->select([
             'farm_owners.id', 'farm_owners.first_name', 'farm_owners.last_name'
-            , 'updated_at'
+            , 'farm_owners.updated_at'
             , 'thailand_provinces.province_name'
             , 'thailand_amphures.amphur_name'
             , 'thailand_districts.district_name'
@@ -228,6 +228,27 @@ class FarmOwnerController extends Controller
             $query->where('farm_owners.person_id', 'like', "%$keyword%");
             $query->orWhere('farm_owners.first_name', 'like', "%$keyword%");
             $query->orWhere('farm_owners.last_name', 'like', "%$keyword%");
+        }
+
+        if ($request->has('breeding') && $request->get('breeding') != 0) {
+            $breeding = $request->get('breeding');
+            $query->join('choice_farm_owner', function ($join) use ($breeding) {
+                $join
+                    ->on('choice_farm_owner.farm_owner_id', '=', 'farm_owners.id')
+                    ->where('choice_farm_owner.choice_id', '=', $breeding);
+            });
+            $query->join('choices', function ($join) use ($breeding) {
+                $join
+                    ->on('choice_farm_owner.choice_id', '=', 'choices.id');
+            });
+
+
+            $query->addSelect('choice_farm_owner.amount');
+            $query->addSelect('choices.choice');
+
+
+            $query->orderBy('amount', 'desc');
+
         }
 
         if ($request->has('province') && $request->get('province') != 0) {
