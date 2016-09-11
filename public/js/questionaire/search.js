@@ -1,0 +1,139 @@
+/**
+ * Created by chaow on 9/11/2016.
+ */
+var app = new AdminApp({
+    el: 'body',
+    data: {
+        provinces: {},
+        amphurs: {},
+        districts: {},
+        breedings: {},
+        user_id: 0,
+        user_is_admin: 0,
+        admin_level: 0,
+
+        farmOwners: [],
+        farmOwnerPage: {},
+        form: {
+            keyword: "",
+            province: 0,
+            amphur: 0,
+            district: 0,
+            breeding: 0,
+            breedChoice: "",
+            page: "",
+        }
+    },
+    methods: {
+
+        provinceChange: function () {
+            this.form.amphur = 0
+            this.form.district = 0;
+            if (this.form.province != 0) {
+                this.$http.get('/api/thailand/province/' + this.form.province + "/amphure").then(function (r) {
+                    this.amphurs = r.data;
+                })
+            }
+
+        },
+
+        amphurChange: function () {
+            this.form.district = 0;
+            if (this.form.amphur != 0) {
+                this.$http.get('/api/thailand/province/' + this.form.province + "/amphure/" + this.form.amphur + "/district").then(
+                    function (r) {
+                        this.districts = r.data;
+                    })
+            }
+
+        },
+        deleteFarmOwner: function (owner) {
+            if (!this.cannotEdit(owner)) {
+                var id = owner.id
+                if (confirm("คุณต้องการลบข้อมูลเกษตกรรายนี้หรือไม่?")) {
+                    this.$http.delete('/api/farm-owner/' + id).then(function (response) {
+                        this.search();
+                    })
+                }
+            }
+
+        },
+        resetSearch: function () {
+
+            this.form = {
+                keyword: "",
+                province: 0,
+                amphur: 0,
+                district: 0,
+                breeding: 0,
+                breedChoice: "",
+                page: "",
+            }
+            this.search();
+
+        },
+        getBreedingText: function () {
+            var breedingSel = $("#breeding")[0];
+            if (breedingSel.selectedIndex != 0) {
+                var opt = breedingSel.selectedOptions[0]
+                var text = $(opt).html();
+                return text.trim();
+            }
+            return null;
+        },
+        search: function () {
+            this.$http.get('/api/farm-owner', {params: this.form}).then(
+                function (response) {
+                    this.farmOwnerPage = response.data;
+                    this.farmOwners = this.farmOwnerPage.data;
+
+                    this.form.breedChoice = this.getBreedingText();
+
+                },
+                function (error) {
+
+                }
+            );
+
+
+        },
+        gotoPage: function (page) {
+            this.form.page = page;
+            this.search();
+        }
+    },
+    ready: function () {
+        var self = this;
+
+        this.user_id = $("#user_id").attr('value')
+        this.user_is_admin = $("#user_is_admin").attr('value')
+
+
+        this.admin_level = $("#admin_level").attr('value')
+
+
+        self.$http.get("/api/choice/master_breeding_types").then(function (response) {
+            self.breedings = response.data;
+        })
+
+        self.$http.get("/api/thailand/province").then(function (response) {
+            self.provinces = response.data;
+
+            if (self.form.province != 0) {
+                this.$http.get('/api/thailand/province/' + self.form.province + "/amphure").then(function (r) {
+                    this.amphurs = r.data;
+
+                    if (self.form.amphur != 0) {
+                        this.$http.get('/api/thailand/province/' + self.form.province + "/amphure/" + self.form.amphur + "/district"
+                        ).then(function (r) {
+                            this.districts = r.data;
+                        })
+                    }
+
+                })
+            }
+
+        });
+        this.search();
+    }
+})
