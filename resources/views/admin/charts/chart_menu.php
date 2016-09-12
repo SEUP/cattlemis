@@ -17,7 +17,7 @@
                     <a href="/admin/charts/normal/เฉลี่ยรายได้รวมของครอบครัว/income_range">เฉลี่ยรายได้รวมของครอบครัว</a>
                 </li>
                 <li>
-                    <a href="/admin/charts/range-farmowner/รายได้เฉลี่ยต่อปีของการขายโคเนื้อ/avg_cattle_income/50000/200000/3">รายได้เฉลี่ยต่อปีของการขายโคเนื้อ</a>
+                    <a href="/admin/charts/range-farmowner/รายได้เฉลี่ยต่อปีของการขายโคเนื้อ/avg_cattle_income/50000/200000/3?withNull=true&nullText=ยังไม่ได้ขาย">รายได้เฉลี่ยต่อปีของการขายโคเนื้อ</a>
                 </li>
             </div>
         </div>

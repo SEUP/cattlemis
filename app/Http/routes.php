@@ -71,14 +71,22 @@ Route::get('charts/multi-choice/{title}/{type}', function ($title, $type) {
 
 
 Route::get('charts/range-farmowner/{title}/{type}/{min}/{max}/{step}',
-    function ($title, $type, $min, $max, $step) {
+    function (\Illuminate\Http\Request $request,$title, $type, $min, $max, $step) {
+
+        $withNull = false;
+        $nullText = "null";
+
+        if($request->has('withNull')) $withNull = $request->get('withNull');
+        if($request->has('nullText')) $nullText = $request->get('nullText');
 
         return view("public.charts.farmownerRangeChart")
             ->with('title', $title)
             ->with('type', $type)
             ->with('min', $min)
             ->with('max', $max)
-            ->with('step', $step);
+            ->with('step', $step)
+            ->with('withNull',$withNull)
+            ->with('nullText',$nullText);
     });
 
 Route::get('charts/cattle/', function () {

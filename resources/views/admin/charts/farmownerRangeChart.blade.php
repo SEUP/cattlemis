@@ -6,6 +6,8 @@
     <input type="hidden" id="min" value="{{$min}}"/>
     <input type="hidden" id="max" value="{{$max}}"/>
     <input type="hidden" id="step" value="{{$step}}"/>
+    <input type="hidden" id="withNull" value="{{$withNull}}"/>
+    <input type="hidden" id="nullText" value="{{$nullText}}"/>
     <div class="row">
         <div class="col-lg-8">
             <div class="row">
@@ -57,7 +59,9 @@
                     var api = "/chart/range/farm-owner/" +
                             this.chartType + "/" + this.min + "/" + this.max + "/" + this.step + "/" + this.selProvince;
 
-                    this.$http.get(api).then(function (r) {
+                    this.$http.get(api, {
+                        params: {withNull: this.withNull, nullText: this.nullText}
+                    }).then(function (r) {
                         data = r.data;
                         this.chartData = data;
                         this.displayChart();
@@ -128,7 +132,9 @@
 
                     var api = "/chart/range/farm-owner/" +
                             this.chartType + "/" + this.min + "/" + this.max + "/" + this.step;
-                    this.$http.get(api).then(function (r) {
+                    this.$http.get(api, {
+                        params: {withNull: this.withNull, nullText: this.nullText}
+                    }).then(function (r) {
                         data = r.data;
                         this.chartData = data;
                         this.displayChart();
@@ -141,6 +147,8 @@
                 this.min = $("#min").val();
                 this.max = $("#max").val();
                 this.step = $("#step").val();
+                this.withNull = $("#withNull").val();
+                this.nullText = $("#nullText").val();
                 this.loadData();
             }
         })

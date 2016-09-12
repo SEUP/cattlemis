@@ -8,7 +8,7 @@
         <!-- /.col-lg-12 -->
     </div>
     <div class="row">
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-6 col-md-6">
             <a href="/admin/questionaire/add">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -32,7 +32,7 @@
                 </div>
             </a>
         </div>
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-6 col-md-6">
             <a href="/admin/questionaire/search">
                 <div class="panel panel-green">
                     <div class="panel-heading">
@@ -56,7 +56,7 @@
                 </div>
             </a>
         </div>
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-6 col-md-6">
             <a href="/admin/charts/menuchart">
                 <div class="panel panel-yellow">
                     <div class="panel-heading">
@@ -81,7 +81,7 @@
             </a>
         </div>
         @if(Auth::user() && Auth::user()->isAdmin())
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-6 col-md-6">
             <a href="/admin/user">
                 <div class="panel panel-red">
                     <div class="panel-heading">
