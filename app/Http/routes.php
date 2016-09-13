@@ -28,7 +28,7 @@ Route::get('charts/menuchart', function () {
     return view("public.charts.menuChart");
 });
 
-Route::get('charts/menuchart/{province}/{amphur?}', function ($province, $amphur=null) {
+Route::get('charts/menuchart/{province}/{amphur?}', function ($province, $amphur = null) {
     return view("public.charts.mapdashboard")
         ->with('province', $province)
         ->with('amphur', $amphur);
@@ -71,13 +71,13 @@ Route::get('charts/multi-choice/{title}/{type}', function ($title, $type) {
 
 
 Route::get('charts/range-farmowner/{title}/{type}/{min}/{max}/{step}',
-    function (\Illuminate\Http\Request $request,$title, $type, $min, $max, $step) {
+    function (\Illuminate\Http\Request $request, $title, $type, $min, $max, $step) {
 
         $withNull = false;
         $nullText = "null";
 
-        if($request->has('withNull')) $withNull = $request->get('withNull');
-        if($request->has('nullText')) $nullText = $request->get('nullText');
+        if ($request->has('withNull')) $withNull = $request->get('withNull');
+        if ($request->has('nullText')) $nullText = $request->get('nullText');
 
         return view("public.charts.farmownerRangeChart")
             ->with('title', $title)
@@ -85,8 +85,8 @@ Route::get('charts/range-farmowner/{title}/{type}/{min}/{max}/{step}',
             ->with('min', $min)
             ->with('max', $max)
             ->with('step', $step)
-            ->with('withNull',$withNull)
-            ->with('nullText',$nullText);
+            ->with('withNull', $withNull)
+            ->with('nullText', $nullText);
     });
 
 Route::get('charts/cattle/', function () {
@@ -104,7 +104,13 @@ Route::get('charts/budget/', function () {
     return view("public.charts.budgetChart");
 });
 
+Route::get('charts/sold/', function () {
+    return view("public.charts.soldChart");
+});
 
+Route::get('charts/suggestion/', function () {
+    return view("public.charts.suggestion");
+});
 
 
 Route::get('login', function (\Illuminate\Support\Facades\Request $request) {
@@ -132,6 +138,7 @@ Route::get('logout', function () {
     return redirect('/');
 });
 
+Route::get('/api/farm-owner/suggestion', "FarmOwnerController@suggestion");
 
 Route::resource('/api/farm-owner', "FarmOwnerController");
 

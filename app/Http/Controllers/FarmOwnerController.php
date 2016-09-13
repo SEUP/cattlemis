@@ -204,6 +204,76 @@ class FarmOwnerController extends Controller
         return $fchoices;
     }
 
+    public function suggestion(Request $request)
+    {
+        $query = DB::table('farm_owners');
+
+        $query->leftJoin('thailand_provinces', 'farm_owners.house_province', '=', 'thailand_provinces.province_id');
+        $query->leftJoin('thailand_amphures', 'farm_owners.house_amphur', '=', 'thailand_amphures.amphur_id');
+        $query->leftJoin('thailand_districts', 'farm_owners.house_district', '=', 'thailand_districts.district_id');
+
+        $query->select([
+            'farm_owners.id', 'farm_owners.first_name', 'farm_owners.last_name'
+            , 'farm_owners.problem'
+            , 'farm_owners.suggestion'
+            , 'thailand_provinces.province_name'
+            , 'thailand_amphures.amphur_name'
+            , 'thailand_districts.district_name'
+            , 'farm_owners.house_province'
+            , 'farm_owners.house_amphur'
+            , 'farm_owners.house_district'
+
+        ]);
+
+
+        if ($request->has('keyword')) {
+            $keyword = $request->get('keyword');
+            $query->where('farm_owners.problem', 'like', "%$keyword%");
+            $query->orWhere('farm_owners.suggestion', 'like', "%$keyword%");
+        }
+
+        $query->orWhereNotNull('farm_owners.problem');
+        $query->orWhereNotNull('farm_owners.suggestion');
+
+        if ($request->has('breeding') && $request->get('breeding') != 0) {
+            $breeding = $request->get('breeding');
+            $query->join('choice_farm_owner', function ($join) use ($breeding) {
+                $join
+                    ->on('choice_farm_owner.farm_owner_id', '=', 'farm_owners.id')
+                    ->where('choice_farm_owner.choice_id', '=', $breeding);
+            });
+            $query->join('choices', function ($join) use ($breeding) {
+                $join
+                    ->on('choice_farm_owner.choice_id', '=', 'choices.id');
+            });
+
+
+            $query->addSelect('choice_farm_owner.amount');
+            $query->addSelect('choices.choice');
+
+
+            $query->orderBy('amount', 'desc');
+
+        }
+
+        if ($request->has('province') && $request->get('province') != 0) {
+            $query->where('farm_owners.house_province', '=', $request->get('province'));
+        }
+
+        if ($request->has('amphur') && $request->get('amphur') != 0) {
+            $query->where('farm_owners.house_amphur', '=', $request->get('amphur'));
+        }
+
+        if ($request->has('district') && $request->get('district') != 0) {
+            $query->where('farm_owners.house_district', '=', $request->get('district'));
+        }
+
+        $query->orderBy('updated_at', 'desc');
+        $farmOwners = $query->paginate(12);
+
+        return $farmOwners;
+    }
+
     public function index(Request $request)
     {
         $query = DB::table('farm_owners');

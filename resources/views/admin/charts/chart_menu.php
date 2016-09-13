@@ -67,11 +67,13 @@
                     <a href="/admin/charts/pie/ลักษณะการเลี้ยงโคเนื้อ/take_care_types">ลักษณะการเลี้ยงโคเนื้อ</a>
                 </li>
                 <li>
-                    <a href="/admin/charts/double/พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ/use_land/">พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ</a></li>
+                    <a href="/admin/charts/double/พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ/use_land/">พื้นที่ที่ใช้ในการเลี้ยงโคเนื้อ</a>
+                </li>
                 <li><a href="/admin/charts/pie/อาหารที่ใช้เลี้ยงโคเนื้อ/feed_types">อาหารที่ใช้เลี้ยงโคเนื้อ</a>
                 </li>
                 <li><a href="/admin/charts/pie/การให้แร่ธาตุก้อน/minerals_feed">การให้แร่ธาตุก้อน</a></li>
-                <li><a href="/admin/charts/double/การสำรองฟางข้าว หรือเปลือกข้าวโพด/feedstock">การสำรองฟางข้าว หรือเปลือกข้าวโพด</a></li>
+                <li><a href="/admin/charts/double/การสำรองฟางข้าว หรือเปลือกข้าวโพด/feedstock">การสำรองฟางข้าว
+                        หรือเปลือกข้าวโพด</a></li>
                 <li>
                     <a href="/admin/charts/normal/แหล่งอาหารหยาบในฤดูแล้ง/feed_summer_sources">แหล่งอาหารหยาบในฤดูแล้ง</a>
                 </li>
@@ -164,4 +166,18 @@
             </div>
         </div>
     </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" href="#collapse7">ส่วนที่ 8 ปัญหา อุปสรรค และข้อเสนอแนะ</a>
+            </h4>
+        </div>
+        <div id="collapse7" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <li><a href="/admin/charts/suggestion">ตารางปัญหา อุปสรรคและข้อเสนอแนะ</a></li>
+            </div>
+        </div>
+    </div>
+
 </div>

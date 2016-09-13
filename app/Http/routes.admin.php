@@ -121,3 +121,7 @@ Route::get('charts/budget/', function () {
 Route::get('charts/sold/', function () {
     return view("admin.charts.soldChart");
 });
+
+Route::get('charts/suggestion/', function () {
+    return view("admin.charts.suggestion");
+});
