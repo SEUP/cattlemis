@@ -150,6 +150,10 @@
 
     Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('content');
 
+    Vue.filter('ln2br', function (str) {
+        var breakTag = '<br/>';
+        return (str + '').replace(/\n/g,"<br>");
+    })
 
     var AdminApp = Vue.extend({
         el: "body",

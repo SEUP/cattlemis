@@ -89,8 +89,8 @@
 
                             <tr v-for="owner in farmOwners">
 
-                                <td>@{{ owner.problem}}</td>
-                                <td>@{{ owner.suggestion}}</td>
+                                <td>@{{ owner.problem | ln2br }}</td>
+                                <td>@{{ owner.suggestion | ln2br }}</td>
                                 <td>@{{ owner.province_name}}</td>
                                 <td>@{{ owner.amphur_name}}</td>
                                 <td>@{{ owner.district_name}}</td>
