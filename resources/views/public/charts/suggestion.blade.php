@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('public.layout')
 
 @section('page-wrapper')
     <div class="row">
