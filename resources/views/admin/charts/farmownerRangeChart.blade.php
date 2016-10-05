@@ -6,8 +6,8 @@
     <input type="hidden" id="min" value="{{$min}}"/>
     <input type="hidden" id="max" value="{{$max}}"/>
     <input type="hidden" id="step" value="{{$step}}"/>
-    <input type="hidden" id="withNull" value="{{$withNull}}"/>
-    <input type="hidden" id="nullText" value="{{$nullText}}"/>
+    <input type="hidden" id="withNull" value="{{$withNull or ''}}"/>
+    <input type="hidden" id="nullText" value="{{$nullText or ''}}"/>
     <div class="row">
         <div class="col-lg-8">
             <div class="row">
