@@ -29,7 +29,7 @@ class FarmOwnerRequest extends Request
                 return [
                     'first_name' => 'required',
                     'last_name' => 'required',
-                    'person_id' => 'required|unique:farm_owners,person_id',
+                    'person_id' => 'required|unique:farm_owners,person_id,NULL,id,deleted_at,NULL',
                 ];
             }
             case 'PUT':
@@ -40,7 +40,7 @@ class FarmOwnerRequest extends Request
                 return [
                     'first_name' => 'required',
                     'last_name' => 'required',
-                    'person_id' => "required|unique:farm_owners,person_id,$farmOwner",
+                    'person_id' => "required|unique:farm_owners,person_id,$farmOwner,id,deleted_at,NULL",
 
                 ];
             }

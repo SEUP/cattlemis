@@ -335,6 +335,7 @@ class FarmOwnerController extends Controller
         }
 
         $query->orderBy('updated_at', 'desc');
+        $query->whereNull('deleted_at');
         $farmOwners = $query->paginate(12);
 
         return $farmOwners;

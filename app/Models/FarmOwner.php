@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Created by PhpStorm.
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class FarmOwner extends Model
 {
+    use SoftDeletes;
     protected $fillable = [
         //part 1
         'first_name', 'last_name', 'person_id', 'house_no', 'house_moo', 'house_province',
@@ -77,7 +79,7 @@ class FarmOwner extends Model
         'farm_register_status',
         'farm_register',
         'farm_disease_check',
-        'abortion', 'tuberculosis', 'foot_mouth_disease','disease_other',
+        'abortion', 'tuberculosis', 'foot_mouth_disease', 'disease_other',
 
         //part3
         'own_land', 'rent_land', 'use_land', 'minerals_feed', 'feedstock', 'sub_minerals_feed',
@@ -450,7 +452,7 @@ class FarmOwner extends Model
     public function own_land()
     {
         return $this->choices()
-            ->withPivot(['remark', 'area','subarea'])
+            ->withPivot(['remark', 'area', 'subarea'])
             ->where('type', '=', 'own_land');
 
     }
@@ -458,7 +460,7 @@ class FarmOwner extends Model
     public function rent_land()
     {
         return $this->choices()
-            ->withPivot(['remark', 'area','price','subarea'])
+            ->withPivot(['remark', 'area', 'price', 'subarea'])
             ->where('type', '=', 'rent_land');
 
     }
@@ -466,7 +468,7 @@ class FarmOwner extends Model
     public function use_land()
     {
         return $this->choices()
-            ->withPivot(['remark', 'area','subarea'])
+            ->withPivot(['remark', 'area', 'subarea'])
             ->where('type', '=', 'use_land');
 
     }
@@ -506,14 +508,14 @@ class FarmOwner extends Model
     public function sub_own_lands()
     {
         return $this->choices()
-            ->withPivot(['remark', 'area','subarea'])
+            ->withPivot(['remark', 'area', 'subarea'])
             ->where('type', '=', 'sub_own_lands');
     }
 
     public function sub_use_lands()
     {
         return $this->choices()
-            ->withPivot(['remark', 'area','subarea'])
+            ->withPivot(['remark', 'area', 'subarea'])
             ->where('type', '=', 'sub_use_lands');
     }
 
@@ -612,10 +614,9 @@ class FarmOwner extends Model
     public function vaccine_types()
     {
         return $this->choices()
-            ->withPivot(['remark', 'amount','source'])
+            ->withPivot(['remark', 'amount', 'source'])
             ->where('type', '=', 'vaccine_types');
     }
-
 
 
     public function cattle_dung_uses()
@@ -1053,7 +1054,6 @@ class FarmOwner extends Model
     }
 
 
-
     //part 3
 
     public function getOwnLandAttribute()
@@ -1261,7 +1261,6 @@ class FarmOwner extends Model
             return [];
         }
     }
-
 
 
     //part5
