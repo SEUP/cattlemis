@@ -11,6 +11,9 @@ var app = new AdminApp({
         user_id: 0,
         user_is_admin: 0,
         admin_level: 0,
+        province: 0,
+        amphur: 0,
+        district: 0,
 
         farmOwners: [],
         farmOwnerPage: {},
@@ -26,6 +29,16 @@ var app = new AdminApp({
     },
     methods: {
 
+        cannotEdit: function (owner) {
+
+            if (this.admin_level == "admin") return false;
+            else if ((this.admin_level = 'user_province') && (this.province == owner.house_province)) return false;
+            else if ((this.admin_level = 'user_amphur') && (this.amphur == owner.house_amphur)) return false;
+            else if ((this.admin_level = 'user_district') && (this.district == owner.house_district)) return false;
+
+            return true;
+
+        },
         provinceChange: function () {
             this.form.amphur = 0
             this.form.district = 0;
@@ -110,6 +123,29 @@ var app = new AdminApp({
 
 
         this.admin_level = $("#admin_level").attr('value')
+        this.province = $("#province").attr('value');
+        this.amphur = $("#amphur").attr('value');
+        this.district = $("#district").attr('value');
+
+
+        if (this.admin_level == "admin") {
+            //do nothing
+        }
+        else if ((this.admin_level = 'user_province')) {
+            self.form.province = this.province
+            self.form.amphur = this.amphur
+            self.form.district = this.district
+        }
+        else if ((this.admin_level = 'user_amphur')) {
+            self.form.province = this.province
+            self.form.amphur = this.amphur
+            self.form.district = this.district
+        }
+        else if ((this.admin_level = 'user_district')) {
+            self.form.province = this.province
+            self.form.amphur = this.amphur
+            self.form.district = this.district
+        }
 
 
         self.$http.get("/api/choice/master_breeding_types").then(function (response) {
