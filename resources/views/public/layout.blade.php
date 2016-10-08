@@ -10,6 +10,10 @@
 
     <link rel="stylesheet" href="/css/app.css">
 
+    <meta id="admin_level" value="guest">
+    <meta id="province" value="0">
+    <meta id="amphur" value="0">
+    <meta id="district" value="0">
 
     <link href='/css/vendor.print.style.css' rel='stylesheet' media='print'/>
 
