@@ -95,6 +95,9 @@ var app = new AdminApp({
             return null;
         },
         search: function () {
+            this.gotoPage(1)
+        },
+        load: function () {
             this.$http.get('/api/farm-owner', {params: this.form}).then(
                 function (response) {
                     this.farmOwnerPage = response.data;
@@ -107,12 +110,10 @@ var app = new AdminApp({
 
                 }
             );
-
-
         },
         gotoPage: function (page) {
             this.form.page = page;
-            this.search();
+            this.load();
         }
     },
     ready: function () {

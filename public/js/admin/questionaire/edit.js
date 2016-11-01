@@ -161,10 +161,7 @@ var app = new AdminApp({
                     this.options[opt].splice(i, 1, this.newFarmer[opt]);
                 }
             }
-
-
-        }
-        ,
+        },
         reInitialMultiOption: function (opt) {
 
             var choiceOpt = this.options[opt];
@@ -182,8 +179,7 @@ var app = new AdminApp({
                     }
                 }
             }
-        }
-        ,
+        },
         reSelectedOption: function () {
 
             var attributes = [
