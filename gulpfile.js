@@ -50,7 +50,8 @@ elixir(function (mix) {
     mix.styles([
         'vendor/metisMenu.min.css',
         'vendor/fullcalendar.min.css',
-        'vendor/jquery.datetimepicker.css'
+        'vendor/jquery.datetimepicker.css',
+        'vendor/select2.css'
     ], 'public/css/vendor.style.css')
 
     mix.styles([
@@ -59,6 +60,7 @@ elixir(function (mix) {
 
     mix.scripts([
         'vendor/jquery.min.js',
+        'vendor/select2.full.js',
         'vendor/moment.js',
         'vendor/jquery.datetimepicker.min.js',
         'vendor/fullcalendar.min.js',

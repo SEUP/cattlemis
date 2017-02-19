@@ -294,7 +294,7 @@ class FarmOwner extends Model
         return $this->choices()
             // return $this->belongsToMany(Choice::class)
             // ->with('children')
-            ->withPivot(['remark', 'source', 'amount', 'price'])
+            ->withPivot(['remark','source_opt', 'source', 'amount', 'price'])
             ->where('type', '=', 'male_breeding_types');
     }
 
@@ -303,7 +303,7 @@ class FarmOwner extends Model
         //return $this->choices2()
         return $this->choices()
             //return $this->belongsToMany(Choice::class)
-            ->withPivot(['source', 'amount', 'price'])
+            ->withPivot(['source','source_opt', 'amount', 'price'])
             ->where('type', '=', 'male_int_breeding_types');
     }
 
@@ -312,7 +312,7 @@ class FarmOwner extends Model
         // return $this->choices2()
         return $this->choices()
             // return $this->belongsToMany(Choice::class)
-            ->withPivot(['source', 'amount', 'price'])
+            ->withPivot(['source','source_opt', 'amount', 'price'])
             ->where('type', '=', 'male_mixed_breeding_types');
     }
 
@@ -322,7 +322,7 @@ class FarmOwner extends Model
         //return $this->belongsToMany(Choice::class)
         // ->with(['children'])
         return $this->choices()
-            ->withPivot(['remark', 'source', 'amount', 'price'])
+            ->withPivot(['remark','source_opt', 'source', 'amount', 'price'])
             ->where('type', '=', 'female_breeding_types');
     }
 
@@ -331,7 +331,7 @@ class FarmOwner extends Model
         //return $this->choices2()
         // return $this->belongsToMany(Choice::class)
         return $this->choices()
-            ->withPivot(['source', 'amount', 'price'])
+            ->withPivot(['source','source_opt', 'amount', 'price'])
             ->where('type', '=', 'female_int_breeding_types');
     }
 
@@ -340,7 +340,7 @@ class FarmOwner extends Model
         //return $this->choices2()
         return $this->choices()
             // return $this->belongsToMany(Choice::class)
-            ->withPivot(['source', 'amount', 'price'])
+            ->withPivot(['source','source_opt', 'amount', 'price'])
             ->where('type', '=', 'female_mixed_breeding_types');
     }
 
@@ -350,7 +350,7 @@ class FarmOwner extends Model
         return $this->choices()
             //return $this->belongsToMany(Choice::class)
             // ->with(['children'])
-            ->withPivot(['remark', 'source', 'amount', 'price'])
+            ->withPivot(['remark','source_opt', 'source', 'amount', 'price'])
             ->where('type', '=', 'male_over_six_breeding_types');
     }
 
@@ -358,7 +358,7 @@ class FarmOwner extends Model
     {
         return $this->choices()
             //return $this->belongsToMany(Choice::class)
-            ->withPivot(['source', 'amount', 'price'])
+            ->withPivot(['source','source_opt', 'amount', 'price'])
             ->where('type', '=', 'male_over_six_int_breeding_types');
     }
 
@@ -366,7 +366,7 @@ class FarmOwner extends Model
     {
         return $this->choices()
             //    return $this->belongsToMany(Choice::class)
-            ->withPivot(['source', 'amount', 'price'])
+            ->withPivot(['source','source_opt', 'amount', 'price'])
             ->where('type', '=', 'male_over_six_mixed_breeding_types');
     }
 
@@ -375,7 +375,7 @@ class FarmOwner extends Model
         return $this->choices()
             // return $this->belongsToMany(Choice::class)
             ->with(['children'])
-            ->withPivot(['remark', 'source', 'amount', 'price'])
+            ->withPivot(['remark', 'source','source_opt', 'amount', 'price'])
             ->where('type', '=', 'female_over_six_breeding_types');
     }
 
@@ -383,7 +383,7 @@ class FarmOwner extends Model
     {
         return $this->choices()
             //return $this->belongsToMany(Choice::class)
-            ->withPivot(['source', 'amount', 'price'])
+            ->withPivot(['source','source_opt', 'amount', 'price'])
             ->where('type', '=', 'female_over_six_int_breeding_types');
     }
 
@@ -391,7 +391,7 @@ class FarmOwner extends Model
     {
         return $this->choices()
             // return $this->belongsToMany(Choice::class)
-            ->withPivot(['source', 'amount', 'price'])
+            ->withPivot(['source','source_opt', 'amount', 'price'])
             ->where('type', '=', 'female_over_six_mixed_breeding_types');
     }
 
@@ -400,7 +400,7 @@ class FarmOwner extends Model
         return $this->choices()
             //return $this->belongsToMany(Choice::class)
             // ->with(['children'])
-            ->withPivot(['remark', 'source', 'amount', 'price'])
+            ->withPivot(['remark', 'source','source_opt', 'amount', 'price'])
             ->where('type', '=', 'male_under_six_breeding_types');
     }
 
@@ -408,7 +408,7 @@ class FarmOwner extends Model
     {
         return $this->choices()
             // return $this->belongsToMany(Choice::class)
-            ->withPivot(['source', 'amount', 'price'])
+            ->withPivot(['source','source_opt', 'amount', 'price'])
             ->where('type', '=', 'male_under_six_int_breeding_types');
     }
 
@@ -416,7 +416,7 @@ class FarmOwner extends Model
     {
         return $this->choices()
             //return $this->belongsToMany(Choice::class)
-            ->withPivot(['source', 'amount', 'price'])
+            ->withPivot(['source','source_opt', 'amount', 'price'])
             ->where('type', '=', 'male_under_six_mixed_breeding_types');
     }
 
@@ -425,7 +425,7 @@ class FarmOwner extends Model
         return $this->choices()
             //return $this->belongsToMany(Choice::class)
             ->with(['children'])
-            ->withPivot(['remark', 'source', 'amount', 'price'])
+            ->withPivot(['remark', 'source','source_opt', 'amount', 'price'])
             ->where('type', '=', 'female_under_six_breeding_types');
     }
 
@@ -433,7 +433,7 @@ class FarmOwner extends Model
     {
         return $this->choices()
             // return $this->belongsToMany(Choice::class)
-            ->withPivot(['source', 'amount', 'price'])
+            ->withPivot(['source','source_opt', 'amount', 'price'])
             ->where('type', '=', 'female_under_six_int_breeding_types');
     }
 
@@ -441,7 +441,7 @@ class FarmOwner extends Model
     {
         return $this->choices()
             //return $this->belongsToMany(Choice::class)
-            ->withPivot(['source', 'amount', 'price'])
+            ->withPivot(['source','source_opt', 'amount', 'price'])
             ->where('type', '=', 'female_under_six_mixed_breeding_types');
     }
 

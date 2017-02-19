@@ -113,6 +113,9 @@
                 isLoaded: false,
             },
             methods: {
+                updateSource : function(source){
+                    console.log("test")
+                },
                 showPanel: function (panel, event) {
                     event.preventDefault();
                     if (panel.isOpen) {

@@ -1,4 +1,5 @@
 <form class="form-horizontal">
+
     <fieldset id="2.1">
         <legend>2.1 การเลี้ยงโคเนื้อของท่านมีวัตถุประสงค์เพื่ออะไร (เลือกได้มากกว่า 1 ข้อ)</legend>
         <!-- sample multi choices -->
@@ -55,15 +56,26 @@
                             <input type="checkbox" v-model="newFarmer[subchild.type]" v-bind:value="subchild">
                             @{{ subchild.choice }}:
                             <div class="row">
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <input type="number" v-model="subchild['pivot']['amount']" class="form-control"
                                            placeholder="จำนวน">
                                 </div>
-                                <div class="col-sm-4">
-                                    <input type="text" v-model="subchild['pivot']['source']" class="form-control"
-                                           placeholder="แหล่งที่มา">
+                                <div class="col-sm-3">
+                                    <select v-model="subchild['pivot']['source_opt']" class="form-control">
+                                        <option value="" selected>กรุณาเลือกแหล่งที่มา</option>
+                                        <option value="ตลาดโค" v-bind:selected="subchild['pivot']['source_opt'] == 'ตลาดโค'">ตลาดโค</option>
+                                        <option value="พ่อค้าคนกลาง" v-bind:selected="subchild['pivot']['source_opt'] == 'พ่อค้าคนกลาง'">พ่อค้าคนกลาง</option>
+                                        <option value="ในหมู่บ้าน" v-bind:selected="subchild['pivot']['source_opt'] == 'ในหมู่บ้าน'">ในหมู่บ้าน</option>
+                                        <option value="โครงการหลวง" v-bind:selected="subchild['pivot']['source_opt'] == 'โครงการหลวง'">โครงการหลวง</option>
+                                        <option value="ผลิตเองในฟาร์ม" v-bind:selected="subchild['pivot']['source_opt'] == 'ผลิตเองในฟาร์ม'">ผลิตเองในฟาร์ม</option>
+                                        <option value="อื่นๆ" v-bind:selected="subchild['pivot']['source_opt'] == 'อื่นๆ'">อื่นๆ</option>
+                                    </select>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
+                                    <input type="text" v-model="subchild['pivot']['source']" class="form-control"
+                                           placeholder="ระบุแหล่งที่มาอื่นๆ">
+                                </div>
+                                <div class="col-sm-3">
                                     <input type="number" v-model="subchild['pivot']['price']" class="form-control"
                                            placeholder="ราคา">
 
@@ -80,16 +92,29 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <input type="number" v-model="child['pivot']['amount']" class="form-control"
                                        placeholder="จำนวน">
                             </div>
-                            <div class="col-sm-4">
+
+                            <div class="col-sm-3">
+                                <select v-model="child['pivot']['source_opt']" class="form-control">
+                                    <option value="" selected>กรุณาเลือกแหล่งที่มา</option>
+                                    <option value="ตลาดโค" v-bind:selected="child['pivot']['source_opt'] == 'ตลาดโค'">ตลาดโค</option>
+                                    <option value="พ่อค้าคนกลาง" v-bind:selected="child['pivot']['source_opt'] == 'พ่อค้าคนกลาง'">พ่อค้าคนกลาง</option>
+                                    <option value="ในหมู่บ้าน" v-bind:selected="child['pivot']['source_opt'] == 'ในหมู่บ้าน'">ในหมู่บ้าน</option>
+                                    <option value="โครงการหลวง" v-bind:selected="child['pivot']['source_opt'] == 'โครงการหลวง'">โครงการหลวง</option>
+                                    <option value="ผลิตเองในฟาร์ม" v-bind:selected="child['pivot']['source_opt'] == 'ผลิตเองในฟาร์ม'">ผลิตเองในฟาร์ม</option>
+                                    <option value="อื่นๆ" v-bind:selected="child['pivot']['source_opt'] == 'อื่นๆ'">อื่นๆ</option>
+                                </select>
+                            </div>
+
+                            <div class="col-sm-3">
                                 <input type="text" v-model="child['pivot']['source']" class="form-control"
                                        placeholder="แหล่งที่มา">
                             </div>
 
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <input type="number" v-model="child['pivot']['price']" class="form-control"
                                        placeholder="ราคา">
                             </div>
@@ -177,6 +202,7 @@
                            v-model="option['pivot']['remark']">
                 </label>
             </div>
+        </div>
 
     </fieldset>
 
