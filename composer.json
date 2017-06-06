@@ -12,7 +12,7 @@
     "laravel/framework": "5.2.*",
     "sammyk/laravel-facebook-sdk": "^3.3",
     "maddhatter/laravel-fullcalendar": "^1.2",
-    "barryvdh/laravel-dompdf": "0.6.*",
+    "barryvdh/laravel-dompdf": "0.8.*",
     "doctrine/dbal": "^2.5"
   },
   "require-dev": {
