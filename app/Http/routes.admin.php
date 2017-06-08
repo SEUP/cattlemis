@@ -113,6 +113,12 @@ Route::get('charts/double/{title}/{type}', function ($title, $type) {
         ->with('type', $type);
 });
 
+Route::get('charts/doublePivot/{title}/{type}', function ($title, $type) {
+    return view("admin.charts.doublePivotChart")
+        ->with('title', $title)
+        ->with('type', $type);
+});
+
 Route::get('charts/budget/', function () {
     return view("admin.charts.budgetChart");
 });

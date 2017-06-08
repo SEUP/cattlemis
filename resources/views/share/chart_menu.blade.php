@@ -53,10 +53,9 @@
                 <li>
                     <a href="{{$PREFIX}}/charts/range-farmowner/ค่าใช้จ่ายในการเลี้ยงโคเนื้อ (บาท ต่อ เดือน)/total_expense_amount/1000/10000/3?withNull=true&nullText=ยังไม่ได้ขาย">ค่าใช้จ่ายในการเลี้ยงโคเนื้อ</a>
                 </li>
-                <li><a href="{{$PREFIX}}/charts/normal/ประวัติการตรวจโรคสัตว์/farm_disease_check">ประวัติการตรวจโรคสัตว์</a>
+                <li>
+                    <a href="{{$PREFIX}}/charts/normal/ประวัติการตรวจโรคสัตว์/farm_disease_check">ประวัติการตรวจโรคสัตว์</a>
                 <li><a href="{{$PREFIX}}/charts/normal/แหล่งน้ำที่ใช้/water_source_types">แหล่งน้ำที่ใช้</a>
-
-
 
 
             </div>
@@ -90,6 +89,11 @@
                 <li>
                     <a href="{{$PREFIX}}/charts/normal/แหล่งอาหารหยาบในฤดูแล้ง/feed_summer_sources">แหล่งอาหารหยาบในฤดูแล้ง</a>
                 </li>
+
+                <li><a href="{{$PREFIX}}/charts/range-farmowner/พื้นที่ถือครองทางการเกษตร/total_own_lands/0/50/4">พื้นที่ถือครองทางการเกษตร</a>
+                <li><a href="{{$PREFIX}}/charts/normal/การเช่าที่ดินเพื่อใช้ในการเลี้ยง/rent_land">การเช่าที่ดินเพื่อใช้ในการเลี้ยง</a>
+
+
             </div>
         </div>
     </div>
@@ -110,11 +114,22 @@
                     <a href="{{$PREFIX}}/charts/normal/แหล่งน้ำเชื้อการผสมเทียม/inseminate_sources">แหล่งน้ำเชื้อการผสมเทียม</a>
                 </li>
                 <li><a href="{{$PREFIX}}/charts/normal/ผู้ให้บริการผสมเทียม/breeders">ผู้ให้บริการผสมเทียม</a></li>
+                <li><a href="{{$PREFIX}}/charts/normal/การตายของโคในรอบปี/cattle_death">การตายของโคในรอบปี</a></li>
+                <li><a href="{{$PREFIX}}/charts/normal/บุคคลที่ทำการรักษาให้เมื่อโคเจ็บป่วย/disease_cured_by">บุคคลที่ทำการรักษาให้เมื่อโคเจ็บป่วย</a>
+                </li>
+
                 <li><a href="{{$PREFIX}}/charts/range-farmowner/อัตราส่วนพ่อพันธุ์คุมฝูง/breeding_rate/1/20/3">อัตราส่วนพ่อพันธุ์คุมฝูง</a>
                 </li>
+
+                <li>
+                    <a href="{{$PREFIX}}/charts/doublePivot/การถ่ายพยาธิ/dewormed_amount/">การถ่ายพยาธิ</a>
+                </li>
+
+
                 <li><a href="{{$PREFIX}}/charts/double/วัคซีนป้องกันโรค/vaccine_ever">วัคซีนป้องกันโรค</a>
                 </li>
-                <li><a href="{{$PREFIX}}/charts/normal/การจัดการมูลโคในฟาร์ม/cattle_dung_uses">การจัดการมูลโคในฟาร์ม</a></li>
+                <li><a href="{{$PREFIX}}/charts/normal/การจัดการมูลโคในฟาร์ม/cattle_dung_uses">การจัดการมูลโคในฟาร์ม</a>
+                </li>
             </div>
         </div>
     </div>
