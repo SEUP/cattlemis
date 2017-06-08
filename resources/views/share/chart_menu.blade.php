@@ -156,17 +156,37 @@
         <div id="collapse6" class="panel-collapse collapse in">
             <div class="panel-body">
                 <li><a href="{{$PREFIX}}/charts/normal/การจำหน่ายโค/seller_types">การจำหน่ายโคเนื้อให้กับใคร</a></li>
-                <li><a href="{{$PREFIX}}/charts/normal/อายุของโคเนื้อที่จำหน่าย/age_sale">อายุของโคเนื้อที่จำหน่าย</a>
+                <li>
+                    <a href="{{$PREFIX}}/charts/normal/อายุของโคเนื้อที่จำหน่าย/age_sale">อายุของโคเนื้อที่จำหน่าย</a>
                 </li>
+
+                <li>
+                    <a href="{{$PREFIX}}/charts/normal/น้ำหนักของโคเนื้อที่ท่านจำหน่าย/weight_range_sale">น้ำหนักของโคเนื้อที่ท่านจำหน่าย</a>
+                </li>
+
                 <li>
                     <a href="{{$PREFIX}}/charts/pie/ลักษณะการจำหน่าย/cattle_sale_methods">ลักษณะการจำหน่ายโคเนื้อ</a>
                 </li>
                 <li><a href="{{$PREFIX}}/charts/groupJoin">การรวมกลุ่มวิสาหกิจชุมชนและสหกรณ์โคเนื้อ</a>
                 </li>
+                <li><a href="{{$PREFIX}}/charts/sold">ราคาของโคเนื้อที่ขาย และระยะเวลาในการเลี้ยง</a></li>
                 <li>
                     <a href="{{$PREFIX}}/charts/pie/ความประสงค์ในการรวมกลุ่มวิสาหกิจชุมชนและสหกรณ์โคเนื้อ/group_join_future">ความประสงค์ในการรวมกลุ่มวิสาหกิจชุมชนและสหกรณ์โคเนื้อ</a>
                 </li>
-                <li><a href="{{$PREFIX}}/charts/sold">ราคาของโคเนื้อที่ขาย และระยะเวลาในการเลี้ยง</a></li>
+                <li>
+                    <a href="{{$PREFIX}}/charts/normal/ความต้องการความช่วยเหลือจากสหกรณ์/cooperative_help_types">ความต้องการความช่วยเหลือจากสหกรณ์</a>
+                </li>
+                <li>
+                    <a href="{{$PREFIX}}/charts/normal/ความต้องการซื้ออาหารข้นในนามสหกรณ์/feed_purchase_cooperative">ความต้องการซื้ออาหารข้นในนามสหกรณ์</a>
+                </li>
+
+                <li>
+                    <a href="{{$PREFIX}}/charts/normal/ระดับความพอใจต่อราคาที่ขาย/sale_satisfaction">ระดับความพอใจต่อราคาที่ขาย</a>
+                </li>
+
+
+
+
             </div>
         </div>
     </div>
@@ -181,13 +201,25 @@
             <div class="panel-body">
                 <li><a href="{{$PREFIX}}/charts/normal/หน่วยงานที่ให้บริการส่งเสริมการเลี้ยงโคเนื้อ/support_sources">หน่วยงานที่ให้บริการส่งเสริมการเลี้ยงโคเนื้อ</a>
                 </li>
-                <li><a href="{{$PREFIX}}/charts/pie/การเยี่ยมเยือนฟาร์มจากหน่วยงาน/support_visit">การเยี่ยมเยือนฟาร์มจากหน่วยงาน</a>
+                <li>
+                    <a href="{{$PREFIX}}/charts/pie/การเยี่ยมเยือนฟาร์มจากหน่วยงาน/support_visit">การเยี่ยมเยือนฟาร์มจากหน่วยงาน</a>
                 </li>
+
+                <li>
+                    <a href="{{$PREFIX}}/charts/pie/การได้รับการสนับสนุนปัจจัยการผลิต/production_support">การได้รับการสนับสนุนปัจจัยการผลิต</a>
+                </li>
+
                 <li>
                     <a href="{{$PREFIX}}/charts/pie/การใช้บริการด้านสุขภาพโคจากหน่วยงานของกรมปศุสัตว์/cattle_heath_support">การใช้บริการด้านสุขภาพโคจากหน่วยงานของกรมปศุสัตว์</a>
                 </li>
-                <li><a href="{{$PREFIX}}/charts/pie/การเข้ารับการฝึกอบรมเกี่ยวกับการเลี้ยงโคเนื้อ/training_support">การเข้ารับการฝึกอบรมเกี่ยวกับการเลี้ยงโคเนื้อ</a>
+                <li>
+                    <a href="{{$PREFIX}}/charts/pie/การเข้ารับการฝึกอบรมเกี่ยวกับการเลี้ยงโคเนื้อ/training_support">การเข้ารับการฝึกอบรมเกี่ยวกับการเลี้ยงโคเนื้อ</a>
                 </li>
+
+                <li>
+                    <a href="{{$PREFIX}}/charts/pie/การไปดูงานเกี่ยวกับการเลี้ยงโคเนื้อ/observe_support">การไปดูงานเกี่ยวกับการเลี้ยงโคเนื้อ</a>
+                </li>
+
                 <li>
                     <a href="{{$PREFIX}}/charts/pie/การสนับสนุนให้แม่พันธุ์โคเนื้อมาเลี้ยงเพื่อผลิตลูก/female_breeder_support">การสนับสนุนให้แม่พันธุ์โคเนื้อมาเลี้ยงเพื่อผลิตลูก</a>
                 </li>
