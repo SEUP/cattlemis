@@ -120,7 +120,7 @@
             </div>
         </div>
         <div class="col-lg-4">
-            @include('admin.charts.chart_menu')
+            @include('share.chart_menu',["PREFIX"=>"/admin"])
         </div>
     </div>
 

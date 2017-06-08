@@ -65,7 +65,7 @@
             </div>
         </div>
         <div class="col-lg-4" style="margin-top: 2em;">
-            @include('public.charts.chart_menu')
+            @include('share.chart_menu',["PREFIX"=>""])
         </div>
     </div>
 

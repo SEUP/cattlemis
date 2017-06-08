@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="col-lg-4" style="margin-top: 2em;">
-            @include('admin.charts.chart_menu')
+            @include('share.chart_menu',["PREFIX"=>"/admin"])
         </div>
         <!-- /.col-lg-12 -->
     </div>

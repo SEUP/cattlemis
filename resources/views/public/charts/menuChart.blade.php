@@ -6,7 +6,7 @@
             <h1 class="page-header">แผนภูมิรายงานเกษตรกรผู้เลี้ยงโคเนื้อ 4 จังหวัด พะเยา เชียงราย แพร่ น่าน</h1>
             <div class="row">
                 <div class="col-lg-6">
-                    @include('public.charts.chart_menu')
+                    @include('share.chart_menu',["PREFIX"=>""])
                 </div>
 
                 <div class="col-lg-6">
