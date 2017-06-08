@@ -17,6 +17,9 @@
                     <a href="/admin/charts/normal/เฉลี่ยรายได้รวมของครอบครัว/income_range">เฉลี่ยรายได้รวมของครอบครัว</a>
                 </li>
                 <li>
+                    <a href="/admin/charts/normal/รายได้จากการประกอบอาชีพของเกษตรกร/jobtypes">รายได้จากการประกอบอาชีพของเกษตรกร</a>
+                </li>
+                <li>
                     <a href="/admin/charts/range-farmowner/รายได้เฉลี่ยต่อปีของการขายโคเนื้อ/avg_cattle_income/50000/200000/3?withNull=true&nullText=ยังไม่ได้ขาย">รายได้เฉลี่ยต่อปีของการขายโคเนื้อ</a>
                 </li>
             </div>
@@ -46,6 +49,14 @@
                 <li>
                     <a href="/admin/charts/multi-choice/การเกิดโรคในฟาร์ม/abortion,tuberculosis,foot_mouth_disease,disease_other">การเกิดโรคในฟาร์ม</a>
                 </li>
+
+                <li>
+                    <a href="/admin/charts/range-farmowner/ค่าใช้จ่ายในการเลี้ยงโคเนื้อ (บาท ต่อ เดือน)/total_expense_amount/1000/10000/3?withNull=true&nullText=ยังไม่ได้ขาย">ค่าใช้จ่ายในการเลี้ยงโคเนื้อ</a>
+                </li>
+                <li><a href="/admin/charts/normal/ประวัติการตรวจโรคสัตว์/farm_disease_check">ประวัติการตรวจโรคสัตว์</a>
+
+
+
             </div>
         </div>
     </div>
