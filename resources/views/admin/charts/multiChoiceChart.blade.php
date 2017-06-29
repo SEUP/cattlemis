@@ -45,7 +45,7 @@
             },
             methods: {
                 provinceChange: function () {
-                    this.$http.get('/chart/multi/choices/' + this.chartType + '/' + this.selProvince).then(function (r) {
+                    this.$http.get('chart/multi/choices/' + this.chartType + '/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData = data;
                         this.displayChart();
@@ -110,11 +110,11 @@
                 }
                 ,
                 loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
+                    this.$http.get("api/thailand/province").then(function (response) {
                         this.provinces = response.data;
                     });
 
-                    this.$http.get('/chart/multi/choices/' + this.chartType).then(function (r) {
+                    this.$http.get('chart/multi/choices/' + this.chartType).then(function (r) {
                         data = r.data;
                         this.chartData = data;
                         this.displayChart();

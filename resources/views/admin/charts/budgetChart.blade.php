@@ -90,14 +90,14 @@
             },
             methods: {
                 provinceChange: function () {
-                    this.$http.get('/chart/budget/' + this.selProvince).then(function (r) {
+                    this.$http.get('chart/budget/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData[0] = data;
                         this.displayChart(0);
                         this.displayChart(1);
                     });
 
-                    var api = "/chart/range/farm-owner/total_budget/" + this.min + "/" + this.max + "/" + this.step + "/" + this.selProvince;
+                    var api = "chart/range/farm-owner/total_budget/" + this.min + "/" + this.max + "/" + this.step + "/" + this.selProvince;
 
                     this.$http.get(api).then(function (r) {
                         data = r.data;
@@ -240,11 +240,11 @@
                 }
                 ,
                 loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
+                    this.$http.get("api/thailand/province").then(function (response) {
                         this.provinces = response.data;
                     });
 
-                    this.$http.get('/chart/budget').then(function (r) {
+                    this.$http.get('chart/budget').then(function (r) {
                         //this.$http.get('/chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status').then(function (r) {
                         data = r.data;
                         this.chartData[0] = data;
@@ -253,7 +253,7 @@
 
                     });
 
-                    var api = "/chart/range/farm-owner/total_budget/" + this.min + "/" + this.max + "/" + this.step;
+                    var api = "chart/range/farm-owner/total_budget/" + this.min + "/" + this.max + "/" + this.step;
 
                     this.$http.get(api).then(function (r) {
                         data = r.data;

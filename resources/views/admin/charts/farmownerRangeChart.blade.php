@@ -56,7 +56,7 @@
             methods: {
                 provinceChange: function () {
 
-                    var api = "/chart/range/farm-owner/" +
+                    var api = "chart/range/farm-owner/" +
                             this.chartType + "/" + this.min + "/" + this.max + "/" + this.step + "/" + this.selProvince;
 
                     this.$http.get(api, {
@@ -126,11 +126,11 @@
                 ,
                 loadData: function () {
 
-                    this.$http.get("/api/thailand/province").then(function (response) {
+                    this.$http.get("api/thailand/province").then(function (response) {
                         this.provinces = response.data;
                     });
 
-                    var api = "/chart/range/farm-owner/" +
+                    var api = "chart/range/farm-owner/" +
                             this.chartType + "/" + this.min + "/" + this.max + "/" + this.step;
                     this.$http.get(api, {
                         params: {withNull: this.withNull, nullText: this.nullText}
