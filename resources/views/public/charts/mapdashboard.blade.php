@@ -181,7 +181,7 @@
 
                 },
                 reloadData: function () {
-                    var query = "/chart/map-data/";
+                    var query = window.root_url + "/chart/map-data/";
                     var mapData = Highcharts.maps["countries/th/th-north/mapdata"];
                     var self = this;
                     if (this.provinceId) {
