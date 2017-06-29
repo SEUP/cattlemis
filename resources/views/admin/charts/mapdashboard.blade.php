@@ -135,7 +135,7 @@
 @endsection
 
 @section('javascript')
-    <script type="text/javascript" src="/mapdata/th-north.js"></script>
+    <script type="text/javascript" src="{{asset("/mapdata/th-north.js")}}"></script>
 
     <script>
 
@@ -157,7 +157,7 @@
             },
             methods: {
                 reloadProvinceAmphure: function () {
-                    this.$http.get('/api/thailand/province/' + this.provinceId).then(
+                    this.$http.get('api/thailand/province/' + this.provinceId).then(
                             function (response) {
                                 this.provinceData = response.data;
                             },
@@ -167,7 +167,7 @@
                     );
 
                     if(this.amphurId){
-                        this.$http.get("/api/thailand/province/" + this.provinceId + "/amphure/" + this.amphurId).then(
+                        this.$http.get("api/thailand/province/" + this.provinceId + "/amphure/" + this.amphurId).then(
                                 function (response) {
                                     this.amphurData = response.data;
                                 },
@@ -181,7 +181,7 @@
 
                 },
                 reloadData: function () {
-                    var query = "/chart/map-data/";
+                    var query = window.root_url + "/chart/map-data/";
                     var mapData = Highcharts.maps["countries/th/th-north/mapdata"];
                     var self = this;
                     if (this.provinceId) {

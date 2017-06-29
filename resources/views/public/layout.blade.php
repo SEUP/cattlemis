@@ -4,18 +4,18 @@
     <meta id="token" name="token" content="{{ csrf_token() }}">
     <title>Cattle MIS</title>
 
-    <link rel="stylesheet" href="/css/vendor.sass.css">
-    <link rel="stylesheet" href="/css/vendor.less.css">
-    <link rel="stylesheet" href="/css/vendor.style.css">
+    <link rel="stylesheet" href="{{asset("/css/vendor.sass.css")}}">
+    <link rel="stylesheet" href="{{asset("/css/vendor.sass.css")}}">
+    <link rel="stylesheet" href="{{asset("/css/vendor.style.css")}}">
 
-    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="{{asset("/css/app.css")}}">
 
     <meta id="admin_level" value="guest">
     <meta id="province" value="0">
     <meta id="amphur" value="0">
     <meta id="district" value="0">
 
-    <link href='/css/vendor.print.style.css' rel='stylesheet' media='print'/>
+    <link href='{{asset("/css/vendor.print.style.css")}}' rel='stylesheet' media='print'/>
 
 
     <style>
@@ -37,13 +37,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/admin">Cattle Management Information System</a>
+            <a class="navbar-brand" href="{{url("/admin")}}">Cattle Management Information System</a>
         </div>
         <!-- /.navbar-header -->
         <ul class="nav navbar-top-links navbar-nav navbar-right">
             <!-- /.dropdown -->
             <li class="">
-                <a href="/login">เข้าสู่ระบบ</a>
+                <a href="{{url("/")}}/login">เข้าสู่ระบบ</a>
             </li>
             <!-- /.dropdown -->
         </ul>
@@ -62,13 +62,13 @@
                         ยินดีต้อนรับ ผู้เยี่ยมชม
                     </li>
                     <li>
-                        <a href="/"><i class="fa fa-dashboard fa-fw"></i> หน้าหลัก</a>
+                        <a href="{{url("/")}}"><i class="fa fa-dashboard fa-fw"></i> หน้าหลัก</a>
                     </li>
                     <li>
-                        <a href="/questionaire/search"><i class="fa fa-search fa-fw"></i> ค้นหาข้อมูลเกษตรกร</a>
+                        <a href="{{url("/")}}/questionaire/search"><i class="fa fa-search fa-fw"></i> ค้นหาข้อมูลเกษตรกร</a>
                     </li>
                     <li>
-                        <a href="/charts/menuchart"><i class="fa fa-bar-chart-o fa-fw"></i> แผนภูมิรายงาน</a>
+                        <a href="{{url("/")}}/charts/menuchart"><i class="fa fa-bar-chart-o fa-fw"></i> แผนภูมิรายงาน</a>
 
                     </li>
                 </ul>
@@ -100,7 +100,7 @@
 </div>
 <!-- /#wrapper -->
 <!-- jQuery -->
-<script src="/js/vendor.js"></script>
+<script src="{{asset("/js/vendor.js")}}"></script>
 
 <script type="text/javascript">
 

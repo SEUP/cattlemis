@@ -88,7 +88,7 @@
 @endsection
 
 @section('javascript')
-    <script type="text/javascript" src="/mapdata/th-north.js"></script>
+    <script type="text/javascript" src="{{asset("/mapdata/th-north.js")}}"></script>
 
     @parent
 

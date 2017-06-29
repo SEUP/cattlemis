@@ -88,14 +88,14 @@
 @endsection
 
 @section('javascript')
-    <script type="text/javascript" src="/mapdata/th-north.js"></script>
+    <script type="text/javascript" src="{{asset("/mapdata/th-north.js")}}"></script>
 
     @parent
 
 
     <script>
         $(function () {
-            $.getJSON("/chart/map-data", function (response) {
+            $.getJSON(window.root_url + "/chart/map-data", function (response) {
                 $('#map-container').highcharts('Map', {
                     title: {
                         text: 'จำนวนเกษตรกรผู้เลี้ยงโคเนื้อ 4 จังหวัดภาคเหนือ'
@@ -140,7 +140,7 @@
             });
 
 
-            $.getJSON("/chart/map-data/44", function (response) {
+            $.getJSON(window.root_url + "/chart/map-data/44", function (response) {
                 $('#map-container-phayao').highcharts('Map', {
                     title: {
                         text: 'จำนวนเกษตรกรผู้เลี้ยงโคเนื้อจังหวัดพะเยา'
@@ -196,7 +196,7 @@
                 });
             });
 
-            $.getJSON("/chart/map-data/43", function (response) {
+            $.getJSON(window.root_url + "/chart/map-data/43", function (response) {
                 $('#map-container-nan').highcharts('Map', {
                     title: {
                         text: 'จำนวนเกษตรกรผู้เลี้ยงโคเนื้อจังหวัดน่าน'
@@ -253,7 +253,7 @@
                 });
             });
 
-            $.getJSON("/chart/map-data/42", function (response) {
+            $.getJSON(window.root_url + "/chart/map-data/42", function (response) {
                 $('#map-container-phrae').highcharts('Map', {
                     title: {
                         text: 'จำนวนเกษตรกรผู้เลี้ยงโคเนื้อจังหวัดแพร่'
@@ -328,7 +328,7 @@
             });
 
 
-            $.getJSON("/chart/map-data/45", function (response) {
+            $.getJSON(window.root_url + "/chart/map-data/45", function (response) {
                 $('#map-container-chiangrai').highcharts('Map', {
                     title: {
                         text: 'จำนวนเกษตรกรผู้เลี้ยงโคเนื้อจังหวัดเชียงราย'

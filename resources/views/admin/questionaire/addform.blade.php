@@ -92,7 +92,7 @@
 
 
 @section('javascript')
-    <script type="text/javascript" src="/js/admin/questionaire/QuestionTextField.js"></script>
+    <script type="text/javascript" src="{{asset("/js/admin/questionaire/QuestionTextField.js")}}"></script>
     <script type="text/javascript">
 
         var app = new AdminApp({
@@ -231,9 +231,9 @@
                     // this.newFarmer["total_master_breeding_types"] = 500;
                     this.formError = {};
                     console.log(this.newFarmer);
-                    this.$http.post('/api/farm-owner', this.newFarmer).then(function (response) {
+                    this.$http.post('api/farm-owner', this.newFarmer).then(function (response) {
                         console.log(response.data);
-                        window.location.href = "/admin/questionaire/" + response.data.id + '/edit';
+                        window.location.href = "{{url("/")}}/admin/questionaire/" + response.data.id + '/edit';
                     }, function (error) {
                         this.formError = error.data;
                     })
@@ -242,26 +242,39 @@
 
                     var self = this;
 
-                    $.ajax({
-                        url: '/api/farm-owner/create',
-                        type: 'get',
-                        dataType: 'json',
-                        async: 'false',
-                        success: function (response) {
+
+                    this.$http.get('api/choice').then(function(response){
+                        self.options = response;
+
+
+                        this.$http.get('api/farm-owner/create').then(function(response){
                             self.newFarmer = response;
                             self.isLoaded = true;
-                        }
+                        })
                     })
 
-                    $.ajax({
-                        url: '/api/choice',
-                        type: 'get',
-                        dataType: 'json',
-                        async: 'false',
-                        success: function (response) {
-                            self.options = response;
-                        }
-                    })
+
+
+
+//                    $.ajax({
+//                        url: 'api/farm-owner/create',
+//                        type: 'get',
+//                        dataType: 'json',
+//                        async: 'false',
+//                        success: function (response) {
+//
+//                        }
+//                    })
+
+//                    $.ajax({
+//                        url: '/api/choice',
+//                        type: 'get',
+//                        dataType: 'json',
+//                        async: 'false',
+//                        success: function (response) {
+//
+//                        }
+//                    })
                 }
 
             },

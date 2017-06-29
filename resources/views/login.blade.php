@@ -3,9 +3,11 @@
 <head>
     <title>ระบบฐานข้อมูลเกษตรกรผู้เลี้ยงโคเนื้อ 4 จังหวัด</title>
 
-    <link rel="stylesheet" href="/css/vendor.sass.css">
-    <link rel="stylesheet" href="/css/vendor.less.css">
-    <link rel="stylesheet" href="/css/vendor.style.css">
+    <link rel="stylesheet" href="{{asset("css/vendor.sass.css")}}">
+    <link rel="stylesheet" href="{{asset("css/vendor.sass.css")}}">
+    <link rel="stylesheet" href="{{asset("css/vendor.style.css")}}">
+
+    <link rel="stylesheet" href="{{asset("css/app.css")}}">
 
 </head>
 <body>
@@ -29,7 +31,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form role="form" method="post" action="/login">
+                    <form role="form" method="post" action="{{url('/')}}/login">
                         {{csrf_field()}}
                         <fieldset>
                             <div class="form-group">
@@ -58,6 +60,6 @@
     </div>
 </div>
 
-<script src="/js/vendor.js"></script>
+<script src="{{asset("/js/vendor.js")}}"></script>
 </body>
 </html>

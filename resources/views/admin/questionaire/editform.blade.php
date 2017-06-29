@@ -124,6 +124,6 @@
 @endsection
 
 @section('javascript')
-    <script type="text/javascript" src="/js/admin/questionaire/QuestionTextField.js"></script>
-    <script type="text/javascript" src="/js/admin/questionaire/edit.js"></script>
+    <script type="text/javascript" src="{{asset("/js/admin/questionaire/QuestionTextField.js")}}"></script>
+    <script type="text/javascript" src="{{asset("/js/admin/questionaire/edit.js")}}"></script>
 @endsection

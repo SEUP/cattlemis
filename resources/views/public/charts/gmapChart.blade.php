@@ -52,9 +52,9 @@
 
 
 @section('javascript')
-    <script src="/js/lodash.min.js"></script>
+    <script src="{{asset("/js/lodash.min.js")}}"></script>
 
-    <script type="text/javascript" src="/js/vue-google-maps/dist/vue-google-maps.js"></script>
+    <script type="text/javascript" src="{{asset("/js/vue-google-maps/dist/vue-google-maps.js")}}"></script>
 
     <script type="text/javascript">
 
@@ -86,7 +86,7 @@
                 },
 
                 loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
+                    this.$http.get("api/thailand/province").then(function (response) {
                         this.provinces = response.data;
                     });
 

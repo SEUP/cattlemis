@@ -43,7 +43,7 @@ var app = new AdminApp({
             this.form.amphur = 0
             this.form.district = 0;
             if (this.form.province != 0) {
-                this.$http.get('/api/thailand/province/' + this.form.province + "/amphure").then(function (r) {
+                this.$http.get('api/thailand/province/' + this.form.province + "/amphure").then(function (r) {
                     this.amphurs = r.data;
                 })
             }
@@ -53,7 +53,7 @@ var app = new AdminApp({
         amphurChange: function () {
             this.form.district = 0;
             if (this.form.amphur != 0) {
-                this.$http.get('/api/thailand/province/' + this.form.province + "/amphure/" + this.form.amphur + "/district").then(
+                this.$http.get('api/thailand/province/' + this.form.province + "/amphure/" + this.form.amphur + "/district").then(
                     function (r) {
                         this.districts = r.data;
                     })
@@ -64,7 +64,7 @@ var app = new AdminApp({
             if (!this.cannotEdit(owner)) {
                 var id = owner.id
                 if (confirm("คุณต้องการลบข้อมูลเกษตกรรายนี้หรือไม่?")) {
-                    this.$http.delete('/api/farm-owner/' + id).then(function (response) {
+                    this.$http.delete('api/farm-owner/' + id).then(function (response) {
                         this.search();
                     })
                 }
@@ -98,7 +98,7 @@ var app = new AdminApp({
             this.gotoPage(1)
         },
         load: function () {
-            this.$http.get('/api/farm-owner', {params: this.form}).then(
+            this.$http.get('api/farm-owner', {params: this.form}).then(
                 function (response) {
                     this.farmOwnerPage = response.data;
                     this.farmOwners = this.farmOwnerPage.data;
@@ -149,19 +149,19 @@ var app = new AdminApp({
         }
 
 
-        self.$http.get("/api/choice/master_breeding_types").then(function (response) {
+        self.$http.get("api/choice/master_breeding_types").then(function (response) {
             self.breedings = response.data;
         })
 
-        self.$http.get("/api/thailand/province").then(function (response) {
+        self.$http.get("api/thailand/province").then(function (response) {
             self.provinces = response.data;
 
             if (self.form.province != 0) {
-                this.$http.get('/api/thailand/province/' + self.form.province + "/amphure").then(function (r) {
+                this.$http.get('api/thailand/province/' + self.form.province + "/amphure").then(function (r) {
                     this.amphurs = r.data;
 
                     if (self.form.amphur != 0) {
-                        this.$http.get('/api/thailand/province/' + self.form.province + "/amphure/" + self.form.amphur + "/district"
+                        this.$http.get('api/thailand/province/' + self.form.province + "/amphure/" + self.form.amphur + "/district"
                         ).then(function (r) {
                             this.districts = r.data;
                         })

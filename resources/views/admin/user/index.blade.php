@@ -60,7 +60,7 @@
                             </td>
                             <td>
                                 <div v-if="user_is_admin" class="btn-group" role="group" aria-label="...">
-                                    <a href="/admin/user/@{{ user.id }}/edit"
+                                    <a href="{{url("/")}}/admin/user/@{{ user.id }}/edit"
                                        class="btn btn-default">Edit</a>
                                     <button v-if="user.id != user_id" v-on:click="deleteUser(user.id)" type="button"
                                             class="btn btn-danger">
@@ -112,11 +112,11 @@
 
                 deleteUser: function (id) {
                     if (confirm("Do you want to delete this user")) {
-                        window.location.href = "/admin/user/" + id + "/delete";
+                        window.location.href = "{{url("/")}}/admin/user/" + id + "/delete";
                     }
                 },
                 search: function () {
-                    this.$http.get('/api/user', {params: this.form}).then(
+                    this.$http.get('api/user', {params: this.form}).then(
                             function (response) {
 
                                 this.userPage = response.data;

@@ -122,11 +122,11 @@
                     @if($showManage)
                         <td class="text-center">
                             <div class="btn-group">
-                                <a href="/admin/questionaire/@{{owner.id}}/export" target="_blank"
+                                <a href="{{url("/")}}/admin/questionaire/@{{owner.id}}/export" target="_blank"
                                    class="btn btn-success">ส่งออก</a>
 
                                 <a v-bind:class="{'disabled' : cannotEdit(owner) }"
-                                   href="/admin/questionaire/@{{owner.id}}/edit" class="btn btn-info">แก้ไข</a>
+                                   href="{{url("/")}}/admin/questionaire/@{{owner.id}}/edit" class="btn btn-info">แก้ไข</a>
 
                                 <a
                                         v-bind:class="{'disabled' : cannotEdit(owner) }"

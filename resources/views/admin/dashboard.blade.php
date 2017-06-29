@@ -9,7 +9,7 @@
     </div>
     <div class="row">
         <div class="col-lg-6 col-md-6">
-            <a href="/admin/questionaire/add">
+            <a href="{{url("/")}}/admin/questionaire/add">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="row">
@@ -33,7 +33,7 @@
             </a>
         </div>
         <div class="col-lg-6 col-md-6">
-            <a href="/admin/questionaire/search">
+            <a href="{{url("/")}}/admin/questionaire/search">
                 <div class="panel panel-green">
                     <div class="panel-heading">
                         <div class="row">
@@ -57,7 +57,7 @@
             </a>
         </div>
         <div class="col-lg-6 col-md-6">
-            <a href="/admin/charts/menuchart">
+            <a href="{{url("/")}}/admin/charts/menuchart">
                 <div class="panel panel-yellow">
                     <div class="panel-heading">
                         <div class="row">
@@ -82,7 +82,7 @@
         </div>
         @if(Auth::user() && Auth::user()->isAdmin())
         <div class="col-lg-6 col-md-6">
-            <a href="/admin/user">
+            <a href="{{url("/")}}/admin/user">
                 <div class="panel panel-red">
                     <div class="panel-heading">
                         <div class="row">

@@ -7,7 +7,7 @@
         </div>
         <div id="collapse1" class="panel-collapse collapse in">
             <div class="panel-body">
-                <li><a href="{{$PREFIX}}/charts/pie/เพศ/sex">เพศ</a></li>
+                <li><a href="{{url($PREFIX."/charts/pie/เพศ/sex")}}">เพศ</a></li>
                 <li><a href="{{$PREFIX}}/charts/range-farmowner/อายุ/age/15/70/8">อายุ</a></li>
                 <li><a href="{{$PREFIX}}/charts/normal/การศึกษา/education">การศึกษา</a></li>
                 <li><a href="{{$PREFIX}}/charts/gmap/ที่ตั้งฟาร์มของเกษตรกร">ที่ตั้งฟาร์มของเกษตรกร</a></li>

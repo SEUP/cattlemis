@@ -10,7 +10,7 @@
     <div class="row">
 
         <div class="col-lg-6 col-md-6">
-            <a href="/questionaire/search">
+            <a href="{{url("/")}}/questionaire/search">
                 <div class="panel panel-green">
                     <div class="panel-heading">
                         <div class="row">
@@ -34,7 +34,7 @@
             </a>
         </div>
         <div class="col-lg-6 col-md-6">
-            <a href="/charts/menuchart">
+            <a href="{{url("/")}}/charts/menuchart">
                 <div class="panel panel-yellow">
                     <div class="panel-heading">
                         <div class="row">

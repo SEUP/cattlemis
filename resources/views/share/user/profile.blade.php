@@ -53,7 +53,7 @@
 
 
                         <button type="submit" class="btn btn-default">Submit</button>
-                        <a class="btn btn-default" href="/admin">Cancel</a>
+                        <a class="btn btn-default" href="{{url("/")}}/admin">Cancel</a>
                     </form>
                 </div>
             </div>

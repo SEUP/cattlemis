@@ -473,7 +473,7 @@
 
                 },
                 loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
+                    this.$http.get("api/thailand/province").then(function (response) {
                         this.provinces = response.data;
                     });
                     // this.$http.get('/chart/cattle/' + this.chartType).then(function (r) {

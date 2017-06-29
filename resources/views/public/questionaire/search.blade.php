@@ -7,5 +7,5 @@
 
 
 @section('javascript')
-    <script type="text/javascript" src="/js/questionaire/search.js"></script>
+    <script type="text/javascript" src="{{asset("/js/questionaire/search.js")}}"></script>
 @endsection

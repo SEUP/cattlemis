@@ -28,15 +28,14 @@
         @endif
     @endif
     <title>Cattle MIS</title>
+    <link rel="stylesheet" href="{{asset("css/vendor.sass.css")}}">
+    <link rel="stylesheet" href="{{asset("css/vendor.sass.css")}}">
+    <link rel="stylesheet" href="{{asset("css/vendor.style.css")}}">
 
-    <link rel="stylesheet" href="/css/vendor.sass.css">
-    <link rel="stylesheet" href="/css/vendor.less.css">
-    <link rel="stylesheet" href="/css/vendor.style.css">
-
-    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="{{asset("css/app.css")}}">
 
 
-    <link href='/css/vendor.print.style.css' rel='stylesheet' media='print'/>
+    <link href='{{asset("/css/vendor.print.style.css")}}' rel='stylesheet' media='print'/>
 
 
     <style>
@@ -58,7 +57,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/admin">Cattle Management Information System</a>
+            <a class="navbar-brand" href="{{url("/")}}/admin">Cattle Management Information System</a>
         </div>
         <!-- /.navbar-header -->
 
@@ -69,10 +68,10 @@
                     <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="/admin/profile"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    <li><a href="{{url("/")}}/admin/profile"><i class="fa fa-user fa-fw"></i> User Profile</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="{{url("/")}}/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -94,23 +93,26 @@
                         ยินดีต้อนรับ, {{Auth::user()->firstname}} {{Auth::user()->lastname}}
                     </li>
                     <li>
-                        <a href="/admin#"><i class="fa fa-dashboard fa-fw"></i> หน้าหลัก</a>
+                        <a href="{{url("/")}}/admin#"><i class="fa fa-dashboard fa-fw"></i> หน้าหลัก</a>
                     </li>
 
                     <li>
-                        <a href="/admin/questionaire/add"><i class="fa fa-plus fa-fw"></i> บันทึกข้อมูลเกษตรกรใหม่</a>
+                        <a href="{{url("/")}}/admin/questionaire/add"><i class="fa fa-plus fa-fw"></i>
+                            บันทึกข้อมูลเกษตรกรใหม่</a>
                     </li>
 
                     <li>
-                        <a href="/admin/questionaire/search"><i class="fa fa-search fa-fw"></i> ค้นหาข้อมูลเกษตรกร</a>
+                        <a href="{{url("/")}}/admin/questionaire/search"><i class="fa fa-search fa-fw"></i>
+                            ค้นหาข้อมูลเกษตรกร</a>
                     </li>
                     <li>
-                        <a href="/admin/charts/menuchart"><i class="fa fa-bar-chart-o fa-fw"></i> แผนภูมิรายงาน</a>
+                        <a href="{{url("/")}}/admin/charts/menuchart"><i class="fa fa-bar-chart-o fa-fw"></i>
+                            แผนภูมิรายงาน</a>
 
                     </li>
                     @if(Auth::user() && Auth::user()->isAdmin())
                         <li>
-                            <a href="/admin/user"><i class="fa fa-user fa-fw"></i> จัดการข้อมูลผู้ใช้</a>
+                            <a href="{{url("/")}}/admin/user"><i class="fa fa-user fa-fw"></i> จัดการข้อมูลผู้ใช้</a>
                         </li>
                     @endif
                 </ul>
@@ -144,15 +146,16 @@
 </div>
 <!-- /#wrapper -->
 <!-- jQuery -->
-<script src="/js/vendor.js"></script>
+<script src="{{asset("/js/vendor.js")}}"></script>
 
 <script type="text/javascript">
 
+    window.root_url = Vue.http.options.root = '{{url("/")}}';
     Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('content');
 
     Vue.filter('ln2br', function (str) {
         var breakTag = '<br/>';
-        return (str + '').replace(/\n/g,"<br>");
+        return (str + '').replace(/\n/g, "<br>");
     })
 
     var AdminApp = Vue.extend({
@@ -189,6 +192,7 @@
 
 @section('javascript')
     <script type="text/javascript">
+
         var app = new AdminApp({
             el: 'body'
         })
@@ -197,23 +201,24 @@
 
 <script>
 
+
     Vue.http.interceptors.push(
-            function (request, next) {
+        function (request, next) {
 
+            if (app.ajaxCount == 0) {
+                app.$broadcast("show::spinner")
+            }
+            app.ajaxCount++;
+
+            next((response) => {
+
+                app.ajaxCount--;
                 if (app.ajaxCount == 0) {
-                    app.$broadcast("show::spinner")
+                    app.$broadcast("hide::spinner")
                 }
-                app.ajaxCount++;
 
-                next((response) => {
-
-                    app.ajaxCount--;
-                    if (app.ajaxCount == 0) {
-                        app.$broadcast("hide::spinner")
-                    }
-
-                });
-            })
+            });
+        })
 
 </script>
 </body>

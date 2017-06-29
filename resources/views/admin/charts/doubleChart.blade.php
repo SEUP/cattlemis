@@ -238,7 +238,7 @@
                 }
                 ,
                 loadData: function () {
-                    this.$http.get("/api/thailand/province").then(function (response) {
+                    this.$http.get("api/thailand/province").then(function (response) {
                         this.provinces = response.data;
                     });
 

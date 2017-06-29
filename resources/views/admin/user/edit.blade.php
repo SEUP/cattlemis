@@ -133,7 +133,7 @@
                     this.selAmphur = 0
                     this.selDistrict = 0;
                     if (this.selProvince != 0) {
-                        this.$http.get('/api/thailand/province/' + this.selProvince + "/amphure").then(function (r) {
+                        this.$http.get('api/thailand/province/' + this.selProvince + "/amphure").then(function (r) {
                             this.amphurs = r.data;
                         })
                     }
@@ -142,7 +142,7 @@
                 amphurChange: function () {
                     this.selDistrict = 0;
                     if (this.selAmphur != 0) {
-                        this.$http.get('/api/thailand/province/' + this.selProvince + "/amphure/" + this.selAmphur + "/district").then(
+                        this.$http.get('api/thailand/province/' + this.selProvince + "/amphure/" + this.selAmphur + "/district").then(
                                 function (r) {
                                     this.districts = r.data;
                                 })
@@ -159,15 +159,15 @@
                 var self = this;
 
 
-                self.$http.get("/api/thailand/province").then(function (response) {
+                self.$http.get("api/thailand/province").then(function (response) {
                     self.provinces = response.data;
 
                     if (self.selProvince != 0) {
-                        this.$http.get('/api/thailand/province/' + this.selProvince + "/amphure").then(function (r) {
+                        this.$http.get('api/thailand/province/' + this.selProvince + "/amphure").then(function (r) {
                             this.amphurs = r.data;
 
                             if (self.selAmphur != 0) {
-                                this.$http.get('/api/thailand/province/' + this.selProvince + "/amphure/" + this.selAmphur + "/district"
+                                this.$http.get('api/thailand/province/' + this.selProvince + "/amphure/" + this.selAmphur + "/district"
                                 ).then(function (r) {
                                     this.districts = r.data;
                                 })

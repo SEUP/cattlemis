@@ -162,7 +162,7 @@
                     this.form.amphur = 0
                     this.form.district = 0;
                     if (this.form.province != 0) {
-                        this.$http.get('/api/thailand/province/' + this.form.province + "/amphure").then(function (r) {
+                        this.$http.get('api/thailand/province/' + this.form.province + "/amphure").then(function (r) {
                             this.amphurs = r.data;
                         })
                     }
@@ -172,7 +172,7 @@
                 amphurChange: function () {
                     this.form.district = 0;
                     if (this.form.amphur != 0) {
-                        this.$http.get('/api/thailand/province/' + this.form.province + "/amphure/" + this.form.amphur + "/district").then(
+                        this.$http.get('api/thailand/province/' + this.form.province + "/amphure/" + this.form.amphur + "/district").then(
                                 function (r) {
                                     this.districts = r.data;
                                 })
@@ -193,7 +193,7 @@
                 },
 
                 search: function () {
-                    this.$http.get('/api/farm-owner/suggestion', {params: this.form}).then(
+                    this.$http.get('api/farm-owner/suggestion', {params: this.form}).then(
                             function (response) {
                                 this.farmOwnerPage = response.data;
                                 this.farmOwners = this.farmOwnerPage.data;
@@ -219,15 +219,15 @@
 
                 this.admin_level = $("#admin_level").attr('value')
 
-                self.$http.get("/api/thailand/province").then(function (response) {
+                self.$http.get("api/thailand/province").then(function (response) {
                     self.provinces = response.data;
 
                     if (self.form.province != 0) {
-                        this.$http.get('/api/thailand/province/' + self.form.province + "/amphure").then(function (r) {
+                        this.$http.get('api/thailand/province/' + self.form.province + "/amphure").then(function (r) {
                             this.amphurs = r.data;
 
                             if (self.form.amphur != 0) {
-                                this.$http.get('/api/thailand/province/' + self.form.province + "/amphure/" + self.form.amphur + "/district"
+                                this.$http.get('api/thailand/province/' + self.form.province + "/amphure/" + self.form.amphur + "/district"
                                 ).then(function (r) {
                                     this.districts = r.data;
                                 })

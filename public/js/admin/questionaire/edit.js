@@ -141,7 +141,7 @@ var app = new AdminApp({
         save: function () {
 
 
-            this.$http.patch('/api/farm-owner/' + this.newFarmer.id, this.newFarmer).then(function (response) {
+            this.$http.patch('api/farm-owner/' + this.newFarmer.id, this.newFarmer).then(function (response) {
                 data = response.data;
                 this.newFarmer = data;
                 this.reSelectedOption();
@@ -270,7 +270,7 @@ var app = new AdminApp({
         var self = this;
 
         $.ajax({
-            url: '/api/choice',
+            url: window.root_url + '/api/choice',
             type: 'get',
             dataType: 'json',
             async: 'false',
@@ -279,7 +279,7 @@ var app = new AdminApp({
 
                 self.options = response;
                 self.newFarmer_id = $("#newFamer_id").val();
-                self.$http.get('/api/farm-owner/' + self.newFarmer_id + '/edit').then(
+                self.$http.get('api/farm-owner/' + self.newFarmer_id + '/edit').then(
                     function (response) {
                         this.newFarmer = response.data;
                         this.reSelectedOption();
