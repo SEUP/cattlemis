@@ -90,14 +90,14 @@
             },
             methods: {
                 provinceChange: function () {
-                    this.$http.get('/chart/budget/' + this.selProvince).then(function (r) {
+                    this.$http.get('chart/budget/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData[0] = data;
                         this.displayChart(0);
                         this.displayChart(1);
                     });
 
-                    var api = "/chart/range/farm-owner/total_budget/" + this.min + "/" + this.max + "/" + this.step + "/" + this.selProvince;
+                    var api = "chart/range/farm-owner/total_budget/" + this.min + "/" + this.max + "/" + this.step + "/" + this.selProvince;
 
                     this.$http.get(api).then(function (r) {
                         data = r.data;

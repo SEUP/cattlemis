@@ -256,9 +256,9 @@
 
                     this.reloadProvinceAmphure();
 
-                    var query = "/api/thailand/province/" + this.provinceId + "/farm_owners";
+                    var query = "api/thailand/province/" + this.provinceId + "/farm_owners";
                     if (this.amphurId) {
-                        query = "/api/thailand/province/" + this.provinceId + "/amphure/" + this.amphurId + "/farm_owners";
+                        query = "api/thailand/province/" + this.provinceId + "/amphure/" + this.amphurId + "/farm_owners";
                     }
                     this.$http.get(query, {params: this.form}).then(
                             function (response) {

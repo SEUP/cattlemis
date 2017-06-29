@@ -97,7 +97,7 @@
             methods: {
                 provinceChange: function () {
 
-                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType + '/'+ this.selProvince).then(function (r) {
+                    this.$http.get('chart/double/' + this.chartTitle + '/' + this.chartType + '/'+ this.selProvince).then(function (r) {
                         //this.$http.get('/chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status/'+this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData[0] = data;
@@ -242,7 +242,7 @@
                         this.provinces = response.data;
                     });
 
-                    this.$http.get('/chart/double/' + this.chartTitle + '/' + this.chartType).then(function (r) {
+                    this.$http.get('chart/double/' + this.chartTitle + '/' + this.chartType).then(function (r) {
                         //this.$http.get('/chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status').then(function (r) {
                         data = r.data;
                         this.chartData[0] = data;
