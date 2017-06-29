@@ -79,7 +79,7 @@
             methods: {
                 provinceChange: function () {
 
-                    this.$http.get('/chart/gmap/' + this.selProvince).then(function (r) {
+                    this.$http.get('chart/gmap/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData = data;
                     });
@@ -90,7 +90,7 @@
                         this.provinces = response.data;
                     });
 
-                    this.$http.get('/chart/gmap').then(function (r) {
+                    this.$http.get('chart/gmap').then(function (r) {
                         data = r.data;
                         this.chartData = data;
                     });

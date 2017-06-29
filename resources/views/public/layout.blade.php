@@ -104,6 +104,8 @@
 
 <script type="text/javascript">
 
+    window.root_url = Vue.http.options.root = '{{url("/")}}';
+
     Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('content');
 
     Vue.filter('ln2br', function (str) {

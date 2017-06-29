@@ -136,38 +136,38 @@
             },
             methods: {
                 provinceChange: function () {
-                    // this.$http.get('/chart/cattle/' + this.chartType+'/'+this.selProvince).then(function (r) {
-                    this.$http.get('/chart/cattle/พ่อพันธุ์โคเนื้อที่เลี้ยง/male_breeding_types/' + this.selProvince).then(function (r) {
+                    // this.$http.get('chart/cattle/' + this.chartType+'/'+this.selProvince).then(function (r) {
+                    this.$http.get('chart/cattle/พ่อพันธุ์โคเนื้อที่เลี้ยง/male_breeding_types/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData[0] = data;
                         this.displayChart(0);
                     });
 
-                    this.$http.get('/chart/cattle/แม่พันธุ์โคเนื้อที่เลี้ยง/female_breeding_types/' + this.selProvince).then(function (r) {
+                    this.$http.get('chart/cattle/แม่พันธุ์โคเนื้อที่เลี้ยง/female_breeding_types/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData[1] = data;
                         this.displayChart(1);
                     });
 
-                    this.$http.get('/chart/cattle/โคเพศผู้อายุมากกว่า 6 เดือนขึ้นไปแต่ไม่ใช่พ่อพันธุ์คุมฝูง/male_over_six_breeding_types/' + this.selProvince).then(function (r) {
+                    this.$http.get('chart/cattle/โคเพศผู้อายุมากกว่า 6 เดือนขึ้นไปแต่ไม่ใช่พ่อพันธุ์คุมฝูง/male_over_six_breeding_types/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData[2] = data;
                         this.displayChart(2);
                     });
 
-                    this.$http.get('/chart/cattle/โคเพศเมียอายุมากกว่า 6 เดือนขึ้นไปแต่ยังไม่ตั้งท้อง/female_over_six_breeding_types/' + this.selProvince).then(function (r) {
+                    this.$http.get('chart/cattle/โคเพศเมียอายุมากกว่า 6 เดือนขึ้นไปแต่ยังไม่ตั้งท้อง/female_over_six_breeding_types/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData[3] = data;
                         this.displayChart(3);
                     });
 
-                    this.$http.get('/chart/cattle/ลูกโคเพศผู้อายุน้อยกว่า 6 เดือน/male_under_six_breeding_types/' + this.selProvince).then(function (r) {
+                    this.$http.get('chart/cattle/ลูกโคเพศผู้อายุน้อยกว่า 6 เดือน/male_under_six_breeding_types/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData[4] = data;
                         this.displayChart(4);
                     });
 
-                    this.$http.get('/chart/cattle/ลูกโคเพศเมียอายุน้อยกว่า 6 เดือน/female_under_six_breeding_types/' + this.selProvince).then(function (r) {
+                    this.$http.get('chart/cattle/ลูกโคเพศเมียอายุน้อยกว่า 6 เดือน/female_under_six_breeding_types/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData[5] = data;
                         this.displayChart(5);
@@ -476,39 +476,39 @@
                     this.$http.get("api/thailand/province").then(function (response) {
                         this.provinces = response.data;
                     });
-                    // this.$http.get('/chart/cattle/' + this.chartType).then(function (r) {
-                    this.$http.get('/chart/cattle/พ่อพันธุ์โคเนื้อที่เลี้ยง/male_breeding_types').then(function (r) {
+                    // this.$http.get('chart/cattle/' + this.chartType).then(function (r) {
+                    this.$http.get('chart/cattle/พ่อพันธุ์โคเนื้อที่เลี้ยง/male_breeding_types').then(function (r) {
                         data = r.data;
                         this.chartData[0] = data;
                         this.displayChart(0);
                     });
 
-                    this.$http.get('/chart/cattle/แม่พันธุ์โคเนื้อที่เลี้ยง/female_breeding_types').then(function (r) {
+                    this.$http.get('chart/cattle/แม่พันธุ์โคเนื้อที่เลี้ยง/female_breeding_types').then(function (r) {
                         data = r.data;
                         this.chartData[1] = data;
                         this.displayChart(1);
                     });
 
-                    this.$http.get('/chart/cattle/โคเพศผู้อายุมากกว่า 6 เดือนขึ้นไปแต่ไม่ใช่พ่อพันธุ์คุมฝูง/male_over_six_breeding_types').then(function (r) {
+                    this.$http.get('chart/cattle/โคเพศผู้อายุมากกว่า 6 เดือนขึ้นไปแต่ไม่ใช่พ่อพันธุ์คุมฝูง/male_over_six_breeding_types').then(function (r) {
                         data = r.data;
                         this.chartData[2] = data;
                         this.displayChart(2);
                     });
 
-                    this.$http.get('/chart/cattle/โคเพศเมียอายุมากกว่า 6 เดือนขึ้นไปแต่ยังไม่ตั้งท้อง/female_over_six_breeding_types').then(function (r) {
+                    this.$http.get('chart/cattle/โคเพศเมียอายุมากกว่า 6 เดือนขึ้นไปแต่ยังไม่ตั้งท้อง/female_over_six_breeding_types').then(function (r) {
                         data = r.data;
                         this.chartData[3] = data;
                         this.displayChart(3);
                     });
 
 
-                    this.$http.get('/chart/cattle/ลูกโคเพศผู้อายุน้อยกว่า 6 เดือน/male_under_six_breeding_types').then(function (r) {
+                    this.$http.get('chart/cattle/ลูกโคเพศผู้อายุน้อยกว่า 6 เดือน/male_under_six_breeding_types').then(function (r) {
                         data = r.data;
                         this.chartData[4] = data;
                         this.displayChart(4);
                     });
 
-                    this.$http.get('/chart/cattle/ลูกโคเพศเมียอายุน้อยกว่า 6 เดือน/female_under_six_breeding_types').then(function (r) {
+                    this.$http.get('chart/cattle/ลูกโคเพศเมียอายุน้อยกว่า 6 เดือน/female_under_six_breeding_types').then(function (r) {
                         data = r.data;
                         this.chartData[5] = data;
                         this.displayChart(5);

@@ -46,7 +46,7 @@
             },
             methods: {
                 provinceChange: function () {
-                    this.$http.get('/chart/pie/' + this.chartType + '/' + this.selProvince).then(function (r) {
+                    this.$http.get('chart/pie/' + this.chartType + '/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData = data;
                         this.displayChart();
@@ -100,7 +100,7 @@
                         this.provinces = response.data;
                     });
 
-                    this.$http.get('/chart/pie/' + this.chartType).then(function (r) {
+                    this.$http.get('chart/pie/' + this.chartType).then(function (r) {
                         data = r.data;
                         this.chartData = data;
                         this.displayChart();

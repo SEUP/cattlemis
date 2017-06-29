@@ -344,7 +344,7 @@
                                     click: function () {
                                         console.log(this);
                                         var province = this.province_id ? this.province_id : this.properties.province_id;
-                                        window.location = "/admin/charts/menuchart/" + province + "/" + this.amphur_id
+                                        window.location = window.root_url + "/admin/charts/menuchart/" + province + "/" + this.amphur_id
                                     }
                                 }
                             }

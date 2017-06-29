@@ -79,8 +79,8 @@
             methods: {
                 provinceChange: function () {
 
-                    this.$http.get('/chart/doublePivot/' + this.chartTitle + '/' + this.chartType + '/' + this.selProvince).then(function (r) {
-                        //this.$http.get('/chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status/'+this.selProvince).then(function (r) {
+                    this.$http.get('chart/doublePivot/' + this.chartTitle + '/' + this.chartType + '/' + this.selProvince).then(function (r) {
+                        //this.$http.get('chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status/'+this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData[0] = data[0];
                         this.chartData[1] = data[1];
@@ -170,8 +170,8 @@
                         this.provinces = response.data;
                     });
 
-                    this.$http.get('/chart/doublePivot/' + this.chartTitle + '/' + this.chartType).then(function (r) {
-                        //this.$http.get('/chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status').then(function (r) {
+                    this.$http.get('chart/doublePivot/' + this.chartTitle + '/' + this.chartType).then(function (r) {
+                        //this.$http.get('chart/double/การขึ้นทะเบียนฟาร์มกับภาครัฐ/farm_register_status').then(function (r) {
                         data = r.data;
                         this.chartData[0] = data[0];
                         this.chartData[1] = data[1];

@@ -139,52 +139,52 @@
             methods: {
                 provinceChange: function () {
 
-                    this.$http.get('/chart/price_range_sale/239/' + this.selProvince).then(function (r) {
+                    this.$http.get('chart/price_range_sale/239/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData[0] = data;
                         this.displayChart(0);
                     });
-                    this.$http.get('/chart/age_range_sale/239/' + this.selProvince).then(function (r) {
+                    this.$http.get('chart/age_range_sale/239/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData[1] = data;
                         this.displayChart(1);
                     });
-                    this.$http.get('/chart/price_range_sale/240/' + this.selProvince).then(function (r) {
+                    this.$http.get('chart/price_range_sale/240/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData[2] = data;
                         this.displayChart(2);
                     });
-                    this.$http.get('/chart/age_range_sale/240/' + this.selProvince).then(function (r) {
+                    this.$http.get('chart/age_range_sale/240/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData[3] = data;
                         this.displayChart(3);
                     });
-                    this.$http.get('/chart/price_range_sale/241/' + this.selProvince).then(function (r) {
+                    this.$http.get('chart/price_range_sale/241/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData[4] = data;
                         this.displayChart(4);
                     });
-                    this.$http.get('/chart/age_range_sale/241/' + this.selProvince).then(function (r) {
+                    this.$http.get('chart/age_range_sale/241/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData[5] = data;
                         this.displayChart(5);
                     });
-                    this.$http.get('/chart/price_range_sale/242/' + this.selProvince).then(function (r) {
+                    this.$http.get('chart/price_range_sale/242/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData[6] = data;
                         this.displayChart(6);
                     });
-                    this.$http.get('/chart/age_range_sale/242/' + this.selProvince).then(function (r) {
+                    this.$http.get('chart/age_range_sale/242/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData[7] = data;
                         this.displayChart(7);
                     });
-                    this.$http.get('/chart/price_range_sale/243/' + this.selProvince).then(function (r) {
+                    this.$http.get('chart/price_range_sale/243/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData[8] = data;
                         this.displayChart(8);
                     });
-                    this.$http.get('/chart/age_range_sale/243/' + this.selProvince).then(function (r) {
+                    this.$http.get('chart/age_range_sale/243/' + this.selProvince).then(function (r) {
                         data = r.data;
                         this.chartData[9] = data;
                         this.displayChart(9);
@@ -632,53 +632,53 @@
                     this.$http.get("api/thailand/province").then(function (response) {
                         this.provinces = response.data;
                     });
-                    // this.$http.get('/chart/cattle/' + this.chartType).then(function (r) {
-                    this.$http.get('/chart/price_range_sale/239').then(function (r) {
+                    // this.$http.get('chart/cattle/' + this.chartType).then(function (r) {
+                    this.$http.get('chart/price_range_sale/239').then(function (r) {
                         data = r.data;
                         this.chartData[0] = data;
                         this.displayChart(0);
                     });
-                    this.$http.get('/chart/age_range_sale/239').then(function (r) {
+                    this.$http.get('chart/age_range_sale/239').then(function (r) {
                         data = r.data;
                         this.chartData[1] = data;
                         this.displayChart(1);
                     });
-                    this.$http.get('/chart/price_range_sale/240').then(function (r) {
+                    this.$http.get('chart/price_range_sale/240').then(function (r) {
                         data = r.data;
                         this.chartData[2] = data;
                         this.displayChart(2);
                     });
-                    this.$http.get('/chart/age_range_sale/240').then(function (r) {
+                    this.$http.get('chart/age_range_sale/240').then(function (r) {
                         data = r.data;
                         this.chartData[3] = data;
                         this.displayChart(3);
                     });
-                    this.$http.get('/chart/price_range_sale/241').then(function (r) {
+                    this.$http.get('chart/price_range_sale/241').then(function (r) {
                         data = r.data;
                         this.chartData[4] = data;
                         this.displayChart(4);
                     });
-                    this.$http.get('/chart/age_range_sale/241').then(function (r) {
+                    this.$http.get('chart/age_range_sale/241').then(function (r) {
                         data = r.data;
                         this.chartData[5] = data;
                         this.displayChart(5);
                     });
-                    this.$http.get('/chart/price_range_sale/242').then(function (r) {
+                    this.$http.get('chart/price_range_sale/242').then(function (r) {
                         data = r.data;
                         this.chartData[6] = data;
                         this.displayChart(6);
                     });
-                    this.$http.get('/chart/age_range_sale/242').then(function (r) {
+                    this.$http.get('chart/age_range_sale/242').then(function (r) {
                         data = r.data;
                         this.chartData[7] = data;
                         this.displayChart(7);
                     });
-                    this.$http.get('/chart/price_range_sale/243').then(function (r) {
+                    this.$http.get('chart/price_range_sale/243').then(function (r) {
                         data = r.data;
                         this.chartData[8] = data;
                         this.displayChart(8);
                     });
-                    this.$http.get('/chart/age_range_sale/243').then(function (r) {
+                    this.$http.get('chart/age_range_sale/243').then(function (r) {
                         data = r.data;
                         this.chartData[9] = data;
                         this.displayChart(9);
