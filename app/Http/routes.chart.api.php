@@ -530,142 +530,142 @@ Route::get('cattle/{title}/{type}/{province?}', function ($title, $type, $provin
     return $chart;
 });
 
-function rangePieChart($type, $province = null){
-    $query = DB::table('choices');
-    $query->leftJoin('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
-    $query->leftJoin('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
-
-    $query->where('choices.type', '=', $type);
-
-    if ($province) {
-        $query->where('farm_owners.house_province', '=', $province);
-    }
-
-    $query->groupBy('choices.choice');
-    $query->orderBy('choices.id', 'asc');
-    $query->select(DB::raw('count(farm_owners.id) as user_count, choices.choice'));
-
-    $results = $query->get();
-
-
-    $data = [];
-
-
-    foreach ($results as $result) {
-        $each = new stdClass();
-        $each->name = $result->choice;
-        $each->y = $result->user_count;
-
-        $data[] = $each;
-    }
-
-
-    $chart = [];
-    $chart['tooltip'] = [];
-    $chart['tooltip']['pointFormat'] = "จำนวน: <b>{point.y} คน</b>";
-
-
-    $chart['series'] = [];
-
-    $chart['series'][] =
-        [
-            "name" => $type,
-            "colorByPoint" => true,
-            "data" => $data
-        ];
-
-    return $chart;
-}
-
-function rangeChoicesChart(Request $request, $type, $min, $max, $numberGroup, $province = null)
-{
-
-
-    $step = intval(($max - $min) / $numberGroup);
-    $arr = range($min, $max, $step);
-
-
-    $query = DB::table('choices');
-    $query->leftJoin('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
-    $query->leftJoin('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
-    $query->where('choices.type', '=', $type);
-
-    if ($province) {
-        $query->where('farm_owners.house_province', '=', $province);
-    }
-
-    if ($request->has('withNull') and strcmp($request->get('withNull'), "true") == 0) {
-        $nullText = "null";
-        if ($request->has('nullText')) {
-            $nullText = $request->get('nullText');
-        }
-        $query->addSelect(DB::raw("SUM(IF(choice_farm_owner.amount IS NULL ,1,0)) as '$nullText' "));
-    }
-
-    if ($min == 0) {
-        $query->addSelect(DB::raw("SUM(IF(choice_farm_owner.amount = 0 and choice_farm_owner.amount is not null ,1,0)) as '0'"));
-    } elseif ($min == 1) {
-        $query->addSelect(DB::raw("SUM(IF(choice_farm_owner.amount = 0,1,0)) as '0'"));
-        $query->addSelect(DB::raw("SUM(IF(choice_farm_owner.amount = $min,1,0)) as '$min'"));
-    } else {
-        $query->addSelect(DB::raw("SUM(IF(choice_farm_owner.amount <= $min and choice_farm_owner.amount >=0,1,0)) as '0 ถึง $min'"));
-    }
-
-
-    for ($i = 0; $i < sizeof($arr) - 1; $i++) {
-        $low = $arr[$i];
-        $high = $arr[$i + 1];
-        $labelLow = $low + 1;
-        if ($high - $labelLow == 0) {
-            $query->addSelect(DB::raw("SUM(IF( choice_farm_owner.amount = $high,1,0)) as '$high'"));
-        } else {
-            $query->addSelect(DB::raw("SUM(IF(choice_farm_owner.amount > $low and choice_farm_owner.amount <= $high,1,0)) as '$labelLow ถึง $high'"));
-        }
-
-    }
-
-    $max = $arr[sizeof($arr) - 1];
-    $maxLabel = $max + 1;
-
-    $query->addSelect(DB::raw("SUM(IF(choice_farm_owner.amount > $max,1,0)) as '$maxLabel ขึ้นไป'"));
-
-
-    $results = $query->get()[0];
-
-    $xAxis = [];
-    foreach ($results as $key => $value) {
-        $data[] = intval($value);
-        $xAxis[] = $key;
-    }
-
-    $chart = [];
-    $chart['tooltip'] = [];
-    $chart['tooltip']['valueSuffix'] = " คน";
-
-
-    $chart['xAxis'] = [];
-    $chart['xAxis']['categories'] = $xAxis;
-
-    $chart['series'] = [];
-
-    $name ="จำนวน";
-    if($type=="dewormed_amount"){
-        $name = "จำนวน ครั้งต่อปี";
-    }
-    $chart['series'][] =
-        [
-            'name' => $name,
-            'data' => $data,
-            'colorByPoint' => true,
-
-        ];
-
-    return $chart;
-
-}
-
-
 Route::get('doublePivot/{title}/{type}/{province?}', function (Request $request, $title, $type, $province = null) {
+
+    function rangePieChart($type, $province = null){
+        $query = DB::table('choices');
+        $query->leftJoin('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
+        $query->leftJoin('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
+
+        $query->where('choices.type', '=', $type);
+
+        if ($province) {
+            $query->where('farm_owners.house_province', '=', $province);
+        }
+
+        $query->groupBy('choices.choice');
+        $query->orderBy('choices.id', 'asc');
+        $query->select(DB::raw('count(farm_owners.id) as user_count, choices.choice'));
+
+        $results = $query->get();
+
+
+        $data = [];
+
+
+        foreach ($results as $result) {
+            $each = new stdClass();
+            $each->name = $result->choice;
+            $each->y = $result->user_count;
+
+            $data[] = $each;
+        }
+
+
+        $chart = [];
+        $chart['tooltip'] = [];
+        $chart['tooltip']['pointFormat'] = "จำนวน: <b>{point.y} คน</b>";
+
+
+        $chart['series'] = [];
+
+        $chart['series'][] =
+            [
+                "name" => $type,
+                "colorByPoint" => true,
+                "data" => $data
+            ];
+
+        return $chart;
+    }
+
+    function rangeChoicesChart(Request $request, $type, $min, $max, $numberGroup, $province = null)
+    {
+
+
+        $step = intval(($max - $min) / $numberGroup);
+        $arr = range($min, $max, $step);
+
+
+        $query = DB::table('choices');
+        $query->leftJoin('choice_farm_owner', 'choices.id', '=', 'choice_farm_owner.choice_id');
+        $query->leftJoin('farm_owners', 'choice_farm_owner.farm_owner_id', '=', 'farm_owners.id');
+        $query->where('choices.type', '=', $type);
+
+        if ($province) {
+            $query->where('farm_owners.house_province', '=', $province);
+        }
+
+        if ($request->has('withNull') and strcmp($request->get('withNull'), "true") == 0) {
+            $nullText = "null";
+            if ($request->has('nullText')) {
+                $nullText = $request->get('nullText');
+            }
+            $query->addSelect(DB::raw("SUM(IF(choice_farm_owner.amount IS NULL ,1,0)) as '$nullText' "));
+        }
+
+        if ($min == 0) {
+            $query->addSelect(DB::raw("SUM(IF(choice_farm_owner.amount = 0 and choice_farm_owner.amount is not null ,1,0)) as '0'"));
+        } elseif ($min == 1) {
+            $query->addSelect(DB::raw("SUM(IF(choice_farm_owner.amount = 0,1,0)) as '0'"));
+            $query->addSelect(DB::raw("SUM(IF(choice_farm_owner.amount = $min,1,0)) as '$min'"));
+        } else {
+            $query->addSelect(DB::raw("SUM(IF(choice_farm_owner.amount <= $min and choice_farm_owner.amount >=0,1,0)) as '0 ถึง $min'"));
+        }
+
+
+        for ($i = 0; $i < sizeof($arr) - 1; $i++) {
+            $low = $arr[$i];
+            $high = $arr[$i + 1];
+            $labelLow = $low + 1;
+            if ($high - $labelLow == 0) {
+                $query->addSelect(DB::raw("SUM(IF( choice_farm_owner.amount = $high,1,0)) as '$high'"));
+            } else {
+                $query->addSelect(DB::raw("SUM(IF(choice_farm_owner.amount > $low and choice_farm_owner.amount <= $high,1,0)) as '$labelLow ถึง $high'"));
+            }
+
+        }
+
+        $max = $arr[sizeof($arr) - 1];
+        $maxLabel = $max + 1;
+
+        $query->addSelect(DB::raw("SUM(IF(choice_farm_owner.amount > $max,1,0)) as '$maxLabel ขึ้นไป'"));
+
+
+        $results = $query->get()[0];
+
+        $xAxis = [];
+        foreach ($results as $key => $value) {
+            $data[] = intval($value);
+            $xAxis[] = $key;
+        }
+
+        $chart = [];
+        $chart['tooltip'] = [];
+        $chart['tooltip']['valueSuffix'] = " คน";
+
+
+        $chart['xAxis'] = [];
+        $chart['xAxis']['categories'] = $xAxis;
+
+        $chart['series'] = [];
+
+        $name ="จำนวน";
+        if($type=="dewormed_amount"){
+            $name = "จำนวน ครั้งต่อปี";
+        }
+        $chart['series'][] =
+            [
+                'name' => $name,
+                'data' => $data,
+                'colorByPoint' => true,
+
+            ];
+
+        return $chart;
+
+    }
+
 
     $chart = rangePieChart($type,$province);
 
