@@ -5,7 +5,7 @@
         <div class="col-lg-10">
             <h1 class="page-header">บันทึกข้อมูลเกษตรกรใหม่</h1>
 
-            <div class="row" v-show="isLoaded">
+            <div class="row" v-if="isLoaded">
 
                 <div class="col-lg-12">
                     <accordion :one-at-atime="true" v-ref:questionforms>
@@ -244,11 +244,11 @@
 
 
                     this.$http.get('api/choice').then(function(response){
-                        self.options = response;
+                        self.options = response.data;
 
 
                         this.$http.get('api/farm-owner/create').then(function(response){
-                            self.newFarmer = response;
+                            self.newFarmer = response.data;
                             self.isLoaded = true;
                         })
                     })
