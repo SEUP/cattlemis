@@ -110,6 +110,12 @@
                             แผนภูมิรายงาน</a>
 
                     </li>
+
+                    <li>
+                        <a href="{{asset("file/questionaire.pdf")}}"><i class="fa fa-file-text-o fa-fw"></i> ดาวน์โหลดแบบสอบถาม</a>
+                    </li>
+
+
                     @if(Auth::user() && Auth::user()->isAdmin())
                         <li>
                             <a href="{{url("/")}}/admin/user"><i class="fa fa-user fa-fw"></i> จัดการข้อมูลผู้ใช้</a>
