@@ -291,6 +291,8 @@ class FarmOwnerController extends Controller
             , 'farm_owners.house_province'
             , 'farm_owners.house_amphur'
             , 'farm_owners.house_district'
+            ,'farm_owners.mobile_no'
+            ,'farm_owners.house_phone'
 
         ]);
 

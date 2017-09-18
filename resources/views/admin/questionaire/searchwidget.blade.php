@@ -99,6 +99,7 @@
                 <tr>
 
                     <th>ชื่อ - นามสกุล</th>
+                    <th>เบอร์โทรศัพท์</th>
                     <th class="col-md-2" v-show="form.breedChoice">จำนวน<br/>@{{ form.breedChoice }}</th>
                     <th>จังหวัด</th>
                     <th>อำเภอ</th>
@@ -114,6 +115,15 @@
                 <tr v-for="owner in farmOwners">
 
                     <td>@{{ owner.first_name }} @{{ owner.last_name }}</td>
+                    <td>
+                        <template v-if="owner.mobile_no || owner.house_phone">
+                        @{{ owner.mobile_no }}
+                            <span v-if="owner.house_phone">(@{{ owner.house_phone }})</span>
+                        </template>
+                        <template v-else>
+                            -
+                        </template>
+                    </td>
                     <td v-show="form.breedChoice">@{{ owner.amount }}</td>
                     <td>@{{ owner.province_name}}</td>
                     <td>@{{ owner.amphur_name}}</td>
