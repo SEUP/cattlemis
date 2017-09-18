@@ -69,7 +69,9 @@
                     </li>
                     <li>
                         <a href="{{url("/")}}/charts/menuchart"><i class="fa fa-bar-chart-o fa-fw"></i> แผนภูมิรายงาน</a>
-
+                    </li>
+                    <li>
+                        <a href="{{asset("file/questionaire.pdf")}}"><i class="fa fa-file-text-o fa-fw"></i> ดาวน์โหลดแบบสอบถาม</a>
                     </li>
                 </ul>
             </div>
