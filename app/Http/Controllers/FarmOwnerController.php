@@ -2,18 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ExportFarmOwners;
 use App\Models\FarmInfo;
 use App\Models\FarmOwner;
 use App\Models\Suggestion;
 use App\Models\User;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\FarmOwnerRequest;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 use Mockery\CountValidator\Exception;
 
 class FarmOwnerController extends Controller
 {
+
+    use DispatchesJobs;
 
     var $fieldArray = [
         [
@@ -274,7 +279,7 @@ class FarmOwnerController extends Controller
         return $farmOwners;
     }
 
-    public function index(Request $request)
+    public static function getAllQuery(Request $request)
     {
         $query = DB::table('farm_owners');
 
@@ -291,8 +296,8 @@ class FarmOwnerController extends Controller
             , 'farm_owners.house_province'
             , 'farm_owners.house_amphur'
             , 'farm_owners.house_district'
-            ,'farm_owners.mobile_no'
-            ,'farm_owners.house_phone'
+            , 'farm_owners.mobile_no'
+            , 'farm_owners.house_phone'
 
         ]);
 
@@ -337,6 +342,13 @@ class FarmOwnerController extends Controller
         }
 
         $query->orderBy('updated_at', 'desc');
+
+        return $query;
+    }
+
+    public function index(Request $request)
+    {
+        $query = $this->getAllQuery($request);
         $farmOwners = $query->paginate(12);
 
         return $farmOwners;
@@ -476,6 +488,127 @@ class FarmOwnerController extends Controller
 
         $farmOwner->delete();
         return [true];
+    }
+
+    private function raw($type, $caption = null)
+    {
+        if ($caption == null) {
+            $caption = $type;
+        }
+        return "max(case when c.type = '$type' THEN c.choice END) $caption";
+    }
+
+    private function groupRaw($type,$caption = null){
+        if ($caption == null) {
+            $caption = $type;
+        }
+        return "GROUP_CONCAT(case when c.type = '$type' then c.choice end SEPARATOR '|') as $caption";
+    }
+
+    public function exportAll()
+    {
+
+//        $query = FarmOwner::query();
+//        $data = collect();
+//        $query->chunk(10,function($f) use ($data){
+//            $data->push($f);
+//            return false;
+//        });
+//
+//        return $data;
+
+        $query = DB::table('farm_owners');
+
+        $query->leftJoin('thailand_provinces as hp', 'farm_owners.farm_province', '=', 'hp.province_id');
+        $query->leftJoin('thailand_amphures as ha', 'farm_owners.farm_amphur', '=', 'ha.amphur_id');
+        $query->leftJoin('thailand_districts as hd', 'farm_owners.farm_district', '=', 'hd.district_id');
+
+
+        $query->leftJoin('thailand_provinces as up', 'farm_owners.house_province', '=', 'up.province_id');
+        $query->leftJoin('thailand_amphures as ua', 'farm_owners.house_amphur', '=', 'ua.amphur_id');
+        $query->leftJoin('thailand_districts as ud', 'farm_owners.house_district', '=', 'ud.district_id');
+
+
+
+        $query->select([
+            //part1
+            "farm_owners.id",
+            "farm_owners.first_name",
+            "farm_owners.last_name",
+            "farm_owners.person_id",
+            "farm_owners.house_no",
+            "farm_owners.house_moo",
+            "up.province_name as house_province",
+            "ua.amphur_name as house_amphur",
+            "ud.district_name as house_district",
+            "farm_owners.house_postcode",
+            "farm_owners.house_phone",
+            "farm_owners.mobile_no",
+            "farm_owners.email",
+
+            "farm_owners.farm_no",
+            "farm_owners.farm_moo",
+            "hp.province_name as farm_province",
+            "ha.amphur_name as farm_amphur",
+            "hd.district_name as farm_district",
+
+            "farm_owners.farm_lat",
+            "farm_owners.farm_long",
+
+            DB::raw($this->raw("sex")),
+            "farm_owners.age",
+            DB::raw($this->raw('personal_status')),
+            DB::raw($this->raw('family_status')),
+
+            DB::raw($this->raw('education')),
+            DB::raw($this->raw('social_status')),
+            DB::raw($this->raw('cattle_job')),
+
+            DB::raw($this->groupRaw("jobtypes")),
+
+            DB::raw($this->raw('income_range')),
+
+            "farm_owners.avg_cattle_income",
+
+            //part2
+            DB::raw($this->groupRaw("farm_purposes")),
+
+            DB::raw($this->raw('farm_record')),
+
+            "farm_owners.total_master_breeding_types",
+
+            DB::raw($this->groupRaw("male_breeding_types")),
+
+
+
+
+        ]);
+
+        $query->join('choice_farm_owner as cf', 'cf.farm_owner_id', '=', 'farm_owners.id');
+        $query->join('choices as c', 'c.id', '=', 'cf.choice_id');
+        $query->orderBy('farm_owners.id', 'cf.choice_id');
+        $query->groupBy("farm_owners.id");
+
+        $query = $query->limit(10);
+        $data = $query->get();
+
+
+        $data = collect($data)->map(function ($x) {
+            return (array)$x;
+        })->toArray();
+//
+//        Excel::create('Filename', function ($excel) use ($data) {
+//
+//            $excel->sheet('Sheetname', function ($sheet) use ($data) {
+//
+//                $sheet->fromModel($data);
+//
+//            });
+//
+//        })->download('xls');
+
+        return $data;
+
     }
 
 }

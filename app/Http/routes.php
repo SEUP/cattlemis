@@ -146,6 +146,16 @@ Route::get('logout', function () {
 
 Route::get('/api/farm-owner/suggestion', "FarmOwnerController@suggestion");
 
+Route::get('/api/farm-owner/exports/status', function () {
+    return 'status';
+});
+
+
+Route::get('/api/farm-owner/exports', "FarmOwnerController@exportAll");
+
+
+
+
 Route::resource('/api/farm-owner', "FarmOwnerController");
 
 Route::resource('/api/thailand/province', "ProvinceController");

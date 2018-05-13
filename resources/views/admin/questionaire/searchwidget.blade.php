@@ -92,6 +92,7 @@
             </div>
         </div>
 
+        <a href="{{url("/api/farm-owner/exports")}}" target="_blank" class="btn btn-info" style="margin-bottom: 30px;">ส่งออกเป็น Excel</a>
 
         <div class="table-responsive">
             <table class="table table-striped ">
