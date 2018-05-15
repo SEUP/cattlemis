@@ -552,8 +552,10 @@ class FarmOwnerController extends Controller
             "farm_owners.first_name as ชื่อ",
             "farm_owners.last_name as นามสกุล",
             "farm_owners.person_id as รหัสประจำตัวประชาชน",
-            "farm_owners.house_no  as บ้าน_เลขที่",
-            "farm_owners.house_moo  as บ้าน_หมู่",
+
+            "farm_owners.house_no as บ้าน_เลขที่ ",
+            "farm_owners.house_moo as บ้าน_หมู่",
+
             "up.province_name as บ้าน_จังหวัด ",
             "ua.amphur_name as บ้าน_อำเภอ",
             "ud.district_name as บ้าน_ตำบล",
@@ -870,7 +872,7 @@ class FarmOwnerController extends Controller
         $query->orderBy('farm_owners.id', 'cf.choice_id');
         $query->groupBy("farm_owners.id");
 
-//        $query = $query->limit(1);
+        //$query = $query->limit(1);
         $data = $query->get();
 
 
@@ -886,7 +888,7 @@ class FarmOwnerController extends Controller
 
             });
 
-        })->store('xlsx');
+        })->download('xlsx');
 
     }
 
