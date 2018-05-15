@@ -870,7 +870,7 @@ class FarmOwnerController extends Controller
         $query->orderBy('farm_owners.id', 'cf.choice_id');
         $query->groupBy("farm_owners.id");
 
-//        $query = $query->limit(10);
+//        $query = $query->limit(1);
         $data = $query->get();
 
 
@@ -886,9 +886,7 @@ class FarmOwnerController extends Controller
 
             });
 
-        })->download('xls');
-
-        return $data;
+        })->store('xlsx');
 
     }
 
