@@ -14,6 +14,10 @@
 
 Route::get('/', function () {
 
+    if(Auth::user()){
+        return redirect('/admin');
+    }
+
     $countFarmOwners = \App\Models\FarmOwner::with([])->count();
 
     return view('public.dashboard')

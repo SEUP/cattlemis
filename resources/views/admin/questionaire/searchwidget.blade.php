@@ -33,16 +33,17 @@
                             <option value="0">กรุณาเลือก</option>
                             <template v-for="option in breedings">
                                 <option
-                                        v-bind:value="option.id">@{{ option.choice  }}</option>
+                                        v-bind:value="option.id">@{{ option.choice }}
+                                </option>
                                 <template v-for="opt2 in option.children">
                                     <option
                                             v-bind:value="opt2.id">
-                                        @{{ option.choice  }} - @{{ opt2.choice  }}
+                                        @{{ option.choice }} - @{{ opt2.choice }}
                                     </option>
 
                                     <option v-for="opt3 in opt2.children"
                                             v-bind:value="opt3.id">
-                                        @{{option.choice}} - @{{opt2.choice}} - @{{ opt3.choice  }}
+                                        @{{option.choice}} - @{{opt2.choice}} - @{{ opt3.choice }}
                                     </option>
                                 </template>
 
@@ -56,7 +57,8 @@
                                 name="user[user_province]">
                             <option value="0">กรุณาเลือก</option>
                             <option v-for="option in provinces"
-                                    v-bind:value="option.PROVINCE_ID">@{{ option.PROVINCE_NAME }}</option>
+                                    v-bind:value="option.PROVINCE_ID">@{{ option.PROVINCE_NAME }}
+                            </option>
                         </select>
                     </div>
                     <div class="form-group col-lg-4">
@@ -65,7 +67,8 @@
                                 name="user[user_amphur]">
                             <option value="0">กรุณาเลือก</option>
                             <option v-for="option in amphurs"
-                                    v-bind:value="option.AMPHUR_ID">@{{ option.AMPHUR_NAME }}</option>
+                                    v-bind:value="option.AMPHUR_ID">@{{ option.AMPHUR_NAME }}
+                            </option>
                         </select>
                     </div>
 
@@ -74,7 +77,8 @@
                         <select class="form-control" name="user[user_district]" v-model="form.district">
                             <option value="0">กรุณาเลือก</option>
                             <option v-for="option in districts"
-                                    v-bind:value="option.DISTRICT_ID">@{{ option.DISTRICT_NAME }}</option>
+                                    v-bind:value="option.DISTRICT_ID">@{{ option.DISTRICT_NAME }}
+                            </option>
                         </select>
                     </div>
 
@@ -92,8 +96,10 @@
             </div>
         </div>
 
-        <a href="{{url("/api/farm-owner/exports")}}" target="_blank" class="btn btn-info" style="margin-bottom: 30px;">ส่งออกเป็น Excel</a>
-
+        @if(Auth::user() && Auth::user()->isAdmin() && $showManage)
+            <a href="{{url("/api/farm-owner/exports")}}" target="_blank" class="btn btn-info"
+               style="margin-bottom: 30px;">ส่งออกเป็น Excel</a>
+        @endif
         <div class="table-responsive">
             <table class="table table-striped ">
                 <thead>
@@ -118,7 +124,7 @@
                     <td>@{{ owner.first_name }} @{{ owner.last_name }}</td>
                     <td>
                         <template v-if="owner.mobile_no || owner.house_phone">
-                        @{{ owner.mobile_no }}
+                            @{{ owner.mobile_no }}
                             <span v-if="owner.house_phone">(@{{ owner.house_phone }})</span>
                         </template>
                         <template v-else>
@@ -137,7 +143,8 @@
                                    class="btn btn-success">ส่งออก</a>
 
                                 <a v-bind:class="{'disabled' : cannotEdit(owner) }"
-                                   href="{{url("/")}}/admin/questionaire/@{{owner.id}}/edit" class="btn btn-info">แก้ไข</a>
+                                   href="{{url("/")}}/admin/questionaire/@{{owner.id}}/edit"
+                                   class="btn btn-info">แก้ไข</a>
 
                                 <a
                                         v-bind:class="{'disabled' : cannotEdit(owner) }"
