@@ -422,7 +422,7 @@ class FarmOwnerController extends Controller
         foreach ($grouped as $key => $value) {
             if ($m->contains($key)) {
                 $output[$key] = $value;
-            }else {
+            } else {
                 $output[$key] = $value[0];
             }
         }
@@ -462,16 +462,20 @@ class FarmOwnerController extends Controller
             $farmOwner->avg_cattle_income = null;
         }
 
-        $farmOwner->total_master_breeding_types = $farmOwner->total_male_breeding_types +
-            $farmOwner->total_female_breeding_types + $farmOwner->total_male_over_six_breeding_types
-            + $farmOwner->total_female_over_six_breeding_types
-            + $farmOwner->total_male_under_six_breeding_types
-            + $farmOwner->total_female_under_six_breeding_types;
+        $farmOwner->total_master_breeding_types = 0
+            + intval($farmOwner->total_male_breeding_types)
+            + intval($farmOwner->total_female_breeding_types)
+            + intval($farmOwner->total_male_over_six_breeding_types)
+            + intval($farmOwner->total_female_over_six_breeding_types)
+            + intval($farmOwner->total_male_under_six_breeding_types)
+            + intval($farmOwner->total_female_under_six_breeding_types);
 
         // $farmOwner->save();
 
-        $farmOwner->total_expense_amount = $farmOwner->drug_price +
-            $farmOwner->food_price + $farmOwner->expense_price;
+        $farmOwner->total_expense_amount = 0
+            + intval($farmOwner->drug_price)
+            + intval($farmOwner->food_price)
+            + intval($farmOwner->expense_price);
 
         $farmOwner->save();
 
@@ -875,8 +879,8 @@ class FarmOwnerController extends Controller
             DB::raw($this->groupRemark('เคย', "female_breeder_support", '`ท่านเคยได้รับการสนับสนุนให้แม่พันธุ์โคเนื้อมาเลี้ยงเพื่อผลิตลูกหรือไม่ (โครงการ)`', 'cf.remark')),
 
             //part 8
-            DB::raw($this->normal('problem','ปัญหา')),
-            DB::raw($this->normal('suggestion','ข้อเสนอแนะ'))
+            DB::raw($this->normal('problem', 'ปัญหา')),
+            DB::raw($this->normal('suggestion', 'ข้อเสนอแนะ'))
 
         ]);
 
