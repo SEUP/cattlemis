@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Jobs\ExportFarmOwners;
 use App\Models\FarmInfo;
 use App\Models\FarmOwner;
+use App\Models\FarmOwner2;
 use App\Models\Suggestion;
 use App\Models\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -411,10 +412,22 @@ class FarmOwnerController extends Controller
 
     public function edit($id)
     {
-        /* @var User $user */
-        $farmOwner = FarmOwner::with([])->find($id);
+        $farmOwner = FarmOwner2::with([])->find($id);
+        $output = collect($farmOwner->toArray());
+        $choices = collect($farmOwner->choices->toArray());
+        $grouped = $choices->groupBy('type');
 
-        return $farmOwner;
+        $m = collect($this->multiFieldArray[0]);
+
+        foreach ($grouped as $key => $value) {
+            if ($m->contains($key)) {
+                $output[$key] = $value;
+            }else {
+                $output[$key] = $value[0];
+            }
+        }
+        return $output;
+
     }
 
     private function cannotEdit($owner)

@@ -52,8 +52,8 @@ var app = new AdminApp({
                 var sub_sum = 0;
                 for (var i = 0; i < newFarmer.sub_own_lands.length; i++) {
                     var subOwnLand = newFarmer.sub_own_lands[i];
-                    sum += parseFloat(subOwnLand.pivot.remark, 0)?parseFloat(subOwnLand.pivot.remark, 0):0;
-                    sub_sum += parseFloat(subOwnLand.pivot.subarea, 0)?parseFloat(subOwnLand.pivot.subarea, 0):0;
+                    sum += parseFloat(subOwnLand.pivot.remark, 0) ? parseFloat(subOwnLand.pivot.remark, 0) : 0;
+                    sub_sum += parseFloat(subOwnLand.pivot.subarea, 0) ? parseFloat(subOwnLand.pivot.subarea, 0) : 0;
 
 
                 }
@@ -66,14 +66,14 @@ var app = new AdminApp({
         sumUseLand: function () {
             var newFarmer = this.newFarmer;
             if (newFarmer.use_land.children.length == 0) {
-                return [0,0];
+                return [0, 0];
             } else {
                 var sum = 0;
                 var sub_sum = 0;
                 for (var i = 0; i < newFarmer.sub_use_lands.length; i++) {
                     var subUseLand = newFarmer.sub_use_lands[i];
-                    sum += parseFloat(subUseLand.pivot.area, 0)?parseFloat(subUseLand.pivot.area, 0):0;
-                    sub_sum += parseFloat(subUseLand.pivot.subarea, 0)?parseFloat(subUseLand.pivot.subarea, 0):0;
+                    sum += parseFloat(subUseLand.pivot.area, 0) ? parseFloat(subUseLand.pivot.area, 0) : 0;
+                    sub_sum += parseFloat(subUseLand.pivot.subarea, 0) ? parseFloat(subUseLand.pivot.subarea, 0) : 0;
                 }
                 sum = sum + Math.floor(sub_sum / 4);
                 sub_sum = sub_sum % 4;
@@ -155,30 +155,39 @@ var app = new AdminApp({
         }
         ,
         reInitialOption: function (opt) {
-            //console.log(opt);
-            for (var i = 0; i < this.options[opt].length; i++) {
-                if (this.options[opt][i].id == this.newFarmer[opt].id) {
-                    this.options[opt].splice(i, 1, this.newFarmer[opt]);
+
+            try {
+                for (var i = 0; i < this.options[opt].length; i++) {
+                    if (this.options[opt][i].id == this.newFarmer[opt].id) {
+                        this.options[opt].splice(i, 1, this.newFarmer[opt]);
+                    }
                 }
+            } catch (e) {
+                console.log(opt)
+                console.log(this.options[opt])
             }
         },
         reInitialMultiOption: function (opt) {
+            try {
+                var choiceOpt = this.options[opt];
+                var userOpt = this.newFarmer[opt];
 
-            var choiceOpt = this.options[opt];
-            var userOpt = this.newFarmer[opt];
+                for (var i = 0; i < choiceOpt.length; i++) {
+                    //console.log("choice", choiceOpt[i].id, choiceOpt[i].choice)
 
-            for (var i = 0; i < choiceOpt.length; i++) {
-                //console.log("choice", choiceOpt[i].id, choiceOpt[i].choice)
+                    for (var j = 0; j < userOpt.length; j++) {
 
-                for (var j = 0; j < userOpt.length; j++) {
-
-                    //console.log("user", userOpt[j])
-                    if (choiceOpt[i].id == userOpt[j].id) {
-                        choiceOpt.splice(i, 1, userOpt[j]);
-                        break;
+                        //console.log("user", userOpt[j])
+                        if (choiceOpt[i].id == userOpt[j].id) {
+                            choiceOpt.splice(i, 1, userOpt[j]);
+                            break;
+                        }
                     }
                 }
+            } catch (e) {
+                console.log(opt);
             }
+
         },
         reSelectedOption: function () {
 
@@ -231,7 +240,7 @@ var app = new AdminApp({
                 'female_over_six_mixed_breeding_types', 'male_under_six_breeding_types',
                 'male_under_six_int_breeding_types', 'male_under_six_mixed_breeding_types',
                 'female_under_six_breeding_types', 'female_under_six_int_breeding_types',
-                'female_under_six_mixed_breeding_types','disease_other',
+                'female_under_six_mixed_breeding_types', 'disease_other',
 
                 //part3
                 'water_source_types', 'take_care_types', 'sub_own_lands', 'sub_use_lands',
